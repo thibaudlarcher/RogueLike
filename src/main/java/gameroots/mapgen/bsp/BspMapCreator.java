@@ -9,8 +9,6 @@ import gameroots.shared.geom.IntRect;
 import java.io.PrintStream;
 import java.util.*;
 import java.util.function.Consumer;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 
 
@@ -101,6 +99,7 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 		renderRooms(map, root);
 		renderWalls(map);
 		renderDoors(map);
+		renderPersonnage(map);
 
 		// make sure room floor tiles are properly set
 		// and collect rooms by tile
@@ -383,5 +382,17 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 			}
 		}
 		return map;
+	}
+
+	private void renderPersonnage(char[][] map){
+		int xmin = rooms.get(0).getX();
+		int ymin = rooms.get(0).getY();
+		for (int i =1; i< rooms.size(); i++){
+			if (xmin > rooms.get(i).getX()){
+				xmin = rooms.get(i).getX();
+				ymin = rooms.get(i).getY();
+			}
+		}
+		map[xmin+1][ymin+1] = TileChar.charPerso;
 	}
 }

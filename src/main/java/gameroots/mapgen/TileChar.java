@@ -14,4 +14,5 @@ public class TileChar {
 
 	public static char charDoorH = '|';
 	public static char charDoorV = '-';
+	public static char charPerso = '@';
 }

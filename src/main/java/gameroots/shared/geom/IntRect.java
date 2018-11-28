@@ -95,6 +95,14 @@ public class IntRect {
 		return height == intRect.height;
 	}
 
+	public int getY() {
+		return y;
+	}
+
+	public int getX() {
+		return x;
+	}
+
 	@Override
 	public int hashCode() {
 		int result = x;

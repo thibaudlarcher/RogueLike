@@ -2,11 +2,14 @@ package world;
 import color.*;
 import gameroots.mapgen.bsp.BspMapCreator;
 
+import java.awt.*;
+
 public class WorldBuilder {
 	private int width;
 	private int height;
 	private Tile[][] tiles;
 	private char[][] ch;
+	private Point pt;
 
 	public WorldBuilder(int width, int height) {
 		this.width = width;
@@ -21,7 +24,7 @@ public class WorldBuilder {
         bspMapCreator.setMapDimension(this.width, this.height);
         ch = bspMapCreator.createMap();
 
-		return new World(WorldGenerating(ch));
+		return new World(WorldGenerating(ch),pt);
 	}
 
 	public Tile[][] WorldGenerating(char[][] ch){
@@ -33,6 +36,9 @@ public class WorldBuilder {
                     tiles[i][j] = Tile.WALL;
                 } else if (ch[j][i]=='~'){
                     tiles[i][j] = Tile.BOUNDS;
+                } else if (ch[j][i]=='@'){
+                    tiles[i][j] = Tile.FLOOR;
+                    pt = new Point(j,i);
                 }
 
             }
@@ -54,5 +60,9 @@ public class WorldBuilder {
 
             tiles[x][y] = Tile.EXIT;
 	    return tiles;
+    }
+
+    public Point getPt() {
+        return pt;
     }
 }

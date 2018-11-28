@@ -1,21 +1,23 @@
 package world;
 
-import java.awt.Color;
+import java.awt.*;
+
 import color.*;
-import creature.*;
 
 public class World {
 	private Tile[][] tiles;
 	private int width;
+	private Point pt;
 	public int width() { return width; }
 	
 	private int height;
 	public int height() { return height; }
 	
-	public World(Tile[][] tiles){
+	public World(Tile[][] tiles, Point pt){
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
+		this.pt = pt;
 	}
 	
 	public Tile tile(int x, int y){
@@ -33,18 +35,11 @@ public class World {
 		return tile(x, y).color();
 	}
 
-	
-	public void addAtEmptyLocation(Creature creature){
-		int x;
-		int y;
-		
-		do {
-			x = (int)(Math.random() * width);
-			y = (int)(Math.random() * height);
-		} 
-		while (!tile(x,y).isGround());
-		
-		creature.x = x;
-		creature.y = y;
+	public Point getPt() {
+		return pt;
+	}
+
+	public void setPt(Point pt) {
+		this.pt = pt;
 	}
 }
