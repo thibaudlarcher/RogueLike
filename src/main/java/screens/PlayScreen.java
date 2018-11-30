@@ -13,7 +13,7 @@ public class PlayScreen implements Screen {
 	
 	public PlayScreen(){
 		screenWidth = 160;
-		screenHeight = 51;
+		screenHeight = 46;
 		createWorld();
 		
 		CreatureFactory creatureFactory = new CreatureFactory(world);
@@ -38,7 +38,7 @@ public class PlayScreen implements Screen {
 		
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
 		
-		terminal.writeCenter("-- bonjour --", 22);
+		terminal.writeCenter("-- bonjour --", 47);
 	}
 
 	private void displayTiles(AsciiPanel terminal, int left, int top) {

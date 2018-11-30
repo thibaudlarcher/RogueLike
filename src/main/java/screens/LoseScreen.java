@@ -1,19 +1,30 @@
 package screens;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import asciiPanel.AsciiPanel;
+
+import static java.lang.System.exit;
 
 public class LoseScreen implements Screen {
 
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
-		terminal.write("You lost.", 1, 1);
-		terminal.writeCenter("-- press [enter] to restart --", 22);
+		terminal.writeCenter("You lost.", 3, Color.red);
+		terminal.writeCenter("-- press [enter] to restart or [escape] to quit  --", 22);
 	}
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
-		return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen() : this;
+		switch (key.getKeyCode()) {
+			case KeyEvent.VK_ENTER:
+				return new PlayScreen();
+			case KeyEvent.VK_ESCAPE:
+				exit(1);
+		}
+		return this;
+		//return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen() : this;
 	}
 }
+
