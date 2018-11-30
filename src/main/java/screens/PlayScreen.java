@@ -12,8 +12,8 @@ public class PlayScreen implements Screen {
 	private int screenHeight;
 	
 	public PlayScreen(){
-		screenWidth = 80;
-		screenHeight = 21;
+		screenWidth = 160;
+		screenHeight = 51;
 		createWorld();
 		
 		CreatureFactory creatureFactory = new CreatureFactory(world);
