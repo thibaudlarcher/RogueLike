@@ -1,6 +1,8 @@
 package screens;
 
 import java.awt.event.KeyEvent;
+import java.util.List;
+
 import asciiPanel.AsciiPanel;
 import creature.*;
 import world.*;
@@ -8,6 +10,7 @@ import world.*;
 public class PlayScreen implements Screen {
 	private World world;
 	private Creature player;
+	private List<Creature> creature;
 	private int screenWidth;
 	private int screenHeight;
 	
@@ -18,6 +21,7 @@ public class PlayScreen implements Screen {
 		
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		player = creatureFactory.newPlayer();
+		creatureFactory.newMonster();
 	}
 	
 	private void createWorld(){

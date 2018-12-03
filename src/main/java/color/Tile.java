@@ -7,8 +7,7 @@ public enum Tile {
 	FLOOR((char)250, AsciiPanel.black),
 	WALL((char)177, AsciiPanel.brightWhite),
 	EXIT((char)79, AsciiPanel.brightRed),
-	PERSO((char)64, AsciiPanel.blue),
-	TEST((char)75, AsciiPanel.brightCyan),
+	MONSTER((char)64, AsciiPanel.brightYellow),
 	BOUNDS('x', AsciiPanel.brightBlack);
 
 	
