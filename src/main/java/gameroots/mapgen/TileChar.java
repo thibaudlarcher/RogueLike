@@ -16,4 +16,7 @@ public class TileChar {
 	public static char charDoorV = '-';
 	public static char charPerso = '@';
 	public static char charItem = '$';
+	public static char charFlyingMonster = (char)174;
+	public static char charMonster = (char)144;
+	public static char charBoss = (char)155;
 }

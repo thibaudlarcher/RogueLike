@@ -101,6 +101,7 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 		renderDoors(map);
 		renderPersonnage(map);
 		renderItems(map);
+		renderMonster(map);
 
 		// make sure room floor tiles are properly set
 		// and collect rooms by tile
@@ -397,17 +398,36 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 		map[xmin+1][ymin+1] = TileChar.charPerso;
 	}
 
-	private void renderItems(char[][] map){
-		int x = 0;
-		int y = 0;
+	private void renderItems(char[][] map) {
 
-		for (int i = 0; i < rooms.size(); i++){
-			do {
-				x = (int)(Math.random() * rooms.get(i).width);
-				y = (int)(Math.random() * rooms.get(i).height);
-			} while (!(x > rooms.get(i).getX() && x < rooms.get(i).width && y > rooms.get(i).getY() && y < rooms.get(i).width));
+		for (int i = 0; i < rooms.size(); i++) {
+			int randx = (int) (Math.random() * (rooms.get(i).getWidth()-2)) + rooms.get(i).getX()+1;
+			int randy = (int) (Math.random() * (rooms.get(i).getHeight()-2)) + rooms.get(i).getY()+1;
 
-			map[x][y] = TileChar.charItem;
+			System.out.println("randX item : "+randx+ " randY item : "+randy);
+			map[randy][randx] = TileChar.charItem;
+		}
+	}
+
+
+	private void renderMonster(char[][] map){
+		int xmin = rooms.get(0).getX();
+		int min = 0;
+		for (int i =1; i< rooms.size(); i++){
+			if (xmin > rooms.get(i).getX()){
+				xmin = rooms.get(i).getX();
+				min = i;
+			}
+		}
+		for(int i = 0;i<rooms.size();i++){
+			int rand = (int)(Math.random() * ( 4 ));
+			if(rand == 1 && i != min){
+				int randX = ((int)(Math.random() * ( rooms.get(i).getWidth()-1)))+ rooms.get(i).getX()+1;
+				int randY = (int)(Math.random() * ( rooms.get(i).getHeight()-1))+ rooms.get(i).getY()+1;
+				//System.out.println(randX);
+				//System.out.println(randY);
+				map[randY][randX] = TileChar.charMonster;
+			}
 		}
 	}
 }
