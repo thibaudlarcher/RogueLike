@@ -100,6 +100,7 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 		renderWalls(map);
 		renderDoors(map);
 		renderPersonnage(map);
+		renderItems(map);
 
 		// make sure room floor tiles are properly set
 		// and collect rooms by tile
@@ -387,12 +388,26 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 	private void renderPersonnage(char[][] map){
 		int xmin = rooms.get(0).getX();
 		int ymin = rooms.get(0).getY();
-		for (int i =1; i< rooms.size(); i++){
+		for (int i = 1; i < rooms.size(); i++){
 			if (xmin > rooms.get(i).getX()){
 				xmin = rooms.get(i).getX();
 				ymin = rooms.get(i).getY();
 			}
 		}
 		map[xmin+1][ymin+1] = TileChar.charPerso;
+	}
+
+	private void renderItems(char[][] map){
+		int x = 0;
+		int y = 0;
+
+		for (int i = 0; i < rooms.size(); i++){
+			do {
+				x = (int)(Math.random() * rooms.get(i).width);
+				y = (int)(Math.random() * rooms.get(i).height);
+			} while (!(x > rooms.get(i).getX() && x < rooms.get(i).width && y > rooms.get(i).getY() && y < rooms.get(i).width));
+
+			map[x][y] = TileChar.charItem;
+		}
 	}
 }

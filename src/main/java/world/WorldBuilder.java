@@ -1,8 +1,9 @@
 package world;
+import asciiPanel.AsciiPanel;
 import color.*;
 import gameroots.mapgen.bsp.BspMapCreator;
-
 import java.awt.*;
+import Object.*;
 
 public class WorldBuilder {
 	private int width;
@@ -10,11 +11,13 @@ public class WorldBuilder {
 	private Tile[][] tiles;
 	private char[][] ch;
 	private Point pt;
+//	private Item[][] items;
 
 	public WorldBuilder(int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.tiles = new Tile[width][height];
+//		this.items = new Item[width][height];
 	}
 
 	public World build() {
@@ -24,7 +27,7 @@ public class WorldBuilder {
         bspMapCreator.setMapDimension(this.width, this.height);
         ch = bspMapCreator.createMap();
 
-		return new World(WorldGenerating(ch),pt);
+		return new World(WorldGenerating(ch), pt);
 	}
 
 	public Tile[][] WorldGenerating(char[][] ch){
@@ -36,6 +39,8 @@ public class WorldBuilder {
                     tiles[i][j] = Tile.WALL;
                 } else if (ch[j][i]=='~'){
                     tiles[i][j] = Tile.BOUNDS;
+                } else if (ch[j][i]=='$'){
+                    tiles[i][j] = Tile.ITEMS;
                 } else if (ch[j][i]=='@'){
                     if (tiles[i-1][j] == Tile.BOUNDS && tiles[i][j-1] == Tile.BOUNDS){
                         tiles[i][j] = Tile.BOUNDS;
@@ -56,6 +61,18 @@ public class WorldBuilder {
 
         return tiles = InsertExit();
     }
+
+//    public void addAtEmptyLocation(Item item) {
+//        int x;
+//        int y;
+//
+//        do {
+//            x = (int) (Math.random() * width);
+//            y = (int) (Math.random() * height);
+//        } while (!(tiles[x][y]).isGround() || items[x][y] != null);
+//
+//        items[x][y] = item;
+//    }
 
     public Tile [][] InsertExit(){
         int x;

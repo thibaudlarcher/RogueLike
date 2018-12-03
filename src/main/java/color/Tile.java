@@ -9,7 +9,8 @@ public enum Tile {
 	EXIT((char)79, AsciiPanel.brightRed),
 	PERSO((char)64, AsciiPanel.blue),
 	TEST((char)75, AsciiPanel.brightCyan),
-	BOUNDS('x', AsciiPanel.brightBlack);
+	BOUNDS('x', AsciiPanel.brightBlack),
+	ITEMS('$', AsciiPanel.brightYellow);
 
 	
 	private char glyph;

@@ -18,11 +18,18 @@ public class PlayScreen implements Screen {
 		
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		player = creatureFactory.newPlayer();
+		//createItems(creatureFactory);
 	}
 	
 	private void createWorld(){
 		world = new WorldBuilder(100	, 100).build();
 	}
+
+//	private void createItems(CreatureFactory factory) {
+//		for (int i = 0; i < world.width() * world.height() / 10; i++){
+//			factory.newRock();
+//		}
+//	}
 	
 	public int getScrollX() { return Math.max(0, Math.min(player.x - screenWidth / 2, world.width() - screenWidth)); }
 	
@@ -57,6 +64,7 @@ public class PlayScreen implements Screen {
 		switch (key.getKeyCode()){
 		case KeyEvent.VK_ESCAPE: return new LoseScreen();
 		case KeyEvent.VK_ENTER: return new WinScreen();
+		case KeyEvent.VK_I: return new InventoryScreen(this);
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_Q: player.moveBy(-1, 0); break;
 		case KeyEvent.VK_RIGHT:
