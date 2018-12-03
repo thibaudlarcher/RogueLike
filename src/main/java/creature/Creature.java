@@ -25,7 +25,7 @@ public class Creature {
 	
 	public void moveBy(int mx, int my){
 		ai.onEnter(x+mx, y+my, world.tile(x+mx, y+my));
-		System.out.println("x :"+ x+ "y : " + y);
+		//System.out.println("x :"+ x+ "y : " + y);
 	}
 
 }

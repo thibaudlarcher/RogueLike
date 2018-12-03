@@ -5,15 +5,15 @@ import java.awt.event.KeyListener;
 import screens.Screen;
 import screens.StartScreen;
 
-public class ApplicationMain extends JFrame implements KeyListener {
+public class InfinityRogue extends JFrame implements KeyListener {
 	private static final long serialVersionUID = 1060623638149583738L;
 	
 	private AsciiPanel terminal;
 	private Screen screen;
 	
-	public ApplicationMain(){
+	public InfinityRogue(){
 		super();
-		terminal = new AsciiPanel(160,54); // max 160 max 54
+		terminal = new AsciiPanel(82,54); // max 160 max 54
 		add(terminal);
 		pack();
 		screen = new StartScreen();
@@ -41,7 +41,7 @@ public class ApplicationMain extends JFrame implements KeyListener {
 	public void keyTyped(KeyEvent e) { }
 	
 	public static void main(String[] args) {
-		ApplicationMain app = new ApplicationMain();
+		InfinityRogue app = new InfinityRogue();
 		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		app.setVisible(true);
 	}
