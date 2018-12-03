@@ -1,6 +1,8 @@
 package screens;
 
 import java.awt.event.KeyEvent;
+import java.util.List;
+
 import asciiPanel.AsciiPanel;
 import creature.*;
 import world.*;
@@ -8,16 +10,18 @@ import world.*;
 public class PlayScreen implements Screen {
 	private World world;
 	private Creature player;
+	private List<Creature> creature;
 	private int screenWidth;
 	private int screenHeight;
 	
 	public PlayScreen(){
-		screenWidth = 80;
-		screenHeight = 21;
+		screenWidth = 160;
+		screenHeight = 46;
 		createWorld();
 		
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		player = creatureFactory.newPlayer();
+		creatureFactory.newMonster();
 	}
 	
 	private void createWorld(){
@@ -38,7 +42,7 @@ public class PlayScreen implements Screen {
 		
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
 		
-		terminal.writeCenter("-- bonjour --", 22);
+		terminal.writeCenter("-- bonjour --", 47);
 	}
 
 	private void displayTiles(AsciiPanel terminal, int left, int top) {

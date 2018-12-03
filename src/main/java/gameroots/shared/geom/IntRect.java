@@ -103,6 +103,14 @@ public class IntRect {
 		return x;
 	}
 
+	public int getHeight() {
+		return height;
+	}
+
+	public int getWidth() {
+		return width;
+	}
+
 	@Override
 	public int hashCode() {
 		int result = x;

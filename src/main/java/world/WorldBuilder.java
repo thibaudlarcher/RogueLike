@@ -49,6 +49,15 @@ public class WorldBuilder {
                         tiles[i][j] = Tile.FLOOR;
                     }
                     pt = new Point(j,i);
+                } else if (ch[j][i]==(char)144){
+                    tiles[i][j] = Tile.MONSTER;
+                    System.out.println(1);
+                } else if (ch[j][i]==(char)155){
+                    tiles[i][j] = Tile.MONSTER;
+                    System.out.println(2);
+                } else if (ch[j][i]==(char)174){
+                    tiles[i][j] = Tile.MONSTER;
+                    System.out.println(3);
                 }
 
             }
