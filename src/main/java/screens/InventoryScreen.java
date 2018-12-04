@@ -1,14 +1,19 @@
 package screens;
-
+import Object.*;
 import java.awt.*;
 import java.awt.event.KeyEvent;
-
+import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
+import creature.Creature;
 
 public class InventoryScreen implements Screen {
     private Screen PlayScreen;
+    protected Creature player;
+    private String letters;
 
-    public InventoryScreen (Screen PlayScreen){
+    public InventoryScreen (Creature player, Screen PlayScreen){
+        this.player = player;
+        this.letters = "test";
         this.PlayScreen = PlayScreen;
     }
 
@@ -27,4 +32,3 @@ public class InventoryScreen implements Screen {
         return this;
     }
 }
-

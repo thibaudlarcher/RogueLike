@@ -404,7 +404,7 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 			int randx = (int) (Math.random() * (rooms.get(i).getWidth()-2)) + rooms.get(i).getX()+1;
 			int randy = (int) (Math.random() * (rooms.get(i).getHeight()-2)) + rooms.get(i).getY()+1;
 
-			System.out.println("randX item : "+randx+ " randY item : "+randy);
+			//System.out.println("randX item : "+randx+ " randY item : "+randy);
 			map[randy][randx] = TileChar.charItem;
 		}
 	}
@@ -422,8 +422,8 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 		for(int i = 0;i<rooms.size();i++){
 			int rand = (int)(Math.random() * ( 4 ));
 			if(rand == 1 && i != min){
-				int randX = ((int)(Math.random() * ( rooms.get(i).getWidth()-1)))+ rooms.get(i).getX()+1;
-				int randY = (int)(Math.random() * ( rooms.get(i).getHeight()-1))+ rooms.get(i).getY()+1;
+				int randX = ((int)(Math.random() * ( rooms.get(i).getWidth()-2)))+ rooms.get(i).getX()+1;
+				int randY = (int)(Math.random() * ( rooms.get(i).getHeight()-2))+ rooms.get(i).getY()+1;
 				//System.out.println(randX);
 				//System.out.println(randY);
 				map[randY][randX] = TileChar.charMonster;

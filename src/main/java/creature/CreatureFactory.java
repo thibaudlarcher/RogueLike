@@ -20,11 +20,11 @@ public class CreatureFactory {
 		return player;
 	}
 
-//	public Item newRock(){
-//		Item rock = new Item('A', AsciiPanel.yellow, "rock");
-//		world.addAtEmptyLocation(rock);
-//		return rock;
-//	}
+	public Item newSword(){
+		Item sword = new Item((char) 244, AsciiPanel.yellow, "sword");
+		world.addItemAtLocation(sword);
+		return sword;
+	}
 
 	/*public Creature newBoss(){
 		Creature player = new Creature(world, (char)144, AsciiPanel.green);

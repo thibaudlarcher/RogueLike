@@ -1,12 +1,14 @@
 package world;
 
 import java.awt.*;
+import java.util.ArrayList;
 import Object.*;
 import color.*;
 
 public class World {
 	private Tile[][] tiles;
-//	private Item[][] items;
+	private Item[][] items;
+	private ArrayList<Point> itemPointList;
 	private int width;
 	private Point pt;
 	public int width() { return width; }
@@ -14,12 +16,13 @@ public class World {
 	private int height;
 	public int height() { return height; }
 	
-	public World(Tile[][] tiles, Point pt){
+	public World(Tile[][] tiles, Point pt, ArrayList<Point> itemPointList){
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
 		this.pt = pt;
-//		this.items = new Item[this.width][this.height];	//x : 160 y : 95
+		this.itemPointList = itemPointList;
+		this.items = new Item[160][95];	// --> pourquoi x : 160  et y : 95, mystere total.. items[width][height] ne fonctionne pas --> OutOfBoundsException
 	}
 	
 	public Tile tile(int x, int y){
@@ -29,37 +32,27 @@ public class World {
 			return tiles[x][y];
 	}
 
-//	public Item item(int x, int y){
-//		System.out.println("xItem : " + x + " yItem : " + y);
-//		return items[x][y];
-//	}
-
 	public char glyph(int x, int y){
-//		if (item(x,y) != null)
-//			return item(x,y).glyph();
+		if (items[x][y] != null)
+			return items[x][y].glyph();
 
 		return tile(x, y).glyph();
 	}
 
 	public Color color(int x, int y){
-//		if (item(x,y) != null)
-//			return item(x,y).color();
+		if (items[x][y] != null)
+			return items[x][y].color();
 
 		return tile(x, y).color();
 	}
 
-//	public void addAtEmptyLocation(Item item) {
-//		int x;
-//        int y;
-//
-//        do {
-//            x = (int) (Math.random() * width);
-//            y = (int) (Math.random() * height);
-//        } while (!(tiles[x][y]).isGround() || items[x][y] != null);
-//
-//        items[x][y] = item;
-//	}
-
+	public void addItemAtLocation(Item item) {
+		for (int i = 0; i < itemPointList.size(); i++){
+			if (itemPointList.get(i) != null && (items[(int) itemPointList.get(i).getX()][(int) itemPointList.get(i).getY()]) == null){
+				items[(int) itemPointList.get(i).getX()][(int) itemPointList.get(i).getY()] = item;
+			}
+		}
+	}
 
 	public Point getPt() {
 		return pt;
@@ -67,5 +60,9 @@ public class World {
 
 	public void setPt(Point pt) {
 		this.pt = pt;
+	}
+
+	public Item item(int x, int y){
+		return items[x][y];
 	}
 }

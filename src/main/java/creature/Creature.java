@@ -25,7 +25,7 @@ public class Creature {
 		this.world = world;
 		this.glyph = glyph;
 		this.color = color;
-		this.inventory = new Inventory(20);
+		this.inventory = new Inventory(10);
 	}
 	
 	public void moveBy(int mx, int my){
@@ -33,16 +33,22 @@ public class Creature {
 		System.out.println("x :"+ x+ "y : " + y);
 	}
 
-	/*public void pickup(){
-		Item item = world.item(x, y, z);
+//	public void pickupItem(){
+//		Item item = world.item(x,y);
+//
+//		if (inventory.isFull() || item == null){
+//			doAction("grab at the ground");
+//		} else {
+//			doAction("pickup a %s", item.name());
+//			world.remove(x, y);
+//			inventory.add(item);
+//		}
+//	}
 
-		if (inventory.isFull() || item == null){
-			doAction("grab at the ground");
-		} else {
-			doAction("pickup a %s", item.name());
-			world.remove(x, y, z);
-			inventory.add(item);
-		}
-	}*/
+//	public void drop(Item item){
+//		doAction("drop a " + item.name());
+//		inventory.remove(item);
+//		world.addAtEmptySpace(item, x, y, z);
+//	}
 
 }
