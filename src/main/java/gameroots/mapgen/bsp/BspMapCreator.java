@@ -1,6 +1,7 @@
 package gameroots.mapgen.bsp;
 
 
+import color.Tile;
 import gameroots.mapgen.CharLevelMapCreator;
 import gameroots.mapgen.TileChar;
 import gameroots.shared.geom.IntPoint;
