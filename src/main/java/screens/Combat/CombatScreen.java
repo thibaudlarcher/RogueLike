@@ -2,12 +2,15 @@ package screens.Combat;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
+import screens.PlayScreen;
 import screens.Screen;
 import world.World;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.List;
+
+import static java.lang.System.exit;
 
 public class CombatScreen implements Screen {
     private World world;
@@ -44,6 +47,13 @@ public class CombatScreen implements Screen {
 
     @Override
     public Screen respondToUserInput(KeyEvent key) {
+
+        switch (key.getKeyCode()) {
+            case KeyEvent.VK_ENTER:
+                return new PlayScreen();
+            case KeyEvent.VK_ESCAPE:
+                exit(1);
+        }
         return this;
     }
 }
