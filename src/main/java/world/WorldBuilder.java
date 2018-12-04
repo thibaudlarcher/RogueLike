@@ -53,7 +53,7 @@ public class WorldBuilder {
                     pt = new Point(j,i);
                 } else if (ch[j][i]==(char)144){
                     tiles[i][j] = Tile.MONSTER;
-                    ptmonstre.add(new Point(j,i));
+                    //ptmonstre.add(new Point(j,i));
                 }
 
             }
