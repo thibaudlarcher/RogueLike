@@ -22,7 +22,7 @@ public class World {
 		this.height = tiles[0].length;
 		this.pt = pt;
 		this.itemPointList = itemPointList;
-		this.items = new Item[160][95];	// --> pourquoi x : 160  et y : 95, mystere total.. items[width][height] ne fonctionne pas --> OutOfBoundsException
+		this.items = new Item[160][46];	// --> pourquoi x : 160  et y : 95, mystere total.. items[width][height] ne fonctionne pas --> OutOfBoundsException
 	}
 	
 	public Tile tile(int x, int y){
@@ -33,15 +33,15 @@ public class World {
 	}
 
 	public char glyph(int x, int y){
-		if (items[x][y] != null)
-			return items[x][y].glyph();
+//		if (items[x][y] != null)
+//			return items[x][y].glyph();
 
 		return tile(x, y).glyph();
 	}
 
 	public Color color(int x, int y){
-		if (items[x][y] != null)
-			return items[x][y].color();
+//		if (items[x][y] != null)
+//			return items[x][y].color();
 
 		return tile(x, y).color();
 	}

@@ -57,7 +57,7 @@ public class PlayScreen implements Screen {
 			for (int y = 0; y < screenHeight; y++){
 				int wx = x + left;
 				int wy = y + top;
-
+				System.out.println("x : "+ x + "y : "+ y);
 				terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
 			}
 		}
