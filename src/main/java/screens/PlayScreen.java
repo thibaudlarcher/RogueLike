@@ -9,7 +9,7 @@ import world.*;
 
 public class PlayScreen implements Screen {
 	private World world;
-	private Creature player;
+	private GroupCreature player;
 	private List<Creature> creature;
 	private int screenWidth;
 	private int screenHeight;
@@ -34,7 +34,7 @@ public class PlayScreen implements Screen {
 			factory.newSword();
 		}
 	}
-	
+
 	public int getScrollX() { return Math.max(0, Math.min(player.x - screenWidth / 2, world.width() - screenWidth)); }
 	
 	public int getScrollY() { return Math.max(0, Math.min(player.y - screenHeight / 2, world.height() - screenHeight)); }
@@ -47,7 +47,7 @@ public class PlayScreen implements Screen {
 		
 		displayTiles(terminal, left, top);
 		
-		terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
+		terminal.write(player.getGlyph(), player.x - left, player.y - top, player.getColor());
 		
 		terminal.writeCenter("-- bonjour --", 47);
 	}
@@ -68,7 +68,7 @@ public class PlayScreen implements Screen {
 		switch (key.getKeyCode()){
 		case KeyEvent.VK_ESCAPE: return new LoseScreen();
 		case KeyEvent.VK_ENTER: return new WinScreen();
-		case KeyEvent.VK_I: return new InventoryScreen(this.player,this);
+		//case KeyEvent.VK_I: return new InventoryScreen(this.player,this);
 		case KeyEvent.VK_LEFT:
 		case KeyEvent.VK_Q: player.moveBy(-1, 0); break;
 		case KeyEvent.VK_RIGHT:

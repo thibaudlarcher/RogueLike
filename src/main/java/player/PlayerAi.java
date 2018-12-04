@@ -3,14 +3,14 @@ import color.*;
 import creature.*;
 public class PlayerAi extends CreatureAi {
 
-	public PlayerAi(Creature creature) {
-		super(creature);
+	public PlayerAi(GroupCreature groupCreature) {
+		super(groupCreature);
 	}
 
 	public void onEnter(int x, int y, Tile tile){
 		if (tile.isGround()){
-			creature.x = x;
-			creature.y = y;
+			groupCreature.x = x;
+			groupCreature.y = y;
 		}
 	}
 }
