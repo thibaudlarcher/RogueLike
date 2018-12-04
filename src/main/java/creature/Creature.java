@@ -1,31 +1,30 @@
 package creature;
 import java.awt.Color;
-import world.World;
+//import world.World;
 
-public class Creature {
-	private World world;
-	
+public abstract class Creature {
+	//private World world;
+
 	public int x;
 	public int y;
-	
-	private char glyph;
-	public char glyph() { return glyph; }
-	
-	private Color color;
-	public Color color() { return color; }
 
-	private CreatureAi ai;
-	public void setCreatureAi(CreatureAi ai) { this.ai = ai; }
-	
-	public Creature(World world, char glyph, Color color){
-		this.world = world;
-		this.glyph = glyph;
-		this.color = color;
-	}
-	
-	public void moveBy(int mx, int my){
-		ai.onEnter(x+mx, y+my, world.tile(x+mx, y+my));
-		//System.out.println("x :"+ x+ "y : " + y);
-	}
+	protected char glyph;
+    public char getGlyph() {
+        return glyph;
+    }
+
+    protected Color color;
+    public Color getColor() {
+        return color;
+    }
+
+    protected int pointDeVieMax;
+	public abstract int getPointDeVieMax();
+
+    protected int pointDeVie;
+    public abstract int getPointDeVie();
+
+    protected int attaque;
+    public abstract int getAttaque();
 
 }

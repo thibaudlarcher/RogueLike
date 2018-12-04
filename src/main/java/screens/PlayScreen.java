@@ -9,14 +9,14 @@ import world.*;
 
 public class PlayScreen implements Screen {
 	private World world;
-	private Creature player;
-	private List<Creature> creature;
+	private GroupCreature player;
+	private List<GroupCreature> groupCreature;
 	private int screenWidth;
 	private int screenHeight;
 	
 	public PlayScreen(){
 		screenWidth = 160;
-		screenHeight = 46;
+		screenHeight = 40;
 		createWorld();
 		
 		CreatureFactory creatureFactory = new CreatureFactory(world);
@@ -42,7 +42,7 @@ public class PlayScreen implements Screen {
 		
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
 		
-		terminal.writeCenter("-- bonjour --", 47);
+		//terminal.writeCenter("-- bonjour --", 35);
 	}
 
 	private void displayTiles(AsciiPanel terminal, int left, int top) {
