@@ -1,8 +1,8 @@
 package world;
 import color.*;
 import gameroots.mapgen.bsp.BspMapCreator;
-
 import java.awt.*;
+import java.util.ArrayList;
 
 public class WorldBuilder {
 	private int width;
@@ -10,11 +10,14 @@ public class WorldBuilder {
 	private Tile[][] tiles;
 	private char[][] ch;
 	private Point pt;
+	private ArrayList<Point> itemPointList;
 
 	public WorldBuilder(int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.tiles = new Tile[width][height];
+		this.itemPointList = new ArrayList<>();
+
 	}
 
 	public World build() {
@@ -24,7 +27,7 @@ public class WorldBuilder {
         bspMapCreator.setMapDimension(this.width, this.height);
         ch = bspMapCreator.createMap();
 
-		return new World(WorldGenerating(ch),pt);
+		return new World(WorldGenerating(ch), pt, itemPointList);
 	}
 
 	public Tile[][] WorldGenerating(char[][] ch){
@@ -36,6 +39,9 @@ public class WorldBuilder {
                     tiles[i][j] = Tile.WALL;
                 } else if (ch[j][i]=='~'){
                     tiles[i][j] = Tile.BOUNDS;
+                } else if (ch[j][i]==(char)244){
+                    tiles[i][j] = Tile.ITEMS;
+                    itemPointList.add(new Point(i,j));
                 } else if (ch[j][i]=='@'){
                     if (tiles[i-1][j] == Tile.BOUNDS && tiles[i][j-1] == Tile.BOUNDS){
                         tiles[i][j] = Tile.BOUNDS;

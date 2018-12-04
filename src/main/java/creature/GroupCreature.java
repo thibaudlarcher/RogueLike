@@ -17,10 +17,10 @@ public class GroupCreature {
     }
 
     private char glyph;
-    public char glyph() { return glyph; }
+    public char getGlyph() { return glyph; }
 
     private Color color;
-    public Color color() { return color; }
+    public Color getColor() { return color; }
 
     private CreatureAi ai;
     public void setCreatureAi(CreatureAi ai) { this.ai = ai; }

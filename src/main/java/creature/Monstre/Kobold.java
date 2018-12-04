@@ -1,5 +1,4 @@
 package creature.Monstre;
-
 import static asciiPanel.AsciiPanel.red;
 
 public class Kobold extends Monstre{
