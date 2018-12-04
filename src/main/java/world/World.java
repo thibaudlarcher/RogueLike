@@ -48,13 +48,6 @@ public class World {
 	}
 
 	public void addItemAtLocation(Item item) {
-//		do {
-//			int randx = (int)(Math.random() * itemPointList.size());
-//			if (itemPointList.get(randx) != null && (items[(int) itemPointList.get(randx).getX()][(int) itemPointList.get(randx).getY()]) == null){
-//				items[(int) itemPointList.get(randx).getX()][(int) itemPointList.get(randx).getY()] = item;
-//				break;
-//			}
-
 		int randx = (int)(Math.random() * itemPointList.size());
 
 		for (int i = randx; i < itemPointList.size(); i++){

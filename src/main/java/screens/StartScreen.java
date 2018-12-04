@@ -13,11 +13,11 @@ public class StartScreen implements Screen {
 		terminal.write('#', 5, 1, new Color(61, 50, 5)); // Color(61,50,5)
 		terminal.write('#', 6, 1, new Color(61, 50, 5)); //Color(125,102,8)
 		terminal.write('#', 7, 1, new Color(61, 50, 5)); //Color(241,196,15)
-		terminal.write('#', 8, 1, new Color(154, 125, 10));
-		terminal.write('#', 9, 1, new Color(154, 125, 10));
-		terminal.write('#', 10, 1, new Color(154, 125, 10));
+		terminal.write('#', 8, 1, new Color(61, 50, 5));
+		terminal.write('#', 9, 1, new Color(61, 50, 5));
+		terminal.write('#', 10, 1, new Color(61, 50, 5));
 
-		terminal.write('#', 2, 2, new Color(154, 125, 10));
+		terminal.write('#', 2, 2, new Color(61, 50, 5));
 		terminal.write('#', 3, 2, new Color(241, 196, 15));
 		terminal.write('#', 4, 2, new Color(241, 196, 15));
 		terminal.write('#', 5, 2, new Color(241, 196, 15));
@@ -739,7 +739,480 @@ public class StartScreen implements Screen {
 		terminal.write('#', 53, 22, new Color(241, 196, 15));
 		terminal.write('#', 54, 22, new Color(61, 50, 5));
 
+		terminal.write('#', 44, 23, new Color(61, 50, 5));
+		terminal.write('#', 45, 23, new Color(241, 196, 15));
+		terminal.write('#', 46, 23, new Color(61, 50, 5));
+		terminal.write('#', 51, 23, new Color(61, 50, 5));
+		terminal.write('#', 52, 23, new Color(241, 196, 15));
+		terminal.write('#', 53, 23, new Color(241, 196, 15));
+		terminal.write('#', 54, 23, new Color(61, 50, 5));
 
+		terminal.write('#', 44, 24, new Color(61, 50, 5));
+		terminal.write('#', 45, 24, new Color(241, 196, 15));
+		terminal.write('#', 46, 24, new Color(61, 50, 5));
+		terminal.write('#', 50, 24, new Color(61, 50, 5));
+		terminal.write('#', 51, 24, new Color(241, 196, 15));
+		terminal.write('#', 52, 24, new Color(241, 196, 15));
+		terminal.write('#', 53, 24, new Color(61, 50, 5));
+
+		terminal.write('#', 45, 25, new Color(241, 196, 15));
+		terminal.write('#', 46, 25, new Color(241, 196, 15));
+		terminal.write('#', 47, 25, new Color(61, 50, 5));
+		terminal.write('#', 48, 25, new Color(61, 50, 5));
+		terminal.write('#', 49, 25, new Color(61, 50, 5));
+		terminal.write('#', 50, 25, new Color(241, 196, 15));
+		terminal.write('#', 51, 25, new Color(241, 196, 15));
+		terminal.write('#', 52, 25, new Color(61, 50, 5));
+
+		terminal.write('#', 46, 26, new Color(241, 196, 15));
+		terminal.write('#', 47, 26, new Color(241, 196, 15));
+		terminal.write('#', 48, 26, new Color(241, 196, 15));
+		terminal.write('#', 49, 26, new Color(241, 196, 15));
+		terminal.write('#', 50, 26, new Color(61, 50, 5));
+		terminal.write('#', 51, 26, new Color(61, 50, 5));
+
+		terminal.write('#', 47, 27, new Color(61, 50, 5));
+		terminal.write('#', 48, 27, new Color(61, 50, 5));
+
+		//------------------------ G ------------------------
+		terminal.write('#', 63, 15, new Color(61, 50, 5));
+		terminal.write('#', 64, 15, new Color(61, 50, 5));
+		terminal.write('#', 65, 15, new Color(61, 50, 5));
+		terminal.write('#', 66, 15, new Color(61, 50, 5));
+
+		terminal.write('#', 61, 16, new Color(61, 50, 5));
+		terminal.write('#', 62, 16, new Color(241, 196, 15));
+		terminal.write('#', 63, 16, new Color(241, 196, 15));
+		terminal.write('#', 64, 16, new Color(241, 196, 15));
+		terminal.write('#', 65, 16, new Color(241, 196, 15));
+		terminal.write('#', 66, 16, new Color(61, 50, 5));
+
+		terminal.write('#', 60, 17, new Color(61, 50, 5));
+		terminal.write('#', 61, 17, new Color(241, 196, 15));
+		terminal.write('#', 62, 17, new Color(241, 196, 15));
+		terminal.write('#', 63, 17, new Color(61, 50, 5));
+		terminal.write('#', 65, 17, new Color(61, 50, 5));
+		terminal.write('#', 66, 17, new Color(61, 50, 5));
+
+		terminal.write('#', 59, 18, new Color(61, 50, 5));
+		terminal.write('#', 60, 18, new Color(241, 196, 15));
+		terminal.write('#', 61, 18, new Color(241, 196, 15));
+		terminal.write('#', 62, 18, new Color(61, 50, 5));
+
+		terminal.write('#', 59, 19, new Color(241, 196, 15));
+		terminal.write('#', 60, 19, new Color(241, 196, 15));
+		terminal.write('#', 61, 19, new Color(61, 50, 5));
+
+		terminal.write('#', 58, 20, new Color(61, 50, 5));
+		terminal.write('#', 59, 20, new Color(241, 196, 15));
+		terminal.write('#', 60, 20, new Color(61, 50, 5));
+		terminal.write('#', 65, 20, new Color(61, 50, 5));
+		terminal.write('#', 66, 20, new Color(61, 50, 5));
+		terminal.write('#', 67, 20, new Color(61, 50, 5));
+		terminal.write('#', 68, 20, new Color(61, 50, 5));
+
+		terminal.write('#', 58, 21, new Color(241, 196, 15));
+		terminal.write('#', 59, 21, new Color(241, 196, 15));
+		terminal.write('#', 62, 21, new Color(61, 50, 5));
+		terminal.write('#', 63, 21, new Color(241, 196, 15));
+		terminal.write('#', 64, 21, new Color(241, 196, 15));
+		terminal.write('#', 65, 21, new Color(241, 196, 15));
+		terminal.write('#', 66, 21, new Color(241, 196, 15));
+		terminal.write('#', 67, 21, new Color(241, 196, 15));
+		terminal.write('#', 68, 21, new Color(61, 50, 5));
+
+		terminal.write('#', 57, 22, new Color(61, 50, 5));
+		terminal.write('#', 58, 22, new Color(241, 196, 15));
+		terminal.write('#', 59, 22, new Color(61, 50, 5));
+		terminal.write('#', 62, 22, new Color(61, 50, 5));
+		terminal.write('#', 63, 22, new Color(241, 196, 15));
+		terminal.write('#', 64, 22, new Color(241, 196, 15));
+		terminal.write('#', 65, 22, new Color(241, 196, 15));
+		terminal.write('#', 66, 22, new Color(241, 196, 15));
+		terminal.write('#', 67, 22, new Color(61, 50, 5));
+
+		terminal.write('#', 57, 23, new Color(61, 50, 5));
+		terminal.write('#', 58, 23, new Color(241, 196, 15));
+		terminal.write('#', 59, 23, new Color(61, 50, 5));
+		terminal.write('#', 65, 23, new Color(61, 50, 5));
+		terminal.write('#', 66, 23, new Color(241, 196, 15));
+		terminal.write('#', 67, 23, new Color(61, 50, 5));
+
+		terminal.write('#', 57, 24, new Color(61, 50, 5));
+		terminal.write('#', 58, 24, new Color(241, 196, 15));
+		terminal.write('#', 59, 24, new Color(61, 50, 5));
+		terminal.write('#', 64, 24, new Color(61, 50, 5));
+		terminal.write('#', 65, 24, new Color(241, 196, 15));
+		terminal.write('#', 66, 24, new Color(61, 50, 5));
+
+		terminal.write('#', 57, 25, new Color(61, 50, 5));
+		terminal.write('#', 58, 25, new Color(241, 196, 15));
+		terminal.write('#', 59, 25, new Color(241, 196, 15));
+		terminal.write('#', 60, 25, new Color(241, 196, 15));
+		terminal.write('#', 61, 25, new Color(241, 196, 15));
+		terminal.write('#', 62, 25, new Color(241, 196, 15));
+		terminal.write('#', 63, 25, new Color(241, 196, 15));
+		terminal.write('#', 64, 25, new Color(241, 196, 15));
+		terminal.write('#', 65, 25, new Color(61, 50, 5));
+
+		terminal.write('#', 58, 26, new Color(61, 50, 5));
+		terminal.write('#', 59, 26, new Color(241, 196, 15));
+		terminal.write('#', 60, 26, new Color(241, 196, 15));
+		terminal.write('#', 61, 26, new Color(241, 196, 15));
+		terminal.write('#', 62, 26, new Color(241, 196, 15));
+		terminal.write('#', 63, 26, new Color(241, 196, 15));
+		terminal.write('#', 64, 26, new Color(61, 50, 5));
+
+		terminal.write('#', 59, 27, new Color(61, 50, 5));
+		terminal.write('#', 60, 27, new Color(61, 50, 5));
+		terminal.write('#', 61, 27, new Color(61, 50, 5));
+		terminal.write('#', 62, 27, new Color(61, 50, 5));
+		terminal.write('#', 63, 27, new Color(61, 50, 5));
+
+		//------------------------ U ------------------------
+		terminal.write('#', 70, 15,  new Color(61, 50, 5));
+		terminal.write('#', 70, 16, new Color(241, 196, 15));
+		terminal.write('#', 70, 17, new Color(241, 196, 15));
+		terminal.write('#', 70, 18, new Color(241, 196, 15));
+		terminal.write('#', 70, 19, new Color(241, 196, 15));
+		terminal.write('#', 70, 20, new Color(241, 196, 15));
+		terminal.write('#', 70, 21, new Color(241, 196, 15));
+		terminal.write('#', 70, 22, new Color(241, 196, 15));
+		terminal.write('#', 70, 23, new Color(241, 196, 15));
+		terminal.write('#', 70, 24, new Color(241, 196, 15));
+		terminal.write('#', 70, 25, new Color(241, 196, 15));
+		terminal.write('#', 70, 26, new Color(241, 196, 15));
+		terminal.write('#', 70, 27, new Color(61, 50, 5));
+
+		terminal.write('#', 69, 19, new Color(61, 50, 5));
+		terminal.write('#', 69, 20, new Color(61, 50, 5));
+		terminal.write('#', 69, 21, new Color(61, 50, 5));
+		terminal.write('#', 69, 22, new Color(61, 50, 5));
+		terminal.write('#', 69, 23, new Color(61, 50, 5));
+		terminal.write('#', 69, 24, new Color(61, 50, 5));
+		terminal.write('#', 69, 25, new Color(61, 50, 5));
+		terminal.write('#', 69, 26, new Color(61, 50, 5));
+
+		terminal.write('#', 71, 15,  new Color(61, 50, 5));
+		terminal.write('#', 71, 16, new Color(61, 50, 5));
+		terminal.write('#', 71, 17, new Color(61, 50, 5));
+		terminal.write('#', 71, 18, new Color(61, 50, 5));
+		terminal.write('#', 71, 19, new Color(61, 50, 5));
+		terminal.write('#', 71, 24, new  Color(61, 50, 5));
+		terminal.write('#', 71, 25, new Color(241, 196, 15));
+		terminal.write('#', 71, 26, new Color(241, 196, 15));
+		terminal.write('#', 71, 27, new Color(61, 50, 5));
+
+		terminal.write('#', 72, 24, new Color(61, 50, 5));
+		terminal.write('#', 72, 25, new  Color(241, 196, 15));
+		terminal.write('#', 72, 26, new Color(61, 50, 5));
+
+		terminal.write('#', 73, 24, new Color(61, 50, 5));
+		terminal.write('#', 73, 25, new  Color(241, 196, 15));
+		terminal.write('#', 73, 26, new Color(61, 50, 5));
+
+		terminal.write('#', 74, 23, new Color(61, 50, 5));
+		terminal.write('#', 74, 24, new  Color(241, 196, 15));
+		terminal.write('#', 74, 25, new Color(61, 50, 5));
+
+		terminal.write('#', 75, 23, new Color(61, 50, 5));
+		terminal.write('#', 75, 24, new  Color(241, 196, 15));
+		terminal.write('#', 75, 25, new Color(61, 50, 5));
+
+
+		terminal.write('#', 76, 15,  new Color(61, 50, 5));
+		terminal.write('#', 76, 16, new Color(61, 50, 5));
+		terminal.write('#', 76, 17, new Color(61, 50, 5));
+		terminal.write('#', 76, 18, new Color(61, 50, 5));
+		terminal.write('#', 76, 19, new Color(61, 50, 5));
+		terminal.write('#', 76, 20, new Color(61, 50, 5));
+		terminal.write('#', 76, 21, new Color(61, 50, 5));
+		terminal.write('#', 76, 22, new Color(61, 50, 5));
+		terminal.write('#', 76, 23, new Color(61, 50, 5));
+		terminal.write('#', 76, 24, new Color(241, 196, 15));
+		terminal.write('#', 76, 25, new Color(61, 50, 5));
+
+		terminal.write('#', 77, 15,  new Color(61, 50, 5));
+		terminal.write('#', 77, 16, new Color(241, 196, 15));
+		terminal.write('#', 77, 17, new Color(241, 196, 15));
+		terminal.write('#', 77, 18, new Color(241, 196, 15));
+		terminal.write('#', 77, 19, new Color(241, 196, 15));
+		terminal.write('#', 77, 20, new Color(241, 196, 15));
+		terminal.write('#', 77, 21, new Color(241, 196, 15));
+		terminal.write('#', 77, 22, new Color(241, 196, 15));
+		terminal.write('#', 77, 23, new Color(241, 196, 15));
+		terminal.write('#', 77, 24, new Color(241, 196, 15));
+		terminal.write('#', 77, 25, new Color(61, 50, 5));
+
+		//------------------------ U ------------------------
+		terminal.write('#', 79, 16, new Color(61, 50, 5));
+		terminal.write('#', 79, 17, new Color(61, 50, 5));
+		terminal.write('#', 79, 19, new Color(61, 50, 5));
+		terminal.write('#', 79, 20, new Color(61, 50, 5));
+		terminal.write('#', 79, 21, new Color(61, 50, 5));
+		terminal.write('#', 79, 22, new Color(61, 50, 5));
+		terminal.write('#', 79, 23, new Color(61, 50, 5));
+		terminal.write('#', 79, 24, new Color(61, 50, 5));
+		terminal.write('#', 79, 25, new Color(61, 50, 5));
+
+		terminal.write('#', 80, 16,  new Color(61, 50, 5));
+		terminal.write('#', 80, 17, new Color(241, 196, 15));
+		terminal.write('#', 80, 18, new Color(241, 196, 15));
+		terminal.write('#', 80, 19, new Color(241, 196, 15));
+		terminal.write('#', 80, 20, new Color(241, 196, 15));
+		terminal.write('#', 80, 21, new Color(241, 196, 15));
+		terminal.write('#', 80, 22, new Color(241, 196, 15));
+		terminal.write('#', 80, 23, new Color(241, 196, 15));
+		terminal.write('#', 80, 24, new Color(241, 196, 15));
+		terminal.write('#', 80, 25, new Color(241, 196, 15));
+		terminal.write('#', 80, 26, new Color(241, 196, 15));
+		terminal.write('#', 80, 27,  new Color(61, 50, 5));
+
+		terminal.write('#', 81, 15,  new Color(61, 50, 5));
+		terminal.write('#', 81, 16,  new Color(241, 196, 15));
+		terminal.write('#', 81, 17, new Color(241, 196, 15));
+		terminal.write('#', 81, 18, new Color(61, 50, 5));
+		terminal.write('#', 81, 19, new Color(61, 50, 5));
+		terminal.write('#', 81, 20, new Color(61, 50, 5));
+		terminal.write('#', 81, 21, new Color(241, 196, 15));
+		terminal.write('#', 81, 22, new Color(61, 50, 5));
+		terminal.write('#', 81, 23, new Color(61, 50, 5));
+		terminal.write('#', 81, 24, new Color(61, 50, 5));
+		terminal.write('#', 81, 25, new Color(241, 196, 15));
+		terminal.write('#', 81, 26,  new Color(241, 196, 15));
+		terminal.write('#', 81, 27,  new Color(61, 50, 5));
+
+		terminal.write('#', 82, 15,  new Color(61, 50, 5));
+		terminal.write('#', 82, 16,  new Color(241, 196, 15));
+		terminal.write('#', 82, 17, new Color(61, 50, 5));
+		terminal.write('#', 82, 20, new Color(61, 50, 5));
+		terminal.write('#', 82, 21, new Color(241, 196, 15));
+		terminal.write('#', 82, 22, new Color(61, 50, 5));
+		terminal.write('#', 82, 24, new Color(61, 50, 5));
+		terminal.write('#', 82, 25, new Color(241, 196, 15));
+		terminal.write('#', 82, 26,  new Color(61, 50, 5));
+
+		terminal.write('#', 83, 15,  new Color(61, 50, 5));
+		terminal.write('#', 83, 16,  new Color(241, 196, 15));
+		terminal.write('#', 83, 19, new Color(61, 50, 5));
+		terminal.write('#', 83, 20, new Color(241, 196, 15));
+		terminal.write('#', 83, 21, new Color(61, 50, 5));
+		terminal.write('#', 83, 24, new Color(61, 50, 5));
+		terminal.write('#', 83, 25, new Color(241, 196, 15));
+		terminal.write('#', 83, 26,  new Color(61, 50, 5));
+
+		terminal.write('#', 84, 15,  new Color(61, 50, 5));
+		terminal.write('#', 84, 16,  new Color(61, 50, 5));
+		terminal.write('#', 84, 19, new Color(61, 50, 5));
+		terminal.write('#', 84, 20, new Color(241, 196, 15));
+		terminal.write('#', 84, 21, new Color(61, 50, 5));
+		terminal.write('#', 84, 24, new Color(241, 196, 15));
+		terminal.write('#', 84, 25, new Color(241, 196, 15));
+		terminal.write('#', 84, 26,  new Color(61, 50, 5));
+
+		terminal.write('#', 85, 15,  new Color(61, 50, 5));
+		terminal.write('#', 85, 16,  new Color(61, 50, 5));
+		terminal.write('#', 85, 19, new Color(61, 50, 5));
+		terminal.write('#', 85, 20, new Color(241, 196, 15));
+		terminal.write('#', 85, 21, new Color(61, 50, 5));
+		terminal.write('#', 85, 23, new Color(61, 50, 5));
+		terminal.write('#', 85, 24, new Color(241, 196, 15));
+		terminal.write('#', 85, 25,  new Color(61, 50, 5));
+
+		terminal.write('#', 86, 15,  new Color(61, 50, 5));
+		terminal.write('#', 86, 16,  new Color(61, 50, 5));
+		terminal.write('#', 86, 19, new Color(61, 50, 5));
+		terminal.write('#', 86, 20, new Color(61, 50, 5));
+		terminal.write('#', 86, 23, new Color(61, 50, 5));
+		terminal.write('#', 86, 24, new Color(241, 196, 15));
+
+		//------------------------ U ------------------------
+
+		terminal.write('#', 110, 1,  new Color(66, 165, 245));
+		terminal.write('#', 109, 1,  new Color(66, 165, 245));
+		terminal.write('#', 108, 1,  new Color(62, 39, 35));
+		terminal.write('#', 111, 1,  new Color(62, 39, 35));
+
+		terminal.write('#', 108, 2,  new Color(62, 39, 35));
+		terminal.write('#', 109, 2,  new Color(62, 39, 35));
+		terminal.write('#', 110, 2,  new Color(62, 39, 35));
+		terminal.write('#', 111, 2,  new Color(62, 39, 35));
+
+		terminal.write('#', 109, 3,  new Color(62, 39, 35));
+		terminal.write('#', 110, 3,  new Color(62, 39, 35));
+
+		terminal.write('#', 109, 4,  new Color(62, 39, 35));
+		terminal.write('#', 110, 4,  new Color(62, 39, 35));
+
+		terminal.write('#', 109, 5,  new Color(62, 39, 35));
+		terminal.write('#', 110, 5,  new Color(62, 39, 35));
+
+		terminal.write('#', 109, 6,  new Color(62, 39, 35));
+		terminal.write('#', 110, 6,  new Color(62, 39, 35));
+
+		terminal.write('#', 109, 7,  new Color(62, 39, 35));
+		terminal.write('#', 110, 7,  new Color(62, 39, 35));
+
+		terminal.write('#', 109, 8,  new Color(62, 39, 35));
+		terminal.write('#', 110, 8,  new Color(62, 39, 35));
+
+		terminal.write('#', 109, 9,  new Color(62, 39, 35));
+		terminal.write('#', 110, 9,  new Color(62, 39, 35));
+
+		terminal.write('#', 108, 10,  new Color(62, 39, 35));
+		terminal.write('#', 109, 10,  new Color(62, 39, 35));
+		terminal.write('#', 110, 10,  new Color(62, 39, 35));
+		terminal.write('#', 111, 10,  new Color(62, 39, 35));
+
+		terminal.write('#', 108, 11,  new Color(62, 39, 35));
+		terminal.write('#', 109, 11,  new Color(66, 165, 245));
+		terminal.write('#', 110, 11,  new Color(66, 165, 245));
+		terminal.write('#', 111, 11,  new Color(62, 39, 35));
+
+		terminal.write('#', 108, 12,  new Color(62, 39, 35));
+		terminal.write('#', 109, 12,  new Color(66, 165, 245));
+		terminal.write('#', 110, 12,  new Color(66, 165, 245));
+		terminal.write('#', 111, 12,  new Color(62, 39, 35));
+
+		terminal.write('#', 108, 13,  new Color(62, 39, 35));
+		terminal.write('#', 109, 13,  new Color(62, 39, 35));
+		terminal.write('#', 110, 13,  new Color(62, 39, 35));
+		terminal.write('#', 111, 13,  new Color(62, 39, 35));
+
+		terminal.write('#', 107, 11,  new Color(62, 39, 35));
+		terminal.write('#', 107, 12,  new Color(62, 39, 35));
+
+		terminal.write('#', 106, 11,  new Color(0, 172, 193));
+		terminal.write('#', 106, 10,  new Color(0, 172, 193));
+		terminal.write('#', 105, 10,  new Color(0, 172, 193));
+		terminal.write('#', 105, 9,  new Color(0, 172, 193));
+
+		terminal.write('#', 106, 12,  new Color(62, 39, 35));
+		terminal.write('#', 105, 11,  new Color(62, 39, 35));
+		terminal.write('#', 105, 12,  new Color(62, 39, 35));
+		terminal.write('#', 104, 12,  new Color(62, 39, 35));
+		terminal.write('#', 104, 13,  new Color(62, 39, 35));
+
+		terminal.write('#', 104, 14,  new Color(189, 189, 189));
+		terminal.write('#', 104, 15,  new Color(189, 189, 189));
+		terminal.write('#', 104, 16,  new Color(189, 189, 189));
+		terminal.write('#', 105, 13,  new Color(189, 189, 189));
+		terminal.write('#', 105, 14,  new Color(189, 189, 189));
+		terminal.write('#', 105, 16,  new Color(189, 189, 189));
+		terminal.write('#', 106, 13,  new Color(189, 189, 189));
+
+
+
+		terminal.write('#', 114, 11,  new Color(62, 39, 35));
+		terminal.write('#', 114, 12,  new Color(62, 39, 35));
+		terminal.write('#', 113, 12,  new Color(62, 39, 35));
+		terminal.write('#', 115, 12,  new Color(62, 39, 35));
+		terminal.write('#', 115, 13,  new Color(62, 39, 35));
+
+		terminal.write('#', 112, 11,  new Color(62, 39, 35));
+		terminal.write('#', 112, 12,  new Color(62, 39, 35));
+
+		terminal.write('#', 113, 11,  new Color(0, 172, 193));
+		terminal.write('#', 113, 10,  new Color(0, 172, 193));
+		terminal.write('#', 114, 10,  new Color(0, 172, 193));
+		terminal.write('#', 114, 9,  new Color(0, 172, 193));
+
+		terminal.write('#', 113, 12,  new Color(62, 39, 35));
+		terminal.write('#', 112, 11,  new Color(62, 39, 35));
+		terminal.write('#', 112, 12,  new Color(62, 39, 35));
+		terminal.write('#', 111, 12,  new Color(62, 39, 35));
+		terminal.write('#', 111, 13,  new Color(62, 39, 35));
+
+		terminal.write('#', 115, 14,  new Color(189, 189, 189));
+		terminal.write('#', 115, 15,  new Color(189, 189, 189));
+		terminal.write('#', 115, 16,  new Color(189, 189, 189));
+		terminal.write('#', 114, 13,  new Color(189, 189, 189));
+		terminal.write('#', 114, 14,  new Color(189, 189, 189));
+		terminal.write('#', 114, 16,  new Color(189, 189, 189));
+		terminal.write('#', 113, 13,  new Color(189, 189, 189));
+
+
+
+		terminal.write('#', 108, 14,  new Color(189, 189, 189));
+		terminal.write('#', 108, 15,  new Color(189, 189, 189));
+		terminal.write('#', 108, 16,  new Color(189, 189, 189));
+		terminal.write('#', 108, 17,  new Color(189, 189, 189));
+		terminal.write('#', 108, 18,  new Color(189, 189, 189));
+		terminal.write('#', 108, 19,  new Color(189, 189, 189));
+		terminal.write('#', 108, 20,  new Color(189, 189, 189));
+		terminal.write('#', 108, 21,  new Color(189, 189, 189));
+		terminal.write('#', 108, 22,  new Color(189, 189, 189));
+		terminal.write('#', 108, 23,  new Color(189, 189, 189));
+		terminal.write('#', 108, 24,  new Color(189, 189, 189));
+		terminal.write('#', 108, 25,  new Color(189, 189, 189));
+		terminal.write('#', 108, 26,  new Color(189, 189, 189));
+		terminal.write('#', 108, 27,  new Color(189, 189, 189));
+		terminal.write('#', 108, 28,  new Color(189, 189, 189));
+		terminal.write('#', 108, 29,  new Color(189, 189, 189));
+		terminal.write('#', 108, 30,  new Color(189, 189, 189));
+		terminal.write('#', 108, 31,  new Color(189, 189, 189));
+
+		terminal.write('#', 111, 14,  new Color(189, 189, 189));
+		terminal.write('#', 111, 15,  new Color(189, 189, 189));
+		terminal.write('#', 111, 16,  new Color(189, 189, 189));
+		terminal.write('#', 111, 17,  new Color(189, 189, 189));
+		terminal.write('#', 111, 18,  new Color(189, 189, 189));
+		terminal.write('#', 111, 19,  new Color(189, 189, 189));
+		terminal.write('#', 111, 20,  new Color(189, 189, 189));
+		terminal.write('#', 111, 21,  new Color(189, 189, 189));
+		terminal.write('#', 111, 22,  new Color(189, 189, 189));
+		terminal.write('#', 111, 23,  new Color(189, 189, 189));
+		terminal.write('#', 111, 24,  new Color(189, 189, 189));
+		terminal.write('#', 111, 25,  new Color(189, 189, 189));
+		terminal.write('#', 111, 26,  new Color(189, 189, 189));
+		terminal.write('#', 111, 27,  new Color(189, 189, 189));
+		terminal.write('#', 111, 28,  new Color(189, 189, 189));
+		terminal.write('#', 111, 29,  new Color(189, 189, 189));
+		terminal.write('#', 111, 30,  new Color(189, 189, 189));
+		terminal.write('#', 111, 31,  new Color(189, 189, 189));
+		terminal.write('#', 110, 31,  new Color(189, 189, 189));
+		terminal.write('#', 109, 31,  new Color(189, 189, 189));
+		terminal.write('#', 110, 32,  new Color(189, 189, 189));
+		terminal.write('#', 109, 32,  new Color(189, 189, 189));
+
+		terminal.write('#', 109, 14,  new Color(0, 172, 193));
+		terminal.write('#', 109, 15,  new Color(0, 172, 193));
+		terminal.write('#', 109, 16,  new Color(0, 172, 193));
+		terminal.write('#', 109, 17,  new Color(0, 172, 193));
+		terminal.write('#', 109, 18,  new Color(0, 172, 193));
+		terminal.write('#', 109, 19,  new Color(66, 66, 66));
+		terminal.write('#', 109, 20,  new Color(66, 66, 66));
+		terminal.write('#', 109, 21,  new Color(66, 66, 66));
+		terminal.write('#', 109, 22,  new Color(66, 66, 66));
+		terminal.write('#', 109, 23,  new Color(0, 172, 193));
+		terminal.write('#', 109, 24,  new Color(0, 172, 193));
+		terminal.write('#', 109, 25,  new Color(0, 172, 193));
+		terminal.write('#', 109, 26,  new Color(0, 172, 193));
+		terminal.write('#', 109, 27,  new Color(0, 172, 193));
+		terminal.write('#', 109, 28,  new Color(66, 66, 66));
+		terminal.write('#', 109, 29,  new Color(66, 66, 66));
+		terminal.write('#', 109, 30,  new Color(66, 66, 66));
+
+		terminal.write('#', 110, 14,  new Color(66, 66, 66));
+		terminal.write('#', 110, 15,  new Color(66, 66, 66));
+		terminal.write('#', 110, 16,  new Color(66, 66, 66));
+		terminal.write('#', 110, 17,  new Color(66, 66, 66));
+		terminal.write('#', 110, 18,  new Color(0, 172, 193));
+		terminal.write('#', 110, 19,  new Color(0, 172, 193));
+		terminal.write('#', 110, 20,  new Color(0, 172, 193));
+		terminal.write('#', 110, 21,  new Color(0, 172, 193));
+		terminal.write('#', 110, 22,  new Color(0, 172, 193));
+		terminal.write('#', 110, 23,  new Color(0, 172, 193));
+		terminal.write('#', 110, 24,  new Color(66, 66, 66));
+		terminal.write('#', 110, 25,  new Color(66, 66, 66));
+		terminal.write('#', 110, 26,  new Color(66, 66, 66));
+		terminal.write('#', 110, 27,  new Color(66, 66, 66));
+		terminal.write('#', 110, 28,  new Color(0, 172, 193));
+		terminal.write('#', 110, 29,  new Color(0, 172, 193));
+		terminal.write('#', 110, 30,  new Color(0, 172, 193));
+
+
+		terminal.writeCenter("Press Start to play", 50, new Color(255, 255, 255));
 	}
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
