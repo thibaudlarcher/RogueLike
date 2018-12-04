@@ -15,19 +15,4 @@ public class Guerrier extends PJ{
         glyph = 'G';
     }
 
-
-    @Override
-    public int getPointDeVieMax() {
-        return pointDeVieMax;
-    }
-
-    @Override
-    public int getPointDeVie() {
-        return pointDeVie;
-    }
-
-    @Override
-    public int getAttaque() {
-        return attaque;
-    }
 }

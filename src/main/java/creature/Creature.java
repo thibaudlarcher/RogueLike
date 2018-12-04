@@ -3,10 +3,6 @@ import java.awt.Color;
 //import world.World;
 
 public abstract class Creature {
-	//private World world;
-
-	public int x;
-	public int y;
 
 	protected char glyph;
     public char getGlyph() {
@@ -19,12 +15,22 @@ public abstract class Creature {
     }
 
     protected int pointDeVieMax;
-	public abstract int getPointDeVieMax();
+    public int getPointDeVieMax() {
+        return pointDeVieMax;
+    }
+
 
     protected int pointDeVie;
-    public abstract int getPointDeVie();
+    public int getPointDeVie() {
+        return pointDeVie;
+    }
+    public void setPointDeVie(int pointDeVie) {
+        this.pointDeVie = pointDeVie;
+    }
 
     protected int attaque;
-    public abstract int getAttaque();
+    public int getAttaque() {
+        return attaque;
+    }
 
 }
