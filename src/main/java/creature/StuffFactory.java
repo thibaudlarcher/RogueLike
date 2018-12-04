@@ -6,10 +6,10 @@ import world.*;
 import player.*;
 import Object.*;
 import monster.*;
-public class CreatureFactory {
+public class StuffFactory {
 	private World world;
 	
-	public CreatureFactory(World world){
+	public StuffFactory(World world){
 		this.world = world;
 	}
 
@@ -23,7 +23,7 @@ public class CreatureFactory {
 	}
 
 	public Item newSword(){
-		Item sword = new Item((char) 244, AsciiPanel.yellow, "sword");
+		Item sword = new Item((char) 180, AsciiPanel.yellow, "sword");
 		world.addItemAtLocation(sword);
 		return sword;
 	}

@@ -22,7 +22,7 @@ public class World {
 		this.height = tiles[0].length;
 		this.pt = pt;
 		this.itemPointList = itemPointList;
-		this.items = new Item[160][46];	// --> pourquoi x : 160  et y : 95, mystere total.. items[width][height] ne fonctionne pas --> OutOfBoundsException
+		this.items = new Item[width+40][height];	// --> on prend le x max entre screenWidth et width et y max entre screenHeight et height
 	}
 	
 	public Tile tile(int x, int y){
@@ -33,21 +33,21 @@ public class World {
 	}
 
 	public char glyph(int x, int y){
-//		if (items[x][y] != null)
-//			return items[x][y].glyph();
+		if (items[x][y] != null)
+			return items[x][y].glyph();
 
 		return tile(x, y).glyph();
 	}
 
 	public Color color(int x, int y){
-//		if (items[x][y] != null)
-//			return items[x][y].color();
+		if (items[x][y] != null)
+			return items[x][y].color();
 
 		return tile(x, y).color();
 	}
 
 	public void addItemAtLocation(Item item) {
-		for (int i = 0; i < itemPointList.size(); i++){
+		for (int i = 0; i < 1/*itemPointList.size()*/; i++){
 			if (itemPointList.get(i) != null && (items[(int) itemPointList.get(i).getX()][(int) itemPointList.get(i).getY()]) == null){
 				items[(int) itemPointList.get(i).getX()][(int) itemPointList.get(i).getY()] = item;
 			}

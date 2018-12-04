@@ -15,21 +15,22 @@ public class PlayScreen implements Screen {
 	private int screenHeight;
 	
 	public PlayScreen(){
-		screenWidth = 160;
-		screenHeight = 46;
+		screenWidth = 140;
+		screenHeight = 40;
 		createWorld();
 		
-		CreatureFactory creatureFactory = new CreatureFactory(world);
+		StuffFactory creatureFactory = new StuffFactory(world);
 		player = creatureFactory.newPlayer();
-		createItems(creatureFactory);
+		//createItems(creatureFactory);
 		creatureFactory.newMonster();
+		creatureFactory.newSword();
 	}
 	
 	private void createWorld(){
 		world = new WorldBuilder(100	, 100).build();
 	}
 
-	private void createItems(CreatureFactory factory) {
+	private void createItems(StuffFactory factory) {
 		for (int i = 0; i < 10; i++){
 			factory.newSword();
 		}
@@ -57,7 +58,7 @@ public class PlayScreen implements Screen {
 			for (int y = 0; y < screenHeight; y++){
 				int wx = x + left;
 				int wy = y + top;
-				System.out.println("x : "+ x + "y : "+ y);
+				//System.out.println("x : "+ x + "y : "+ y);
 				terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
 			}
 		}

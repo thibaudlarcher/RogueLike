@@ -40,7 +40,7 @@ public class WorldBuilder {
                 } else if (ch[j][i]=='~'){
                     tiles[i][j] = Tile.BOUNDS;
                 } else if (ch[j][i]==(char)244){
-                    tiles[i][j] = Tile.FLOOR;
+                    tiles[i][j] = Tile.ITEMS;
                     itemPointList.add(new Point(i,j));
                 } else if (ch[j][i]=='@'){
                     if (tiles[i-1][j] == Tile.BOUNDS && tiles[i][j-1] == Tile.BOUNDS){
