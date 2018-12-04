@@ -1,16 +1,19 @@
 package screens;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import asciiPanel.AsciiPanel;
+import color.Tile;
 import creature.*;
+import screens.Combat.CombatScreen;
 import world.*;
 
 public class PlayScreen implements Screen {
 	private World world;
 	private GroupCreature player;
-	private List<Creature> creature;
+	private ArrayList<GroupCreature> groupCreature;
 	private int screenWidth;
 	private int screenHeight;
 	
@@ -18,12 +21,26 @@ public class PlayScreen implements Screen {
 		screenWidth = 140;
 		screenHeight = 40;
 		createWorld();
-		
-		StuffFactory creatureFactory = new StuffFactory(world);
+
+		CreatureFactory creatureFactory = new CreatureFactory(world);
+
+
+		StuffFactory stuffFactory = new StuffFactory(world);
 		player = creatureFactory.newPlayer();
-		//createItems(creatureFactory);
+		groupCreature = new ArrayList<GroupCreature>();
+
+		groupCreature.add(creatureFactory.newMonster());
+		//createItems(stuffFactory);
 		creatureFactory.newMonster();
-		creatureFactory.newSword();
+		stuffFactory.newSword();
+	}
+
+	public PlayScreen(World world, GroupCreature player,ArrayList<GroupCreature> groupCreature){
+		screenWidth = 140;
+		screenHeight = 40;
+		this.world = world;
+		this.player = player;
+		this.groupCreature = groupCreature;
 	}
 	
 	private void createWorld(){
@@ -63,28 +80,33 @@ public class PlayScreen implements Screen {
 			}
 		}
 	}
-	
+
+	private Screen testRencontre(){
+		if(world.tile(player.x,player.y) == Tile.MONSTER){
+			return new CombatScreen(groupCreature,player,world);
+		}else return this;
+	}
+
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()){
-		case KeyEvent.VK_ESCAPE: return new LoseScreen();
-		case KeyEvent.VK_ENTER: return new WinScreen();
-		//case KeyEvent.VK_I: return new InventoryScreen(this.player,this);
-		case KeyEvent.VK_LEFT:
-		case KeyEvent.VK_Q: player.moveBy(-1, 0); break;
-		case KeyEvent.VK_RIGHT:
-		case KeyEvent.VK_D: player.moveBy( 1, 0); break;
-		case KeyEvent.VK_UP:
-		case KeyEvent.VK_Z: player.moveBy( 0,-1); break;
-		case KeyEvent.VK_DOWN:
-		case KeyEvent.VK_S: player.moveBy( 0, 1); break;
+			case KeyEvent.VK_ESCAPE: return new LoseScreen();
+			case KeyEvent.VK_ENTER: return new WinScreen();
+			case KeyEvent.VK_LEFT:
+			case KeyEvent.VK_Q: player.moveBy(-1, 0);return testRencontre();
+			case KeyEvent.VK_RIGHT:
+			case KeyEvent.VK_D: player.moveBy( 1, 0);return testRencontre();
+			case KeyEvent.VK_UP:
+			case KeyEvent.VK_Z: player.moveBy( 0,-1);return testRencontre();
+			case KeyEvent.VK_DOWN:
+			case KeyEvent.VK_S: player.moveBy( 0, 1);return testRencontre();
 		/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 		case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 		case KeyEvent.VK_U: player.moveBy( 1,-1); break;
 		case KeyEvent.VK_B: player.moveBy(-1, 1); break;
 		case KeyEvent.VK_N: player.moveBy( 1, 1); break;*/
 		}
-		
+
 		return this;
 	}
 }
