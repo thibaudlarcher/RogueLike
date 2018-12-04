@@ -28,6 +28,14 @@ public class PlayScreen implements Screen {
 
 		groupCreature.add(creatureFactory.newMonster());
 	}
+
+	public PlayScreen(World world, GroupCreature player,ArrayList<GroupCreature> groupCreature){
+		screenWidth = 140;
+		screenHeight = 40;
+		this.world = world;
+		this.player = player;
+		this.groupCreature = groupCreature;
+	}
 	
 	private void createWorld(){
 		world = new WorldBuilder(100	, 100).build();
