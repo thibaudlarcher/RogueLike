@@ -1,11 +1,15 @@
 package creature;
+import Object.Items.Item;
+import Object.Items.ItemArme;
 import asciiPanel.AsciiPanel;
 import creature.Monstre.Kobold;
 import creature.PJ.Guerrier;
 import world.*;
 import player.*;
-import Object.*;
 import monster.*;
+
+import java.awt.*;
+
 public class StuffFactory {
 	private World world;
 	
@@ -23,9 +27,15 @@ public class StuffFactory {
 	}
 
 	public Item newSword(){
-		Item sword = new Item((char) 180, AsciiPanel.yellow, "sword");
+		Item sword = new ItemArme((char) 180, new Color(128,128,128), "sword",5);
 		world.addItemAtLocation(sword);
 		return sword;
+	}
+
+	public Item newBaton(){
+		Item baton = new ItemArme((char) 179,new Color(128,64,0),"baton",2);
+		world.addItemAtLocation(baton);
+		return baton;
 	}
 
 	/*public Creature newBoss(){

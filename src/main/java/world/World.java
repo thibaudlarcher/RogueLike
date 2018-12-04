@@ -2,7 +2,8 @@ package world;
 
 import java.awt.*;
 import java.util.ArrayList;
-import Object.*;
+
+import Object.Items.Item;
 import color.*;
 
 public class World {
@@ -34,22 +35,32 @@ public class World {
 
 	public char glyph(int x, int y){
 		if (items[x][y] != null)
-			return items[x][y].glyph();
+			return items[x][y].getGlyph();
 
 		return tile(x, y).glyph();
 	}
 
 	public Color color(int x, int y){
 		if (items[x][y] != null)
-			return items[x][y].color();
+			return items[x][y].getColor();
 
 		return tile(x, y).color();
 	}
 
 	public void addItemAtLocation(Item item) {
-		for (int i = 0; i < 1/*itemPointList.size()*/; i++){
+//		do {
+//			int randx = (int)(Math.random() * itemPointList.size());
+//			if (itemPointList.get(randx) != null && (items[(int) itemPointList.get(randx).getX()][(int) itemPointList.get(randx).getY()]) == null){
+//				items[(int) itemPointList.get(randx).getX()][(int) itemPointList.get(randx).getY()] = item;
+//				break;
+//			}
+
+		int randx = (int)(Math.random() * itemPointList.size());
+
+		for (int i = randx; i < itemPointList.size(); i++){
 			if (itemPointList.get(i) != null && (items[(int) itemPointList.get(i).getX()][(int) itemPointList.get(i).getY()]) == null){
 				items[(int) itemPointList.get(i).getX()][(int) itemPointList.get(i).getY()] = item;
+				break;
 			}
 		}
 	}

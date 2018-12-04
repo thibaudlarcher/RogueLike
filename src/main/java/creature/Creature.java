@@ -5,7 +5,7 @@ import Object.*;
 
 public abstract class Creature {
     //private World world;
-    private Inventory inventory;
+    protected Inventory inventory;
 
     public Inventory inventory() {
         return inventory;

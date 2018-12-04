@@ -24,17 +24,18 @@ public class PlayScreen implements Screen {
 		//createItems(creatureFactory);
 		creatureFactory.newMonster();
 		creatureFactory.newSword();
+		creatureFactory.newBaton();
 	}
 	
 	private void createWorld(){
 		world = new WorldBuilder(100	, 100).build();
 	}
 
-	private void createItems(StuffFactory factory) {
-		for (int i = 0; i < 10; i++){
-			factory.newSword();
-		}
-	}
+//	private void createItems(StuffFactory factory) {
+//		for (int i = 0; i < 10; i++){
+//			factory.newSword();
+//		}
+//	}
 
 	public int getScrollX() { return Math.max(0, Math.min(player.x - screenWidth / 2, world.width() - screenWidth)); }
 	

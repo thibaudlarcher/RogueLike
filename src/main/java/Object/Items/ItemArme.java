@@ -1,5 +1,4 @@
-package Object;
-
+package Object.Items;
 import java.awt.*;
 
 public class ItemArme extends Item {

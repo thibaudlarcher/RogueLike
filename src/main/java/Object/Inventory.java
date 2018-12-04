@@ -1,5 +1,7 @@
 package Object;
 
+import Object.Items.*;
+
 public class Inventory {
     private Item[] items;
 
@@ -43,17 +45,17 @@ public class Inventory {
         return false;
     }
 
-    public boolean isEmpty() {
-        int size = 0;
-        for (int i = 0; i < items.length; i++) {
-            if (items[i] != null)
-                size++;
-        }
-        if (size == 0) {
-            return true;
-        }
-        return false;
-    }
+//    public boolean isEmpty() {
+//        int size = 0;
+//        for (int i = 0; i < items.length; i++) {
+//            if (items[i] != null)
+//                size++;
+//        }
+//        if (size == 0) {
+//            return true;
+//        }
+//        return false;
+//    }
 }
 
 

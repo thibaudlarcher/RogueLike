@@ -1,6 +1,6 @@
 package creature.PJ;
-import asciiPanel.AsciiPanel;
-
+import Object.Items.*;
+import Object.*;
 import static asciiPanel.AsciiPanel.blue;
 
 public class Guerrier extends PJ{
@@ -12,6 +12,7 @@ public class Guerrier extends PJ{
         this.name = name;
         this.attaque = attaque;
         glyph = 'G';
+        this.inventory = new Inventory(20);
     }
 
 
@@ -28,5 +29,17 @@ public class Guerrier extends PJ{
     @Override
     public int getAttaque() {
         return attaque;
+    }
+
+    @Override
+    public void pickupItem(Item item){
+        if (!(inventory.isFull()) || item != null){
+            inventory.add(item);
+        }
+    }
+
+    @Override
+    public void dropItem(Item item){
+        inventory.remove(item);
     }
 }
