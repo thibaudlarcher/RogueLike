@@ -3,6 +3,7 @@ import color.*;
 import gameroots.mapgen.bsp.BspMapCreator;
 
 import java.awt.*;
+import java.util.ArrayList;
 import java.util.List;
 
 public class WorldBuilder {
@@ -11,12 +12,13 @@ public class WorldBuilder {
 	private Tile[][] tiles;
 	private char[][] ch;
 	private Point pt;
-	private List<Point> ptmonstre;
+	private ArrayList<Point> ptmonstre;
 
 	public WorldBuilder(int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.tiles = new Tile[width][height];
+		this.ptmonstre = new ArrayList<Point>();
 	}
 
 	public World build() {
@@ -26,7 +28,7 @@ public class WorldBuilder {
         bspMapCreator.setMapDimension(this.width, this.height);
         ch = bspMapCreator.createMap();
 
-		return new World(WorldGenerating(ch),pt);
+		return new World(WorldGenerating(ch),pt,ptmonstre);
 	}
 
 	public Tile[][] WorldGenerating(char[][] ch){
@@ -52,10 +54,9 @@ public class WorldBuilder {
                     }
                     pt = new Point(j,i);
                 } else if (ch[j][i]==(char)144){
-                    tiles[i][j] = Tile.MONSTER;
-                    //ptmonstre.add(new Point(j,i));
-                }
-
+                    tiles[i][j] = Tile.FLOOR;
+                    ptmonstre.add(new Point(j,i));
+                  }
             }
         }
 

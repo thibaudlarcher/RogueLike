@@ -22,27 +22,10 @@ public class CreatureFactory {
 		return player;
 	}
 
-	/*public GroupCreature newBoss(){
-		GroupCreature player = new GroupCreature(world, (char)144, AsciiPanel.green);
-		player.x = world.getPt().x;
-		player.y = world.getPt().y;
-		new PlayerAi(player);
-		return player;
-	}*/
-
-	public GroupCreature newMonster(){
+	public GroupCreature newMonster(int x,int y){
 		GroupCreature monster = new GroupCreature(world, (char)155, AsciiPanel.brightYellow,
-				new Kobold(20, 5));
+				new Kobold(20, 5), x,y);
 		new MonsterAI(monster);
 		return monster;
 	}
-    /*
-	public GroupCreature newFlyingMonster(){
-		GroupCreature player = new GroupCreature(world, (char)174, AsciiPanel.green);
-		player.x = world.getPt().x;
-		player.y = world.getPt().y;
-		new PlayerAi(player);
-		return player;
-	}
-	*/
 }
