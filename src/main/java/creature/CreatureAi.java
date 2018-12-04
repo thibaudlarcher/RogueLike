@@ -1,11 +1,11 @@
 package creature;
 import color.Tile;
 public class CreatureAi {
-	protected Creature creature;
+	protected GroupCreature groupCreature;
 	
-	public CreatureAi(Creature creature){
-		this.creature = creature;
-		this.creature.setCreatureAi(this);
+	public CreatureAi(GroupCreature groupCreature){
+		this.groupCreature = groupCreature;
+		this.groupCreature.setCreatureAi(this);
 	}
 	
 	public void onEnter(int x, int y, Tile tile){

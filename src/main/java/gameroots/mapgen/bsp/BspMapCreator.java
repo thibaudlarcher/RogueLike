@@ -106,7 +106,7 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 		// and collect rooms by tile
 		for (int i = 0; i < rooms.size(); i++) {
 			IntRect room = rooms.get(i);
-			System.out.println(room);
+			//System.out.println(room);
 			roomsByNumber.put(i, room);
 			floodFill(map, room, i);
 		}
