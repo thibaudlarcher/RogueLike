@@ -1,27 +1,32 @@
 package screens;
 
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 import java.util.List;
 
 import asciiPanel.AsciiPanel;
+import color.Tile;
 import creature.*;
+import screens.Combat.CombatScreen;
 import world.*;
 
 public class PlayScreen implements Screen {
 	private World world;
 	private GroupCreature player;
-	private List<GroupCreature> groupCreature;
+	private ArrayList<GroupCreature> groupCreature;
 	private int screenWidth;
 	private int screenHeight;
 	
 	public PlayScreen(){
-		screenWidth = 160;
+		screenWidth = 140;
 		screenHeight = 40;
 		createWorld();
 		
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		player = creatureFactory.newPlayer();
-		creatureFactory.newMonster();
+		groupCreature = new ArrayList<GroupCreature>();
+
+		groupCreature.add(creatureFactory.newMonster());
 	}
 	
 	private void createWorld(){
@@ -55,6 +60,12 @@ public class PlayScreen implements Screen {
 			}
 		}
 	}
+
+	private Screen testRencontre(){
+		if(world.tile(player.x,player.y) == Tile.MONSTER){
+			return new CombatScreen(groupCreature,player,world);
+		}else return this;
+	}
 	
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
@@ -62,13 +73,13 @@ public class PlayScreen implements Screen {
 		case KeyEvent.VK_ESCAPE: return new LoseScreen();
 		case KeyEvent.VK_ENTER: return new WinScreen();
 		case KeyEvent.VK_LEFT:
-		case KeyEvent.VK_Q: player.moveBy(-1, 0); break;
+		case KeyEvent.VK_Q: player.moveBy(-1, 0);return testRencontre();
 		case KeyEvent.VK_RIGHT:
-		case KeyEvent.VK_D: player.moveBy( 1, 0); break;
+		case KeyEvent.VK_D: player.moveBy( 1, 0);return testRencontre();
 		case KeyEvent.VK_UP:
-		case KeyEvent.VK_Z: player.moveBy( 0,-1); break;
+		case KeyEvent.VK_Z: player.moveBy( 0,-1);return testRencontre();
 		case KeyEvent.VK_DOWN:
-		case KeyEvent.VK_S: player.moveBy( 0, 1); break;
+		case KeyEvent.VK_S: player.moveBy( 0, 1);return testRencontre();
 		/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 		case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 		case KeyEvent.VK_U: player.moveBy( 1,-1); break;

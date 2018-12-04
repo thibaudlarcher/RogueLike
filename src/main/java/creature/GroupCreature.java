@@ -10,7 +10,11 @@ public class GroupCreature {
     public int x;
     public int y;
 
+
     private ArrayList<Creature> groupCreature;
+    public ArrayList<Creature> getGroupCreature() {
+        return groupCreature;
+    }
 
     private char glyph;
     public char glyph() { return glyph; }

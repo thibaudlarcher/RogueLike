@@ -9,7 +9,7 @@ public class Kobold extends Monstre{
         pointDeVieMax = pointDeVie;
         this.pointDeVie = pointDeVie;
         this.attaque = attaque;
-        glyph = 'G';
+        glyph = 'K';
     }
 
     @Override
