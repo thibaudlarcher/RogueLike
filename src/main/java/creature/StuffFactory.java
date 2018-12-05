@@ -12,14 +12,14 @@ public class StuffFactory {
 	}
 
 	public Item newSword(){
-		Item sword = new ItemArme((char) 197, new Color(128,128,128), "sword",5);
+		Item sword = new ItemArme((char) 197, new Color(128,128,128), "epee",5);
 		world.addItemAtLocation(sword);
 		return sword;
 	}
 
-	public Item newBaton(){
-		Item baton = new ItemArme((char) 179,new Color(128,64,0),"baton",2);
-		world.addItemAtLocation(baton);
-		return baton;
+	public Item newStick(){
+		Item stick = new ItemArme((char) 179,new Color(128,64,0),"baton",2);
+		world.addItemAtLocation(stick);
+		return stick;
 	}
 }

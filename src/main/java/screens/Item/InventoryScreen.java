@@ -31,7 +31,8 @@ public class InventoryScreen implements Screen {
         }
 
         for (int i = 0; i < player.getGroupCreature().get(0).inventory().getSize(); i++){
-            terminal.write(joueur.inventory().get(i).getName(), 3 + 10 * i, 6, Color.white);
+            terminal.write(joueur.inventory().get(i).getName(), 3 + 15 * i, 6, Color.white);
+            terminal.write("Degats: " + Integer.toString(joueur.inventory().get(i).getDammage()) ,3 + 15 * i, 7, Color.GRAY);
         }
     }
 
