@@ -52,15 +52,11 @@ public class PlayScreen implements Screen {
 		creatureMove();
 		for(int i = 0 ; i<groupCreature.size();i++){
 			if((groupCreature.get(i).x-left) <= 0 || (groupCreature.get(i).y-top)<=0 || (groupCreature.get(i).y-top) >= 40 || (groupCreature.get(i).x-left) <= 0){
-
-			}else{
+			}else {
 				terminal.write(groupCreature.get(i).glyph(), groupCreature.get(i).x- left, groupCreature.get(i).y -top , groupCreature.get(i).color());
-
 			}
-
 		}
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.color());
-		//terminal.writeCenter("-- bonjour --", 35);
 	}
 
 	private void creatureMove(){
