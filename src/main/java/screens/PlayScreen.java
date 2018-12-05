@@ -2,6 +2,8 @@ package screens;
 
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
+
+import Object.Items.Item;
 import asciiPanel.AsciiPanel;
 import color.Tile;
 import creature.*;
@@ -30,13 +32,13 @@ public class PlayScreen implements Screen {
 		//createItems(stuffFactory);
 		creatureFactory.newMonster();
 		stuffFactory.newSword();
-		stuffFactory.newBaton();
-		stuffFactory.newSword();
+		Item baton = stuffFactory.newStick();
+		Item epee = stuffFactory.newSword();
 
-		System.out.println("taille inventaire : "+player.getGroupCreature().get(0).inventory().getSize());
 		player.getGroupCreature().get(0).inventory().add(stuffFactory.newSword());
-		System.out.println("taille inventaire : "+player.getGroupCreature().get(0).inventory().getSize());
-		System.out.println(player.getGroupCreature().get(0).inventory().get(0).getName());
+		player.getGroupCreature().get(0).inventory().add(baton);
+		player.getGroupCreature().get(0).inventory().add(epee);
+
 
 	}
 
