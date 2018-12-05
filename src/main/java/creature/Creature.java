@@ -14,6 +14,11 @@ public abstract class Creature {
     public int x;
     public int y;
 
+    protected String name;
+    public String getName() {
+        return name;
+    }
+
 	protected char glyph;
     public char getGlyph() {
         return glyph;

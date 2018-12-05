@@ -15,20 +15,6 @@ public class Guerrier extends PJ{
         glyph = 'G';
         this.inventory = new Inventory(20);
     }
-    @Override
-    public int getPointDeVieMax() {
-        return pointDeVieMax;
-    }
-
-    @Override
-    public int getPointDeVie() {
-        return pointDeVie;
-    }
-
-    @Override
-    public int getAttaque() {
-        return attaque;
-    }
 
     @Override
     public void pickupItem(Item item){

@@ -8,7 +8,14 @@ public class GroupCreature {
     private World world;
 
     public int x;
+    public int getX() {
+        return x;
+    }
+
     public int y;
+    public int getY() {
+        return y;
+    }
 
 
     private ArrayList<Creature> groupCreature;
@@ -37,6 +44,16 @@ public class GroupCreature {
         this.glyph = glyph;
         this.color = color;
     }
+
+    public GroupCreature(World world, char glyph, Color color,int x, int y){
+        groupCreature = new ArrayList<Creature>();
+        this.world = world;
+        this.glyph = glyph;
+        this.color = color;
+        this.x = x;
+        this.y = y;
+    }
+
     public GroupCreature(World world, char glyph, Color color, Creature Crea1,int x, int y){
         groupCreature = new ArrayList<Creature>();
         groupCreature.add(Crea1);
@@ -45,6 +62,21 @@ public class GroupCreature {
         this.color = color;
         this.x = x;
         this.y = y;
+    }
+
+    public boolean isNextTo(int x, int y){
+        if(this.x == x && this.y == y){
+            return true;
+        } else if(this.x == x+1 && this.y == y){
+            return true;
+        } else if(this.x == x-1 && this.y == y){
+            return true;
+        } else if(this.x == x && this.y == y+1){
+            return true;
+        } else if(this.x == x && this.y == y-1){
+            return true;
+        }
+        return false;
     }
 
     public void moveBy(int mx, int my){

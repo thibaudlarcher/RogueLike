@@ -27,7 +27,6 @@ public class PlayScreen implements Screen {
 		stuffFactory.newSword();
 		stuffFactory.newBaton();
 		stuffFactory.newSword();
-		player = creatureFactory.newPlayer();
 		groupCreature = new ArrayList<GroupCreature>();
 		ArrayList<Point>listMonster = world.getListMonster();
 		for(int i = 0 ; i<listMonster.size();i++){
@@ -60,12 +59,13 @@ public class PlayScreen implements Screen {
 	
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
-		
+		terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
+		terminal.clear();
+
 		int left = getScrollX();
 		int top = getScrollY();
 		
 		displayTiles(terminal, left, top);
-		creatureMove();
 		for(int i = 0 ; i<groupCreature.size();i++){
 			if((groupCreature.get(i).x-left) <= 0 || (groupCreature.get(i).y-top)<=0 || (groupCreature.get(i).y-top) >= 40 || (groupCreature.get(i).x-left) <= 0){
 			}else {
@@ -107,24 +107,45 @@ public class PlayScreen implements Screen {
 	}
 
 	private Screen testRencontre(){
-		if(world.tile(player.x,player.y) == Tile.MONSTER){
-			return new CombatScreen(groupCreature,player,world);
-		}else return this;
+		for(int i = 0; i < groupCreature.size();i++) {
+			if (groupCreature.get(i).isNextTo(player.getX(),player.getY())) {
+				return new CombatScreen(groupCreature, player, world, i);
+			}
+		}
+		return this;
 	}
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
-		switch (key.getKeyCode()){
-			case KeyEvent.VK_ESCAPE: return new LoseScreen();
-			case KeyEvent.VK_ENTER: return new WinScreen();
+		switch (key.getKeyCode()) {
+			case KeyEvent.VK_ESCAPE:
+				return new LoseScreen();
+			case KeyEvent.VK_ENTER:
+				return new WinScreen();
 			case KeyEvent.VK_LEFT:
-			case KeyEvent.VK_Q: player.moveBy(-1, 0);return testRencontre();
+			case KeyEvent.VK_Q: {
+				player.moveBy(-1, 0);
+				creatureMove();
+				return testRencontre();
+			}
 			case KeyEvent.VK_RIGHT:
-			case KeyEvent.VK_D: player.moveBy( 1, 0);return testRencontre();
+			case KeyEvent.VK_D: {
+				player.moveBy(1, 0);
+				creatureMove();
+				return testRencontre();
+			}
 			case KeyEvent.VK_UP:
-			case KeyEvent.VK_Z: player.moveBy( 0,-1);return testRencontre();
+			case KeyEvent.VK_Z: {
+				player.moveBy(0, -1);
+				creatureMove();
+				return testRencontre();
+			}
 			case KeyEvent.VK_DOWN:
-			case KeyEvent.VK_S: player.moveBy( 0, 1);return testRencontre();
+			case KeyEvent.VK_S: {
+				player.moveBy( 0, 1);
+				creatureMove();
+				return testRencontre();
+			}
 			/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 			case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 			case KeyEvent.VK_U: player.moveBy( 1,-1); break;

@@ -31,8 +31,7 @@ public class CreatureFactory {
 	}*/
 
     public GroupCreature newMonster(int x, int y){
-		GroupCreature monster = new GroupCreature(world, (char)155, AsciiPanel.brightYellow,
-				new Kobold(20, 5), x,y);
+		GroupCreature monster = new GroupCreature(world, (char)155, AsciiPanel.brightYellow, x, y);
 		new MonsterAI(monster);
 		return monster;
     }
