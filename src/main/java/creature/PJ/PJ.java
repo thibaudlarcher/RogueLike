@@ -14,5 +14,4 @@ public abstract class PJ extends Creature {
     public abstract void pickupItem(Item item);
 
     public abstract void dropItem(Item item);
-
 }
