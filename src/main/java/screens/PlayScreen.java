@@ -6,6 +6,7 @@ import asciiPanel.AsciiPanel;
 import color.Tile;
 import creature.*;
 import screens.Combat.CombatScreen;
+import screens.Item.InventoryScreen;
 import world.*;
 
 public class PlayScreen implements Screen {
@@ -31,6 +32,12 @@ public class PlayScreen implements Screen {
 		stuffFactory.newSword();
 		stuffFactory.newBaton();
 		stuffFactory.newSword();
+
+		System.out.println("taille inventaire : "+player.getGroupCreature().get(0).inventory().getSize());
+		player.getGroupCreature().get(0).inventory().add(stuffFactory.newSword());
+		System.out.println("taille inventaire : "+player.getGroupCreature().get(0).inventory().getSize());
+		System.out.println(player.getGroupCreature().get(0).inventory().get(0).getName());
+
 	}
 
 	public PlayScreen(World world, GroupCreature player,ArrayList<GroupCreature> groupCreature){
@@ -65,7 +72,7 @@ public class PlayScreen implements Screen {
 		
 		terminal.write(player.getGlyph(), player.x - left, player.y - top, player.getColor());
 		
-		terminal.writeCenter("-- bonjour --", 47);
+		terminal.writeCenter("-- bonjour --", 41);
 	}
 
 	private void displayTiles(AsciiPanel terminal, int left, int top) {
@@ -98,6 +105,7 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_Z: player.moveBy( 0,-1);return testRencontre();
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S: player.moveBy( 0, 1);return testRencontre();
+			case KeyEvent.VK_I: return new InventoryScreen(player, world, groupCreature);
 		/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 		case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 		case KeyEvent.VK_U: player.moveBy( 1,-1); break;

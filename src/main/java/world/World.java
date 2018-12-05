@@ -2,7 +2,6 @@ package world;
 
 import java.awt.*;
 import java.util.ArrayList;
-
 import Object.Items.Item;
 import color.*;
 
@@ -23,7 +22,7 @@ public class World {
 		this.height = tiles[0].length;
 		this.pt = pt;
 		this.itemPointList = itemPointList;
-		this.items = new Item[width+40][height];	// --> on prend le x max entre screenWidth et width et y max entre screenHeight et height
+		this.items = new Item[width+60][height];	// --> on prend le x max entre screenWidth et width et y max entre screenHeight et height
 	}
 	
 	public Tile tile(int x, int y){

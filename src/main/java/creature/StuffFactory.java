@@ -12,7 +12,7 @@ public class StuffFactory {
 	}
 
 	public Item newSword(){
-		Item sword = new ItemArme((char) 180, new Color(128,128,128), "sword",5);
+		Item sword = new ItemArme((char) 197, new Color(128,128,128), "sword",5);
 		world.addItemAtLocation(sword);
 		return sword;
 	}
