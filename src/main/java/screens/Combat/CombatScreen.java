@@ -2,6 +2,7 @@ package screens.Combat;
 
 import asciiPanel.AsciiPanel;
 import creature.*;
+import creature.Monstre.*;
 import screens.PlayScreen;
 import screens.Screen;
 import world.World;
@@ -28,6 +29,8 @@ public class CombatScreen implements Screen {
         this.groupCreature = groupCreature;
         this.player = player;
         creature = groupCreature.get(0);
+        creature.getGroupCreature().add(new Kobold());
+        creature.getGroupCreature().add(new Kobold());
     }
 
     @Override

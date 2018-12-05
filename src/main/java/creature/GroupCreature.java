@@ -33,6 +33,13 @@ public class GroupCreature {
         this.color = color;
     }
 
+    public GroupCreature(World world, char glyph, Color color){
+        groupCreature = new ArrayList<Creature>();
+        this.world = world;
+        this.glyph = glyph;
+        this.color = color;
+    }
+
     public void moveBy(int mx, int my){
         ai.onEnter(x+mx, y+my, world.tile(x+mx, y+my));
         //System.out.println("x :"+ x+ "y : " + y);
