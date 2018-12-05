@@ -30,10 +30,11 @@ public class CreatureFactory {
 		return player;
 	}*/
 
-    public GroupCreature newMonster(){
-        GroupCreature monster = new GroupCreature(world, (char)155, AsciiPanel.brightYellow);
-        new MonsterAI(monster);
-        return monster;
+    public GroupCreature newMonster(int x, int y){
+		GroupCreature monster = new GroupCreature(world, (char)155, AsciiPanel.brightYellow,
+				new Kobold(20, 5), x,y);
+		new MonsterAI(monster);
+		return monster;
     }
     /*
 	public GroupCreature newFlyingMonster(){

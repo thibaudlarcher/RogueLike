@@ -13,7 +13,7 @@ public class InfinityRogue extends JFrame implements KeyListener {
 	
 	public InfinityRogue(){
 		super();
-		terminal = new AsciiPanel(160,54); // max 160 max 54
+		terminal = new AsciiPanel(140,40); // max 160 max 54
 		add(terminal);
 		pack();
 		screen = new StartScreen();

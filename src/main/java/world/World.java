@@ -13,17 +13,18 @@ public class World {
 	private int width;
 	private Point pt;
 	public int width() { return width; }
-	
+	private ArrayList<Point> listMonster;
 	private int height;
 	public int height() { return height; }
 	
-	public World(Tile[][] tiles, Point pt, ArrayList<Point> itemPointList){
+	public World(Tile[][] tiles, Point pt, ArrayList<Point> itemPointList,ArrayList<Point> listMonster){
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
 		this.pt = pt;
 		this.itemPointList = itemPointList;
 		this.items = new Item[width+40][height];	// --> on prend le x max entre screenWidth et width et y max entre screenHeight et height
+		this.listMonster = listMonster;
 	}
 	
 	public Tile tile(int x, int y){
@@ -68,5 +69,8 @@ public class World {
 
 	public Item item(int x, int y){
 		return items[x][y];
+	}
+	public ArrayList<Point> getListMonster() {
+		return listMonster;
 	}
 }

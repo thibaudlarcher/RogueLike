@@ -4,6 +4,7 @@ import gameroots.mapgen.bsp.BspMapCreator;
 import java.awt.*;
 import java.util.ArrayList;
 
+
 public class WorldBuilder {
 	private int width;
 	private int height;
@@ -11,13 +12,14 @@ public class WorldBuilder {
 	private char[][] ch;
 	private Point pt;
 	private ArrayList<Point> itemPointList;
+	private ArrayList<Point> ptmonstre;
 
 	public WorldBuilder(int width, int height) {
 		this.width = width;
 		this.height = height;
 		this.tiles = new Tile[width][height];
 		this.itemPointList = new ArrayList<>();
-
+		this.ptmonstre = new ArrayList<Point>();
 	}
 
 	public World build() {
@@ -26,8 +28,7 @@ public class WorldBuilder {
         bspMapCreator.setMaxIterations(6);
         bspMapCreator.setMapDimension(this.width, this.height);
         ch = bspMapCreator.createMap();
-
-		return new World(WorldGenerating(ch), pt, itemPointList);
+        return new World(WorldGenerating(ch), pt, itemPointList,ptmonstre);
 	}
 
 	public Tile[][] WorldGenerating(char[][] ch){
@@ -56,16 +57,10 @@ public class WorldBuilder {
                     }
                     pt = new Point(j,i);
                 } else if (ch[j][i]==(char)144){
-                    tiles[i][j] = Tile.MONSTER;
-                    System.out.println(1);
-                } else if (ch[j][i]==(char)155){
-                    tiles[i][j] = Tile.MONSTER;
-                    System.out.println(2);
-                } else if (ch[j][i]==(char)174){
-                    tiles[i][j] = Tile.MONSTER;
-                    System.out.println(3);
-                }
-
+                    tiles[i][j] = Tile.FLOOR;
+                    ptmonstre.add(new Point(j,i));
+                    //System.out.println("TestWorldBuilder");
+                  }
             }
         }
 
@@ -89,5 +84,8 @@ public class WorldBuilder {
 
     public Point getPt() {
         return pt;
+    }
+    public ArrayList<Point> getPtmonstre(){
+	    return ptmonstre;
     }
 }

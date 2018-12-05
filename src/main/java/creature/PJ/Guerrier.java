@@ -2,11 +2,12 @@ package creature.PJ;
 import Object.Items.*;
 import Object.*;
 import static asciiPanel.AsciiPanel.brightGreen;
+import static asciiPanel.AsciiPanel.blue;
 
 public class Guerrier extends PJ{
 
     public Guerrier(String name, int pointDeVie, int attaque) {
-        this.color = brightGreen;
+       this.color = brightGreen;
         pointDeVieMax = pointDeVie;
         this.pointDeVie = pointDeVie;
         this.name = name;
@@ -14,7 +15,6 @@ public class Guerrier extends PJ{
         glyph = 'G';
         this.inventory = new Inventory(20);
     }
-
     @Override
     public int getPointDeVieMax() {
         return pointDeVieMax;

@@ -1,5 +1,6 @@
 package screens;
 
+import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
@@ -23,14 +24,16 @@ public class PlayScreen implements Screen {
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		StuffFactory stuffFactory = new StuffFactory(world);
 		player = creatureFactory.newPlayer();
-		groupCreature = new ArrayList<GroupCreature>();
-
-		groupCreature.add(creatureFactory.newMonster());
-		//createItems(stuffFactory);
-		creatureFactory.newMonster();
 		stuffFactory.newSword();
 		stuffFactory.newBaton();
 		stuffFactory.newSword();
+		player = creatureFactory.newPlayer();
+		groupCreature = new ArrayList<GroupCreature>();
+		ArrayList<Point>listMonster = world.getListMonster();
+		for(int i = 0 ; i<listMonster.size();i++){
+			Point p = listMonster.get(i);
+			groupCreature.add(creatureFactory.newMonster((int)p.getY(),(int)p.getX()));
+		}
 	}
 
 	public PlayScreen(World world, GroupCreature player,ArrayList<GroupCreature> groupCreature){
@@ -62,10 +65,34 @@ public class PlayScreen implements Screen {
 		int top = getScrollY();
 		
 		displayTiles(terminal, left, top);
-		
-		terminal.write(player.getGlyph(), player.x - left, player.y - top, player.getColor());
-		
-		terminal.writeCenter("-- bonjour --", 47);
+		creatureMove();
+		for(int i = 0 ; i<groupCreature.size();i++){
+			if((groupCreature.get(i).x-left) <= 0 || (groupCreature.get(i).y-top)<=0 || (groupCreature.get(i).y-top) >= 40 || (groupCreature.get(i).x-left) <= 0){
+			}else {
+				terminal.write(groupCreature.get(i).glyph(), groupCreature.get(i).x- left, groupCreature.get(i).y -top , groupCreature.get(i).getColor());
+			}
+		}
+		terminal.write(player.glyph(), player.x - left, player.y - top, player.getColor());
+	}
+
+	private void creatureMove(){
+		for(int i = 0 ; i<groupCreature.size();i++){
+			int rand = (int)((Math.random() * ( 4 )));
+			switch (rand){
+				case 0 :
+					groupCreature.get(i).moveBy(1,0);
+					break;
+				case 1 :
+					groupCreature.get(i).moveBy(-1,0);
+					break;
+				case 2 :
+					groupCreature.get(i).moveBy(0,1);
+					break;
+				case 3 :
+					groupCreature.get(i).moveBy(0,-1);
+					break;
+			}
+		}
 	}
 
 	private void displayTiles(AsciiPanel terminal, int left, int top) {
@@ -98,11 +125,11 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_Z: player.moveBy( 0,-1);return testRencontre();
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S: player.moveBy( 0, 1);return testRencontre();
-		/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
-		case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
-		case KeyEvent.VK_U: player.moveBy( 1,-1); break;
-		case KeyEvent.VK_B: player.moveBy(-1, 1); break;
-		case KeyEvent.VK_N: player.moveBy( 1, 1); break;*/
+			/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
+			case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
+			case KeyEvent.VK_U: player.moveBy( 1,-1); break;
+			case KeyEvent.VK_B: player.moveBy(-1, 1); break;
+			case KeyEvent.VK_N: player.moveBy( 1, 1); break;*/
 		}
 
 		return this;
