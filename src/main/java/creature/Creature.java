@@ -5,7 +5,7 @@ import Object.*;
 
 public abstract class Creature {
     //private World world;
-    private Inventory inventory;
+    protected Inventory inventory;
 
     public Inventory inventory() {
         return inventory;
@@ -14,28 +14,33 @@ public abstract class Creature {
     public int x;
     public int y;
 
-    protected char glyph;
-
+	protected char glyph;
     public char getGlyph() {
         return glyph;
     }
 
     protected Color color;
-
     public Color getColor() {
         return color;
     }
 
     protected int pointDeVieMax;
+    public int getPointDeVieMax() {
+        return pointDeVieMax;
+    }
 
-    public abstract int getPointDeVieMax();
 
     protected int pointDeVie;
-
-    public abstract int getPointDeVie();
+    public int getPointDeVie() {
+        return pointDeVie;
+    }
+    public void setPointDeVie(int pointDeVie) {
+        this.pointDeVie = pointDeVie;
+    }
 
     protected int attaque;
-
-    public abstract int getAttaque();
+    public int getAttaque() {
+        return attaque;
+    }
 
 }

@@ -1,5 +1,6 @@
 package creature.PJ;
 
+import Object.Items.Item;
 import creature.Creature;
 
 public abstract class PJ extends Creature {
@@ -9,5 +10,9 @@ public abstract class PJ extends Creature {
     public String getName() {
         return name;
     }
+
+    public abstract void pickupItem(Item item);
+
+    public abstract void dropItem(Item item);
 
 }

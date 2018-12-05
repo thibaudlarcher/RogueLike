@@ -1,19 +1,19 @@
 package creature.PJ;
-import asciiPanel.AsciiPanel;
-
-import static asciiPanel.AsciiPanel.blue;
+import Object.Items.*;
+import Object.*;
+import static asciiPanel.AsciiPanel.brightGreen;
 
 public class Guerrier extends PJ{
 
     public Guerrier(String name, int pointDeVie, int attaque) {
-        this.color = blue;
+        this.color = brightGreen;
         pointDeVieMax = pointDeVie;
         this.pointDeVie = pointDeVie;
         this.name = name;
         this.attaque = attaque;
         glyph = 'G';
+        this.inventory = new Inventory(20);
     }
-
 
     @Override
     public int getPointDeVieMax() {
@@ -28,5 +28,17 @@ public class Guerrier extends PJ{
     @Override
     public int getAttaque() {
         return attaque;
+    }
+
+    @Override
+    public void pickupItem(Item item){
+        if (!(inventory.isFull()) || item != null){
+            inventory.add(item);
+        }
+    }
+
+    @Override
+    public void dropItem(Item item){
+        inventory.remove(item);
     }
 }
