@@ -1,23 +1,27 @@
 package gameroots.mapgen.bsp;
 
-
-import color.Tile;
-import gameroots.mapgen.CharLevelMapCreator;
 import gameroots.mapgen.TileChar;
 import gameroots.shared.geom.IntPoint;
 import gameroots.shared.geom.IntRect;
-
-import java.io.PrintStream;
 import java.util.*;
-import java.util.function.Consumer;
-
-
 
 /**
- * Dungeon generator using a BSP tree.
+ * Dungeon generator using a BSP tree Algorithm.
  */
-public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 
+public class BspMapCreator {
+	/**
+	 * @param rnd : Number under seed form for random calculated.
+	 * @param cellPad : Separate cell of a room
+	 * @param roomPad : Separate number of separation cell by room
+	 * @param mapWidth : Width of map
+	 * @param mapHeight : Height of map
+	 * @param maxIteration : Iteration maximum of separate cell
+	 * @param minRoomSize : minimum of room size
+	 * @param roomsByTile :
+	 * @param rooms :
+	 * @param roomsbyNumber :
+	 */
 	static Random rnd = new Random();
 	static int cellPad = 12;
 	static int roomPad = 2;
@@ -28,8 +32,6 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 	private Map<IntPoint, Integer> roomsByTile;
 	private List<IntRect> rooms;
 	private Map<Integer, IntRect> roomsByNumber;
-	private long seed;
-	private PrintStream out;
 
 	public BspMapCreator(int width, int height) {
 		this();
@@ -43,33 +45,13 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 		rooms = new ArrayList<>();
 	}
 
-	public void setOut(PrintStream out) {
-		this.out = out;
-	}
-
-	public static void setCellPad(int cellPad) {
-		BspMapCreator.cellPad = cellPad;
-	}
-
-	public static void setRoomPad(int roomPad) {
-		BspMapCreator.roomPad = roomPad;
-	}
-
-	public long getSeed() {
-		return seed;
-	}
-
-	public void setSeed(long seed) {
-		this.seed = seed;
-	}
-
 	public void setMaxIterations(int maxIterations) {
 		this.maxIterations = maxIterations;
 	}
 
 	public void setMinRoomSize(int minRoomSize) {
 		if (minRoomSize < 5) {
-			throw new RuntimeException("min room size is 5");
+			throw new RuntimeException("Le minimum de la Room est de 5");
 		}
 		this.minRoomSize = minRoomSize;
 	}
@@ -79,12 +61,7 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 		this.mapHeight = mapHeight;
 	}
 
-	@Override
 	public char[][] createMap() {
-		if (seed == 0) {
-			seed = new Date().getTime();
-		}
-		rnd = new Random(seed);
 
 		// generate BSP tree
 		CellNode root = new CellNode(0, 0, mapWidth, mapHeight);
@@ -118,15 +95,6 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 
 
 		return map;
-	}
-
-	@Override
-	public Map<IntPoint, Integer> getRoomsByTile() {
-		return roomsByTile;
-	}
-
-	@Override
-	public void processRooms(Consumer roomCallback) {
 	}
 
 	private void splitCell(CellNode parent, int maxDepth) {

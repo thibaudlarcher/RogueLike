@@ -151,7 +151,7 @@ public class PlayScreen implements Screen {
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()){
-			case KeyEvent.VK_ESCAPE: return new LoseScreen();
+			case KeyEvent.VK_ESCAPE: return new MenuScreen(groupCreature,player,world);
 			case KeyEvent.VK_ENTER: return new WinScreen();
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_Q: player.moveBy(-1, 0);return testRencontre();
@@ -162,6 +162,7 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S: player.moveBy( 0, 1);return testRencontre();
 			case KeyEvent.VK_I: return new InventoryScreen(player, world, groupCreature);
+			case KeyEvent.VK_C: return new StatScreen(groupCreature,player,world);
 		/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 		case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 		case KeyEvent.VK_U: player.moveBy( 1,-1); break;
