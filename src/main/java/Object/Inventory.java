@@ -21,6 +21,7 @@ public class Inventory {
         for (int i = 0; i < items.length; i++) {
             if (items[i] == null) {
                 items[i] = item;
+                break;
             }
         }
     }
@@ -43,6 +44,16 @@ public class Inventory {
             return true;
         }
         return false;
+    }
+
+    public int getSize(){
+        int size = 0;
+        for (int i = 0; i < items.length; i++){
+            if (items[i] != null){
+                size++;
+            }
+        }
+        return size;
     }
 
 //    public boolean isEmpty() {

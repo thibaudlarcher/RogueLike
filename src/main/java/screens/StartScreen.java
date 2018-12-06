@@ -3,6 +3,9 @@ package screens;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import asciiPanel.AsciiPanel;
+import javafx.scene.input.KeyCode;
+
+import static java.lang.System.exit;
 
 public class StartScreen implements Screen {
 
@@ -18,6 +21,11 @@ public class StartScreen implements Screen {
 		terminal.write('#', 10, 1, new Color(61, 50, 5));
 
 		terminal.write('#', 2, 2, new Color(61, 50, 5));
+		terminal.write('#', 8, 1, new Color(154, 125, 10));
+		terminal.write('#', 9, 1, new Color(154, 125, 10));
+		terminal.write('#', 10, 1, new Color(154, 125, 10));
+
+		terminal.write('#', 2, 2, new Color(154, 125, 10));
 		terminal.write('#', 3, 2, new Color(241, 196, 15));
 		terminal.write('#', 4, 2, new Color(241, 196, 15));
 		terminal.write('#', 5, 2, new Color(241, 196, 15));
@@ -1212,10 +1220,14 @@ public class StartScreen implements Screen {
 		terminal.write('#', 110, 30,  new Color(0, 172, 193));
 
 
-		terminal.writeCenter("Press Start to play", 50, new Color(255, 255, 255));
+		terminal.writeCenter("Press Start to play", 40, new Color(255, 255, 255));
 	}
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
-		return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen() : this;
+		switch (key.getKeyCode()){
+			case KeyEvent.VK_ENTER: return new PlayScreen();
+			case KeyEvent.VK_ESCAPE: exit(1);
+		}
+		return this;
 	}
 }
