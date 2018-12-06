@@ -24,8 +24,10 @@ public class PickUpItemScreen implements Screen {
     }
 
     private void pickUpItem(){
-        player.getGroupCreature().get(0).pickupItem(world.item(player.x,player.y));
-        this.world.itemPickVide(player.x,player.y);
+        if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
+            player.getGroupCreature().get(0).pickupItem(world.item(player.x, player.y));
+            this.world.itemPickVide(player.x, player.y);
+        }
     }
 
     @Override
@@ -34,7 +36,11 @@ public class PickUpItemScreen implements Screen {
         if (currentItem != null) {
             terminal.writeCenter("item : "+currentItem.getName(), 15, Color.white);
             terminal.writeCenter("degats : "+Integer.toString(currentItem.getDammage()),16,Color.white);
-            terminal.writeCenter("Press [P] to pickup item", 30, Color.GRAY);
+            if (!(player.getGroupCreature().get(0).inventory().isFull())) {
+                terminal.writeCenter("Press [P] to pickup item", 30, Color.GRAY);
+            } else {
+                terminal.writeCenter("Inventory full", 25, Color.RED);
+            }
             terminal.writeCenter("Press [escape] to quit", 31, Color.GRAY);
         }
 

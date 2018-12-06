@@ -33,6 +33,13 @@ public class PlayScreen implements Screen {
 		Item baton = stuffFactory.newStick();
 		Item epee = stuffFactory.newSword();
 
+		Item baton1 = stuffFactory.newStick();
+		Item epee1 = stuffFactory.newSword();
+
+		Item baton2 = stuffFactory.newStick();
+		Item epee2 = stuffFactory.newSword();
+
+
 //		player.getGroupCreature().get(0).inventory().add(stuffFactory.newSword());
 //		player.getGroupCreature().get(0).inventory().add(baton);
 //		player.getGroupCreature().get(0).inventory().add(epee);
