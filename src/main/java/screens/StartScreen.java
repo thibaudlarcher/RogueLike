@@ -3,7 +3,6 @@ package screens;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import asciiPanel.AsciiPanel;
-import javafx.scene.input.KeyCode;
 
 import static java.lang.System.exit;
 

@@ -53,7 +53,29 @@ public class PlayScreen implements Screen {
 		this.player = player;
 		this.groupCreature = groupCreature;
 	}
-	
+	public PlayScreen(GroupCreature player){
+        screenWidth = 140;
+        screenHeight = 40;
+        createWorld();
+        this.player= player;
+        this.player.x = world.getPositionPersonnageX();
+        this.player.y = world.getPositionPersonnageY();
+        player.setWorld(this.world);
+
+
+        CreatureFactory creatureFactory = new CreatureFactory(world);
+        StuffFactory stuffFactory = new StuffFactory(world);
+        stuffFactory.newSword();
+        Item baton = stuffFactory.newStick();
+        Item epee = stuffFactory.newSword();
+        groupCreature = new ArrayList<GroupCreature>();
+        ArrayList<Point>listMonster = world.getListMonster();
+        for(int i = 0 ; i<listMonster.size();i++){
+            Point p = listMonster.get(i);
+            groupCreature.add(creatureFactory.newMonster((int)p.getY(),(int)p.getX()));
+        }
+    }
+
 	private void createWorld(){
 		world = new WorldBuilder(100	, 100).build();
 	}
@@ -130,6 +152,9 @@ public class PlayScreen implements Screen {
 				return new CombatScreen(groupCreature, player, world, i);
 			}
 		}
+		if (world.tile(player.x,player.y)==Tile.EXIT){
+			return new PlayScreen(player);
+		}
 		return this;
 	}
 
@@ -149,7 +174,7 @@ public class PlayScreen implements Screen {
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE:
-				return new LoseScreen();
+				return new MenuScreen(groupCreature,player,world);
 			case KeyEvent.VK_ENTER:
 				return new WinScreen();
 			case KeyEvent.VK_LEFT:
@@ -171,13 +196,14 @@ public class PlayScreen implements Screen {
 				return testRencontre();
 			}
 			case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_S: {
+                player.moveBy( 0, 1);
+                creatureMove();
+                return testRencontre();
+            }
 			case KeyEvent.VK_I: return new InventoryScreen(player, world, groupCreature);
 			case KeyEvent.VK_P: return testPickUpItem();
-			case KeyEvent.VK_S: {
-				player.moveBy( 0, 1);
-				creatureMove();
-				return testRencontre();
-			}
+			case KeyEvent.VK_C: return new StatScreen(groupCreature,player,world);
 			/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 			case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 			case KeyEvent.VK_U: player.moveBy( 1,-1); break;

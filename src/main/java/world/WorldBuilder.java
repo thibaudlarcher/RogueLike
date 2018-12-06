@@ -44,18 +44,8 @@ public class WorldBuilder {
                     tiles[i][j] = Tile.ITEMS;
                     itemPointList.add(new Point(i,j));
                 } else if (ch[j][i]=='@'){
-                    if (tiles[i-1][j] == Tile.BOUNDS && tiles[i][j-1] == Tile.BOUNDS){
-                        tiles[i][j] = Tile.BOUNDS;
-                    } else if (tiles[i-1][j] == Tile.BOUNDS && tiles[i][j-1] == Tile.WALL){
-                        tiles[i][j] = Tile.BOUNDS;
-                    } else if (tiles[i+1][j] == Tile.WALL){
-                        tiles[i][j] = Tile.WALL;
-                    } else if (tiles[i][j-1] == Tile.WALL){
-                        tiles[i][j] = Tile.WALL;
-                    } else {
-                        tiles[i][j] = Tile.FLOOR;
-                    }
-                    pt = new Point(j,i);
+                    tiles[i][j] = Tile.FLOOR;
+                    pt = new Point(i,j);
                 } else if (ch[j][i]==(char)144){
                     tiles[i][j] = Tile.FLOOR;
                     ptmonstre.add(new Point(j,i));
@@ -63,7 +53,6 @@ public class WorldBuilder {
                   }
             }
         }
-
         return tiles = InsertExit();
     }
 

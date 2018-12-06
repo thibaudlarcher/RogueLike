@@ -2,7 +2,6 @@ package creature;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import creature.PJ.PJ;
 import world.World;
 
 public class GroupCreature {
@@ -91,6 +90,10 @@ public class GroupCreature {
             mort = mort && groupCreature.get(i).isDead();
         }
         return mort;
+    }
+
+    public void setWorld(World world) {
+        this.world = world;
     }
 
 }

@@ -58,6 +58,12 @@ public class World {
 		}
 	}
 
+	public int getPositionPersonnageX(){
+		return pt.x;
+	}
+	public int getPositionPersonnageY(){
+		return pt.y;
+	}
 	public Point getPt() {
 		return pt;
 	}
