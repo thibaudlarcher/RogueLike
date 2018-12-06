@@ -25,13 +25,17 @@ public class DropItemScreen implements Screen {
     }
 
     public void dropItem(){
-        Item item = player.getGroupCreature().get(0).inventory().get(pos);
-        player.getGroupCreature().get(0).inventory().remove(item);
-        this.world.itemDropPlein(player.x,player.y,item);
+        if (player.getGroupCreature().get(0).inventory().get(pos) != null ) {
+            Item item = player.getGroupCreature().get(0).inventory().get(pos);
+            player.getGroupCreature().get(0).inventory().remove(item);
+            this.world.itemDropPlein(player.x, player.y, item);
+        }
     }
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
+        terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
+        terminal.clear();
         Item currentItem = player.getGroupCreature().get(0).inventory().get(pos);
         if (currentItem != null){
             if (currentItem.getType() == "arme") {

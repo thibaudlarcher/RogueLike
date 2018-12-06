@@ -24,14 +24,18 @@ public class PickUpItemScreen implements Screen {
     }
 
     private void pickUpItem(){
-        if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
-            player.getGroupCreature().get(0).pickupItem(world.item(player.x, player.y));
-            this.world.itemPickVide(player.x, player.y);
+        if (world.item(player.x,player.y) != null){
+            if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
+                player.getGroupCreature().get(0).pickupItem(world.item(player.x, player.y));
+                this.world.itemPickVide(player.x, player.y);
+            }
         }
     }
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
+        terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
+        terminal.clear();
         Item currentItem = world.item(player.x, player.y);
         if (currentItem != null) {
             if (currentItem.getType() == "arme") {
