@@ -408,14 +408,6 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 			//System.out.println("randX item : "+randx+ " randY item : "+randy);
 			map[randy][randx] = TileChar.charItem;
 		}
-
-		for (int i = 0; i < rooms.size(); i++) {
-			int randx = (int) (Math.random() * (rooms.get(i).getWidth()-2)) + rooms.get(i).getX()+1;
-			int randy = (int) (Math.random() * (rooms.get(i).getHeight()-2)) + rooms.get(i).getY()+1;
-
-			//System.out.println("randX item : "+randx+ " randY item : "+randy);
-			map[randy][randx] = TileChar.charItem;
-		}
 	}
 
 
