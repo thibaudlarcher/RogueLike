@@ -14,7 +14,7 @@ public class Guerrier extends PJ{
         tour = 0;
         this.attaque = attaque;
         glyph = 'G';
-        this.inventory = new Inventory(20);
+        this.inventory = new Inventory(10);
     }
 
     @Override

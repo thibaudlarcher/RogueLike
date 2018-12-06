@@ -24,17 +24,35 @@ public class PickUpItemScreen implements Screen {
     }
 
     private void pickUpItem(){
-        player.getGroupCreature().get(0).pickupItem(world.item(player.x,player.y));
-        this.world.itemPickVide(player.x,player.y);
+        if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
+            player.getGroupCreature().get(0).pickupItem(world.item(player.x, player.y));
+            this.world.itemPickVide(player.x, player.y);
+        }
     }
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
         Item currentItem = world.item(player.x, player.y);
         if (currentItem != null) {
-            terminal.writeCenter("item : "+currentItem.getName(), 15, Color.white);
-            terminal.writeCenter("degats : "+Integer.toString(currentItem.getDammage()),16,Color.white);
-            terminal.writeCenter("Press [P] to pickup item", 30, Color.GRAY);
+            if (currentItem.getType() == "arme") {
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("degats : " + Integer.toString(currentItem.getDammage()), 16, Color.white);
+            } else if (currentItem.getType() == "potion"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("soins : " + Integer.toString(currentItem.getEffet()), 16, Color.white);
+            } else if (currentItem.getType() == "armure"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            } else if (currentItem.getType() == "botte"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            }
+
+            if (!(player.getGroupCreature().get(0).inventory().isFull())) {
+                terminal.writeCenter("Press [P] to pickup item", 30, Color.GRAY);
+            } else {
+                terminal.writeCenter("Inventory full", 25, Color.RED);
+            }
             terminal.writeCenter("Press [escape] to quit", 31, Color.GRAY);
         }
 

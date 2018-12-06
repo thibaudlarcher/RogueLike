@@ -13,5 +13,10 @@ public abstract class Item {
     protected String name;
     public String getName() { return name; }
 
+    protected String type;
+    public String getType(){ return type; }
+
     public abstract int getDammage();
+    public abstract int getDefense();
+    public abstract int getEffet();
 }

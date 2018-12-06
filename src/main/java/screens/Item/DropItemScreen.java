@@ -34,8 +34,19 @@ public class DropItemScreen implements Screen {
     public void displayOutput(AsciiPanel terminal) {
         Item currentItem = player.getGroupCreature().get(0).inventory().get(pos);
         if (currentItem != null){
-            terminal.writeCenter("item : "+currentItem.getName(),15, Color.white);
-            terminal.writeCenter("degats : "+Integer.toString(currentItem.getDammage()),16, Color.white);
+            if (currentItem.getType() == "arme") {
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("degats : " + Integer.toString(currentItem.getDammage()), 16, Color.white);
+            } else if (currentItem.getType() == "potion"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("soins : " + Integer.toString(currentItem.getEffet()), 16, Color.white);
+            } else if (currentItem.getType() == "armure"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            } else if (currentItem.getType() == "botte"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            }
             terminal.writeCenter("Press [D] to drop item",30,Color.GRAY);
             terminal.writeCenter("Press [escape] to quit",31,Color.GRAY);
         }
