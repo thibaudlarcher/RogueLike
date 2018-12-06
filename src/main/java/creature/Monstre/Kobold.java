@@ -3,42 +3,25 @@ import object.Items.Item;
 
 import static asciiPanel.AsciiPanel.red;
 
-public class Kobold extends Monstre{
+public class Kobold extends Monstre {
 
-   public Kobold() {
+    public Kobold() {
+        name = "Kobold";
         this.color = red;
         pointDeVieMax = 20;
+        vitesse = 4;
+        tour = 0;
         this.pointDeVie = 20;
         this.attaque = 5;
         glyph = 'K';
     }
 
-    public Kobold(int pointDeVie, int attaque) {
-        this.color = red;
-        pointDeVieMax = pointDeVie;
-        this.pointDeVie = pointDeVie;
-        this.attaque = attaque;
-        glyph = 'K';
+
+    @Override
+    public void dropItem(Item item) {
     }
 
     @Override
-    public int getPointDeVieMax() {
-        return pointDeVieMax;
+    public void pickupItem(Item item) {
     }
-
-    @Override
-    public int getPointDeVie() {
-        return pointDeVie;
-    }
-
-    @Override
-    public int getAttaque() {
-        return attaque;
-    }
-
-    @Override
-    public void dropItem(Item item){}
-
-    @Override
-    public void pickupItem(Item item){}
 }

@@ -10,23 +10,11 @@ public class Guerrier extends PJ{
         pointDeVieMax = pointDeVie;
         this.pointDeVie = pointDeVie;
         this.name = name;
+        vitesse = 6;
+        tour = 0;
         this.attaque = attaque;
         glyph = 'G';
         this.inventory = new Inventory(20);
-    }
-    @Override
-    public int getPointDeVieMax() {
-        return pointDeVieMax;
-    }
-
-    @Override
-    public int getPointDeVie() {
-        return pointDeVie;
-    }
-
-    @Override
-    public int getAttaque() {
-        return attaque;
     }
 
     @Override

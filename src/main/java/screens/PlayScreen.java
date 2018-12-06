@@ -70,18 +70,19 @@ public class PlayScreen implements Screen {
 	
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
-		
+		terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
+		terminal.clear();
+
 		int left = getScrollX();
 		int top = getScrollY();
 		
 		displayTiles(terminal, left, top);
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.getColor());
-		
+
 		terminal.writeCenter("-- bonjour --", 41);
 		if (world.tile(player.x, player.y) == Tile.ITEMS){
 			terminal.write("Press [P] to pickup item",3,41);
 		}
-		creatureMove();
 
 		for(int i = 0 ; i<groupCreature.size();i++){
 			if((groupCreature.get(i).x-left) <= 0 || (groupCreature.get(i).y-top)<=0 || (groupCreature.get(i).y-top) >= 40 || (groupCreature.get(i).x-left) <= 0){
@@ -124,9 +125,12 @@ public class PlayScreen implements Screen {
 	}
 
 	private Screen testRencontre(){
-		if(world.tile(player.x,player.y) == Tile.MONSTER){
-			return new CombatScreen(groupCreature,player,world);
-		}else return this;
+		for(int i = 0; i < groupCreature.size();i++) {
+			if (groupCreature.get(i).isNextTo(player.getX(),player.getY())) {
+				return new CombatScreen(groupCreature, player, world, i);
+			}
+		}
+		return this;
 	}
 
 	private Screen testPickUpItem(){
@@ -143,24 +147,42 @@ public class PlayScreen implements Screen {
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
-		switch (key.getKeyCode()){
-			case KeyEvent.VK_ESCAPE: return new LoseScreen();
-			case KeyEvent.VK_ENTER: return new WinScreen();
+		switch (key.getKeyCode()) {
+			case KeyEvent.VK_ESCAPE:
+				return new LoseScreen();
+			case KeyEvent.VK_ENTER:
+				return new WinScreen();
 			case KeyEvent.VK_LEFT:
-			case KeyEvent.VK_Q: player.moveBy(-1, 0);return testRencontre();
+			case KeyEvent.VK_Q: {
+				player.moveBy(-1, 0);
+				creatureMove();
+				return testRencontre();
+			}
 			case KeyEvent.VK_RIGHT:
-			case KeyEvent.VK_D: player.moveBy( 1, 0);return testRencontre();
+			case KeyEvent.VK_D: {
+				player.moveBy(1, 0);
+				creatureMove();
+				return testRencontre();
+			}
 			case KeyEvent.VK_UP:
-			case KeyEvent.VK_Z: player.moveBy( 0,-1);return testRencontre();
+			case KeyEvent.VK_Z: {
+				player.moveBy(0, -1);
+				creatureMove();
+				return testRencontre();
+			}
 			case KeyEvent.VK_DOWN:
-			case KeyEvent.VK_S: player.moveBy( 0, 1);return testRencontre();
 			case KeyEvent.VK_I: return new InventoryScreen(player, world, groupCreature);
 			case KeyEvent.VK_P: return testPickUpItem();
-		/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
-		case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
-		case KeyEvent.VK_U: player.moveBy( 1,-1); break;
-		case KeyEvent.VK_B: player.moveBy(-1, 1); break;
-		case KeyEvent.VK_N: player.moveBy( 1, 1); break;*/
+			case KeyEvent.VK_S: {
+				player.moveBy( 0, 1);
+				creatureMove();
+				return testRencontre();
+			}
+			/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
+			case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
+			case KeyEvent.VK_U: player.moveBy( 1,-1); break;
+			case KeyEvent.VK_B: player.moveBy(-1, 1); break;
+			case KeyEvent.VK_N: player.moveBy( 1, 1); break;*/
 		}
 
 		return this;
