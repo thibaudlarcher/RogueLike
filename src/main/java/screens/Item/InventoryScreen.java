@@ -26,6 +26,8 @@ public class InventoryScreen implements Screen {
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
+        terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
+        terminal.clear();
         Creature joueur = this.player.getGroupCreature().get(0);
         terminal.writeCenter("INVENTORY", 1, Color.WHITE);
         terminal.writeCenter("Taille : " + joueur.inventory().getSize() + "/" + joueur.inventory().getSizeMax(),2,Color.white);

@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
 import color.Tile;
 import creature.*;
+import object.Items.Item;
 import screens.Combat.CombatScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
