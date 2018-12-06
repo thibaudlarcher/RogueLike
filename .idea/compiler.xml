@@ -12,6 +12,7 @@
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="projet-rogue-like" target="7" />
+      <module name="RogueLike" target="7" />
     </bytecodeTargetLevel>
   </component>
 </project>
