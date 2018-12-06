@@ -11,8 +11,7 @@ public class LoseScreen implements Screen {
 
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
-		terminal.writeCenter("You lost.", 3, Color.red);
-		terminal.writeCenter("-- press [enter] to restart or [escape] to quit  --", 22);
+		terminal.writeCenter("You Dead.", 3, Color.red);
 	}
 
 	@Override

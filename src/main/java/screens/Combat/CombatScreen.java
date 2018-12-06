@@ -2,6 +2,7 @@ package screens.Combat;
 
 import asciiPanel.AsciiPanel;
 import creature.Monstre.*;
+import screens.LoseScreen;
 import screens.PlayScreen;
 import creature.GroupCreature;
 import screens.Screen;
@@ -138,6 +139,9 @@ public class CombatScreen implements Screen {
                     this.position--;
                 }
                 return this;
+        }
+        if(player.isDead()){
+            return new LoseScreen();
         }
         return this;
     }
