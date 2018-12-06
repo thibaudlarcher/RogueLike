@@ -50,6 +50,28 @@ public class PlayScreen implements Screen {
 		this.player = player;
 		this.groupCreature = groupCreature;
 	}
+	public PlayScreen(GroupCreature player){
+        screenWidth = 140;
+        screenHeight = 40;
+        createWorld();
+        this.player= player;
+        this.player.x = world.getPositionPersonnageX();
+        this.player.y = world.getPositionPersonnageY();
+        player.setWorld(this.world);
+
+
+        CreatureFactory creatureFactory = new CreatureFactory(world);
+        StuffFactory stuffFactory = new StuffFactory(world);
+        stuffFactory.newSword();
+        Item baton = stuffFactory.newStick();
+        Item epee = stuffFactory.newSword();
+        groupCreature = new ArrayList<GroupCreature>();
+        ArrayList<Point>listMonster = world.getListMonster();
+        for(int i = 0 ; i<listMonster.size();i++){
+            Point p = listMonster.get(i);
+            groupCreature.add(creatureFactory.newMonster((int)p.getY(),(int)p.getX()));
+        }
+    }
 	
 	private void createWorld(){
 		world = new WorldBuilder(100	, 100).build();
@@ -120,7 +142,10 @@ public class PlayScreen implements Screen {
 	private Screen testRencontre(){
 		if(world.tile(player.x,player.y) == Tile.MONSTER){
 			return new CombatScreen(groupCreature,player,world);
-		}else return this;
+		}else if (world.tile(player.x,player.y)== Tile.EXIT){
+		    return new PlayScreen(player);
+        }
+		else return this;
 	}
 
 	@Override

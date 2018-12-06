@@ -396,7 +396,7 @@ public class BspMapCreator implements CharLevelMapCreator<Consumer> {
 				ymin = rooms.get(i).getY();
 			}
 		}
-		map[xmin+1][ymin+1] = TileChar.charPerso;
+		map[ymin+1][xmin+1] = TileChar.charPerso;
 	}
 
 	private void renderItems(char[][] map) {

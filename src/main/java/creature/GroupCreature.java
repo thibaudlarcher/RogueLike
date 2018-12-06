@@ -52,4 +52,7 @@ public class GroupCreature {
         //System.out.println("x :"+ x+ "y : " + y);
     }
 
+    public void setWorld(World world) {
+        this.world = world;
+    }
 }
