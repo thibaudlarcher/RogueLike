@@ -35,7 +35,7 @@
                     <archive>
                         <manifest>
                             <addClasspath>true</addClasspath>
-                            <classpathPrefix>lib/</classpathPrefix>
+                            <classpathPrefix>${basedir}/</classpathPrefix>
                             <mainClass>InfinityRogue</mainClass>
                         </manifest>
                     </archive>
