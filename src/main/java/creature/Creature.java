@@ -48,8 +48,30 @@ public abstract class Creature {
         return attaque;
     }
 
+    protected int vitesse;
+    public int getVitesse() {
+        return vitesse;
+    }
+
+    protected int tour;
+    public int getTour() {
+        return tour;
+    }
+    public void setTour(int tour) {
+        this.tour = tour;
+    }
+    public void updateTour() {
+        this.setTour(tour+vitesse);
+    }
+
     public void dealDamageTo(Creature Crea){
         Crea.setPointDeVie(Crea.getPointDeVie() - this.getAttaque());
+        this.setTour(0);
+    }
+
+    public boolean isDead() {
+        if(this.getPointDeVie() < 0) return true;
+        return false;
     }
 
 }

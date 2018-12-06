@@ -15,7 +15,6 @@ public class AffichageStat {
             terminal.write("PV:", 9 + 30 * i, yCrea, brightRed);
             if (creature.getGroupCreature().get(i).getPointDeVie() < 100) {
                 terminal.write("0", 12 + 30 * i, yCrea, brightRed);
-                System.out.println(creature.getGroupCreature().get(i).getPointDeVie());
                 terminal.write(Integer.toString(creature.getGroupCreature().get(i).getPointDeVie()),
                         13 + 30 * i, yCrea, brightRed);
             } else {

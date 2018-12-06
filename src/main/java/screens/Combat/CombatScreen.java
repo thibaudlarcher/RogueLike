@@ -15,6 +15,7 @@ import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
 import static screens.Combat.AffichageStat.*;
+import static screens.Combat.GestionTour.testJoueurTour;
 import static screens.Combat.TestMort.*;
 import static screens.Combat.AffichageDesign.*;
 
@@ -26,9 +27,13 @@ public class CombatScreen implements Screen {
     private int position;
     private int choix;
     private int numero;
+    private int nextPlayer;
+    private int nextCrea;
 
     public CombatScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world, int numero) {
         position = 0;
+        nextPlayer = -1;
+        nextCrea = -1;
         this.world=world;
         this.groupCreature = groupCreature;
         this.player = player;
@@ -44,6 +49,33 @@ public class CombatScreen implements Screen {
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
+        while((nextPlayer = testJoueurTour(player)) == -1) {
+            terminal.setDefaultBackgroundColor(new Color(125,125,125));
+            terminal.clear();
+            afficheMenu(terminal, this);
+            for (int y = 0; y < 40; y++) {
+                terminal.write('#', 100, y, new Color(16,21,78)); // Color(61,50,5)
+            }
+            for (int i = 0; i < creature.getGroupCreature().size(); i++) {
+                terminal.write(creature.getGroupCreature().get(i).getName(), 9 + 30 * i, 7,
+                        creature.getGroupCreature().get(i).getColor());
+            }
+            for (int i = 0; i < player.getGroupCreature().size(); i++) {
+                terminal.write(player.getGroupCreature().get(i).getName(), 9 + 30 * i, 23,
+                        player.getGroupCreature().get(i).getColor());
+            }
+            affichePV(terminal, creature, player);
+            if((nextCrea = testJoueurTour(creature)) != -1) {
+                ((Monstre) creature.getGroupCreature().get(nextCrea)).takeAction(player);
+                nextCrea = -1;
+            }
+            for (int i = 0; i < creature.getGroupCreature().size(); i++) {
+                creature.getGroupCreature().get(i).updateTour();
+            }
+            for (int i = 0; i < player.getGroupCreature().size(); i++) {
+                player.getGroupCreature().get(i).updateTour();
+            }
+        }
         terminal.setDefaultBackgroundColor(new Color(125,125,125));
         terminal.clear();
         afficheMenu(terminal, this);
@@ -73,8 +105,9 @@ public class CombatScreen implements Screen {
             case KeyEvent.VK_ENTER:
                 switch (this.position) {
                     case 0:
-                        player.getGroupCreature().get(0).dealDamageTo(
+                        player.getGroupCreature().get(nextPlayer).dealDamageTo(
                                 creature.getGroupCreature().get(choix));
+                        nextPlayer = -1;
                         testMort(creature,choix);
                         if(testMortGroupe(groupCreature,numero)) {
                             return new PlayScreen(world, player, groupCreature);
@@ -86,28 +119,24 @@ public class CombatScreen implements Screen {
             case KeyEvent.VK_ESCAPE:
                 exit(1);
             case KeyEvent.VK_RIGHT:
-                if (this.choix != creature.getGroupCreature().size()) {
+                if (this.choix != creature.getGroupCreature().size()-1) {
                     this.choix++;
                 }
-                System.out.println(this.position);
                 return this;
             case KeyEvent.VK_LEFT:
                 if (this.choix != 0) {
                     this.choix--;
                 }
-                System.out.println(this.position);
                 return this;
             case KeyEvent.VK_DOWN:
                 if (this.position != 1) {
                     this.position++;
                 }
-                System.out.println(this.position);
                 return this;
             case KeyEvent.VK_UP:
                 if (this.position != 0) {
                     this.position--;
                 }
-                System.out.println(this.position);
                 return this;
         }
         return this;

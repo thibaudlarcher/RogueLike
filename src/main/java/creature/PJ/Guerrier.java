@@ -11,6 +11,8 @@ public class Guerrier extends PJ{
         pointDeVieMax = pointDeVie;
         this.pointDeVie = pointDeVie;
         this.name = name;
+        vitesse = 6;
+        tour = 0;
         this.attaque = attaque;
         glyph = 'G';
         this.inventory = new Inventory(20);
