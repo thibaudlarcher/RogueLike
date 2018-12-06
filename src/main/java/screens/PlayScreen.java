@@ -9,6 +9,7 @@ import asciiPanel.AsciiPanel;
 import color.Tile;
 import creature.*;
 import screens.Combat.CombatScreen;
+import screens.Item.DropItemScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
 import world.*;
@@ -132,10 +133,13 @@ public class PlayScreen implements Screen {
 		if (world.tile(player.x, player.y) == Tile.ITEMS && world.item(player.x, player.y) != null){
 			return new PickUpItemScreen(groupCreature,player,world);
 		} else return this;
-//		if (world.tile(player.x, player.y) == Tile.ITEMS && world.item(player.x, player.y) != null){
-//			player.getGroupCreature().get(0).pickupItem(world.item(player.x, player.y));
-//		}
 	}
+
+//	private Screen testDropItem(){
+//		if (world.tile(player.x, player.y) == Tile.FLOOR && world.item(player.x, player.y) == null){
+//			return new DropItemScreen(groupCreature, player, world);
+//		} else return this;
+//	}
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {

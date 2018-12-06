@@ -16,7 +16,6 @@ public class PickUpItemScreen implements Screen {
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
-    private Item[][] Item;
 
     public PickUpItemScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world) {
         this.world=world;
@@ -26,7 +25,7 @@ public class PickUpItemScreen implements Screen {
 
     private void pickUpItem(){
         player.getGroupCreature().get(0).pickupItem(world.item(player.x,player.y));
-        this.world.itemVide(player.x,player.y);
+        this.world.itemPickVide(player.x,player.y);
     }
 
     @Override

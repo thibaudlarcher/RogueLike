@@ -70,9 +70,14 @@ public class World {
 		return items[x][y];
 	}
 
-	public void itemVide(int x, int y){
+	public void itemPickVide(int x, int y){
 		items[x][y] = null;
 		tiles[x][y] = Tile.FLOOR;
+	}
+
+	public void itemDropPlein(int x, int y, Item item){
+		items[x][y] = item;
+		tiles[x][y] = Tile.ITEMS;
 	}
 
 	public ArrayList<Point> getListMonster() {
