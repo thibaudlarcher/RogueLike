@@ -15,6 +15,7 @@ import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
 import static screens.Combat.AffichageStat.*;
+import static screens.Combat.TestMort.*;
 import static screens.Combat.AffichageDesign.*;
 
 public class CombatScreen implements Screen {
@@ -24,12 +25,14 @@ public class CombatScreen implements Screen {
     private GroupCreature creature;
     private int position;
     private int choix;
+    private int numero;
 
     public CombatScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world, int numero) {
         position = 0;
         this.world=world;
         this.groupCreature = groupCreature;
         this.player = player;
+        this.numero = numero;
         creature = groupCreature.get(numero);
         if(creature.getGroupCreature().size() == 0){
             creature.getGroupCreature().add(new Kobold());
@@ -41,11 +44,11 @@ public class CombatScreen implements Screen {
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
-        terminal.setDefaultBackgroundColor(new Color(222,222,222));
+        terminal.setDefaultBackgroundColor(new Color(125,125,125));
         terminal.clear();
         afficheMenu(terminal, this);
         for (int y = 0; y < 40; y++) {
-            terminal.write('#', 100, y, new Color(200, 200, 200)); // Color(61,50,5)
+            terminal.write('#', 100, y, new Color(16,21,78)); // Color(61,50,5)
         }
         for (int i = 0; i < creature.getGroupCreature().size(); i++) {
             terminal.write(creature.getGroupCreature().get(i).getName(), 9 + 30 * i, 7,
@@ -70,11 +73,12 @@ public class CombatScreen implements Screen {
             case KeyEvent.VK_ENTER:
                 switch (this.position) {
                     case 0:
-                        this.creature.getGroupCreature().get(0).setPointDeVie(
-                                this.creature.getGroupCreature().get(0).getPointDeVie() -
-                                        this.player.getGroupCreature().get(0).getAttaque()
-                        );
-                        System.out.println(this.creature.getGroupCreature().get(0).getPointDeVie());
+                        player.getGroupCreature().get(0).dealDamageTo(
+                                creature.getGroupCreature().get(choix));
+                        testMort(creature,choix);
+                        if(testMortGroupe(groupCreature,numero)) {
+                            return new PlayScreen(world, player, groupCreature);
+                        }
                         return this;
                     case 1:
                         return new PlayScreen(world, player, groupCreature);
@@ -82,7 +86,7 @@ public class CombatScreen implements Screen {
             case KeyEvent.VK_ESCAPE:
                 exit(1);
             case KeyEvent.VK_RIGHT:
-                if (this.choix != 2) {
+                if (this.choix != creature.getGroupCreature().size()) {
                     this.choix++;
                 }
                 System.out.println(this.position);

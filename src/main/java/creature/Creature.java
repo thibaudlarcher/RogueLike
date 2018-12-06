@@ -48,5 +48,9 @@ public abstract class Creature {
         return attaque;
     }
 
+    public void dealDamageTo(Creature Crea){
+        Crea.setPointDeVie(Crea.getPointDeVie() - this.getAttaque());
+    }
+
 }
 
