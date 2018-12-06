@@ -4,12 +4,13 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-import Object.Items.Item;
+import object.Items.Item;
 import asciiPanel.AsciiPanel;
 import color.Tile;
 import creature.*;
 import screens.Combat.CombatScreen;
 import screens.Item.InventoryScreen;
+import screens.Item.PickUpItemScreen;
 import world.*;
 
 public class PlayScreen implements Screen {
@@ -31,9 +32,10 @@ public class PlayScreen implements Screen {
 		Item baton = stuffFactory.newStick();
 		Item epee = stuffFactory.newSword();
 
-		player.getGroupCreature().get(0).inventory().add(stuffFactory.newSword());
-		player.getGroupCreature().get(0).inventory().add(baton);
-		player.getGroupCreature().get(0).inventory().add(epee);
+//		player.getGroupCreature().get(0).inventory().add(stuffFactory.newSword());
+//		player.getGroupCreature().get(0).inventory().add(baton);
+//		player.getGroupCreature().get(0).inventory().add(epee);
+
 
 		groupCreature = new ArrayList<GroupCreature>();
 		ArrayList<Point>listMonster = world.getListMonster();
@@ -75,6 +77,9 @@ public class PlayScreen implements Screen {
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.getColor());
 		
 		terminal.writeCenter("-- bonjour --", 41);
+		if (world.tile(player.x, player.y) == Tile.ITEMS){
+			terminal.write("Press [P] to pickup item",3,41);
+		}
 		creatureMove();
 
 		for(int i = 0 ; i<groupCreature.size();i++){
@@ -123,6 +128,15 @@ public class PlayScreen implements Screen {
 		}else return this;
 	}
 
+	private Screen testPickUpItem(){
+		if (world.tile(player.x, player.y) == Tile.ITEMS && world.item(player.x, player.y) != null){
+			return new PickUpItemScreen(groupCreature,player,world);
+		} else return this;
+//		if (world.tile(player.x, player.y) == Tile.ITEMS && world.item(player.x, player.y) != null){
+//			player.getGroupCreature().get(0).pickupItem(world.item(player.x, player.y));
+//		}
+	}
+
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()){
@@ -137,6 +151,7 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S: player.moveBy( 0, 1);return testRencontre();
 			case KeyEvent.VK_I: return new InventoryScreen(player, world, groupCreature);
+			case KeyEvent.VK_P: return testPickUpItem();
 		/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 		case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 		case KeyEvent.VK_U: player.moveBy( 1,-1); break;

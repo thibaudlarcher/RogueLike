@@ -1,8 +1,7 @@
 package creature.PJ;
-import Object.Items.*;
-import Object.*;
+import object.Items.*;
+import object.*;
 import static asciiPanel.AsciiPanel.brightGreen;
-import static asciiPanel.AsciiPanel.blue;
 
 public class Guerrier extends PJ{
 

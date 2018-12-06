@@ -1,9 +1,10 @@
-package Object;
+package object;
 
-import Object.Items.*;
+import object.Items.*;
 
 public class Inventory {
     private Item[] items;
+    private int max;
 
     public Item[] getItems() {
         return items;
@@ -14,6 +15,7 @@ public class Inventory {
     }
 
     public Inventory(int max) {
+        this.max = max;
         items = new Item[max];
     }
 
@@ -24,6 +26,10 @@ public class Inventory {
                 break;
             }
         }
+    }
+
+    public int getSizeMax(){
+        return this.max;
     }
 
     public void remove(Item item) {

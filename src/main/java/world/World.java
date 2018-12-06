@@ -2,7 +2,7 @@ package world;
 
 import java.awt.*;
 import java.util.ArrayList;
-import Object.Items.Item;
+import object.Items.Item;
 import color.*;
 
 public class World {
@@ -69,6 +69,12 @@ public class World {
 	public Item item(int x, int y){
 		return items[x][y];
 	}
+
+	public void itemVide(int x, int y){
+		items[x][y] = null;
+		tiles[x][y] = Tile.FLOOR;
+	}
+
 	public ArrayList<Point> getListMonster() {
 		return listMonster;
 	}

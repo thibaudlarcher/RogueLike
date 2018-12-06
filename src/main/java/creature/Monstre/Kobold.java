@@ -1,4 +1,6 @@
 package creature.Monstre;
+import object.Items.Item;
+
 import static asciiPanel.AsciiPanel.red;
 
 public class Kobold extends Monstre{
@@ -33,4 +35,10 @@ public class Kobold extends Monstre{
     public int getAttaque() {
         return attaque;
     }
+
+    @Override
+    public void dropItem(Item item){}
+
+    @Override
+    public void pickupItem(Item item){}
 }

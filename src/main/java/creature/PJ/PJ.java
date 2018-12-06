@@ -1,6 +1,6 @@
 package creature.PJ;
 
-import Object.Items.Item;
+import object.Items.Item;
 import creature.Creature;
 
 public abstract class PJ extends Creature {

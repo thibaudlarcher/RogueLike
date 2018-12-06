@@ -1,6 +1,7 @@
 package creature;
 import java.awt.Color;
-import Object.*;
+import object.*;
+import object.Items.Item;
 //import world.World;
 
 public abstract class Creature {
@@ -43,5 +44,8 @@ public abstract class Creature {
         return attaque;
     }
 
+    public abstract void pickupItem(Item item);
+
+    public abstract void dropItem(Item item);
 }
 

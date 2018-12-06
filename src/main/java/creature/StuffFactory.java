@@ -1,6 +1,6 @@
 package creature;
-import Object.Items.Item;
-import Object.Items.ItemArme;
+import object.Items.Item;
+import object.Items.ItemArme;
 import world.*;
 import java.awt.*;
 

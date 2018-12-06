@@ -10,7 +10,7 @@ public enum Tile {
 	PERSO((char)64, AsciiPanel.blue),
 	TEST((char)75, AsciiPanel.brightCyan),
 	BOUNDS('x', AsciiPanel.brightBlack),
-	ITEMS((char)244, AsciiPanel.yellow),
+	ITEMS('o', AsciiPanel.black),
 	MONSTER((char)64, AsciiPanel.brightYellow);
 
 	

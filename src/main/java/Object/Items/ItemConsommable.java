@@ -1,4 +1,4 @@
-package Object.Items;
+package object.Items;
 
 public class ItemConsommable {
 }
