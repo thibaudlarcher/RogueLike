@@ -34,8 +34,20 @@ public class PickUpItemScreen implements Screen {
     public void displayOutput(AsciiPanel terminal) {
         Item currentItem = world.item(player.x, player.y);
         if (currentItem != null) {
-            terminal.writeCenter("item : "+currentItem.getName(), 15, Color.white);
-            terminal.writeCenter("degats : "+Integer.toString(currentItem.getDammage()),16,Color.white);
+            if (currentItem.getType() == "arme") {
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("degats : " + Integer.toString(currentItem.getDammage()), 16, Color.white);
+            } else if (currentItem.getType() == "potion"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("soins : " + Integer.toString(currentItem.getEffet()), 16, Color.white);
+            } else if (currentItem.getType() == "armure"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            } else if (currentItem.getType() == "botte"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            }
+
             if (!(player.getGroupCreature().get(0).inventory().isFull())) {
                 terminal.writeCenter("Press [P] to pickup item", 30, Color.GRAY);
             } else {

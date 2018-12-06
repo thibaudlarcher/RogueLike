@@ -62,6 +62,18 @@ public class Inventory {
         return size;
     }
 
+    public int getIndiceMaxItem(){
+        int max = 0;
+        for (int i = 0; i < items.length; i++){
+            if (items[i] != null){
+                if (i > max){
+                    max = i;
+                }
+            }
+        }
+        return max;
+    }
+
 //    public boolean isEmpty() {
 //        int size = 0;
 //        for (int i = 0; i < items.length; i++) {

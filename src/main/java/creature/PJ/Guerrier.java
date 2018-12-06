@@ -12,7 +12,7 @@ public class Guerrier extends PJ{
         this.name = name;
         this.attaque = attaque;
         glyph = 'G';
-        this.inventory = new Inventory(2);
+        this.inventory = new Inventory(10);
     }
     @Override
     public int getPointDeVieMax() {

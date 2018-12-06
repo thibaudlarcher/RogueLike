@@ -36,9 +36,18 @@ public class InventoryScreen implements Screen {
 
         // Affichage des ItemArme et leur degats
         for (int i = 0; i < player.getGroupCreature().get(0).inventory().getSizeMax(); i++){
-            if (joueur.inventory().get(i) != null) {
+            if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "arme") {
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
                 terminal.write("degats: " + Integer.toString(joueur.inventory().get(i).getDammage()), 10, 6 + 2 * i, Color.GRAY);
+            } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "potion"){
+                terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
+                terminal.write("soins: " + Integer.toString(joueur.inventory().get(i).getEffet()), 12, 6 + 2 * i, Color.GRAY);
+            } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "armure"){
+                terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
+                terminal.write("defense: " + Integer.toString(joueur.inventory().get(i).getDefense()), 12, 6 + 2 * i, Color.GRAY);
+            } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "botte"){
+                terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
+                terminal.write("defense: " + Integer.toString(joueur.inventory().get(i).getDefense()), 11, 6 + 2 * i, Color.GRAY);
             }
         }
 
@@ -53,7 +62,9 @@ public class InventoryScreen implements Screen {
 //        }
 
         if (joueur.inventory().getSize() >= 1) {
-            terminal.writeCenter("Press [D] to drop current item", 41, Color.GRAY);
+            if (world.tile(player.x,player.y) == Tile.ITEMS){
+                terminal.writeCenter("You can't drop item here", 41, Color.RED);
+            } else { terminal.writeCenter("Press [D] to drop current item", 41, Color.GRAY); }
         }
     }
 
@@ -64,13 +75,30 @@ public class InventoryScreen implements Screen {
             case KeyEvent.VK_I:
                 return new PlayScreen(world, player, groupCreature);
             case KeyEvent.VK_DOWN:
-                if (pos != (player.getGroupCreature().get(0).inventory().getSize()) - 1){
-                    this.pos++;
+                if (player.getGroupCreature().get(0).inventory().getSize() != 0) {
+                    if (pos != (player.getGroupCreature().get(0).inventory().getIndiceMaxItem())) {
+                        while (player.getGroupCreature().get(0).inventory().get(pos + 1) == null) {
+                            this.pos++;
+                        }
+                        this.pos++;
+                        System.out.println("pos : " + pos);
+                    }
                 }
                 return this;
             case KeyEvent.VK_UP:
-                if (pos != 0){
+                if (pos != 0 && pos > -1) {
+                    while (player.getGroupCreature().get(0).inventory().get(pos - 1) == null) {
+                        this.pos--;
+                        if (this.pos - 1 == -1){
+                            this.pos = -1;
+                            while (player.getGroupCreature().get(0).inventory().get(pos + 1) == null){
+                                this.pos++;
+                            }
+                            this.pos = this.pos + 2;
+                        }
+                    }
                     this.pos--;
+                    System.out.println("pos : " + pos);
                 }
                 return this;
             case KeyEvent.VK_D:

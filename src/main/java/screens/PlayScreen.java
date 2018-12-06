@@ -3,13 +3,10 @@ package screens;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
-import object.Items.Item;
 import asciiPanel.AsciiPanel;
 import color.Tile;
 import creature.*;
 import screens.Combat.CombatScreen;
-import screens.Item.DropItemScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
 import world.*;
@@ -30,15 +27,10 @@ public class PlayScreen implements Screen {
 		StuffFactory stuffFactory = new StuffFactory(world);
 		player = creatureFactory.newPlayer();
 		stuffFactory.newSword();
-		Item baton = stuffFactory.newStick();
-		Item epee = stuffFactory.newSword();
+//		Item baton = stuffFactory.newStick();
+//		Item epee = stuffFactory.newSword();
 
-		Item baton1 = stuffFactory.newStick();
-		Item epee1 = stuffFactory.newSword();
-
-		Item baton2 = stuffFactory.newStick();
-		Item epee2 = stuffFactory.newSword();
-
+		createItems(stuffFactory);
 
 //		player.getGroupCreature().get(0).inventory().add(stuffFactory.newSword());
 //		player.getGroupCreature().get(0).inventory().add(baton);
@@ -65,11 +57,15 @@ public class PlayScreen implements Screen {
 		world = new WorldBuilder(100	, 100).build();
 	}
 
-//	private void createItems(StuffFactory factory) {
-//		for (int i = 0; i < 10; i++){
-//			factory.newSword();
-//		}
-//	}
+	private void createItems(StuffFactory factory) {
+		for (int i = 0; i < 10; i++) {
+			factory.newSword();
+			factory.newStick();
+			factory.newArmure();
+			factory.newBotte();
+			factory.newPotion();
+		}
+	}
 
 	public int getScrollX() { return Math.max(0, Math.min(player.x - screenWidth / 2, world.width() - screenWidth)); }
 	
@@ -87,6 +83,7 @@ public class PlayScreen implements Screen {
 		terminal.writeCenter("-- bonjour --", 41);
 		if (world.tile(player.x, player.y) == Tile.ITEMS){
 			terminal.write("Press [P] to pickup item",3,41);
+			terminal.write("item : "+world.item(player.x,player.y).getName(),35,41);
 		}
 		creatureMove();
 
@@ -141,12 +138,6 @@ public class PlayScreen implements Screen {
 			return new PickUpItemScreen(groupCreature,player,world);
 		} else return this;
 	}
-
-//	private Screen testDropItem(){
-//		if (world.tile(player.x, player.y) == Tile.FLOOR && world.item(player.x, player.y) == null){
-//			return new DropItemScreen(groupCreature, player, world);
-//		} else return this;
-//	}
 
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
