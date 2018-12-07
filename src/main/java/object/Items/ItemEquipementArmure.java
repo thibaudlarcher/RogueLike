@@ -24,4 +24,8 @@ public class ItemEquipementArmure extends Item {
         return 0;
     }
 
+    @Override
+    public String toString(){
+        return 2 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + defense  +"  " + type;
+    }
 }

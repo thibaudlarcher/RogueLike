@@ -89,4 +89,12 @@ public class World {
 	public ArrayList<Point> getListMonster() {
 		return listMonster;
 	}
+
+	public Tile[][] getTiles() {
+		return tiles;
+	}
+
+	public Item[][] getItems() {
+		return items;
+	}
 }

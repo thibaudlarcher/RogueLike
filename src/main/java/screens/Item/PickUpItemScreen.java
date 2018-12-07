@@ -2,7 +2,7 @@ package screens.Item;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
-import object.Items.Item;
+import object.Items.*;
 import screens.PlayScreen;
 import screens.Screen;
 import world.World;

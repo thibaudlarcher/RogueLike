@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
+import io.Save;
 import world.World;
 
 import static asciiPanel.AsciiPanel.brightRed;
@@ -14,15 +15,17 @@ import static java.lang.System.exit;
 
 public class MenuScreen implements Screen {
 
+    private PlayScreen screen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
     private int choix;
 
-    public MenuScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world) {
-        this.world=world;
-        this.groupCreature = groupCreature;
-        this.player = player;
+    public MenuScreen(PlayScreen screen) {
+        this.screen = screen;
+        this.world=screen.getWorld();
+        this.groupCreature = screen.getGroupCreature();
+        this.player = screen.getPlayer();
     }
 
     @Override
@@ -41,11 +44,12 @@ public class MenuScreen implements Screen {
             case KeyEvent.VK_ENTER:
                 switch (this.choix){
                     case 0 :
-                        //sauvegarde
+                         new Save(screen);
+                         break;
                     case 1 :
                        // return new StatsScreen();
                     case 2 :
-                        return new StatScreen(groupCreature,player,world);
+                        return new StatScreen(screen);
                     case 3 :
                         return new PlayScreen(world,player,groupCreature);
                     case 4 :
