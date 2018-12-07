@@ -24,8 +24,8 @@ public class Save {
         this.monster = screen.getGroupCreature();
         saveWorld();
         savePlayer();
-        //saveMonster();
-        //saveItem();
+        saveMonster();
+        saveItem();
     }
 
     public void saveIventory(BufferedWriter writer){
@@ -93,34 +93,51 @@ public class Save {
     }
 
     public void saveMonster(){
-        for (int i = 0; i<monster.size();i++){
-            System.out.println(monster.get(i).x + " " + monster.get(i).y +" " + (int)monster.get(i).glyph());
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/monster.txt"));
+            for (int i = 0; i<monster.size();i++){
+                writer.write(monster.get(i).x + " " + monster.get(i).y +" " + monster.get(i).glyph());
+                writer.newLine();
+            }
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     public void saveItem(){
-        Item[][] item = screen.getWorld().getItems();
-        for (int i = 0; i < item.length; i++) {
-            for (int j = 0; j < item.length; j++) {
-                switch (item[i][j].getGlyph()){
-                    case (char) 197:
-                        System.out.println((char) 197 + i + " " + j );
-                        break;
-                    case (char) 179:
-                        System.out.println((char) 179+ i + " " + j );
-                        break;
-                    case (char) 225:
-                        System.out.println((char) 225 + i + " " + j );
-                        break;
-                    case (char) 190:
-                        System.out.println((char) 190 + i + " " + j );
-                        break;
-                    case (char) 200:
-                        System.out.println((char) 200 + i + " " + j );
-                        break;
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/item.txt"));
+            Item[][] item = screen.getWorld().getItems();
+            for (int i = 0; i < item.length; i++) {
+                for (int j = 0; j < item[i].length; j++) {
+                    if(item[i][j]!=null) {
+                        switch (item[i][j].getGlyph()) {
+                            case (char) 197:
+                                writer.write(197 + " " + i + " " + j);
+                                break;
+                            case (char) 179:
+                                writer.write(179 + " " + i + " " + j);
+                                break;
+                            case (char) 225:
+                                writer.write(225 + " "+ i + " " + j);
+                                break;
+                            case (char) 190:
+                                writer.write(190 + " "+ i + " " + j);
+                                break;
+                            case (char) 200:
+                                writer.write(200 + " "+ i + " " + j);
+                                break;
+                            default:
+                                break;
+                        }
+                        writer.newLine();
+                    }
                 }
             }
-            System.out.println();
+            writer.close();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 }
