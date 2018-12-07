@@ -2,7 +2,8 @@ package creature;
 import java.awt.Color;
 import java.util.ArrayList;
 
-import object.Inventory;
+import creature.PJ.PJ;
+import object.*;
 import world.World;
 
 public class GroupCreature {
