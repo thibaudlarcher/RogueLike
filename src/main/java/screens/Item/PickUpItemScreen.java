@@ -50,6 +50,12 @@ public class PickUpItemScreen implements Screen {
             } else if (currentItem.getType() == "botte"){
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            } else if (currentItem.getType() == "casque"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            } else if (currentItem.getType() == "pantalon"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
             }
 
             if (!(player.getGroupCreature().get(0).inventory().isFull())) {

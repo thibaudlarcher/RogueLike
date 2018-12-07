@@ -50,7 +50,14 @@ public class DropItemScreen implements Screen {
             } else if (currentItem.getType() == "botte"){
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            } else if (currentItem.getType() == "casque"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            } else if (currentItem.getType() == "pantalon"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
             }
+
             terminal.writeCenter("Press [D] to drop item",30,Color.GRAY);
             terminal.writeCenter("Press [escape] to quit",31,Color.GRAY);
         }

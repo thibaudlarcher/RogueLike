@@ -7,6 +7,7 @@ import asciiPanel.AsciiPanel;
 import color.Tile;
 import creature.*;
 import object.Items.Item;
+import object.StuffFactory;
 import screens.Combat.CombatScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
@@ -27,16 +28,7 @@ public class PlayScreen implements Screen {
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		StuffFactory stuffFactory = new StuffFactory(world);
 		player = creatureFactory.newPlayer();
-		stuffFactory.newSword();
-//		Item baton = stuffFactory.newStick();
-//		Item epee = stuffFactory.newSword();
-
 		createItems(stuffFactory);
-
-//		player.getGroupCreature().get(0).inventory().add(stuffFactory.newSword());
-//		player.getGroupCreature().get(0).inventory().add(baton);
-//		player.getGroupCreature().get(0).inventory().add(epee);
-
 
 		groupCreature = new ArrayList<GroupCreature>();
 		ArrayList<Point>listMonster = world.getListMonster();
@@ -62,13 +54,11 @@ public class PlayScreen implements Screen {
         this.player.y = world.getPositionPersonnageY();
         player.setWorld(this.world);
 
-
         CreatureFactory creatureFactory = new CreatureFactory(world);
         StuffFactory stuffFactory = new StuffFactory(world);
-        stuffFactory.newSword();
-        Item baton = stuffFactory.newStick();
-        Item epee = stuffFactory.newSword();
-        groupCreature = new ArrayList<GroupCreature>();
+		createItems(stuffFactory);
+
+		groupCreature = new ArrayList<GroupCreature>();
         ArrayList<Point>listMonster = world.getListMonster();
         for(int i = 0 ; i<listMonster.size();i++){
             Point p = listMonster.get(i);
@@ -81,12 +71,15 @@ public class PlayScreen implements Screen {
 	}
 
 	private void createItems(StuffFactory factory) {
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 5; i++) {
+			factory.newPotion();
+			factory.newPotion();
 			factory.newSword();
 			factory.newStick();
 			factory.newArmure();
 			factory.newBotte();
-			factory.newPotion();
+			factory.newCasque();
+			factory.newPantalon();
 		}
 	}
 
