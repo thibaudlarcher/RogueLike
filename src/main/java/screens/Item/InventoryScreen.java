@@ -26,6 +26,8 @@ public class InventoryScreen implements Screen {
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
+        terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
+        terminal.clear();
         Creature joueur = this.player.getGroupCreature().get(0);
         terminal.writeCenter("INVENTORY", 1, Color.WHITE);
         terminal.writeCenter("Taille : " + joueur.inventory().getSize() + "/" + joueur.inventory().getSizeMax(),2,Color.white);
@@ -38,28 +40,24 @@ public class InventoryScreen implements Screen {
         for (int i = 0; i < player.getGroupCreature().get(0).inventory().getSizeMax(); i++){
             if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "arme") {
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("degats: " + Integer.toString(joueur.inventory().get(i).getDammage()), 10, 6 + 2 * i, Color.GRAY);
+                terminal.write("Cette redoutable arme vous offrira " + Integer.toString(joueur.inventory().get(i).getDammage()) + " de degats face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "potion"){
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("soins: " + Integer.toString(joueur.inventory().get(i).getEffet()), 12, 6 + 2 * i, Color.GRAY);
+                terminal.write("Cette potion vous soignera de " + Integer.toString(joueur.inventory().get(i).getEffet()) + " points de vie.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "armure"){
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("defense: " + Integer.toString(joueur.inventory().get(i).getDefense()), 12, 6 + 2 * i, Color.GRAY);
+                terminal.write("Cette robuste armure vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "botte"){
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("defense: " + Integer.toString(joueur.inventory().get(i).getDefense()), 11, 6 + 2 * i, Color.GRAY);
+                terminal.write("Cette paire de bottes vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
+            } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "casque") {
+                terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
+                terminal.write("Ce simple casque vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
+            } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "pantalon") {
+                terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
+                terminal.write("Ce long pantalon vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             }
         }
-
-//        for (int j = 0; j < 140; j++){
-//            terminal.write((char) 196, j, 10, Color.WHITE);
-//            j++;
-//        }
-
-//        for (int i = 0; i < player.getGroupCreature().get(0).inventory().getSize(); i++){
-//            terminal.write(joueur.inventory().get(i).getName(), 3 + 15 * i, 12, Color.white);
-//            terminal.write("Effet: " + Integer.toString(joueur.inventory().get(i).getDammage()) ,3 + 15 * i, 13, Color.GRAY);
-//        }
 
         if (joueur.inventory().getSize() >= 1) {
             if (world.tile(player.x,player.y) == Tile.ITEMS){

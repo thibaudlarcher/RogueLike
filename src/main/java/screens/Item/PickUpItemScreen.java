@@ -24,14 +24,18 @@ public class PickUpItemScreen implements Screen {
     }
 
     private void pickUpItem(){
-        if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
-            player.getGroupCreature().get(0).pickupItem(world.item(player.x, player.y));
-            this.world.itemPickVide(player.x, player.y);
+        if (world.item(player.x,player.y) != null){
+            if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
+                player.getGroupCreature().get(0).pickupItem(world.item(player.x, player.y));
+                this.world.itemPickVide(player.x, player.y);
+            }
         }
     }
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
+        terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
+        terminal.clear();
         Item currentItem = world.item(player.x, player.y);
         if (currentItem != null) {
             if (currentItem.getType() == "arme") {
@@ -44,6 +48,12 @@ public class PickUpItemScreen implements Screen {
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
             } else if (currentItem.getType() == "botte"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            } else if (currentItem.getType() == "casque"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+            } else if (currentItem.getType() == "pantalon"){
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
             }
