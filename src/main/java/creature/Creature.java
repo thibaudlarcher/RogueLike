@@ -35,6 +35,11 @@ public abstract class Creature {
         return pointDeVieMax;
     }
 
+    private int niveau;
+    public int getNiveau() {
+        return niveau;
+    }
+    public void setNiveau(int niveau){this.niveau = niveau;}
 
     protected int pointDeVie;
     public int getPointDeVie() {

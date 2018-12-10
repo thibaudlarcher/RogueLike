@@ -34,6 +34,8 @@ public class StatScreen implements Screen {
                 player.getGroupCreature().get(0).getPointDeVieMax(),10,Color.white);
 
         terminal.writeCenter("Point d'attaque : "+player.getGroupCreature().get(0).getAttaque(),15,Color.white);
+        terminal.writeCenter("Vitesse : "+player.getGroupCreature().get(0).getVitesse(),20,Color.white);
+
         terminal.write("Menu [R]", 0,40,Color.white);
         terminal.write("Jeux [ESC]", 130,40,Color.white);
     }
