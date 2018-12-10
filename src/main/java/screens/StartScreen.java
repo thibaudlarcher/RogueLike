@@ -1224,7 +1224,7 @@ public class StartScreen implements Screen {
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()){
-			case KeyEvent.VK_ENTER: return new PlayScreen();
+			case KeyEvent.VK_ENTER: return new LoadSreen();
 			case KeyEvent.VK_ESCAPE: exit(1);
 		}
 		return this;
