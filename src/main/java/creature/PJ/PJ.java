@@ -17,6 +17,7 @@ public abstract class PJ extends Creature {
         return name;
     }
 
+
     public abstract void pickupItem(Item item);
 
     public abstract void dropItem(Item item);

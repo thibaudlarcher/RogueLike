@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
 import color.Tile;
 import creature.*;
+import object.Items.Item;
 import screens.Combat.CombatScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
@@ -57,6 +58,9 @@ public class PlayScreen implements Screen {
         screenHeight = 40;
         createWorld();
         this.player= player;
+        int nv = this.player.getGroupCreature().get(0).getNiveau();
+        nv++;
+        this.player.getGroupCreature().get(0).setNiveau(nv);
         this.player.x = world.getPositionPersonnageX();
         this.player.y = world.getPositionPersonnageY();
         player.setWorld(this.world);
@@ -104,7 +108,12 @@ public class PlayScreen implements Screen {
 		displayTiles(terminal, left, top);
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.getColor());
 
-		terminal.writeCenter("-- bonjour --", 41);
+		//terminal.writeCenter("-- bonjour --", 41);
+		terminal.write("Vie : "+player.getGroupCreature().get(0).getPointDeVie()+"/"
+				+player.getGroupCreature().get(0).getPointDeVieMax() ,110, 41,Color.white);
+
+		terminal.write("Floor : "+player.getGroupCreature().get(0).getNiveau() ,125, 41,Color.white);
+
 		if (world.tile(player.x, player.y) == Tile.ITEMS){
 			terminal.write("Press [P] to pickup item",3,41);
 			terminal.write("item : "+world.item(player.x,player.y).getName(),35,41);

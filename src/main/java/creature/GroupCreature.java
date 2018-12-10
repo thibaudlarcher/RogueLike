@@ -3,10 +3,12 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import object.Inventory;
+import creature.PJ.PJ;
 import world.World;
 
 public class GroupCreature {
     private World world;
+
     public int x;
     public int getX() {
         return x;
