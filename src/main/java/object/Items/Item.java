@@ -16,6 +16,9 @@ public abstract class Item {
     protected String type;
     public String getType(){ return type; }
 
+    protected int valeur;
+    public int getValeur(){ return valeur; }
+
     public abstract int getDammage();
     public abstract int getDefense();
     public abstract int getEffet();

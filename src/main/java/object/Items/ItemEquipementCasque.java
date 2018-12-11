@@ -5,12 +5,13 @@ import java.awt.*;
 public class ItemEquipementCasque extends Item {
     private int defense;
 
-    public ItemEquipementCasque(char glyph, Color color, String name, int defense){
+    public ItemEquipementCasque(char glyph, Color color, String name, int defense, int valeur){
         this.glyph = glyph;
         this.color = color;
         this.name = name;
         this.defense = defense;
         this.type = "casque";
+        this.valeur = valeur;
     }
 
     public int getDammage() {

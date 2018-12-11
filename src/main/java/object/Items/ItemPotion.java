@@ -6,12 +6,13 @@ public class ItemPotion extends Item {
 
     private int effet;
 
-    public ItemPotion(char glyph, Color color, String name, int effet){
+    public ItemPotion(char glyph, Color color, String name, int effet, int valeur){
         this.glyph = glyph;
         this.color = color;
         this.name = name;
         this.type = "potion";
         this.effet = effet;
+        this.valeur = valeur;
     }
 
     public int getEffet(){
