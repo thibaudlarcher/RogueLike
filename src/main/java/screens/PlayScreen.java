@@ -203,6 +203,7 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_I: return new InventoryScreen(player, world, groupCreature);
 			case KeyEvent.VK_P: return testPickUpItem();
 			case KeyEvent.VK_C: return new StatScreen(groupCreature,player,world);
+			case KeyEvent.VK_H: return new HelpScreen(groupCreature,player,world);
 			/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 			case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 			case KeyEvent.VK_U: player.moveBy( 1,-1); break;
