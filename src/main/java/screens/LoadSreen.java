@@ -32,7 +32,7 @@ public class LoadSreen implements Screen{
                     case 0 :
                         return new PlayScreen();
                     case 1 :
-                        new LoadSave();
+                        return new LoadSave().Test();
                     case 2 :
                          exit(0);
                 }

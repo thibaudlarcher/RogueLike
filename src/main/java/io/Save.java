@@ -44,7 +44,7 @@ public class Save {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/world.txt"));
             Tile[][] tiles = screen.getWorld().getTiles();
             for (int i = 0; i < tiles.length; i++) {
-                for (int j = 0; j < tiles.length; j++) {
+                for (int j = 0; j < tiles[i].length; j++) {
                     switch (tiles[i][j]){
                         case FLOOR:
                             writer.write(".");
@@ -81,7 +81,9 @@ public class Save {
                 writer.write(Integer.toString(player.getGroupCreature().get(i).getPointDeVie())+ " ");
                 writer.write(Integer.toString(player.getGroupCreature().get(i).getAttaque())+ " ");
                 writer.write(player.getGroupCreature().get(i).getGlyph()+ " ");
+                writer.write(player.getGroupCreature().get(i).getName()+ " ");
                 writer.write(player.getGroupCreature().get(i).getColor().getBlue()+ " "+player.getGroupCreature().get(i).getColor().getRed() + " "+player.getGroupCreature().get(i).getColor().getGreen());
+                writer.newLine();
                 writer.write("<Inventory>");
                 writer.newLine();
                 saveIventory(writer);
