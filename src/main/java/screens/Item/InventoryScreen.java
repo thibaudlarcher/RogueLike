@@ -40,22 +40,22 @@ public class InventoryScreen implements Screen {
         for (int i = 0; i < player.getGroupCreature().get(0).inventory().getSizeMax(); i++){
             if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "arme") {
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("Cette redoutable arme vous offrira " + Integer.toString(joueur.inventory().get(i).getDammage()) + " de degats face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
+                terminal.write("Cette redoutable arme vous offrira " + Integer.toString(joueur.inventory().get(i).getDammage()) + " de degats face aux monstres.    Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "potion"){
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("Cette potion vous soignera de " + Integer.toString(joueur.inventory().get(i).getEffet()) + " points de vie.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
+                terminal.write("Cette potion vous soignera de " + Integer.toString(joueur.inventory().get(i).getEffet()) + " points de vie.    Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "armure"){
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("Cette robuste armure vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
+                terminal.write("Cette robuste armure vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.    Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "botte"){
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("Cette paire de bottes vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
+                terminal.write("Cette paire de bottes vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.    Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "casque") {
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("Ce simple casque vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
+                terminal.write("Ce simple casque vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.    Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "pantalon") {
                 terminal.write(joueur.inventory().get(i).getName(), 3, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("Ce long pantalon vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
+                terminal.write("Ce long pantalon vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.    Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
             }
         }
 
