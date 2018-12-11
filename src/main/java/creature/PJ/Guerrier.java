@@ -28,4 +28,11 @@ public class Guerrier extends PJ{
     public void dropItem(Item item){
         inventory.remove(item);
     }
+
+    @Override
+    public void updateAttaque(int attaque) {
+
+    }
+
+
 }

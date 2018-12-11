@@ -7,11 +7,9 @@ import screens.PlayScreen;
 import creature.GroupCreature;
 import screens.Screen;
 import world.World;
-
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
-
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;

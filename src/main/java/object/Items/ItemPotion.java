@@ -13,6 +13,7 @@ public class ItemPotion extends Item {
         this.type = "potion";
         this.effet = effet;
         this.valeur = valeur;
+        this.equipe = false;
     }
 
     public int getEffet(){

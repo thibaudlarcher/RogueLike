@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
+import screens.Item.InventoryScreen;
 import world.World;
 
 import static asciiPanel.AsciiPanel.brightRed;
@@ -27,10 +28,12 @@ public class MenuScreen implements Screen {
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
+        terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
+        terminal.clear();
         terminal.writeCenter("Menu", 5,new Color(255, 255, 255));
         terminal.writeCenter("Sauvegarde", 10,this.choix == 0 ? brightRed : white );
         terminal.writeCenter("Stats", 15,this.choix == 1 ? brightRed : white);
-        terminal.writeCenter("Item", 20,this.choix == 2 ? brightRed : white);
+        terminal.writeCenter("Inventaire", 20,this.choix == 2 ? brightRed : white);
         terminal.writeCenter("Reprendre", 25,this.choix == 3 ? brightRed : white);
         terminal.writeCenter("Aide", 30,this.choix == 4 ? brightRed : white);
         terminal.writeCenter("Quitter", 35,this.choix == 5 ? brightRed : white);
@@ -44,9 +47,9 @@ public class MenuScreen implements Screen {
                     case 0 :
                         //sauvegarde
                     case 1 :
-                       // return new StatsScreen();
-                    case 2 :
                         return new StatScreen(groupCreature,player,world);
+                    case 2 :
+                        return new InventoryScreen(player,world,groupCreature);
                     case 3 :
                         return new PlayScreen(world,player,groupCreature);
                     case 4 :

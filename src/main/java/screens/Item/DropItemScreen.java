@@ -65,11 +65,11 @@ public class DropItemScreen implements Screen {
             }
 
             terminal.writeCenter("Press [D] to drop item",30,Color.GRAY);
-            terminal.writeCenter("Press [escape] to quit",31,Color.GRAY);
+            terminal.writeCenter("Press [ESCAPE] to resume game",31,Color.GRAY);
         }
         else {
             terminal.writeCenter("Item drop",15,Color.white);
-            terminal.writeCenter("Press [escape] to quit",30,Color.GRAY);
+            terminal.writeCenter("Press [ESCAPE] to resume game",30,Color.GRAY);
         }
     }
 

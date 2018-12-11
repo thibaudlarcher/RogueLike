@@ -12,6 +12,7 @@ public class ItemEquipementPantalon extends Item {
         this.defense = defense;
         this.type = "pantalon";
         this.valeur = valeur;
+        this.equipe = false;
     }
 
     public int getDammage() {

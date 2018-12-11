@@ -69,12 +69,12 @@ public class PickUpItemScreen implements Screen {
             } else {
                 terminal.writeCenter("Inventory full", 25, Color.RED);
             }
-            terminal.writeCenter("Press [escape] to quit", 31, Color.GRAY);
+            terminal.writeCenter("Press [ESCAPE] to resume game", 31, Color.GRAY);
         }
 
         if (currentItem == null){
             terminal.writeCenter("Item collected",15,Color.white);
-            terminal.writeCenter("Press [escape] to quit", 30, Color.GRAY);
+            terminal.writeCenter("Press [ESCAPE] to resume game", 30, Color.GRAY);
         }
     }
 
