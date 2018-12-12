@@ -1,6 +1,6 @@
 package monster;
 
-import color.Tile;
+import Tiles.Tile;
 import creature.GroupCreature;
 import creature.CreatureAi;
 

@@ -3,11 +3,11 @@ package world;
 import java.awt.*;
 import java.util.ArrayList;
 import object.Items.Item;
-import color.*;
+import Tiles.*;
 
 public class World {
-	private Tile[][] tiles;
-	private Item[][] items;
+	public Tile[][] tiles;
+	public Item[][] items;
 	private ArrayList<Point> itemPointList;
 	private int width;
 	private Point pt;
@@ -45,6 +45,10 @@ public class World {
 			return items[x][y].getColor();
 
 		return tile(x, y).color();
+	}
+
+	public void setTiles(Tile[][] tiles) {
+		this.tiles = tiles;
 	}
 
 	public void addItemAtLocation(Item item) {

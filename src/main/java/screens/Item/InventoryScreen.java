@@ -4,9 +4,10 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
-import color.Tile;
+import Tiles.Tile;
 import creature.Creature;
 import creature.GroupCreature;
+import screens.MenuScreen;
 import screens.PlayScreen;
 import screens.Screen;
 import world.World;
@@ -64,11 +65,15 @@ public class InventoryScreen implements Screen {
                 terminal.writeCenter("You can't drop item here", 41, Color.RED);
             } else { terminal.writeCenter("Press [D] to drop current item", 41, Color.GRAY); }
         }
+        terminal.write("Menu [R]", 0,40,Color.white);
+        terminal.write("Jeux [ESC]", 130,40,Color.white);
     }
 
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
+            case KeyEvent.VK_R:
+                return new MenuScreen(groupCreature,player,world);
             case KeyEvent.VK_ESCAPE:
             case KeyEvent.VK_I:
                 return new PlayScreen(world, player, groupCreature);
