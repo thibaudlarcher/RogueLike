@@ -53,11 +53,12 @@ public class InventoryScreen implements Screen {
                 terminal.write("Cette redoutable arme vous offrira " + Integer.toString(joueur.inventory().get(i).getDammage()) + " de degats face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
                 terminal.write("Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 82, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
                 terminal.write("Equipe : ", 95, 6 + 2 * i, Color.GRAY);
-                terminal.write(Boolean.toString(joueur.inventory().get(i).isEquipe()), 104, 6 + 2 * i, currentInventory.get(i).isEquipe() ? Color.green : Color.GRAY);
+                terminal.write(Boolean.toString(joueur.inventory().get(i).isEquipe()), 104, 6 + 2 * i, currentInventory.get(i).isEquipe() ? Color.green : Color.red);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "potion"){
                 terminal.write(joueur.inventory().get(i).getName(), 2, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
                 terminal.write("Cette potion vous soignera de " + Integer.toString(joueur.inventory().get(i).getEffet()) + " points de vie.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
                 terminal.write("Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 82, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
+                //terminal.writeCenter("Press [ENTER] to use",36, Color.GRAY);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "armure"){
                 terminal.write(joueur.inventory().get(i).getName(), 2, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
                 terminal.write("Cette robuste armure vous offrira " + Integer.toString(joueur.inventory().get(i).getDefense()) + " de defense face aux monstres.", 14, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
@@ -130,12 +131,26 @@ public class InventoryScreen implements Screen {
 
         terminal.writeCenter("[ENTER] or [E] to equip/take off current item",38, Color.GRAY);
         terminal.writeCenter("[ESCAPE] or [I] to resume game / [R] go to Menu", 42, Color.GRAY);
+
+        if (pos >= 0 && currentInventory.get(pos).getType() == "potion"){
+            terminal.writeCenter("Press [ENTER] to use",36, Color.GRAY);
+        }
     }
 
     public Screen testEquipe(Item item){
-        if (item.isEquipe() == false){
-            return equipeItem(item);
-        } else return deequipeItem(item);
+        if (item.getType() != "potion") {
+            if (item.isEquipe() == false) {
+                return equipeItem(item);
+            } else return deequipeItem(item);
+        } else return testPotion(item);
+    }
+
+    public Screen testPotion(Item item){
+        if (item.getType() == "potion"){
+            player.getGroupCreature().get(0).modifPointDeVie(item.getEffet());
+            player.getGroupCreature().get(0).inventory().remove(item);
+            return new InventoryScreen(player,world,groupCreature);
+        } else return this;
     }
 
     public Screen equipeItem(Item item){

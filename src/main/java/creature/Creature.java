@@ -49,6 +49,14 @@ public abstract class Creature {
         this.pointDeVie = pointDeVie;
     }
 
+    public void modifPointDeVie(int modif){
+        if (this.pointDeVie < this.pointDeVieMax) {
+            if (this.pointDeVie + modif > 20) {
+                this.pointDeVie = this.pointDeVieMax;
+            } else { this.pointDeVie = this.pointDeVie + modif; }
+        }
+    }
+
     protected int defense;
     public int getDefense(){ return this.defense; }
 

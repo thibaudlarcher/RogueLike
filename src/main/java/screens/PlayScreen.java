@@ -44,6 +44,7 @@ public class PlayScreen implements Screen {
 		this.player = player;
 		this.groupCreature = groupCreature;
 	}
+
 	public PlayScreen(GroupCreature player){
         screenWidth = 140;
         screenHeight = 40;
