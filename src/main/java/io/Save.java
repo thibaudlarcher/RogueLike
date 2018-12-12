@@ -117,19 +117,19 @@ public class Save {
                     if(item[i][j]!=null) {
                         switch (item[i][j].getGlyph()) {
                             case (char) 197:
-                                writer.write(1  + " " + i + " " + j + " " + item[i][j].getGlyph() + " " + item[i][j].getName() + " " + item[i][j].getDammage()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
+                                writer.write(1  + " " + i + " " + j + " " + 197 + " " + item[i][j].getName() + " " + item[i][j].getDammage()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
                                 break;
                             case (char) 179:
-                                writer.write(1 + " " + i + " " + j + " " + item[i][j].getGlyph() + " " + item[i][j].getName() + " " + item[i][j].getDammage() + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
+                                writer.write(1 + " " + i + " " + j + " " + 179 + " " + item[i][j].getName() + " " + item[i][j].getDammage() + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
                                 break;
                             case (char) 225:
-                                writer.write(4 + " " + i + " " + j + " " + item[i][j].getGlyph() + " " + item[i][j].getName() + " " + item[i][j].getEffet()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
+                                writer.write(4 + " " + i + " " + j + " " + 225 + " " + item[i][j].getName() + " " + item[i][j].getEffet()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
                                 break;
                             case (char) 190:
-                                writer.write(2 + " " + i + " " + j + " " + item[i][j].getGlyph() + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
+                                writer.write(2 + " " + i + " " + j + " " + 190 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
                                 break;
                             case (char) 200:
-                                writer.write(3 + i + " " + j + " " + item[i][j].getGlyph() + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
+                                writer.write(3 + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed()) ;
                                 break;
                             default:
                                 break;

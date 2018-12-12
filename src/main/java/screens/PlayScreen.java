@@ -66,8 +66,7 @@ public class PlayScreen implements Screen {
         CreatureFactory creatureFactory = new CreatureFactory(world);
         StuffFactory stuffFactory = new StuffFactory(world);
         stuffFactory.newSword();
-        Item baton = stuffFactory.newStick();
-        Item epee = stuffFactory.newSword();
+        createItems(stuffFactory);
         groupCreature = new ArrayList<GroupCreature>();
         ArrayList<Point>listMonster = world.getListMonster();
         for(int i = 0 ; i<listMonster.size();i++){

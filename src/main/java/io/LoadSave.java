@@ -62,33 +62,33 @@ public class LoadSave {
                 for(int j = 0;j<str.length();j++){
                     switch (str.charAt(j)){
                         case '.':
-                            System.out.print('.');
+                            //System.out.print('.');
                             tiles[i][j] = Tile.FLOOR;
                             break;
                         case (char)177:
-                            System.out.print((char)177);
+                            //System.out.print((char)177);
                             tiles[i][j] = Tile.WALL;
                             break;
                         case (char)244:
-                            System.out.print((char)244);
+                            //System.out.print((char)244);
                             tiles[i][j] = Tile.ITEMS;
                             break;
                         case (char)79:
-                            System.out.print((char)79);
+                            //System.out.print((char)79);
                             tiles[i][j] = Tile.EXIT;
                             break;
                         case 'x':
-                            System.out.print('x');
+                            //System.out.print('x');
                             tiles[i][j] = Tile.BOUNDS;
                             break;
                         default:
                             exit(1);
                     }
                 }
-                System.out.println();
+                //System.out.println();
                 i++;
             }
-            System.out.println(i);
+            //System.out.println(i);
             fichier.close();
         }catch (IOException e) {
             e.printStackTrace();
@@ -106,19 +106,19 @@ public class LoadSave {
                 switch (sep[0]){
                     case "1" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
-                        items[Integer.parseInt(sep[0])][Integer.parseInt(sep[1])] = new ItemArme(sep[4].charAt(0), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[5], Integer.parseInt(sep[6]));
+                        items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemArme((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]));
                         break;
                     case "2" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
-                        items[Integer.parseInt(sep[0])][Integer.parseInt(sep[1])] = new ItemEquipementArmure(sep[4].charAt(0), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[5], Integer.parseInt(sep[6]));
+                        items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementArmure((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]));
                         break;
                     case "3" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
-                        items[Integer.parseInt(sep[0])][Integer.parseInt(sep[1])] = new ItemEquipementBotte(sep[4].charAt(0), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[5], Integer.parseInt(sep[6]));
+                        items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementBotte((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]));
                         break;
                     case "4" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
-                        items[Integer.parseInt(sep[0])][Integer.parseInt(sep[1])] = new ItemPotion(sep[4].charAt(0), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[5], Integer.parseInt(sep[6]));
+                        items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemPotion((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]));
                         break;
 
 
@@ -143,16 +143,16 @@ public class LoadSave {
                 } else if(inv){
                     switch (sep[0]){
                         case "1" :
-                            player.getGroupCreature().get(0).pickupItem(new ItemArme(sep[1].charAt(0), new Color(Integer.parseInt(sep[2]),Integer.parseInt(sep[3]),Integer.parseInt(sep[4])), sep[5], Integer.parseInt(sep[6])));
+                            player.getGroupCreature().get(0).pickupItem(new ItemArme(sep[1].charAt(0), new Color(Integer.parseInt(sep[3]),Integer.parseInt(sep[4]),Integer.parseInt(sep[2])), sep[5], Integer.parseInt(sep[6])));
                             break;
                         case "2" :
-                            player.getGroupCreature().get(0).pickupItem(new ItemEquipementArmure(sep[4].charAt(0), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[5], Integer.parseInt(sep[6])));
+                            player.getGroupCreature().get(0).pickupItem(new ItemEquipementArmure(sep[1].charAt(0), new Color(Integer.parseInt(sep[3]),Integer.parseInt(sep[4]),Integer.parseInt(sep[2])), sep[5], Integer.parseInt(sep[6])));
                             break;
                         case "3" :
-                            player.getGroupCreature().get(0).pickupItem(new ItemEquipementBotte(sep[4].charAt(0), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[5], Integer.parseInt(sep[6])));
+                            player.getGroupCreature().get(0).pickupItem(new ItemEquipementBotte(sep[1].charAt(0), new Color(Integer.parseInt(sep[3]),Integer.parseInt(sep[4]),Integer.parseInt(sep[2])), sep[5], Integer.parseInt(sep[6])));
                             break;
                         case "4" :
-                            player.getGroupCreature().get(0).pickupItem(new ItemPotion(sep[4].charAt(0), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[5], Integer.parseInt(sep[6])));
+                            player.getGroupCreature().get(0).pickupItem(new ItemPotion(sep[1].charAt(0), new Color(Integer.parseInt(sep[3]),Integer.parseInt(sep[4]),Integer.parseInt(sep[2])), sep[5], Integer.parseInt(sep[6])));
                             break;
                     }
                 } else{

@@ -30,8 +30,6 @@ public class World {
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
-		System.out.println(width);
-		System.out.println(height);
 		this.pt = pt;
 		this.items = itemList;
 		this.listMonster = listMonster;

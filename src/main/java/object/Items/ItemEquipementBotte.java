@@ -26,6 +26,6 @@ public class ItemEquipementBotte extends Item {
 
     @Override
     public String toString(){
-        return 3 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + defense  +"  " + type;
+        return 3 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + defense;
     }
 }
