@@ -41,13 +41,13 @@ public class StuffFactory {
 	}
 
 	public Item newCasque(){
-		Item casque = new ItemEquipementCasque((char) 94, new Color(20, 86,123),"casque",10);
+		Item casque = new ItemEquipementCasque((char) 94, Color.black,"casque",10);
 		world.addItemAtLocation(casque);
 		return casque;
 	}
 
 	public Item newPantalon(){
-		Item pantalon = new ItemEquipementPantalon((char) 186,new Color(123, 49, 39),"pantalon",15);
+		Item pantalon = new ItemEquipementPantalon((char) 186,Color.black,"pantalon",15);
 		world.addItemAtLocation(pantalon);
 		return pantalon;
 	}

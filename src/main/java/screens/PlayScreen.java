@@ -174,6 +174,12 @@ public class PlayScreen implements Screen {
 						}else if (world.item(wx,wy).getName()=="botte"){
 							world.item(wx,wy).setColor(new Color(155, 89, 30));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+						}else if (world.item(wx,wy).getName()=="casque"){
+							world.item(wx,wy).setColor(new Color(20, 86,123));
+							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+						}else if (world.item(wx,wy).getName()=="pantalon"){
+							world.item(wx,wy).setColor(new Color(123, 49, 39));
+							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
 						}
 					}
 					else{
