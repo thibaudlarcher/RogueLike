@@ -145,30 +145,35 @@ public class InventoryScreen implements Screen {
                 if (currentInventory.getArmeEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setArmeEquipe(true);
+                    player.getGroupCreature().get(0).modifAttaque(item.getDammage());
                     return new InventoryScreen(player, world, groupCreature);
                 }
             } else if (item.getType() == "armure"){
                 if (currentInventory.getArmureEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setArmureEquipe(true);
+                    player.getGroupCreature().get(0).modifDefense(item.getDefense());
                     return new InventoryScreen(player, world, groupCreature);
                 }
             } else if (item.getType() == "pantalon"){
                 if (currentInventory.getPantalonEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setPantalonEquipe(true);
+                    player.getGroupCreature().get(0).modifDefense(item.getDefense());
                     return new InventoryScreen(player, world, groupCreature);
                 }
             } else if (item.getType() == "botte"){
                 if (currentInventory.getBotteEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setBotteEquipe(true);
+                    player.getGroupCreature().get(0).modifDefense(item.getDefense());
                     return new InventoryScreen(player, world, groupCreature);
                 }
             } else if (item.getType() == "casque"){
                 if (currentInventory.getCasqueEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setCasqueEquipe(true);
+                    player.getGroupCreature().get(0).modifDefense(item.getDefense());
                     return new InventoryScreen(player, world, groupCreature);
                 }
             }
@@ -183,30 +188,35 @@ public class InventoryScreen implements Screen {
                 if (currentInventory.getArmeEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setArmeEquipe(false);
+                    player.getGroupCreature().get(0).modifAttaque(-(item.getDammage()));
                     return new InventoryScreen(player, world, groupCreature);
                 }
             } else if (item.getType() == "armure"){
                 if (currentInventory.getArmureEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setArmureEquipe(false);
+                    player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
                     return new InventoryScreen(player, world, groupCreature);
                 }
             } else if (item.getType() == "pantalon"){
                 if (currentInventory.getPantalonEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setPantalonEquipe(false);
+                    player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
                     return new InventoryScreen(player, world, groupCreature);
                 }
             } else if (item.getType() == "botte"){
                 if (currentInventory.getBotteEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setBotteEquipe(false);
+                    player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
                     return new InventoryScreen(player, world, groupCreature);
                 }
             } else if (item.getType() == "casque"){
                 if (currentInventory.getCasqueEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setCasqueEquipe(false);
+                    player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
                     return new InventoryScreen(player, world, groupCreature);
                 }
             }

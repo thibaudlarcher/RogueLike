@@ -49,9 +49,20 @@ public abstract class Creature {
         this.pointDeVie = pointDeVie;
     }
 
+    protected int defense;
+    public int getDefense(){ return this.defense; }
+
+    public void modifDefense(int modif){
+        this.defense = this.defense + modif;
+    }
+
     protected int attaque;
     public int getAttaque() {
         return attaque;
+    }
+
+    public void modifAttaque(int modif){
+        this.attaque = this.attaque + modif;
     }
 
     protected int vitesse;
