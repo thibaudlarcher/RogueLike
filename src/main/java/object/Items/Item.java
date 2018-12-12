@@ -10,6 +10,10 @@ public abstract class Item {
     protected Color color;
     public Color getColor() { return color; }
 
+    public void setColor(Color color) {
+        this.color = color;
+    }
+
     protected String name;
     public String getName() { return name; }
 

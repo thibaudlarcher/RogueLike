@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
-import color.Tile;
+import Tiles.Tile;
 import creature.*;
 import object.Items.Item;
 import screens.Combat.CombatScreen;
@@ -13,12 +13,13 @@ import screens.Item.PickUpItemScreen;
 import world.*;
 
 public class PlayScreen implements Screen {
+	private int i =0;
 	private World world;
 	private GroupCreature player;
 	private ArrayList<GroupCreature> groupCreature;
 	private int screenWidth;
 	private int screenHeight;
-	
+
 	public PlayScreen(){
 		screenWidth = 140;
 		screenHeight = 40;
@@ -101,11 +102,12 @@ public class PlayScreen implements Screen {
 	public void displayOutput(AsciiPanel terminal) {
 		terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
 		terminal.clear();
+		int range =10;
 
 		int left = getScrollX();
 		int top = getScrollY();
-		
-		displayTiles(terminal, left, top);
+
+		displayTiles(terminal, left, top,player.x,player.y,range);
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.getColor());
 
 		//terminal.writeCenter("-- bonjour --", 41);
@@ -119,13 +121,7 @@ public class PlayScreen implements Screen {
 			terminal.write("item : "+world.item(player.x,player.y).getName(),35,41);
 		}
 
-		for(int i = 0 ; i<groupCreature.size();i++){
-			if((groupCreature.get(i).x-left) <= 0 || (groupCreature.get(i).y-top)<=0 || (groupCreature.get(i).y-top) >= 40 || (groupCreature.get(i).x-left) <= 0){
-			}else {
-				terminal.write(groupCreature.get(i).glyph(), groupCreature.get(i).x- left, groupCreature.get(i).y -top , groupCreature.get(i).getColor());
-			}
-		}
-		terminal.write(player.glyph(), player.x - left, player.y - top, player.getColor());
+
 	}
 
 	private void creatureMove(){
@@ -148,15 +144,69 @@ public class PlayScreen implements Screen {
 		}
 	}
 
-	private void displayTiles(AsciiPanel terminal, int left, int top) {
+	private void displayTiles(AsciiPanel terminal, int left, int top,int playerx,int playery, int range) {
 		for (int x = 0; x < screenWidth; x++){
 			for (int y = 0; y < screenHeight; y++){
 				int wx = x + left;
 				int wy = y + top;
-				//System.out.println("x : "+ x + "y : "+ y);
-				terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+				if (x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top){
+					for(int l = 0 ; l<groupCreature.size();l++){
+						if ((groupCreature.get(l).x-left)>playerx-range-left && (groupCreature.get(l).y-top)>playery-range-top
+								&& (groupCreature.get(l).x-left)<playerx+range-left && (groupCreature.get(l).y-top)<playery+range-top){
+							terminal.write(groupCreature.get(l).glyph(), groupCreature.get(l).x- left, groupCreature.get(l).y -top , groupCreature.get(l).getColor());
+						}
+					}
+					if (world.tile(wx,wy)==Tile.WALLUNKNOW || world.tile(wx,wy)==Tile.WALLALREADYVISITED){
+						world.tiles[wx][wy]=Tile.WALL;
+						terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+					}else if (world.tile(wx,wy)==Tile.EXITUNKNOW || world.tile(wx,wy)==Tile.EXITALREADYVISITED){
+						world.tiles[wx][wy]=Tile.EXIT;
+						terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+					}else if (world.tile(wx,wy)==Tile.FLOORUNKNOW || world.tile(wx,wy)==Tile.FLOORALREADYVISITED){
+						world.tiles[wx][wy]=Tile.FLOOR;
+						terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+					}else if (world.tile(wx,wy)==Tile.ITEMSUNKNOW || world.tile(wx,wy)==Tile.ITEMALREADYVISITED){
+						world.tiles[wx][wy]=Tile.ITEMS;
+						if (world.item(wx,wy).getName()=="baton"){
+							world.item(wx,wy).setColor(new Color(128,64,0));
+							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+						}else if (world.item(wx,wy).getName()=="epee"){
+							world.item(wx,wy).setColor(new Color(128,128,128));
+							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+						}else if (world.item(wx,wy).getName()=="potion"){
+							world.item(wx,wy).setColor(new Color(255,77,77));
+							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+						}else if (world.item(wx,wy).getName()=="armure"){
+							world.item(wx,wy).setColor(new Color(140,140,140));
+							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+						}else if (world.item(wx,wy).getName()=="botte"){
+							world.item(wx,wy).setColor(new Color(155, 89, 30));
+							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+						}
+					}
+					else{
+							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
+					}
+				}else if (world.tile(wx,wy)==Tile.WALL && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+					world.tiles[wx][wy]=Tile.WALLALREADYVISITED;
+					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+				}else if (world.tile(wx,wy)==Tile.EXIT && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+					world.tiles[wx][wy]=Tile.EXITALREADYVISITED;
+					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+				}else if (world.tile(wx,wy)==Tile.FLOOR && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+					world.tiles[wx][wy]=Tile.FLOORALREADYVISITED;
+					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+				}else if (world.tile(wx,wy)==Tile.ITEMS && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+					world.tiles[wx][wy]=Tile.ITEMALREADYVISITED;
+					world.item(wx,wy).setColor(Color.gray);
+					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+				}
+				else {
+					terminal.write(world.glyph(wx, wy), x, y,world.color(wx,wy));
+				}
 			}
 		}
+		terminal.write(player.glyph(), player.x - left, player.y - top, player.getColor());
 	}
 
 	private Screen testRencontre(){

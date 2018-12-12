@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
+import screens.Item.InventoryScreen;
 import world.World;
 
 import static asciiPanel.AsciiPanel.brightRed;
@@ -43,9 +44,9 @@ public class MenuScreen implements Screen {
                     case 0 :
                         //sauvegarde
                     case 1 :
-                       // return new StatsScreen();
-                    case 2 :
                         return new StatScreen(groupCreature,player,world);
+                    case 2 :
+                        return new InventoryScreen(player,world,groupCreature);
                     case 3 :
                         return new PlayScreen(world,player,groupCreature);
                     case 4 :

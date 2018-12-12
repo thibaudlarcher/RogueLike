@@ -40,11 +40,11 @@ public class GroupCreature {
         this.color = color;
     }
 
-    /*public GroupCreature(World world, char glyph, Color color) {
+    /*public GroupCreature(World world, char glyph, Color Tiles) {
         groupCreature = new ArrayList<Creature>();
         this.world = world;
         this.glyph = glyph;
-        this.color = color;
+        this.Tiles = Tiles;
     }*/
 
     public GroupCreature(World world, char glyph, Color color,int x, int y){
@@ -56,12 +56,12 @@ public class GroupCreature {
         this.y = y;
     }
 
-    /* public GroupCreature(World world, char glyph, Color color, Creature Crea1,int x, int y){
+    /* public GroupCreature(World world, char glyph, Color Tiles, Creature Crea1,int x, int y){
         groupCreature = new ArrayList<Creature>();
         groupCreature.add(Crea1);
         this.world = world;
         this.glyph = glyph;
-        this.color = color;
+        this.Tiles = Tiles;
         this.x = x;
         this.y = y;
     }*/

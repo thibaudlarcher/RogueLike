@@ -1,5 +1,5 @@
 package player;
-import color.*;
+import Tiles.*;
 import creature.*;
 public class PlayerAi extends CreatureAi {
 
