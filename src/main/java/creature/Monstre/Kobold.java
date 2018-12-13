@@ -12,7 +12,7 @@ public class Kobold extends Monstre {
         vitesse = 4;
         tour = 0;
         this.pointDeVie = 20;
-        this.attaque = 5;
+        this.attaque = 6;
         glyph = 'K';
     }
 

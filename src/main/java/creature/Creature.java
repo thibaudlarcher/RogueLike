@@ -90,8 +90,10 @@ public abstract class Creature {
     }
 
     public void dealDamageTo(Creature Crea){
-        Crea.setPointDeVie(Crea.getPointDeVie() - this.getAttaque());
-        this.setTour(0);
+        if (Crea.getDefense() - this.getAttaque() < 0) {
+            Crea.setPointDeVie((Crea.getPointDeVie() + Crea.getDefense()) - this.getAttaque());
+            this.setTour(0);
+        }
     }
 
     public boolean isDead() {

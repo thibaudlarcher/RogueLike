@@ -11,13 +11,13 @@ public class StuffFactory {
 	}
 
 	public Item newSword(){
-		Item sword = new ItemArme((char) 197, new Color(128,128,128), "epee",12,23);
+		Item sword = new ItemArme((char) 197, new Color(128,128,128), "epee",8,23);
 		world.addItemAtLocation(sword);
 		return sword;
 	}
 
 	public Item newStick(){
-		Item stick = new ItemArme((char) 179,new Color(128,64,0),"baton",4, 6);
+		Item stick = new ItemArme((char) 179,new Color(128,64,0),"baton",3, 6);
 		world.addItemAtLocation(stick);
 		return stick;
 	}
@@ -29,25 +29,25 @@ public class StuffFactory {
 	}
 
 	public Item newArmure(){
-		Item armure = new ItemEquipementArmure((char) 190,new Color(140,140,140),"armure",3,23);
+		Item armure = new ItemEquipementArmure((char) 190,new Color(140,140,140),"armure",2,17);
 		world.addItemAtLocation(armure);
 		return armure;
 	}
 
 	public Item newBotte(){
-		Item botte = new ItemEquipementBotte((char) 200,new Color(155, 89, 30),"botte",1,11);
+		Item botte = new ItemEquipementBotte((char) 200,new Color(155, 89, 30),"botte",1,10);
 		world.addItemAtLocation(botte);
 		return botte;
 	}
 
 	public Item newCasque(){
-		Item casque = new ItemEquipementCasque((char) 94, new Color(20, 86,123),"casque",2, 13);
+		Item casque = new ItemEquipementCasque((char) 94, new Color(20, 86,123),"casque",1, 12);
 		world.addItemAtLocation(casque);
 		return casque;
 	}
 
 	public Item newPantalon(){
-		Item pantalon = new ItemEquipementPantalon((char) 186,new Color(123, 49, 39),"pantalon",2, 16);
+		Item pantalon = new ItemEquipementPantalon((char) 186,new Color(123, 49, 39),"pantalon",2, 14);
 		world.addItemAtLocation(pantalon);
 		return pantalon;
 	}
