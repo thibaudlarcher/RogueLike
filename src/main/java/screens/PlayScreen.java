@@ -221,7 +221,7 @@ public class PlayScreen implements Screen {
 
 	private Screen testPickUpItem(){
 		if (world.tile(player.x, player.y) == Tile.ITEMS && world.item(player.x, player.y) != null){
-			return new PickUpItemScreen(groupCreature,player,world);
+			return new PickUpItemScreen(this);
 		} else return this;
 	}
 
@@ -229,7 +229,7 @@ public class PlayScreen implements Screen {
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE:
-				return new MenuScreen(groupCreature,player,world);
+				return new MenuScreen(this);
 			case KeyEvent.VK_ENTER:
 				return new WinScreen();
 			case KeyEvent.VK_LEFT:
@@ -256,10 +256,10 @@ public class PlayScreen implements Screen {
                 creatureMove();
                 return testRencontre();
             }
-			case KeyEvent.VK_I: return new InventoryScreen(player, world, groupCreature);
+			case KeyEvent.VK_I: return new InventoryScreen(this);
 			case KeyEvent.VK_P: return testPickUpItem();
-			case KeyEvent.VK_C: return new StatScreen(groupCreature,player,world);
-			case KeyEvent.VK_H: return new HelpScreen(groupCreature,player,world);
+			case KeyEvent.VK_C: return new StatScreen(this);
+			case KeyEvent.VK_H: return new HelpScreen(this);
 			/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 			case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 			case KeyEvent.VK_U: player.moveBy( 1,-1); break;
@@ -269,4 +269,17 @@ public class PlayScreen implements Screen {
 
 		return this;
 	}
+
+	public World getWorld() {
+		return world;
+	}
+
+	public GroupCreature getPlayer() {
+		return player;
+	}
+
+	public ArrayList<GroupCreature> getGroupCreature() {
+		return groupCreature;
+	}
+
 }

@@ -23,4 +23,9 @@ public abstract class Item {
     public abstract int getDammage();
     public abstract int getDefense();
     public abstract int getEffet();
+
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

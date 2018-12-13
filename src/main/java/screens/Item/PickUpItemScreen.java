@@ -2,7 +2,7 @@ package screens.Item;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
-import object.Items.Item;
+import object.Items.*;
 import screens.PlayScreen;
 import screens.Screen;
 import world.World;
@@ -13,14 +13,16 @@ import java.util.ArrayList;
 
 
 public class PickUpItemScreen implements Screen {
+    private PlayScreen screen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
 
-    public PickUpItemScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world) {
-        this.world=world;
-        this.player = player;
-        this.groupCreature = groupCreature;
+    public PickUpItemScreen(PlayScreen screen) {
+        this.screen = screen;
+        this.world=screen.getWorld();
+        this.player = screen.getPlayer();
+        this.groupCreature = screen.getGroupCreature();
     }
 
     private void pickUpItem(){

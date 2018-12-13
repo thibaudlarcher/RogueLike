@@ -3,8 +3,6 @@ import java.awt.Color;
 import java.util.ArrayList;
 
 import creature.PJ.PJ;
-import object.Inventory;
-import creature.PJ.PJ;
 import world.World;
 
 public class GroupCreature {

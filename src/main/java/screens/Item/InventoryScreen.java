@@ -13,15 +13,17 @@ import screens.Screen;
 import world.World;
 
 public class InventoryScreen implements Screen {
+    private PlayScreen screen;
     private World world;
     private ArrayList<GroupCreature> groupCreature;
     private GroupCreature player;
     private int pos;
 
-    public InventoryScreen (GroupCreature player, World world, ArrayList<GroupCreature> groupCreature){
-        this.player = player;
-        this.world = world;
-        this.groupCreature = groupCreature;
+    public InventoryScreen (PlayScreen screen){
+        this.screen = screen;
+        this.player = screen.getPlayer();
+        this.world = screen.getWorld();
+        this.groupCreature = screen.getGroupCreature();
         this.pos = -1;
     }
 
@@ -73,7 +75,7 @@ public class InventoryScreen implements Screen {
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_R:
-                return new MenuScreen(groupCreature,player,world);
+                return new MenuScreen(screen);
             case KeyEvent.VK_ESCAPE:
             case KeyEvent.VK_I:
                 return new PlayScreen(world, player, groupCreature);
@@ -106,7 +108,7 @@ public class InventoryScreen implements Screen {
                 return this;
             case KeyEvent.VK_D:
                 if (world.tile(player.x, player.y) == Tile.FLOOR && world.item(player.x, player.y) == null && pos >= 0){
-                    return new DropItemScreen(groupCreature,player,world,pos);
+                    return new DropItemScreen(screen,pos);
                 } else return this;
         }
         return this;

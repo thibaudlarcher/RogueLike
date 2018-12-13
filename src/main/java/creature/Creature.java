@@ -19,10 +19,16 @@ public abstract class Creature {
     public String getName() {
         return name;
     }
+    public void setName(String name) {
+        this.name = name;
+    }
 
 	protected char glyph;
     public char getGlyph() {
         return glyph;
+    }
+    public void setGlyph(char glyph) {
+         this.glyph = glyph;
     }
 
     protected Color color;
@@ -33,6 +39,9 @@ public abstract class Creature {
     protected int pointDeVieMax;
     public int getPointDeVieMax() {
         return pointDeVieMax;
+    }
+    public void setPointDeVieMax(int pointDeVieMax) {
+        this.pointDeVieMax = pointDeVieMax;
     }
 
     private int niveau;
@@ -52,6 +61,9 @@ public abstract class Creature {
     protected int attaque;
     public int getAttaque() {
         return attaque;
+    }
+    public void setAttaque(int attaque) {
+        this.attaque = attaque;
     }
 
     protected int vitesse;
