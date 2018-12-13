@@ -15,7 +15,7 @@ public class CreatureFactory {
     public GroupCreature newPlayer(){
         //244 pied de biche
         GroupCreature player = new GroupCreature(world, '@', AsciiPanel.green,
-                new Guerrier("Bob",20,5));
+                new Guerrier("Bob",20,1));
         player.x = world.getPt().x;
         player.y = world.getPt().y;
         new PlayerAi(player);

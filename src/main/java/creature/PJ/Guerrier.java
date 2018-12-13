@@ -15,6 +15,7 @@ public class Guerrier extends PJ{
         this.attaque = attaque;
         glyph = 'G';
         this.inventory = new Inventory(10);
+        this.defense = 0;
     }
 
     @Override
@@ -28,4 +29,11 @@ public class Guerrier extends PJ{
     public void dropItem(Item item){
         inventory.remove(item);
     }
+
+    @Override
+    public void updateAttaque(int attaque) {
+
+    }
+
+
 }

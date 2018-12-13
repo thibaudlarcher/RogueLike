@@ -11,7 +11,7 @@ public class LoseScreen implements Screen {
 
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
-		terminal.writeCenter("You Dead.", 3, Color.red);
+		terminal.writeCenter("You Die.", 3, Color.red);
 	}
 
 	@Override
@@ -23,7 +23,6 @@ public class LoseScreen implements Screen {
 				exit(1);
 		}
 		return this;
-		//return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen() : this;
 	}
 }
 

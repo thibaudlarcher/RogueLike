@@ -5,6 +5,16 @@ import object.Items.*;
 public class Inventory {
     private Item[] items;
     private int max;
+    private boolean casque;
+    public boolean getCasqueEquipe(){ return this.casque; }
+    private boolean armure;
+    public boolean getArmureEquipe(){ return this.armure; }
+    private boolean pantalon;
+    public boolean getPantalonEquipe(){ return this.pantalon; }
+    private boolean botte;
+    public boolean getBotteEquipe(){ return this.botte; }
+    private boolean arme;
+    public boolean getArmeEquipe(){ return this.arme; }
 
     public Item[] getItems() {
         return items;
@@ -17,6 +27,31 @@ public class Inventory {
     public Inventory(int max) {
         this.max = max;
         items = new Item[max];
+        this.casque = false;
+        this.armure = false;
+        this.pantalon = false;
+        this.botte = false;
+        this.arme = false;
+    }
+
+    public void setCasqueEquipe(boolean e){
+        this.casque = e;
+    }
+
+    public void setArmureEquipe(boolean e){
+        this.armure = e;
+    }
+
+    public void setPantalonEquipe(boolean e){
+        this.pantalon = e;
+    }
+
+    public void setBotteEquipe(boolean e){
+        this.botte = e;
+    }
+
+    public void setArmeEquipe(boolean e){
+        this.arme = e;
     }
 
     public void add(Item item) {
@@ -73,18 +108,6 @@ public class Inventory {
         }
         return max;
     }
-
-//    public boolean isEmpty() {
-//        int size = 0;
-//        for (int i = 0; i < items.length; i++) {
-//            if (items[i] != null)
-//                size++;
-//        }
-//        if (size == 0) {
-//            return true;
-//        }
-//        return false;
-//    }
 }
 
 

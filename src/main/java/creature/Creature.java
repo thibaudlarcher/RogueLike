@@ -58,12 +58,31 @@ public abstract class Creature {
         this.pointDeVie = pointDeVie;
     }
 
+    public void modifPointDeVie(int modif){
+        if (this.pointDeVie < this.pointDeVieMax) {
+            if (this.pointDeVie + modif > 20) {
+                this.pointDeVie = this.pointDeVieMax;
+            } else { this.pointDeVie = this.pointDeVie + modif; }
+        }
+    }
+
+    protected int defense;
+    public int getDefense(){ return this.defense; }
+
+    public void modifDefense(int modif){
+        this.defense = this.defense + modif;
+    }
+
     protected int attaque;
     public int getAttaque() {
         return attaque;
     }
     public void setAttaque(int attaque) {
         this.attaque = attaque;
+    }
+
+    public void modifAttaque(int modif){
+        this.attaque = this.attaque + modif;
     }
 
     protected int vitesse;
@@ -83,8 +102,10 @@ public abstract class Creature {
     }
 
     public void dealDamageTo(Creature Crea){
-        Crea.setPointDeVie(Crea.getPointDeVie() - this.getAttaque());
-        this.setTour(0);
+        if (Crea.getDefense() - this.getAttaque() < 0) {
+            Crea.setPointDeVie((Crea.getPointDeVie() + Crea.getDefense()) - this.getAttaque());
+            this.setTour(0);
+        }
     }
 
     public boolean isDead() {

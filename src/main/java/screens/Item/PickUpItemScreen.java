@@ -43,21 +43,27 @@ public class PickUpItemScreen implements Screen {
             if (currentItem.getType() == "arme") {
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("degats : " + Integer.toString(currentItem.getDammage()), 16, Color.white);
+                terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
             } else if (currentItem.getType() == "potion"){
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("soins : " + Integer.toString(currentItem.getEffet()), 16, Color.white);
+                terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
             } else if (currentItem.getType() == "armure"){
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+                terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
             } else if (currentItem.getType() == "botte"){
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+                terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
             } else if (currentItem.getType() == "casque"){
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+                terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
             } else if (currentItem.getType() == "pantalon"){
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
+                terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
             }
 
             if (!(player.getGroupCreature().get(0).inventory().isFull())) {
@@ -65,12 +71,12 @@ public class PickUpItemScreen implements Screen {
             } else {
                 terminal.writeCenter("Inventory full", 25, Color.RED);
             }
-            terminal.writeCenter("Press [escape] to quit", 31, Color.GRAY);
+            terminal.writeCenter("Press [ESCAPE] to resume game", 31, Color.GRAY);
         }
 
         if (currentItem == null){
             terminal.writeCenter("Item collected",15,Color.white);
-            terminal.writeCenter("Press [escape] to quit", 30, Color.GRAY);
+            terminal.writeCenter("Press [ESCAPE] to resume game", 30, Color.GRAY);
         }
     }
 

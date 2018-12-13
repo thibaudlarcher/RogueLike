@@ -6,12 +6,14 @@ public class ItemEquipementBotte extends Item {
 
     private int defense;
 
-    public ItemEquipementBotte(char glyph, Color color, String name, int defense){
+    public ItemEquipementBotte(char glyph, Color color, String name, int defense, int valeur){
         this.glyph = glyph;
         this.color = color;
         this.name = name;
         this.defense = defense;
         this.type = "botte";
+        this.valeur = valeur;
+        this.equipe = false;
     }
 
     public int getDammage() {
