@@ -1,5 +1,5 @@
 package world;
-import color.*;
+import Tiles.*;
 import gameroots.mapgen.bsp.BspMapCreator;
 import java.awt.*;
 import java.util.ArrayList;
@@ -35,19 +35,19 @@ public class WorldBuilder {
         for (int i = 0; i < this.width; i++){
             for (int j = 0; j < this.height; j++){
                 if (ch[j][i]=='.' || ch[j][i]==',' || ch[j][i]=='|' || ch[j][i]=='-'){
-                    tiles[i][j] = Tile.FLOOR;
+                    tiles[i][j] = Tile.FLOORUNKNOW;
                 } else if (ch[j][i]=='#'){
-                    tiles[i][j] = Tile.WALL;
+                    tiles[i][j] = Tile.WALLUNKNOW;
                 } else if (ch[j][i]=='~'){
                     tiles[i][j] = Tile.BOUNDS;
                 } else if (ch[j][i]=='o'){
-                    tiles[i][j] = Tile.ITEMS;
+                    tiles[i][j] = Tile.ITEMSUNKNOW;
                     itemPointList.add(new Point(i,j));
                 } else if (ch[j][i]=='@'){
-                    tiles[i][j] = Tile.FLOOR;
+                    tiles[i][j] = Tile.FLOORUNKNOW;
                     pt = new Point(i,j);
                 } else if (ch[j][i]==(char)144){
-                    tiles[i][j] = Tile.FLOOR;
+                    tiles[i][j] = Tile.FLOORUNKNOW;
                     ptmonstre.add(new Point(j,i));
                     //System.out.println("TestWorldBuilder");
                   }
@@ -67,7 +67,7 @@ public class WorldBuilder {
         while (!(tiles[x][y].isGround() && tiles[x+1][y].isGround() && tiles[x-1][y].isGround() && tiles[x][y+1].isGround() &&
                 tiles[x][y-1].isGround()));
 
-            tiles[x][y] = Tile.EXIT;
+            tiles[x][y] = Tile.EXITUNKNOW;
 	    return tiles;
     }
 

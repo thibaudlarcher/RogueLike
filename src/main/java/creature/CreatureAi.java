@@ -1,5 +1,5 @@
 package creature;
-import color.Tile;
+import Tiles.Tile;
 public class CreatureAi {
 	protected GroupCreature groupCreature;
 	

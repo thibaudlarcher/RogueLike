@@ -4,7 +4,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
-import color.Tile;
+import Tiles.Tile;
 import creature.Creature;
 import creature.GroupCreature;
 import object.Inventory;
@@ -135,6 +135,8 @@ public class InventoryScreen implements Screen {
         if (pos >= 0 && currentInventory.get(pos).getType() == "potion"){
             terminal.writeCenter("Press [ENTER] to use",36, Color.GRAY);
         }
+        terminal.write("Menu [R]", 0,40,Color.white);
+        terminal.write("Jeux [ESC]", 130,40,Color.white);
     }
 
     public Screen testEquipe(Item item){
