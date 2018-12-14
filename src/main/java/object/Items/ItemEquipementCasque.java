@@ -29,6 +29,6 @@ public class ItemEquipementCasque extends Item {
 
     @Override
     public String toString(){
-        return 5 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + defense;
+        return 5 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + defense+ " " + valeur + " " + equipe;
     }
 }

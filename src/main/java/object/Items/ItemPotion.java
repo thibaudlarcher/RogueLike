@@ -29,6 +29,6 @@ public class ItemPotion extends Item {
     }
     @Override
     public String toString(){
-        return 4 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + effet;
+        return 4 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + effet+ " " + valeur + " " + equipe;
     }
 }
