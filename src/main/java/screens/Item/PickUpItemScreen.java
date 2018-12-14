@@ -62,6 +62,9 @@ public class PickUpItemScreen implements Screen {
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
                 terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
+            } else if (currentItem.getType() == "pierreTP"){
+                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
+                terminal.writeCenter("Une pierre tres puissante qui vous permettra de vous rendre au village.",16, Color.WHITE);
             }
 
             if (!(player.getGroupCreature().get(0).inventory().isFull())) {

@@ -83,6 +83,9 @@ public class InventoryScreen implements Screen {
                 terminal.write("Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 82, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
                 terminal.write("Equipe : ", 95, 6 + 2 * i, Color.GRAY);
                 terminal.write(Boolean.toString(joueur.inventory().get(i).isEquipe()), 104, 6 + 2 * i, currentInventory.get(i).isEquipe() ? Color.green : Color.red);
+            } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "pierreTP") {
+                terminal.write(joueur.inventory().get(i).getName(), 2, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
+                terminal.write("Cette pierre vous teleportera directement au village.", 27, 6 + 2 * i, this.pos == i ? Color.yellow : Color.gray);
             }
         }
 
@@ -130,20 +133,22 @@ public class InventoryScreen implements Screen {
         }
 
         terminal.writeCenter("[ENTER] or [E] to equip/take off current item",38, Color.GRAY);
-        terminal.writeCenter("[ESCAPE] or [I] to resume game / [R] go to Menu", 42, Color.GRAY);
+        terminal.writeCenter("[ESCAPE] or [I] to resume game / [R] go to Menu", 42, Color.white);
 
-        if (pos >= 0 && currentInventory.get(pos).getType() == "potion"){
+        if (pos >= 0 && currentInventory.get(pos).getType() == "potion" || pos >= 0 && currentInventory.get(pos).getType() == "pierreTP"){
             terminal.writeCenter("Press [ENTER] to use",36, Color.GRAY);
         }
-        terminal.write("Menu [R]", 0,40,Color.white);
-        terminal.write("Jeux [ESC]", 130,40,Color.white);
     }
 
     public Screen testEquipe(Item item){
         if (item.getType() != "potion") {
-            if (item.isEquipe() == false) {
-                return equipeItem(item);
-            } else return deequipeItem(item);
+            if (item.getType() != "pierreTP") {
+                if (item.isEquipe() == false) {
+                    return equipeItem(item);
+                } else return deequipeItem(item);
+            } else if (item.getType() == "pierreTP") {
+                return this;//new VillageScreen(world, player, groupCreature);
+            } else return this;
         } else return testPotion(item);
     }
 

@@ -5,16 +5,24 @@ import object.Items.*;
 public class Inventory {
     private Item[] items;
     private int max;
+
     private boolean casque;
     public boolean getCasqueEquipe(){ return this.casque; }
+
     private boolean armure;
     public boolean getArmureEquipe(){ return this.armure; }
+
     private boolean pantalon;
     public boolean getPantalonEquipe(){ return this.pantalon; }
+
     private boolean botte;
     public boolean getBotteEquipe(){ return this.botte; }
+
     private boolean arme;
     public boolean getArmeEquipe(){ return this.arme; }
+
+    private int monnaie;
+    public int getMonnaie(){ return this.monnaie; }
 
     public Item[] getItems() {
         return items;

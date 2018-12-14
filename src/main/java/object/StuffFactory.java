@@ -51,4 +51,10 @@ public class StuffFactory {
 		world.addItemAtLocation(pantalon);
 		return pantalon;
 	}
+
+	public  Item newPierreTP(){
+		Item pierreTP = new ItemPierreDeTeleportation((char) 254, Color.black,"pierre de teleportation");
+		world.addItemAtLocation(pierreTP);
+		return pierreTP;
+	}
 }

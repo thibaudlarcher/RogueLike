@@ -31,9 +31,5 @@ public class Guerrier extends PJ{
     }
 
     @Override
-    public void updateAttaque(int attaque) {
-
-    }
-
-
+    public void updateAttaque(int attaque) {}
 }
