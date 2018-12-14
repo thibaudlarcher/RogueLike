@@ -1,3 +1,6 @@
 RogueLike.iml
 /target
-/src/main/resources
+/src/main/resources/item.txt
+/src/main/resources/monster.txt
+/src/main/resources/player.txt
+/src/main/resources/world.txt
