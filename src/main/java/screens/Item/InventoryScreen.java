@@ -15,16 +15,18 @@ import screens.Screen;
 import world.World;
 
 public class InventoryScreen implements Screen {
+    private PlayScreen screen;
     private World world;
     private ArrayList<GroupCreature> groupCreature;
     private GroupCreature player;
     private int pos;
     private Inventory inventaire;
 
-    public InventoryScreen (GroupCreature player, World world, ArrayList<GroupCreature> groupCreature){
-        this.player = player;
-        this.world = world;
-        this.groupCreature = groupCreature;
+    public InventoryScreen (PlayScreen screen){
+        this.screen = screen;
+        this.world=screen.getWorld();
+        this.player = screen.getPlayer();
+        this.groupCreature = screen.getGroupCreature();
         this.pos = -1;
     }
 
@@ -156,7 +158,7 @@ public class InventoryScreen implements Screen {
         if (item.getType() == "potion"){
             player.getGroupCreature().get(0).modifPointDeVie(item.getEffet());
             player.getGroupCreature().get(0).inventory().remove(item);
-            return new InventoryScreen(player,world,groupCreature);
+            return new InventoryScreen(screen);
         } else return this;
     }
 
@@ -168,35 +170,35 @@ public class InventoryScreen implements Screen {
                     item.setEquipe(true);
                     currentInventory.setArmeEquipe(true);
                     player.getGroupCreature().get(0).modifAttaque(item.getDammage());
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "armure"){
                 if (currentInventory.getArmureEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setArmureEquipe(true);
                     player.getGroupCreature().get(0).modifDefense(item.getDefense());
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "pantalon"){
                 if (currentInventory.getPantalonEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setPantalonEquipe(true);
                     player.getGroupCreature().get(0).modifDefense(item.getDefense());
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "botte"){
                 if (currentInventory.getBotteEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setBotteEquipe(true);
                     player.getGroupCreature().get(0).modifDefense(item.getDefense());
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "casque"){
                 if (currentInventory.getCasqueEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setCasqueEquipe(true);
                     player.getGroupCreature().get(0).modifDefense(item.getDefense());
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             }
         }
@@ -211,35 +213,35 @@ public class InventoryScreen implements Screen {
                     item.setEquipe(false);
                     currentInventory.setArmeEquipe(false);
                     player.getGroupCreature().get(0).modifAttaque(-(item.getDammage()));
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "armure"){
                 if (currentInventory.getArmureEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setArmureEquipe(false);
                     player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "pantalon"){
                 if (currentInventory.getPantalonEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setPantalonEquipe(false);
                     player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "botte"){
                 if (currentInventory.getBotteEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setBotteEquipe(false);
                     player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "casque"){
                 if (currentInventory.getCasqueEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setCasqueEquipe(false);
                     player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
-                    return new InventoryScreen(player, world, groupCreature);
+                    return new InventoryScreen(screen);
                 }
             }
         }
@@ -249,7 +251,7 @@ public class InventoryScreen implements Screen {
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
-            case KeyEvent.VK_R: return new MenuScreen(groupCreature,player,world);
+            case KeyEvent.VK_R: return new MenuScreen(screen);
             case KeyEvent.VK_ESCAPE:
             case KeyEvent.VK_I:
                 return new PlayScreen(world, player, groupCreature);
@@ -281,8 +283,8 @@ public class InventoryScreen implements Screen {
             case KeyEvent.VK_D:
                 if (world.tile(player.x, player.y) == Tile.FLOOR && world.item(player.x, player.y) == null && pos >= 0){
                     if (player.getGroupCreature().get(0).inventory().get(pos).isEquipe() == false) {
-                        return new DropItemScreen(groupCreature, player, world, pos);
-                    } else return new InventoryScreen(player, world, groupCreature);
+                        return new DropItemScreen(screen, pos);
+                    } else return new InventoryScreen(screen);
                 } else return this;
             case KeyEvent.VK_E:
             case KeyEvent.VK_ENTER:

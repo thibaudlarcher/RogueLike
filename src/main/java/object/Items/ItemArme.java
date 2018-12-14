@@ -27,4 +27,8 @@ public class ItemArme extends Item {
         return 0;
     }
 
+    @Override
+    public String toString(){
+        return 1 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + Dammage + " " + valeur + " " + equipe;
+    }
 }

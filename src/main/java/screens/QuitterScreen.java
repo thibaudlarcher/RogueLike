@@ -14,15 +14,17 @@ import static java.lang.System.exit;
 
 public class QuitterScreen implements Screen {
 
+    private PlayScreen screen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
     private int choix;
 
-    public QuitterScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world){
-        this.world=world;
-        this.groupCreature = groupCreature;
-        this.player = player;
+    public QuitterScreen(PlayScreen screen){
+        this.screen = screen;
+        this.world=screen.getWorld();
+        this.groupCreature = screen.getGroupCreature();
+        this.player = screen.getPlayer();
     }
     @Override
     public void displayOutput(AsciiPanel terminal) {
@@ -40,7 +42,7 @@ public class QuitterScreen implements Screen {
                         exit(0);
                         break;
                     case 1 :
-                        return new MenuScreen(groupCreature,player,world);
+                        return new MenuScreen(screen);
 
                 }
                 case KeyEvent.VK_LEFT:

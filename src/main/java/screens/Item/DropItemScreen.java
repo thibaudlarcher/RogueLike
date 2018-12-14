@@ -12,15 +12,17 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class DropItemScreen implements Screen {
+    private PlayScreen screen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
     int pos;
 
-    public DropItemScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world, int pos){
-        this.world=world;
-        this.player = player;
-        this.groupCreature = groupCreature;
+    public DropItemScreen(PlayScreen screen, int pos){
+        this.screen = screen;
+        this.world=screen.getWorld();
+        this.player = screen.getPlayer();
+        this.groupCreature = screen.getGroupCreature();
         this.pos = pos;
     }
 

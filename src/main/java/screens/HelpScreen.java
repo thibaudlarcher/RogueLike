@@ -9,14 +9,16 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class HelpScreen implements Screen {
+    private PlayScreen screen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> GroupCreature;
 
-    public HelpScreen (ArrayList<GroupCreature> GroupeCreature, GroupCreature player, World world){
-        this.GroupCreature = GroupeCreature;
-        this.player = player;
-        this.world = world;
+    public HelpScreen (PlayScreen screen){
+        this.screen = screen;
+        this.GroupCreature = screen.getGroupCreature();
+        this.player = screen.getPlayer();
+        this.world = screen.getWorld();
     }
 
     @Override
@@ -35,7 +37,7 @@ public class HelpScreen implements Screen {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_H:
             case KeyEvent.VK_ENTER:
-            case KeyEvent.VK_ESCAPE: return new MenuScreen(GroupCreature,player,world);
+            case KeyEvent.VK_ESCAPE: return new MenuScreen(screen);
         }
         return this;
     }

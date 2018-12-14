@@ -12,15 +12,17 @@ import static asciiPanel.AsciiPanel.white;
 
 public class StatScreen implements Screen {
 
+    PlayScreen screen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
     private int choix;
 
-    public StatScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world){
-        this.world=world;
-        this.groupCreature = groupCreature;
-        this.player = player;
+    public StatScreen(PlayScreen screen){
+        this.screen = screen;
+        this.world=screen.getWorld();
+        this.groupCreature = screen.getGroupCreature();
+        this.player = screen.getPlayer();
     }
 
     @Override
@@ -48,7 +50,7 @@ public class StatScreen implements Screen {
             case KeyEvent.VK_C:
                 return new PlayScreen(world,player,groupCreature);
             case KeyEvent.VK_R:
-                return new MenuScreen(groupCreature,player,world);
+                return new MenuScreen(screen);
         }
         return this;
     }
