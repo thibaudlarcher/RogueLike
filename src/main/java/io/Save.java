@@ -173,10 +173,13 @@ public class Save {
                                 writer.write(3 + " " + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + item[i][j].getValeur() + " " + "false") ;
                                 break;
                             case  (char) 94:
-                                writer.write(5 + " " + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+                                writer.write(5 + " " + i + " " + j + " " + 94 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
                                 break;
                             case (char) 186:
-                                writer.write(6 + " " + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+                                writer.write(6 + " " + i + " " + j + " " + 186 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+                                break;
+                            case (char) 254:
+                                writer.write(7 + " " + i + " " + j + " " + 254 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
                                 break;
                             default:
                                 break;

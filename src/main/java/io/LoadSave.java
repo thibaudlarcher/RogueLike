@@ -180,7 +180,12 @@ public class LoadSave {
                         //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
 
                         break;
+                    case "7" :
+                        itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
+                        items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemPierreDeTeleportation((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4]);
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
 
+                        break;
 
 
                 }
@@ -254,6 +259,17 @@ public class LoadSave {
                             if(sep[8].equals("true")) {
                                 player.getGroupCreature().get(0).inventory().setPantalonEquipe(true);
                                 itemP.setEquipe(true);
+                            }
+                            else player.getGroupCreature().get(0).inventory().setPantalonEquipe(false);
+
+                            break;
+                        case "7" :
+                            ItemPierreDeTeleportation itemPTP ;
+                            itemPTP = new ItemPierreDeTeleportation(sep[1].charAt(0), new Color(Integer.parseInt(sep[3]),Integer.parseInt(sep[4]),Integer.parseInt(sep[2])), sep[5]);
+                            player.getGroupCreature().get(0).pickupItem(itemPTP);
+                            if(sep[8].equals("true")) {
+                                player.getGroupCreature().get(0).inventory().setPantalonEquipe(true);
+                                itemPTP.setEquipe(true);
                             }
                             else player.getGroupCreature().get(0).inventory().setPantalonEquipe(false);
 

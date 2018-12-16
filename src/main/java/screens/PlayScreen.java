@@ -182,7 +182,7 @@ public class PlayScreen implements Screen {
 						}else if (world.item(wx,wy).getName().equals("pantalon")){
 							world.item(wx,wy).setColor(new Color(123, 49, 39));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
-						} else if (world.item(wx,wy).getName().equals("pierre de teleportation")){
+						} else if (world.item(wx,wy).getName().equals("pierreDeTeleportation")){
 							world.item(wx,wy).setColor(new Color(0, 19, 255));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
 						}
