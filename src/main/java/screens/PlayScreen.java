@@ -160,25 +160,25 @@ public class PlayScreen implements Screen {
 						terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
 					}else if (world.tile(wx,wy)==Tile.ITEMSUNKNOW || world.tile(wx,wy)==Tile.ITEMALREADYVISITED){
 						world.tiles[wx][wy]=Tile.ITEMS;
-						if (world.item(wx,wy).getName()=="baton"){
+						if (world.item(wx,wy).getName().equals("baton")){
 							world.item(wx,wy).setColor(new Color(128,64,0));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
-						}else if (world.item(wx,wy).getName()=="epee"){
+						}else if (world.item(wx,wy).getName().equals("epee")){
 							world.item(wx,wy).setColor(new Color(128,128,128));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
-						}else if (world.item(wx,wy).getName()=="potion"){
+						}else if (world.item(wx,wy).getName().equals("potion")){
 							world.item(wx,wy).setColor(new Color(255,77,77));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
-						}else if (world.item(wx,wy).getName()=="armure"){
+						}else if (world.item(wx,wy).getName().equals("armure")){
 							world.item(wx,wy).setColor(new Color(140,140,140));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
-						}else if (world.item(wx,wy).getName()=="botte"){
+						}else if (world.item(wx,wy).getName().equals("botte")){
 							world.item(wx,wy).setColor(new Color(155, 89, 30));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
-						}else if (world.item(wx,wy).getName()=="casque"){
+						}else if (world.item(wx,wy).getName().equals("casque")){
 							world.item(wx,wy).setColor(new Color(20, 86,123));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
-						}else if (world.item(wx,wy).getName()=="pantalon"){
+						}else if (world.item(wx,wy).getName().equals("pantalon")){
 							world.item(wx,wy).setColor(new Color(123, 49, 39));
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
 						}

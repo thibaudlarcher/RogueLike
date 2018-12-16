@@ -27,11 +27,13 @@ public class LoadSave {
     private int width;
     private int height;
     private World world;
+    private int error;
 
 
     public LoadSave(){
         this.width = 100;
         this.height = 100;
+        this.error =0;
         loadTile();
         loadPlayer();
         loadItem();
@@ -48,6 +50,12 @@ public class LoadSave {
     }
 
     public PlayScreen Test(){
+        if(error == 1){
+            System.err.println();
+            System.err.println();
+            System.err.println("        The new part started backup does not exist or is corrupt");
+            return new PlayScreen();
+        }
         return new PlayScreen(world, player, groupCreature);
     }
 
@@ -107,6 +115,7 @@ public class LoadSave {
                         case 'q':
                             //System.out.print('o');
                             tiles[i][j] = Tile.ITEMALREADYVISITED;
+                            //System.out.println("test");
                             break;
                         case (char)252:
                             //System.out.print((char)250);
@@ -123,6 +132,7 @@ public class LoadSave {
             fichier.close();
         }catch (IOException e) {
             e.printStackTrace();
+            error =1;
         }
     }
 
@@ -138,26 +148,37 @@ public class LoadSave {
                     case "1" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemArme((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //tem.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
                         break;
                     case "2" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementArmure((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
                         break;
                     case "3" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementBotte((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
                         break;
                     case "4" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemPotion((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
                         break;
                     case "5" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementCasque((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
                         break;
                     case "6" :
                         itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementPantalon((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
                         break;
 
 
@@ -168,6 +189,7 @@ public class LoadSave {
             fichier.close();
         }catch (IOException e) {
             e.printStackTrace();
+            error =1;
         }
     }
 
@@ -252,6 +274,7 @@ public class LoadSave {
             fichier.close();
         }catch (IOException e) {
             e.printStackTrace();
+            error =1;
         }
     }
 
@@ -267,6 +290,7 @@ public class LoadSave {
             fichier.close();
         }catch (IOException e) {
             e.printStackTrace();
+            error =1;
         }
     }
 }

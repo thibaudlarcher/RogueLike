@@ -47,64 +47,64 @@ public class Save {
                 for (int j = 0; j < tiles[i].length; j++) {
                     switch (tiles[i][j]){
                         case FLOOR:
-                            System.out.print('.');
+                            //System.out.print('.');
                             writer.write(".");
                             break;
                         case WALL:
-                            System.out.print((char)177);
+                            //System.out.print((char)177);
                             writer.write((char)177);
                             break;
                         case ITEMS:
-                            System.out.print('o');
+                           // System.out.print('o');
                             writer.write('o');
                             break;
                         case EXIT:
-                            System.out.print((char)79);
+                            //System.out.print((char)79);
                             writer.write((char)79);
                             break;
                         case BOUNDS:
-                            System.out.print('x');
+                            //System.out.print('x');
                             writer.write('x');
                             break;
                         case FLOORALREADYVISITED:
-                            System.out.print((char)251);
+                           //System.out.print((char)251);
                             writer.write((char)251);
                             break;
                         case WALLUNKNOW:
-                            System.out.print((char)178);
+                           // System.out.print((char)178);
                             writer.write((char)178);
                             break;
                         case WALLALREADYVISITED:
-                            System.out.print((char)179);
+                            //System.out.print((char)179);
                             writer.write((char)179);
                             break;
                         case EXITUNKNOW:
-                            System.out.print((char)80);
+                            //System.out.print((char)80);
                             writer.write((char)80);
                             break;
                         case EXITALREADYVISITED:
-                            System.out.print((char)81);
+                            //System.out.print((char)81);
                             writer.write((char)81);
                             break;
                         case ITEMSUNKNOW:
-                            System.out.print('p');
+                            //System.out.print('p');
                             writer.write('p');
                             break;
                         case ITEMALREADYVISITED:
-                            System.out.print('q');
+                            //System.out.print('q');
                             writer.write('q');
                             break;
                         case FLOORUNKNOW:
-                            System.out.print((char)252);
+                            //System.out.print((char)252);
                             writer.write((char)252);
                             break;
                         default:
-                            System.out.print("Unknow caractere");
+                            //System.out.print("Unknow caractere");
                             writer.write('x');
 
                     }
                 }
-                System.out.println();
+                //System.out.println();
                 writer.newLine();
             }
             writer.close();
@@ -170,13 +170,13 @@ public class Save {
                                 writer.write(2 + " " + i + " " + j + " " + 190 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
                                 break;
                             case (char) 200:
-                                writer.write(3 + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + item[i][j].getValeur() + " " + "false") ;
+                                writer.write(3 + " " + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + item[i][j].getValeur() + " " + "false") ;
                                 break;
                             case  (char) 94:
-                                writer.write(5 + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+                                writer.write(5 + " " + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
                                 break;
                             case (char) 186:
-                                writer.write(6 + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+                                writer.write(6 + " " + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
                                 break;
                             default:
                                 break;
