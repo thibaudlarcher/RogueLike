@@ -31,6 +31,15 @@ public class WorldBuilder {
         return new World(WorldGenerating(ch), pt, itemPointList,ptmonstre);
 	}
 
+    public World buildVillage() {
+        BspMapCreator bspMapCreator = new BspMapCreator();
+        bspMapCreator.setMinRoomSize(5);
+        bspMapCreator.setMaxIterations(0);
+        bspMapCreator.setMapDimension(this.width, this.height);
+        ch = bspMapCreator.createMapVillage();
+        return new World(VillageGenerating(ch), pt, ptmonstre);
+    }
+
 	public Tile[][] WorldGenerating(char[][] ch){
         for (int i = 0; i < this.width; i++){
             for (int j = 0; j < this.height; j++){
@@ -53,6 +62,28 @@ public class WorldBuilder {
                   }
             }
         }
+        tiles = InsertVillagePortal();
+        return tiles = InsertExit();
+    }
+
+    public Tile[][] VillageGenerating(char[][] ch){
+        for (int i = 0; i < this.width; i++){
+            for (int j = 0; j < this.height; j++){
+                if (ch[j][i]=='.' || ch[j][i]==',' || ch[j][i]=='|' || ch[j][i]=='-'){
+                    tiles[i][j] = Tile.FLOOR;
+                } else if (ch[j][i]=='#'){
+                    tiles[i][j] = Tile.WALL;
+                } else if (ch[j][i]=='~'){
+                    tiles[i][j] = Tile.BOUNDS;
+                } else if (ch[j][i]=='@'){
+                    tiles[i][j] = Tile.FLOOR;
+                    pt = new Point(i,j);
+                } else if (ch[j][i]==(char)144){
+                    tiles[i][j] = Tile.FLOOR;
+                    ptmonstre.add(new Point(j,i));
+                }
+            }
+        }
         return tiles = InsertExit();
     }
 
@@ -67,8 +98,23 @@ public class WorldBuilder {
         while (!(tiles[x][y].isGround() && tiles[x+1][y].isGround() && tiles[x-1][y].isGround() && tiles[x][y+1].isGround() &&
                 tiles[x][y-1].isGround()));
 
-            tiles[x][y] = Tile.EXITUNKNOW;
+            tiles[x][y] = Tile.EXIT;
 	    return tiles;
+    }
+
+    public Tile [][] InsertVillagePortal(){
+        int x;
+        int y;
+
+        do {
+            x = (int)(Math.random() * width);
+            y = (int)(Math.random() * height);
+        }
+        while (!(tiles[x][y].isGround() && tiles[x+1][y].isGround() && tiles[x-1][y].isGround() && tiles[x][y+1].isGround() &&
+                tiles[x][y-1].isGround()));
+
+        tiles[x][y] = Tile.VILLAGEPORTALUNKNOW;
+        return tiles;
     }
 
 

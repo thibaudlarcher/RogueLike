@@ -97,6 +97,41 @@ public class BspMapCreator {
 		return map;
 	}
 
+	public char[][] createMapVillage() {
+
+		// generate BSP tree
+		CellNode root = new CellNode(0, 0, mapWidth, mapHeight);
+		root.width = mapWidth;
+		root.height = mapHeight;
+		splitCell(root, maxIterations);
+		insertRooms(root);
+		connectRooms(root);
+
+		// render map characters
+		char[][] map = initMap();
+		renderCorridors(map, root);
+		renderRooms(map, root);
+		renderWalls(map);
+		renderDoors(map);
+		renderPersonnage(map);
+		renderMonster(map);
+
+		// make sure room floor tiles are properly set
+		// and collect rooms by tile
+		for (int i = 0; i < rooms.size(); i++) {
+			IntRect room = rooms.get(i);
+			//System.out.println(room);
+			roomsByNumber.put(i, room);
+			floodFill(map, room, i);
+		}
+
+		// convert empty tiles into floor
+		convertVoid(map);
+
+
+		return map;
+	}
+
 	private void splitCell(CellNode parent, int maxDepth) {
 		if (parent.depth < maxDepth && parent.width > 2 * cellPad && parent.height > 2 * cellPad) {
 			int depth = parent.depth + 1;

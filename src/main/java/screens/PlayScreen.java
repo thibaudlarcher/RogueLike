@@ -10,6 +10,7 @@ import object.StuffFactory;
 import screens.Combat.CombatScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
+import screens.Village.VillageScreen;
 import world.*;
 
 public class PlayScreen implements Screen {
@@ -24,11 +25,11 @@ public class PlayScreen implements Screen {
 		screenWidth = 140;
 		screenHeight = 40;
 		createWorld();
+//		createVillage();
 
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		StuffFactory stuffFactory = new StuffFactory(world);
 		player = creatureFactory.newPlayer();
-		stuffFactory.newPierreTP();
 		createItems(stuffFactory);
 
 		groupCreature = new ArrayList<GroupCreature>();
@@ -45,6 +46,17 @@ public class PlayScreen implements Screen {
 		this.world = world;
 		this.player = player;
 		this.groupCreature = groupCreature;
+	}
+
+	public PlayScreen(PlayScreen screen){
+		screenWidth = 140;
+		screenHeight = 40;
+		this.world = screen.getWorld();
+		this.player = screen.getPlayer();
+		this.groupCreature = screen.getGroupCreature();
+		this.player.x = world.getPositionPersonnageX();
+		this.player.y = world.getPositionPersonnageY();
+		player.setWorld(this.world);
 	}
 
 	public PlayScreen(GroupCreature player){
@@ -74,6 +86,10 @@ public class PlayScreen implements Screen {
 	private void createWorld(){
 		world = new WorldBuilder(100	, 100).build();
 	}
+
+	/*private void createVillage(){
+		village = new WorldBuilder(100	, 100).buildVillage();
+	}*/
 
 	private void createItems(StuffFactory factory) {
 		for (int i = 0; i < 5; i++) {
@@ -110,12 +126,10 @@ public class PlayScreen implements Screen {
 
 		terminal.write("Floor : "+player.getGroupCreature().get(0).getNiveau() ,125, 41,Color.white);
 
-		if (world.tile(player.x, player.y) == Tile.ITEMS){
-			terminal.write("Press [P] to pickup item",3,41);
-			terminal.write("item : "+world.item(player.x,player.y).getName(),35,41);
+		if (world.tile(player.x, player.y) == Tile.ITEMS) {
+			terminal.write("Press [P] to pickup item", 3, 41);
+			terminal.write("item : " + world.item(player.x, player.y).getName(), 35, 41);
 		}
-
-
 	}
 
 	private void creatureMove(){
@@ -159,6 +173,9 @@ public class PlayScreen implements Screen {
 					} else if (world.tile(wx,wy)==Tile.FLOORUNKNOW || world.tile(wx,wy)==Tile.FLOORALREADYVISITED){
 						world.tiles[wx][wy]=Tile.FLOOR;
 						terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+					} else if (world.tile(wx,wy)==Tile.VILLAGEPORTALUNKNOW || world.tile(wx,wy)==Tile.VILLAGEPORTALALREADYVISITED){
+						world.tiles[wx][wy]=Tile.VILLAGEPORTAL;
+						terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
 					} else if (world.tile(wx,wy)==Tile.ITEMSUNKNOW || world.tile(wx,wy)==Tile.ITEMALREADYVISITED){
 						world.tiles[wx][wy]=Tile.ITEMS;
 						if (world.item(wx,wy).getName()=="baton"){
@@ -199,6 +216,9 @@ public class PlayScreen implements Screen {
 				} else if (world.tile(wx,wy)==Tile.FLOOR && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
 					world.tiles[wx][wy]=Tile.FLOORALREADYVISITED;
 					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+				} else if (world.tile(wx,wy)==Tile.VILLAGEPORTAL && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+					world.tiles[wx][wy]=Tile.VILLAGEPORTALALREADYVISITED;
+					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
 				} else if (world.tile(wx,wy)==Tile.ITEMS && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
 					world.tiles[wx][wy]=Tile.ITEMALREADYVISITED;
 					world.item(wx,wy).setColor(Color.gray);
@@ -220,6 +240,8 @@ public class PlayScreen implements Screen {
 		}
 		if (world.tile(player.x,player.y)==Tile.EXIT){
 			return new PlayScreen(player);
+		} else if (world.tile(player.x,player.y)==Tile.VILLAGEPORTAL){
+			return new VillageScreen(this);
 		}
 		return this;
 	}
@@ -286,5 +308,7 @@ public class PlayScreen implements Screen {
 	public ArrayList<GroupCreature> getGroupCreature() {
 		return groupCreature;
 	}
+
+	/*public World getVillage(){ return village; }*/
 
 }

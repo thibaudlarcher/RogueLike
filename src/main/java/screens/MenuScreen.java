@@ -6,27 +6,39 @@ import java.util.ArrayList;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
+import object.Inventory;
 import screens.Item.InventoryScreen;
 import io.Save;
+import screens.Village.VillageScreen;
 import world.World;
 
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
-import static java.lang.System.exit;
 
 public class MenuScreen implements Screen {
 
     private PlayScreen screen;
+    private VillageScreen villageScreen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
     private int choix;
+    private boolean inVillage;
 
     public MenuScreen(PlayScreen screen) {
         this.screen = screen;
         this.world=screen.getWorld();
         this.groupCreature = screen.getGroupCreature();
         this.player = screen.getPlayer();
+        inVillage = false;
+    }
+
+    public MenuScreen(VillageScreen villageScreen, PlayScreen screen) {
+        this.villageScreen = villageScreen;
+        this.world = villageScreen.getVillage();
+        this.player = villageScreen.getPlayer();
+        this.screen = screen;
+        inVillage = true;
     }
 
     @Override
@@ -51,18 +63,28 @@ public class MenuScreen implements Screen {
                          new Save(screen);
                          break;
                     case 1 :
-                        return new StatScreen(screen);
+                        if (inVillage == true){
+                            return new StatScreen(villageScreen, screen);
+                        } else return new StatScreen(screen);
                     case 2 :
-                        return new InventoryScreen(screen);
+                        if (inVillage == true){
+                            return new InventoryScreen(villageScreen, screen);
+                        } else return new InventoryScreen(screen);
                     case 3 :
-                        return new PlayScreen(world,player,groupCreature);
+                        if (inVillage == true){
+                            return new VillageScreen(villageScreen, screen);
+                        } else return new PlayScreen(world,player,groupCreature);
                     case 4 :
-                        return new HelpScreen(screen);
+                        if (inVillage == true){
+                            return new HelpScreen(villageScreen, screen);
+                        } else return new HelpScreen(screen);
                     case 5 :
                         return new QuitterScreen(screen);
                 }
             case KeyEvent.VK_ESCAPE :
-                return new PlayScreen(world,player,groupCreature);
+                if (inVillage == true){
+                    return new VillageScreen(villageScreen, screen);
+                } else return new PlayScreen(world,player,groupCreature);
             case KeyEvent.VK_DOWN:
                 choix = (choix+1)%6;
                 break;

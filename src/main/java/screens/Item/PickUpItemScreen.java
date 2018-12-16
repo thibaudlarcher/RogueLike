@@ -5,6 +5,7 @@ import creature.GroupCreature;
 import object.Items.*;
 import screens.PlayScreen;
 import screens.Screen;
+import screens.Village.VillageScreen;
 import world.World;
 
 import java.awt.*;
@@ -14,15 +15,26 @@ import java.util.ArrayList;
 
 public class PickUpItemScreen implements Screen {
     private PlayScreen screen;
+    private VillageScreen villageScreen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
+    private boolean inVillage;
 
     public PickUpItemScreen(PlayScreen screen) {
         this.screen = screen;
-        this.world=screen.getWorld();
+        this.world = screen.getWorld();
         this.player = screen.getPlayer();
         this.groupCreature = screen.getGroupCreature();
+        inVillage = false;
+    }
+
+    public PickUpItemScreen(VillageScreen villageScreen, PlayScreen screen) {
+        this.villageScreen = villageScreen;
+        this.screen = screen;
+        this.world = villageScreen.getVillage();
+        this.player = villageScreen.getPlayer();
+        inVillage = true;
     }
 
     private void pickUpItem(){
@@ -66,7 +78,7 @@ public class PickUpItemScreen implements Screen {
                 terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
             } else if (currentItem.getType() == "pierreTP"){
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
-                terminal.writeCenter("Une pierre tres puissante qui vous permettra de vous rendre au village.",16, Color.WHITE);
+                terminal.writeCenter("Une pierre tres puissante qui vous permettra de vous rendre au world.",16, Color.WHITE);
             }
 
             if (!(player.getGroupCreature().get(0).inventory().isFull())) {
@@ -86,7 +98,11 @@ public class PickUpItemScreen implements Screen {
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
-            case KeyEvent.VK_ESCAPE: return new PlayScreen(world,player, groupCreature);
+            case KeyEvent.VK_ENTER:
+            case KeyEvent.VK_ESCAPE:
+                if (inVillage == true){
+                    return new VillageScreen(villageScreen, screen);
+                } else return new PlayScreen(world,player, groupCreature);
             case KeyEvent.VK_P: pickUpItem();
             return this;
         }

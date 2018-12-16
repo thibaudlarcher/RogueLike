@@ -2,6 +2,7 @@ package screens;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
+import screens.Village.VillageScreen;
 import world.World;
 
 import java.awt.*;
@@ -12,17 +13,28 @@ import static asciiPanel.AsciiPanel.white;
 
 public class StatScreen implements Screen {
 
-    PlayScreen screen;
+    private PlayScreen screen;
+    private VillageScreen villageScreen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
     private int choix;
+    private boolean inVillage;
 
     public StatScreen(PlayScreen screen){
         this.screen = screen;
         this.world=screen.getWorld();
         this.groupCreature = screen.getGroupCreature();
         this.player = screen.getPlayer();
+        inVillage = false;
+    }
+
+    public StatScreen(VillageScreen villageScreen, PlayScreen screen){
+        this.villageScreen = villageScreen;
+        this.world = villageScreen.getVillage();
+        this.player = villageScreen.getPlayer();
+        this.screen = screen;
+        inVillage = true;
     }
 
     @Override
@@ -48,9 +60,13 @@ public class StatScreen implements Screen {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_ESCAPE:
             case KeyEvent.VK_C:
-                return new PlayScreen(world,player,groupCreature);
+                if (inVillage == true){
+                    return new VillageScreen(villageScreen, screen);
+                } else return new PlayScreen(world,player,groupCreature);
             case KeyEvent.VK_R:
-                return new MenuScreen(screen);
+                if (inVillage == true){
+                    return new MenuScreen(villageScreen, screen);
+                } else return new MenuScreen(screen);
         }
         return this;
     }

@@ -5,6 +5,7 @@ import creature.GroupCreature;
 import object.Items.Item;
 import screens.PlayScreen;
 import screens.Screen;
+import screens.Village.VillageScreen;
 import world.World;
 
 import java.awt.*;
@@ -13,17 +14,29 @@ import java.util.ArrayList;
 
 public class DropItemScreen implements Screen {
     private PlayScreen screen;
+    private VillageScreen villageScreen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> groupCreature;
-    int pos;
+    private int pos;
+    private boolean inVillage;
 
     public DropItemScreen(PlayScreen screen, int pos){
         this.screen = screen;
-        this.world=screen.getWorld();
+        this.world = screen.getWorld();
         this.player = screen.getPlayer();
         this.groupCreature = screen.getGroupCreature();
         this.pos = pos;
+        inVillage = false;
+    }
+
+    public DropItemScreen(VillageScreen villageScreen, PlayScreen screen , int pos){
+        this.villageScreen = villageScreen;
+        this.screen = screen;
+        this.world = villageScreen.getVillage();
+        this.player = villageScreen.getPlayer();
+        this.pos = pos;
+        inVillage = true;
     }
 
     public void dropItem(){
@@ -78,9 +91,13 @@ public class DropItemScreen implements Screen {
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
-            case KeyEvent.VK_ESCAPE: return new PlayScreen(world, player, groupCreature);
+            case KeyEvent.VK_ENTER:
+            case KeyEvent.VK_ESCAPE:
+                if (inVillage == true){
+                    return new VillageScreen(villageScreen, screen);
+                } else return new PlayScreen(world, player, groupCreature);
             case KeyEvent.VK_D: dropItem();
-            return this;
+                return this;
         }
         return this;
     }

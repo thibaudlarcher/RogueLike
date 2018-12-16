@@ -2,6 +2,7 @@ package screens;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
+import screens.Village.VillageScreen;
 import world.World;
 
 import java.awt.*;
@@ -10,15 +11,26 @@ import java.util.ArrayList;
 
 public class HelpScreen implements Screen {
     private PlayScreen screen;
+    private VillageScreen villageScreen;
     private World world;
     private GroupCreature player;
     private ArrayList<GroupCreature> GroupCreature;
+    private boolean inVilllage;
 
     public HelpScreen (PlayScreen screen){
         this.screen = screen;
         this.GroupCreature = screen.getGroupCreature();
         this.player = screen.getPlayer();
         this.world = screen.getWorld();
+        inVilllage = false;
+    }
+
+    public HelpScreen (VillageScreen villageScreen, PlayScreen screen){
+        this.villageScreen = villageScreen;
+        this.player = villageScreen.getPlayer();
+        this.world = villageScreen.getVillage();
+        this.screen = screen;
+        inVilllage = true;
     }
 
     @Override
@@ -37,7 +49,10 @@ public class HelpScreen implements Screen {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_H:
             case KeyEvent.VK_ENTER:
-            case KeyEvent.VK_ESCAPE: return new MenuScreen(screen);
+            case KeyEvent.VK_ESCAPE:
+                if (inVilllage == true){
+                    return new MenuScreen(villageScreen, screen);
+                } else return new MenuScreen(screen);
         }
         return this;
     }

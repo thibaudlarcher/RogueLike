@@ -1,7 +1,6 @@
 package io;
 
 import Tiles.Tile;
-import com.sun.tools.javac.jvm.Items;
 import creature.*;
 import object.Items.*;
 import screens.PlayScreen;

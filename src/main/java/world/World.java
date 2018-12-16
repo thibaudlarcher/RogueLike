@@ -26,6 +26,15 @@ public class World {
 		this.listMonster = listMonster;
 	}
 
+	public World(Tile[][] tiles, Point pt,ArrayList<Point> listMonster){
+		this.tiles = tiles;
+		this.width = tiles.length;
+		this.height = tiles[0].length;
+		this.pt = pt;
+		this.items = new Item[width+40][height];	// --> on prend le x max entre screenWidth et width et y max entre screenHeight et height
+		this.listMonster = listMonster;
+	}
+
 	public World(Tile[][] tiles, Point pt, Item itemList[][],ArrayList<Point> listMonster){
 		this.tiles = tiles;
 		this.width = tiles.length;

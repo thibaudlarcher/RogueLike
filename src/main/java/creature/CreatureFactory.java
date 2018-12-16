@@ -1,6 +1,5 @@
 package creature;
 import asciiPanel.AsciiPanel;
-import creature.Monstre.Kobold;
 import creature.PJ.Guerrier;
 import world.*;
 import player.*;
@@ -20,6 +19,16 @@ public class CreatureFactory {
         player.y = world.getPt().y;
         new PlayerAi(player);
         return player;
+    }
+
+    public GroupCreature newPlayerVillage(GroupCreature player){
+        //244 pied de biche
+        GroupCreature playerVillage = new GroupCreature(world, '@', AsciiPanel.green,
+                new Guerrier("Bob",20,1));
+        playerVillage.x = world.getPt().x;
+        playerVillage.y = world.getPt().y;
+        new PlayerAi(playerVillage);
+        return playerVillage;
     }
 
 	/*public GroupCreature newBoss(){
