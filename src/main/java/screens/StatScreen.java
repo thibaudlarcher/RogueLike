@@ -28,7 +28,7 @@ public class StatScreen implements Screen {
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.writeCenter("Stats", 5,new Color(255, 255, 255));
-        System.out.println(terminal.getWidth());
+        //System.out.println(terminal.getWidth());
         for (int var=0;var<140-1;var++){
             terminal.write("- ", var, 3, white);
         }

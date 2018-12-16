@@ -5,3 +5,4 @@ RogueLike.iml
 /src/main/resources/monster.txt
 /src/main/resources/player.txt
 /src/main/resources/world.txt
+/.idea

@@ -17,11 +17,9 @@ public class StartScreen implements Screen {
 
         try {
             String str;
-            int comp =0;
             BufferedReader fichier = new BufferedReader(new FileReader("src/main/resources/LogoMenu.txt"));
             while ((str = fichier.readLine()) != null) {
                 String sep[] = str.split(" ");
-                System.out.println(comp++);
                 terminal.write(sep[0], Integer.parseInt(sep[1]),Integer.parseInt(sep[2]), new Color(Integer.parseInt(sep[3]), Integer.parseInt(sep[4]), Integer.parseInt(sep[5])));
             }
             fichier.close();
