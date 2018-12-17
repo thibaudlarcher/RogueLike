@@ -3,6 +3,7 @@ package io;
 import Tiles.Tile;
 import com.sun.tools.javac.jvm.Items;
 import creature.*;
+import creature.PJ.Guerrier;
 import object.Items.*;
 import screens.PlayScreen;
 import world.World;
@@ -54,7 +55,7 @@ public class LoadSave {
             System.err.println();
             System.err.println();
             System.err.println("        The new part started backup does not exist or is corrupt");
-            return new PlayScreen();
+            return new PlayScreen(new Guerrier("Bob",30,5));
         }
         return new PlayScreen(world, player, groupCreature);
     }
@@ -279,7 +280,7 @@ public class LoadSave {
                     pt = new Point(Integer.parseInt(sep[0]),Integer.parseInt(sep[1]));
                     world = new World( tiles, pt, items, listMonster);
                     CreatureFactory creatureFactory = new CreatureFactory(world);
-                    player = creatureFactory.newPlayer();
+                    player = creatureFactory.newPlayer(new Guerrier("Bob",30,5));
                     player.getGroupCreature().get(0).setPointDeVie(Integer.parseInt(sep[3]));
                     player.getGroupCreature().get(0).setAttaque(Integer.parseInt(sep[4]));
                     player.getGroupCreature().get(0).setPointDeVieMax(Integer.parseInt(sep[2]));

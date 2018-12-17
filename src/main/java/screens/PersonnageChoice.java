@@ -1,27 +1,25 @@
 package screens;
 
 import asciiPanel.AsciiPanel;
-import io.LoadSave;
+import creature.PJ.Guerrier;
+import creature.PJ.Mage;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
-import static java.lang.System.exit;
 
-public class LoadSreen implements Screen{
+public class PersonnageChoice implements Screen {
 
     private int choix;
 
-
     @Override
     public void displayOutput(AsciiPanel terminal) {
-        terminal.writeCenter("Menu", 5,new Color(255, 255, 255));
-        terminal.writeCenter("Nouveau", 10,this.choix == 0 ? brightRed : white);
-        terminal.writeCenter("Charger", 15,this.choix == 1 ? brightRed : white );
-        terminal.writeCenter("Quitter", 20,this.choix == 2 ? brightRed : white);
-       }
+        terminal.writeCenter("Choix du personnage", 5,new Color(255, 255, 255));
+        terminal.writeCenter("Guerrier", 10,this.choix == 0 ? brightRed : white);
+        terminal.writeCenter("Mage", 15,this.choix == 1 ? brightRed : white );
+    }
 
     @Override
     public Screen respondToUserInput(KeyEvent key) {
@@ -29,14 +27,10 @@ public class LoadSreen implements Screen{
             case KeyEvent.VK_ENTER:
                 switch (this.choix){
                     case 0 :
-                        return new PersonnageChoice();
+                        return new PlayScreen(new Guerrier("Bob",30,5));
                     case 1 :
-                        return new LoadSave().Test();
-                    case 2 :
-                         exit(0);
+                        return new PlayScreen(new Mage("Bob",20,15));
                 }
-            /*case KeyEvent.VK_ESCAPE :
-                return new PlayScreen();*/
             case KeyEvent.VK_DOWN:
                 choix = (choix+1)%3;
                 break;

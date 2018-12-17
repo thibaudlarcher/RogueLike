@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
 import Tiles.Tile;
 import creature.*;
+import creature.PJ.PJ;
 import object.StuffFactory;
 import screens.Combat.CombatScreen;
 import screens.Item.InventoryScreen;
@@ -20,14 +21,14 @@ public class PlayScreen implements Screen {
 	private int screenWidth;
 	private int screenHeight;
 
-	public PlayScreen(){
+	public PlayScreen(PJ choix){
 		screenWidth = 140;
 		screenHeight = 40;
 		createWorld();
 
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		StuffFactory stuffFactory = new StuffFactory(world);
-		player = creatureFactory.newPlayer();
+		player = creatureFactory.newPlayer(choix);
 		stuffFactory.newPierreTP();
 		createItems(stuffFactory);
 
