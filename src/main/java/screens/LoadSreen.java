@@ -10,11 +10,11 @@ import java.awt.event.KeyEvent;
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
+import static java.lang.System.in;
 
 public class LoadSreen implements Screen{
 
     private int choix;
-
 
     @Override
     public void displayOutput(AsciiPanel terminal) {

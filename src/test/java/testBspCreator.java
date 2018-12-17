@@ -1,4 +1,3 @@
-import creature.GroupCreature;
 import gameroots.mapgen.bsp.BspMapCreator;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;

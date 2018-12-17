@@ -10,6 +10,7 @@ import object.StuffFactory;
 import screens.Combat.CombatScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
+import screens.Village.VillageScreen;
 import world.*;
 
 public class PlayScreen implements Screen {
@@ -19,16 +20,19 @@ public class PlayScreen implements Screen {
 	private ArrayList<GroupCreature> groupCreature;
 	private int screenWidth;
 	private int screenHeight;
+	private World village;
+	private boolean inVillage;
 
 	public PlayScreen(){
 		screenWidth = 140;
 		screenHeight = 40;
+		inVillage = false;
 		createWorld();
+		createVillage();
 
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		StuffFactory stuffFactory = new StuffFactory(world);
 		player = creatureFactory.newPlayer();
-		stuffFactory.newPierreTP();
 		createItems(stuffFactory);
 
 		groupCreature = new ArrayList<GroupCreature>();
@@ -39,19 +43,36 @@ public class PlayScreen implements Screen {
 		}
 	}
 
-	public PlayScreen(World world, GroupCreature player,ArrayList<GroupCreature> groupCreature){
+	public PlayScreen(World world, World village, GroupCreature player,ArrayList<GroupCreature> groupCreature){
 		screenWidth = 140;
 		screenHeight = 40;
+		inVillage = false;
 		this.world = world;
+		this.village = village;
 		this.player = player;
 		this.groupCreature = groupCreature;
 	}
 
-	public PlayScreen(GroupCreature player){
+	public PlayScreen(PlayScreen screen){
+		screenWidth = 140;
+		screenHeight = 40;
+		inVillage = false;
+		this.world = screen.getWorld();
+		this.village = screen.getVillage();
+		this.player = screen.getPlayer();
+		this.groupCreature = screen.getGroupCreature();
+		this.player.x = world.getPtSpawn().x;
+		this.player.y = world.getPtSpawn().y;
+		player.setWorld(this.world);
+	}
+
+	public PlayScreen(GroupCreature player, World village){
         screenWidth = 140;
         screenHeight = 40;
+        inVillage = false;
         createWorld();
-        this.player= player;
+        this.player = player;
+        this.village = village;
         int nv = this.player.getGroupCreature().get(0).getNiveau();
         nv++;
         this.player.getGroupCreature().get(0).setNiveau(nv);
@@ -75,6 +96,8 @@ public class PlayScreen implements Screen {
 		world = new WorldBuilder(100	, 100).build();
 	}
 
+	private void createVillage(){ village = new WorldBuilder(100	, 100).buildVillage(); }
+
 	private void createItems(StuffFactory factory) {
 		for (int i = 0; i < 5; i++) {
 			factory.newPotion();
@@ -96,7 +119,7 @@ public class PlayScreen implements Screen {
 	public void displayOutput(AsciiPanel terminal) {
 		terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
 		terminal.clear();
-		int range =10;
+		int range = 10;
 
 		int left = getScrollX();
 		int top = getScrollY();
@@ -110,12 +133,10 @@ public class PlayScreen implements Screen {
 
 		terminal.write("Floor : "+player.getGroupCreature().get(0).getNiveau() ,125, 41,Color.white);
 
-		if (world.tile(player.x, player.y) == Tile.ITEMS){
-			terminal.write("Press [P] to pickup item",3,41);
-			terminal.write("item : "+world.item(player.x,player.y).getName(),35,41);
+		if (world.tile(player.x, player.y) == Tile.ITEMS) {
+			terminal.write("Press [P] to pickup item", 3, 41);
+			terminal.write("item : " + world.item(player.x, player.y).getName(), 35, 41);
 		}
-
-
 	}
 
 	private void creatureMove(){
@@ -159,6 +180,9 @@ public class PlayScreen implements Screen {
 					} else if (world.tile(wx,wy)==Tile.FLOORUNKNOW || world.tile(wx,wy)==Tile.FLOORALREADYVISITED){
 						world.tiles[wx][wy]=Tile.FLOOR;
 						terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+					} else if (world.tile(wx,wy)==Tile.VILLAGEPORTALUNKNOW || world.tile(wx,wy)==Tile.VILLAGEPORTALALREADYVISITED){
+						world.tiles[wx][wy]=Tile.VILLAGEPORTAL;
+						terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
 					} else if (world.tile(wx,wy)==Tile.ITEMSUNKNOW || world.tile(wx,wy)==Tile.ITEMALREADYVISITED){
 						world.tiles[wx][wy]=Tile.ITEMS;
 						if (world.item(wx,wy).getName()=="baton"){
@@ -199,6 +223,9 @@ public class PlayScreen implements Screen {
 				} else if (world.tile(wx,wy)==Tile.FLOOR && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
 					world.tiles[wx][wy]=Tile.FLOORALREADYVISITED;
 					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
+				} else if (world.tile(wx,wy)==Tile.VILLAGEPORTAL && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+					world.tiles[wx][wy]=Tile.VILLAGEPORTALALREADYVISITED;
+					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
 				} else if (world.tile(wx,wy)==Tile.ITEMS && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
 					world.tiles[wx][wy]=Tile.ITEMALREADYVISITED;
 					world.item(wx,wy).setColor(Color.gray);
@@ -215,11 +242,14 @@ public class PlayScreen implements Screen {
 	private Screen testRencontre(){
 		for(int i = 0; i < groupCreature.size();i++) {
 			if (groupCreature.get(i).isNextTo(player.getX(),player.getY())) {
-				return new CombatScreen(groupCreature, player, world, i);
+				return new CombatScreen(groupCreature, player, world, i, this);
 			}
 		}
 		if (world.tile(player.x,player.y)==Tile.EXIT){
-			return new PlayScreen(player);
+			return new PlayScreen(player, village);
+		} else if (world.tile(player.x,player.y)==Tile.VILLAGEPORTAL){
+			inVillage = true;
+			return new VillageScreen(this, village);
 		}
 		return this;
 	}
@@ -234,6 +264,7 @@ public class PlayScreen implements Screen {
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE:
+				System.out.println("pt x : " +world.getPt().x + " pt y : " + world.getPt().y);
 				return new MenuScreen(this);
 			case KeyEvent.VK_ENTER:
 				return new WinScreen();
@@ -287,4 +318,9 @@ public class PlayScreen implements Screen {
 		return groupCreature;
 	}
 
+	public World getVillage(){ return village; }
+
+	public boolean getInVillage(){ return inVillage; }
+
+	public void setInVillage(boolean b){ inVillage = b; }
 }

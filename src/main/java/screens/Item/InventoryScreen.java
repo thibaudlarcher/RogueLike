@@ -12,22 +12,35 @@ import object.Items.Item;
 import screens.MenuScreen;
 import screens.PlayScreen;
 import screens.Screen;
+import screens.Village.VillageScreen;
 import world.World;
 
 public class InventoryScreen implements Screen {
     private PlayScreen screen;
+    private VillageScreen villageScreen;
     private World world;
     private ArrayList<GroupCreature> groupCreature;
     private GroupCreature player;
     private int pos;
     private Inventory inventaire;
+    private boolean inVillage;
 
     public InventoryScreen (PlayScreen screen){
         this.screen = screen;
-        this.world=screen.getWorld();
+        this.world = screen.getWorld();
         this.player = screen.getPlayer();
         this.groupCreature = screen.getGroupCreature();
         this.pos = -1;
+        this.inVillage = false;
+    }
+
+    public InventoryScreen (VillageScreen villageScreen, PlayScreen screen){
+        this.villageScreen = villageScreen;
+        this.world = villageScreen.getVillage();
+        this.player = villageScreen.getPlayer();
+        this.pos = -1;
+        this.inVillage = true;
+        this.screen = screen;
     }
 
     @Override
@@ -87,7 +100,7 @@ public class InventoryScreen implements Screen {
                 terminal.write(Boolean.toString(joueur.inventory().get(i).isEquipe()), 104, 6 + 2 * i, currentInventory.get(i).isEquipe() ? Color.green : Color.red);
             } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "pierreTP") {
                 terminal.write(joueur.inventory().get(i).getName(), 2, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("Cette pierre vous teleportera directement au village.", 27, 6 + 2 * i, this.pos == i ? Color.yellow : Color.gray);
+                terminal.write("Cette pierre vous teleportera directement au world.", 27, 6 + 2 * i, this.pos == i ? Color.yellow : Color.gray);
             }
         }
 
@@ -144,13 +157,9 @@ public class InventoryScreen implements Screen {
 
     public Screen testEquipe(Item item){
         if (item.getType() != "potion") {
-            if (item.getType() != "pierreTP") {
                 if (item.isEquipe() == false) {
                     return equipeItem(item);
                 } else return deequipeItem(item);
-            } else if (item.getType() == "pierreTP") {
-                return this;//new VillageScreen(world, player, groupCreature);
-            } else return this;
         } else return testPotion(item);
     }
 
@@ -158,7 +167,9 @@ public class InventoryScreen implements Screen {
         if (item.getType() == "potion"){
             player.getGroupCreature().get(0).modifPointDeVie(item.getEffet());
             player.getGroupCreature().get(0).inventory().remove(item);
-            return new InventoryScreen(screen);
+            if (this.inVillage == true){
+                return new InventoryScreen(this.villageScreen, this.screen);
+            } else return new InventoryScreen(screen);
         } else return this;
     }
 
@@ -170,35 +181,45 @@ public class InventoryScreen implements Screen {
                     item.setEquipe(true);
                     currentInventory.setArmeEquipe(true);
                     player.getGroupCreature().get(0).modifAttaque(item.getDammage());
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "armure"){
                 if (currentInventory.getArmureEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setArmureEquipe(true);
                     player.getGroupCreature().get(0).modifDefense(item.getDefense());
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "pantalon"){
                 if (currentInventory.getPantalonEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setPantalonEquipe(true);
                     player.getGroupCreature().get(0).modifDefense(item.getDefense());
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "botte"){
                 if (currentInventory.getBotteEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setBotteEquipe(true);
                     player.getGroupCreature().get(0).modifDefense(item.getDefense());
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "casque"){
                 if (currentInventory.getCasqueEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setCasqueEquipe(true);
                     player.getGroupCreature().get(0).modifDefense(item.getDefense());
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             }
         }
@@ -213,35 +234,45 @@ public class InventoryScreen implements Screen {
                     item.setEquipe(false);
                     currentInventory.setArmeEquipe(false);
                     player.getGroupCreature().get(0).modifAttaque(-(item.getDammage()));
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "armure"){
                 if (currentInventory.getArmureEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setArmureEquipe(false);
                     player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "pantalon"){
                 if (currentInventory.getPantalonEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setPantalonEquipe(false);
                     player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "botte"){
                 if (currentInventory.getBotteEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setBotteEquipe(false);
                     player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "casque"){
                 if (currentInventory.getCasqueEquipe() == true){
                     item.setEquipe(false);
                     currentInventory.setCasqueEquipe(false);
                     player.getGroupCreature().get(0).modifDefense(-(item.getDefense()));
-                    return new InventoryScreen(screen);
+                    if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, this.screen);
+                    } else return new InventoryScreen(screen);
                 }
             }
         }
@@ -254,7 +285,9 @@ public class InventoryScreen implements Screen {
             case KeyEvent.VK_R: return new MenuScreen(screen);
             case KeyEvent.VK_ESCAPE:
             case KeyEvent.VK_I:
-                return new PlayScreen(world, player, groupCreature);
+                if (this.inVillage == true){
+                    return new VillageScreen(villageScreen ,this.screen);
+                } else return new PlayScreen(world, screen.getVillage(), player, groupCreature);
             case KeyEvent.VK_DOWN:
                 if (player.getGroupCreature().get(0).inventory().getSize() != 0) {
                     if (pos != (player.getGroupCreature().get(0).inventory().getIndiceMaxItem())) {
@@ -283,8 +316,12 @@ public class InventoryScreen implements Screen {
             case KeyEvent.VK_D:
                 if (world.tile(player.x, player.y) == Tile.FLOOR && world.item(player.x, player.y) == null && pos >= 0){
                     if (player.getGroupCreature().get(0).inventory().get(pos).isEquipe() == false) {
-                        return new DropItemScreen(screen, pos);
-                    } else return new InventoryScreen(screen);
+                        if (inVillage == true){
+                            return new DropItemScreen(villageScreen, screen, pos);
+                        } else return new DropItemScreen(screen, pos);
+                    } else if (this.inVillage == true){
+                        return new InventoryScreen(this.villageScreen, screen);
+                    } else  return new InventoryScreen(screen);
                 } else return this;
             case KeyEvent.VK_E:
             case KeyEvent.VK_ENTER:

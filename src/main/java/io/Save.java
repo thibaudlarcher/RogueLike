@@ -5,6 +5,8 @@ import creature.Creature;
 import creature.GroupCreature;
 import object.Items.Item;
 import screens.PlayScreen;
+import screens.Village.VillageScreen;
+import world.World;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -26,13 +28,16 @@ public class Save {
         savePlayer();
         saveMonster();
         saveItem();
+//        saveItemVillage();
     }
 
     public void saveIventory(BufferedWriter writer){
         for (int i = 0; i < creatures.get(0).inventory().getSize(); i++) {
             try {
-                writer.write(creatures.get(0).inventory().get(i).toString());
-                writer.newLine();
+                if (creatures.get(0).inventory().get(i) != null) {
+                    writer.write(creatures.get(0).inventory().get(i).toString());
+                    writer.newLine();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -43,8 +48,8 @@ public class Save {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/world.txt"));
             Tile[][] tiles = screen.getWorld().getTiles();
-            for (int i = 0; i < tiles.length; i++) {
-                for (int j = 0; j < tiles[i].length; j++) {
+            for (int j = 0; j < tiles.length; j++) {
+                for (int i = 0; i < tiles[j].length; i++) {
                     switch (tiles[i][j]){
                         case FLOOR:
                             System.out.print('.');
@@ -61,6 +66,10 @@ public class Save {
                         case EXIT:
                             System.out.print((char)79);
                             writer.write((char)79);
+                            break;
+                        case VILLAGEPORTAL:
+                            System.out.print('V');
+                            writer.write('V');
                             break;
                         case BOUNDS:
                             System.out.print('x');
@@ -98,6 +107,14 @@ public class Save {
                             System.out.print((char)252);
                             writer.write((char)252);
                             break;
+                        case VILLAGEPORTALUNKNOW:
+                            System.out.print((char)87);
+                            writer.write((char)87);
+                            break;
+                        case VILLAGEPORTALALREADYVISITED:
+                            System.out.print((char)88);
+                            writer.write((char)88);
+                            break;
                         default:
                             System.out.print("Unknow caractere");
                             writer.write('x');
@@ -117,6 +134,7 @@ public class Save {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/player.txt"));
             writer.write(player.x + " " + player.y +" " );
+            writer.write(screen.getWorld().getPtSpawn().x + " " + screen.getWorld().getPtSpawn().y +" " );
             for (int i = 0; i<player.getGroupCreature().size();i++){
                 writer.write(Integer.toString(player.getGroupCreature().get(i).getPointDeVieMax()) + " ");
                 writer.write(Integer.toString(player.getGroupCreature().get(i).getPointDeVie())+ " ");
@@ -135,6 +153,7 @@ public class Save {
         }
 
     }
+
 
     public void saveMonster(){
         try {
@@ -190,4 +209,46 @@ public class Save {
             e.printStackTrace();
         }
     }
+
+//    public void saveItemVillage(){
+//        try {
+//            BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/itemVillage.txt"));
+//            Item[][] item = screen.getVillage().getItems();
+//            for (int i = 0; i < item.length; i++) {
+//                for (int j = 0; j < item[i].length; j++) {
+//                    if(item[i][j]!=null) {
+//                        switch (item[i][j].getGlyph()) {
+//                            case (char) 197:
+//                                writer.write(1  + " " + i + " " + j + " " + 197 + " " + item[i][j].getName() + " " + item[i][j].getDammage()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+//                                break;
+//                            case (char) 179:
+//                                writer.write(1 + " " + i + " " + j + " " + 179 + " " + item[i][j].getName() + " " + item[i][j].getDammage() + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+//                                break;
+//                            case (char) 225:
+//                                writer.write(4 + " " + i + " " + j + " " + 225 + " " + item[i][j].getName() + " " + item[i][j].getEffet()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+//                                break;
+//                            case (char) 190:
+//                                writer.write(2 + " " + i + " " + j + " " + 190 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+//                                break;
+//                            case (char) 200:
+//                                writer.write(3 + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + item[i][j].getValeur() + " " + "false") ;
+//                                break;
+//                            case  (char) 94:
+//                                writer.write(5 + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+//                                break;
+//                            case (char) 186:
+//                                writer.write(6 + i + " " + j + " " + 200 + " " + item[i][j].getName() + " " + item[i][j].getDefense()  + " " + item[i][j].getColor().getGreen() + " " + item[i][j].getColor().getBlue() + " " + item[i][j].getColor().getRed() + " " + item[i][j].getValeur() + " " + "false") ;
+//                                break;
+//                            default:
+//                                break;
+//                        }
+//                        writer.newLine();
+//                    }
+//                }
+//            }
+//            writer.close();
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
+//    }
 }

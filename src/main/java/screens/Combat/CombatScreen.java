@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
+import static java.lang.System.setOut;
 import static screens.Combat.AffichageStat.*;
 import static screens.Combat.GestionTour.testJoueurTour;
 import static screens.Combat.TestMort.*;
@@ -28,12 +29,14 @@ public class CombatScreen implements Screen {
     private int numero;
     private int nextPlayer;
     private int nextCrea;
+    private PlayScreen screen;
 
-    public CombatScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world, int numero) {
+    public CombatScreen(ArrayList<GroupCreature> groupCreature, GroupCreature player, World world, int numero, PlayScreen screen) {
         position = 0;
         nextPlayer = -1;
         nextCrea = -1;
         this.world=world;
+        this.screen = screen;
         this.groupCreature = groupCreature;
         this.player = player;
         this.numero = numero;
@@ -109,11 +112,11 @@ public class CombatScreen implements Screen {
                         nextPlayer = -1;
                         testMort(creature,choix);
                         if(testMortGroupe(groupCreature,numero)) {
-                            return new PlayScreen(world, player, groupCreature);
+                            return new PlayScreen(world, screen.getVillage(), player, groupCreature);
                         }
                         return this;
                     case 1:
-                        return new PlayScreen(world, player, groupCreature);
+                        return new PlayScreen(world, screen.getVillage(), player, groupCreature);
                 }
             case KeyEvent.VK_ESCAPE:
                 exit(1);
