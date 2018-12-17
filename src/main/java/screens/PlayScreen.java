@@ -96,7 +96,7 @@ public class PlayScreen implements Screen {
 	public void displayOutput(AsciiPanel terminal) {
 		terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
 		terminal.clear();
-		int range =10;
+		int range =4;
 
 		int left = getScrollX();
 		int top = getScrollY();
@@ -139,17 +139,51 @@ public class PlayScreen implements Screen {
 	}
 
 	private void displayTiles(AsciiPanel terminal, int left, int top,int playerx,int playery, int range) {
+		int indicexm,indicexma,indiceym,indiceyma;
 		for (int x = 0; x < screenWidth; x++){
 			for (int y = 0; y < screenHeight; y++){
+				indicexm = playerx-range-left;
+				indicexma =playerx+range-left;
+				indiceym=playery-range-top;
+				indiceyma=playery+range-top;
 				int wx = x + left;
 				int wy = y + top;
-				if (x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top){
+				//System.out.println(indiceym);
+				for (int f=playerx-1;f>indicexm;f--){
+					if (world.tile(f,playery)==Tile.WALLUNKNOW || world.tile(f,playery)==Tile.WALL){
+						indicexm = f-1;
+						break;
+					}
+				}
+				for (int f=playerx+1;f<indicexma;f++){
+					if (world.tile(f,playery)==Tile.WALLUNKNOW || world.tile(f,playery)==Tile.WALL){
+						indicexma = f+1;
+						break;
+					}
+				}
+				for (int f=playery-1;f>indiceym;f--){
+					if (world.tile(playerx,f)==Tile.WALLUNKNOW || world.tile(playerx,f)==Tile.WALL) {
+						indiceym = f - 1 - top;
+					}
+						break;
+					}
+
+				for (int f=playery+1;f<indiceyma;f++){
+					if (world.tile(playerx,f)==Tile.WALLUNKNOW || world.tile(playerx,f)==Tile.WALL){
+						indiceyma = f + 1 - top;
+						break;
+					}
+				}
+				//System.out.println(indiceym);
+				if (x>indicexm && x<indicexma && y>indiceym && y<indiceyma){
+
 					for(int l = 0 ; l<groupCreature.size();l++){
-						if ((groupCreature.get(l).x-left)>playerx-range-left && (groupCreature.get(l).y-top)>playery-range-top
-								&& (groupCreature.get(l).x-left)<playerx+range-left && (groupCreature.get(l).y-top)<playery+range-top){
+						if ((groupCreature.get(l).x-left)>indicexm && (groupCreature.get(l).y-top)>indiceym
+								&& (groupCreature.get(l).x-left)<indicexma && (groupCreature.get(l).y-top)<indiceyma){
 							terminal.write(groupCreature.get(l).glyph(), groupCreature.get(l).x- left, groupCreature.get(l).y -top , groupCreature.get(l).getColor());
 						}
 					}
+
 					if (world.tile(wx,wy)==Tile.WALLUNKNOW || world.tile(wx,wy)==Tile.WALLALREADYVISITED){
 						world.tiles[wx][wy]=Tile.WALL;
 						terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
@@ -190,16 +224,16 @@ public class PlayScreen implements Screen {
 					else{
 							terminal.write(world.glyph(wx, wy), x, y, world.color(wx, wy));
 					}
-				} else if (world.tile(wx,wy)==Tile.WALL && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+				} else if (world.tile(wx,wy)==Tile.WALL && !(x>indicexm && x<indicexma && y>indiceym && y<indiceyma)){
 					world.tiles[wx][wy]=Tile.WALLALREADYVISITED;
 					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
-				} else if (world.tile(wx,wy)==Tile.EXIT && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+				} else if (world.tile(wx,wy)==Tile.EXIT && !(x>indicexm && x<indicexma && y>indiceym && y<indiceyma)){
 					world.tiles[wx][wy]=Tile.EXITALREADYVISITED;
 					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
-				} else if (world.tile(wx,wy)==Tile.FLOOR && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+				} else if (world.tile(wx,wy)==Tile.FLOOR && !(x>indicexm && x<indicexma && y>indiceym && y<indiceyma)){
 					world.tiles[wx][wy]=Tile.FLOORALREADYVISITED;
 					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
-				} else if (world.tile(wx,wy)==Tile.ITEMS && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+				} else if (world.tile(wx,wy)==Tile.ITEMS && !(x>indicexm && x<indicexma && y>indiceym && y<indiceyma)){
 					world.tiles[wx][wy]=Tile.ITEMALREADYVISITED;
 					world.item(wx,wy).setColor(Color.gray);
 					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));

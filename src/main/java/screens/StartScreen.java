@@ -5,6 +5,9 @@ import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.time.*;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import asciiPanel.AsciiPanel;
 
@@ -13,7 +16,7 @@ import static java.lang.System.exit;
 public class StartScreen implements Screen {
 
     @Override
-    public void displayOutput(AsciiPanel terminal) {
+    public void displayOutput(final AsciiPanel terminal) {
 
         try {
             String str;
@@ -26,7 +29,7 @@ public class StartScreen implements Screen {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        terminal.writeCenter("Press Start to play", 40, new Color(255, 255, 255));
+        terminal.writeCenter("Press start to play", 41, new Color(255, 255, 255));
     }
 
     @Override

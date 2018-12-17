@@ -75,22 +75,29 @@ public class CombatScreen implements Screen {
                 player.getGroupCreature().get(i).updateTour();
             }
         }
-        terminal.setDefaultBackgroundColor(new Color(125,125,125));
-        terminal.clear();
-        afficheMenu(terminal, this);
-        for (int y = 0; y < 40; y++) {
-            terminal.write('#', 100, y, new Color(16,21,78)); // Color(61,50,5)
+        if (player.getGroupCreature().get(0).getPointDeVie()<=0){
+            terminal.clear();
+            terminal.writeCenter("You Die.", 3, Color.red);
+            terminal.writeCenter("Press [ENTER] to continue",38, Color.black);
         }
-        for (int i = 0; i < creature.getGroupCreature().size(); i++) {
-            terminal.write(creature.getGroupCreature().get(i).getName(), 9 + 30 * i, 7,
-                    creature.getGroupCreature().get(i).getColor());
+        else {
+            terminal.setDefaultBackgroundColor(new Color(125, 125, 125));
+            terminal.clear();
+            afficheMenu(terminal, this);
+            for (int y = 0; y < 40; y++) {
+                terminal.write('#', 100, y, new Color(16, 21, 78)); // Color(61,50,5)
+            }
+            for (int i = 0; i < creature.getGroupCreature().size(); i++) {
+                terminal.write(creature.getGroupCreature().get(i).getName(), 9 + 30 * i, 7,
+                        creature.getGroupCreature().get(i).getColor());
+            }
+            for (int i = 0; i < player.getGroupCreature().size(); i++) {
+                terminal.write(player.getGroupCreature().get(i).getName(), 9 + 30 * i, 23,
+                        player.getGroupCreature().get(i).getColor());
+            }
+            affichePV(terminal, creature, player);
+            afficheFleche(terminal, choix);
         }
-        for (int i = 0; i < player.getGroupCreature().size(); i++) {
-            terminal.write(player.getGroupCreature().get(i).getName(), 9 + 30 * i, 23,
-                    player.getGroupCreature().get(i).getColor());
-        }
-        affichePV(terminal, creature, player);
-        afficheFleche(terminal, choix);
     }
 
     public static void afficheMenu(AsciiPanel terminal,CombatScreen menu){
@@ -104,6 +111,9 @@ public class CombatScreen implements Screen {
             case KeyEvent.VK_ENTER:
                 switch (this.position) {
                     case 0:
+                        if (mortPersonnage(player)){
+                            return new LoseScreen(player);
+                        }
                         player.getGroupCreature().get(nextPlayer).dealDamageTo(
                                 creature.getGroupCreature().get(choix));
                         nextPlayer = -1;
@@ -138,9 +148,9 @@ public class CombatScreen implements Screen {
                 }
                 return this;
         }
-        if(player.isDead()){
+        /*if(player.isDead()){
             return new LoseScreen();
-        }
+        }*/
         return this;
     }
 
