@@ -287,7 +287,7 @@ public class InventoryScreen implements Screen {
             case KeyEvent.VK_I:
                 if (this.inVillage == true){
                     return new VillageScreen(villageScreen ,this.screen);
-                } else return new PlayScreen(world, player, groupCreature);
+                } else return new PlayScreen(world, screen.getVillage(), player, groupCreature);
             case KeyEvent.VK_DOWN:
                 if (player.getGroupCreature().get(0).inventory().getSize() != 0) {
                     if (pos != (player.getGroupCreature().get(0).inventory().getIndiceMaxItem())) {

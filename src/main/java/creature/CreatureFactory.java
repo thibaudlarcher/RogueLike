@@ -13,28 +13,31 @@ public class CreatureFactory {
 
     public GroupCreature newPlayer(){
         //244 pied de biche
-        GroupCreature player = new GroupCreature(world, '@', AsciiPanel.green,
-                new Guerrier("Bob",20,1));
-        player.x = world.getPt().x;
-        player.y = world.getPt().y;
+        GroupCreature player = new GroupCreature(world, '@', AsciiPanel.green, new Guerrier("Bob",20,1));
+        player.x = world.getPositionPersonnageX();
+        player.y = world.getPositionPersonnageY();
         new PlayerAi(player);
         return player;
     }
 
     public GroupCreature newPlayerVillage(GroupCreature player){
         //244 pied de biche
-        GroupCreature playerVillage = new GroupCreature(world, '@', AsciiPanel.green,
-                new Guerrier("Bob",20,1));
-        playerVillage.x = world.getPt().x;
-        playerVillage.y = world.getPt().y;
+        GroupCreature playerVillage = new GroupCreature(world, '@', AsciiPanel.green, new Guerrier("Bob",20,1));
+        playerVillage.x = world.getPtVillage().x;
+        playerVillage.y = world.getPtVillage().y;
         new PlayerAi(playerVillage);
+        for (int i = 0; i < player.getGroupCreature().get(0).inventory().getSizeMax(); i++){
+            if (player.getGroupCreature().get(0).inventory().get(i) != null) {
+                playerVillage.getGroupCreature().get(0).inventory().add(player.getGroupCreature().get(0).inventory().get(i));
+            }
+        }
         return playerVillage;
     }
 
 	/*public GroupCreature newBoss(){
 		GroupCreature player = new GroupCreature(world, (char)144, AsciiPanel.green);
-		player.x = world.getPt().x;
-		player.y = world.getPt().y;
+		player.x = world.getPtSpawn().x;
+		player.y = world.getPtSpawn().y;
 		new PlayerAi(player);
 		return player;
 	}*/
@@ -47,8 +50,8 @@ public class CreatureFactory {
     /*
 	public GroupCreature newFlyingMonster(){
 		GroupCreature player = new GroupCreature(world, (char)174, AsciiPanel.green);
-		player.x = world.getPt().x;
-		player.y = world.getPt().y;
+		player.x = world.getPtSpawn().x;
+		player.y = world.getPtSpawn().y;
 		new PlayerAi(player);
 		return player;
 	}

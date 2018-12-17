@@ -20,12 +20,15 @@ public class PlayScreen implements Screen {
 	private ArrayList<GroupCreature> groupCreature;
 	private int screenWidth;
 	private int screenHeight;
+	private World village;
+	private boolean inVillage;
 
 	public PlayScreen(){
 		screenWidth = 140;
 		screenHeight = 40;
+		inVillage = false;
 		createWorld();
-//		createVillage();
+		createVillage();
 
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		StuffFactory stuffFactory = new StuffFactory(world);
@@ -40,10 +43,12 @@ public class PlayScreen implements Screen {
 		}
 	}
 
-	public PlayScreen(World world, GroupCreature player,ArrayList<GroupCreature> groupCreature){
+	public PlayScreen(World world, World village, GroupCreature player,ArrayList<GroupCreature> groupCreature){
 		screenWidth = 140;
 		screenHeight = 40;
+		inVillage = false;
 		this.world = world;
+		this.village = village;
 		this.player = player;
 		this.groupCreature = groupCreature;
 	}
@@ -51,19 +56,23 @@ public class PlayScreen implements Screen {
 	public PlayScreen(PlayScreen screen){
 		screenWidth = 140;
 		screenHeight = 40;
+		inVillage = false;
 		this.world = screen.getWorld();
+		this.village = screen.getVillage();
 		this.player = screen.getPlayer();
 		this.groupCreature = screen.getGroupCreature();
-		this.player.x = world.getPositionPersonnageX();
-		this.player.y = world.getPositionPersonnageY();
+		this.player.x = world.getPtSpawn().x;
+		this.player.y = world.getPtSpawn().y;
 		player.setWorld(this.world);
 	}
 
-	public PlayScreen(GroupCreature player){
+	public PlayScreen(GroupCreature player, World village){
         screenWidth = 140;
         screenHeight = 40;
+        inVillage = false;
         createWorld();
-        this.player= player;
+        this.player = player;
+        this.village = village;
         int nv = this.player.getGroupCreature().get(0).getNiveau();
         nv++;
         this.player.getGroupCreature().get(0).setNiveau(nv);
@@ -87,9 +96,7 @@ public class PlayScreen implements Screen {
 		world = new WorldBuilder(100	, 100).build();
 	}
 
-	/*private void createVillage(){
-		village = new WorldBuilder(100	, 100).buildVillage();
-	}*/
+	private void createVillage(){ village = new WorldBuilder(100	, 100).buildVillage(); }
 
 	private void createItems(StuffFactory factory) {
 		for (int i = 0; i < 5; i++) {
@@ -112,7 +119,7 @@ public class PlayScreen implements Screen {
 	public void displayOutput(AsciiPanel terminal) {
 		terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
 		terminal.clear();
-		int range =10;
+		int range = 10;
 
 		int left = getScrollX();
 		int top = getScrollY();
@@ -235,13 +242,14 @@ public class PlayScreen implements Screen {
 	private Screen testRencontre(){
 		for(int i = 0; i < groupCreature.size();i++) {
 			if (groupCreature.get(i).isNextTo(player.getX(),player.getY())) {
-				return new CombatScreen(groupCreature, player, world, i);
+				return new CombatScreen(groupCreature, player, world, i, this);
 			}
 		}
 		if (world.tile(player.x,player.y)==Tile.EXIT){
-			return new PlayScreen(player);
+			return new PlayScreen(player, village);
 		} else if (world.tile(player.x,player.y)==Tile.VILLAGEPORTAL){
-			return new VillageScreen(this);
+			inVillage = true;
+			return new VillageScreen(this, village);
 		}
 		return this;
 	}
@@ -256,6 +264,7 @@ public class PlayScreen implements Screen {
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE:
+				System.out.println("pt x : " +world.getPt().x + " pt y : " + world.getPt().y);
 				return new MenuScreen(this);
 			case KeyEvent.VK_ENTER:
 				return new WinScreen();
@@ -309,6 +318,9 @@ public class PlayScreen implements Screen {
 		return groupCreature;
 	}
 
-	/*public World getVillage(){ return village; }*/
+	public World getVillage(){ return village; }
 
+	public boolean getInVillage(){ return inVillage; }
+
+	public void setInVillage(boolean b){ inVillage = b; }
 }

@@ -11,12 +11,16 @@ public class World {
 	private ArrayList<Point> itemPointList;
 	private int width;
 	private Point pt;
+	private Point ptVillage;
 	public int width() { return width; }
 	private ArrayList<Point> listMonster;
 	private int height;
 	public int height() { return height; }
-	
-	public World(Tile[][] tiles, Point pt, ArrayList<Point> itemPointList,ArrayList<Point> listMonster){
+	private Point ptSpawn;
+	public Point getPtSpawn(){ return ptSpawn; }
+
+	//World pour le build du world
+	public World(Tile[][] tiles, Point pt, Point ptSpawn, ArrayList<Point> itemPointList,ArrayList<Point> listMonster){
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
@@ -24,25 +28,34 @@ public class World {
 		this.itemPointList = itemPointList;
 		this.items = new Item[width+40][height];	// --> on prend le x max entre screenWidth et width et y max entre screenHeight et height
 		this.listMonster = listMonster;
+		this.ptSpawn = ptSpawn;
 	}
 
-	public World(Tile[][] tiles, Point pt,ArrayList<Point> listMonster){
+	//World pour le build du village
+	public World(Tile[][] tiles, Point pt, ArrayList<Point> listMonster){
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
-		this.pt = pt;
-		this.items = new Item[width+40][height];	// --> on prend le x max entre screenWidth et width et y max entre screenHeight et height
+		this.ptVillage = pt;
+		this.items = new Item[width+40][height];
 		this.listMonster = listMonster;
 	}
 
-	public World(Tile[][] tiles, Point pt, Item itemList[][],ArrayList<Point> listMonster){
+	//World pour load le world
+	public World(Tile[][] tiles, Point pt, Point ptSpawn, Item itemList[][], ArrayList<Point> listMonster){
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
 		this.pt = pt;
 		this.items = itemList;
 		this.listMonster = listMonster;
+		this.ptSpawn = ptSpawn;
 	}
+
+//	public World(Item itemList[][], ArrayList<Point> listMonster){
+//		this.items = itemList;
+//		this.listMonster = listMonster;
+//	}
 
 	public Tile tile(int x, int y){
 		if (x < 0 || x >= width || y < 0 || y >= height)
@@ -80,12 +93,12 @@ public class World {
 		}
 	}
 
-	public int getPositionPersonnageX(){
-		return pt.x;
-	}
+	public int getPositionPersonnageX(){ return pt.x; }
+
 	public int getPositionPersonnageY(){
 		return pt.y;
 	}
+
 	public Point getPt() {
 		return pt;
 	}
@@ -93,6 +106,14 @@ public class World {
 	public void setPt(Point pt) {
 		this.pt = pt;
 	}
+
+	public int getPositionPersoVillageX(){ return  ptVillage.x; }
+
+	public int getPositionPersoVillageY(){ return ptVillage.y; }
+
+	public Point getPtVillage(){ return ptVillage; }
+
+	public void setPtVillage(Point pt){ this.ptVillage = pt; }
 
 	public Item item(int x, int y){
 		return items[x][y];

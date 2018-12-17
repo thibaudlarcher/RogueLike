@@ -95,7 +95,7 @@ public class DropItemScreen implements Screen {
             case KeyEvent.VK_ESCAPE:
                 if (inVillage == true){
                     return new VillageScreen(villageScreen, screen);
-                } else return new PlayScreen(world, player, groupCreature);
+                } else return new PlayScreen(world, screen.getVillage(), player, groupCreature);
             case KeyEvent.VK_D: dropItem();
                 return this;
         }

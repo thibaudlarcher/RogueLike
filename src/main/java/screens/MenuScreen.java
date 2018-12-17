@@ -60,8 +60,8 @@ public class MenuScreen implements Screen {
             case KeyEvent.VK_ENTER:
                 switch (this.choix){
                     case 0 :
-                         new Save(screen);
-                         break;
+                        new Save(screen);
+                        break;
                     case 1 :
                         if (inVillage == true){
                             return new StatScreen(villageScreen, screen);
@@ -73,7 +73,7 @@ public class MenuScreen implements Screen {
                     case 3 :
                         if (inVillage == true){
                             return new VillageScreen(villageScreen, screen);
-                        } else return new PlayScreen(world,player,groupCreature);
+                        } else return new PlayScreen(world, screen.getVillage(), player, groupCreature);
                     case 4 :
                         if (inVillage == true){
                             return new HelpScreen(villageScreen, screen);
@@ -84,7 +84,7 @@ public class MenuScreen implements Screen {
             case KeyEvent.VK_ESCAPE :
                 if (inVillage == true){
                     return new VillageScreen(villageScreen, screen);
-                } else return new PlayScreen(world,player,groupCreature);
+                } else return new PlayScreen(world, screen.getVillage(), player, groupCreature);
             case KeyEvent.VK_DOWN:
                 choix = (choix+1)%6;
                 break;

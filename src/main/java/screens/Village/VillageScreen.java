@@ -8,7 +8,6 @@ import screens.*;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
 import world.World;
-import world.WorldBuilder;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
@@ -21,16 +20,14 @@ public class VillageScreen implements Screen {
     private PlayScreen playscreen;
 
 
-    public VillageScreen(PlayScreen screen){
+    public VillageScreen(PlayScreen screen, World village){
         screenWidth = 140;
         screenHeight = 40;
         this.playscreen = screen;
-        createVillage();
+        this.village = village;
 
         CreatureFactory creatureFactory = new CreatureFactory(village);
-        this.playerVillage = screen.getPlayer();
-        this.playerVillage.x = village.getPositionPersonnageX();
-        this.playerVillage.y = village.getPositionPersonnageY();
+        this.playerVillage = creatureFactory.newPlayerVillage(screen.getPlayer());
         this.playerVillage.setWorld(village);
     }
 
@@ -40,10 +37,6 @@ public class VillageScreen implements Screen {
         this.playscreen = screen;
         this.village = villageScreen.getVillage();
         this.playerVillage = villageScreen.getPlayer();
-    }
-
-    private void createVillage(){
-        village = new WorldBuilder(100	, 100).buildVillage();
     }
 
     public int getScrollX() { return Math.max(0, Math.min(playerVillage.x - screenWidth / 2, village.width() - screenWidth)); }
@@ -128,7 +121,7 @@ public class VillageScreen implements Screen {
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
         terminal.clear();
-        int range =10;
+        int range = 10;
 
         int left = getScrollX();
         int top = getScrollY();
@@ -160,8 +153,10 @@ public class VillageScreen implements Screen {
 //                return new CombatScreen(groupCreature, playerVillage, village, i);
 //            }
 //        }
-        if (village.tile(playerVillage.x,playerVillage.y)==Tile.EXIT){
-                return new PlayScreen(this.playscreen);
+        if (village.tile(playerVillage.x, playerVillage.y)==Tile.EXIT){
+            playscreen.setInVillage(false);
+            GroupCreature player = playscreen.getPlayer();
+            return new PlayScreen(this.playscreen);
         }
         return this;
     }

@@ -62,7 +62,7 @@ public class StatScreen implements Screen {
             case KeyEvent.VK_C:
                 if (inVillage == true){
                     return new VillageScreen(villageScreen, screen);
-                } else return new PlayScreen(world,player,groupCreature);
+                } else return new PlayScreen(world, screen.getVillage(), player, groupCreature);
             case KeyEvent.VK_R:
                 if (inVillage == true){
                     return new MenuScreen(villageScreen, screen);
