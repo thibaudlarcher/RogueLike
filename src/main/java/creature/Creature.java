@@ -107,6 +107,12 @@ public abstract class Creature {
             this.setTour(0);
         }
     }
+    public void dealDamageToMagic(Creature Crea){
+        if (Crea.getDefense() - this.getAttaque() < 0) {
+            Crea.setPointDeVie((Crea.getPointDeVie() + Crea.getDefense()) - this.getAttaque());
+            this.setTour(0);
+        }
+    }
 
     public boolean isDead() {
         if(this.getPointDeVie() < 0) return true;

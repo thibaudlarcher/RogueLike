@@ -1,9 +1,12 @@
 package creature;
 import asciiPanel.AsciiPanel;
 import creature.PJ.Guerrier;
+import creature.PJ.Mage;
+import creature.PJ.PJ;
 import world.*;
 import player.*;
 import monster.*;
+
 public class CreatureFactory {
     private World world;
 
@@ -11,11 +14,12 @@ public class CreatureFactory {
         this.world = world;
     }
 
-    public GroupCreature newPlayer(){
+    public GroupCreature newPlayer(PJ choix){
         //244 pied de biche
-        GroupCreature player = new GroupCreature(world, '@', AsciiPanel.green, new Guerrier("Bob",20,1));
-        player.x = world.getPositionPersonnageX();
-        player.y = world.getPositionPersonnageY();
+        //PJ choice = new Mage("bob",15,10);
+        GroupCreature player = new GroupCreature(world, choix.glyph, choix.color, choix);
+        player.x = world.getPt().x;
+        player.y = world.getPt().y;
         new PlayerAi(player);
         return player;
     }

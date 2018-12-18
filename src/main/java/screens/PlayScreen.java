@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
 import Tiles.Tile;
 import creature.*;
+import creature.PJ.PJ;
 import object.StuffFactory;
 import screens.Combat.CombatScreen;
 import screens.Item.InventoryScreen;
@@ -23,7 +24,7 @@ public class PlayScreen implements Screen {
 	private World village;
 	private boolean inVillage;
 
-	public PlayScreen(){
+	public PlayScreen(PJ choix){
 		screenWidth = 140;
 		screenHeight = 40;
 		inVillage = false;
@@ -32,7 +33,7 @@ public class PlayScreen implements Screen {
 
 		CreatureFactory creatureFactory = new CreatureFactory(world);
 		StuffFactory stuffFactory = new StuffFactory(world);
-		player = creatureFactory.newPlayer();
+		player = creatureFactory.newPlayer(choix);
 		createItems(stuffFactory);
 
 		groupCreature = new ArrayList<GroupCreature>();
@@ -300,7 +301,7 @@ public class PlayScreen implements Screen {
 	private Screen testRencontre(){
 		for(int i = 0; i < groupCreature.size();i++) {
 			if (groupCreature.get(i).isNextTo(player.getX(),player.getY())) {
-				return new CombatScreen(groupCreature, player, world, i, this);
+				return new CombatScreen(groupCreature, player, world, village, i, this);
 			}
 		}
 		if (world.tile(player.x,player.y)==Tile.EXIT){

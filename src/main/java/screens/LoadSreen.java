@@ -2,7 +2,6 @@ package screens;
 
 import asciiPanel.AsciiPanel;
 import io.LoadSave;
-import io.Save;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -30,14 +29,14 @@ public class LoadSreen implements Screen{
             case KeyEvent.VK_ENTER:
                 switch (this.choix){
                     case 0 :
-                        return new PlayScreen();
+                        return new PersonnageChoice();
                     case 1 :
                         return new LoadSave().Test();
                     case 2 :
                          exit(0);
                 }
-            case KeyEvent.VK_ESCAPE :
-                return new PlayScreen();
+            /*case KeyEvent.VK_ESCAPE :
+                return new PlayScreen();*/
             case KeyEvent.VK_DOWN:
                 choix = (choix+1)%3;
                 break;
