@@ -81,6 +81,14 @@ public abstract class Creature {
         this.attaque = attaque;
     }
 
+    protected int magicattaque;
+    public int getmagicattaque() {
+        return magicattaque;
+    }
+    public void setmagicattaque(int magicattaque) {
+        this.magicattaque = magicattaque;
+    }
+
     public void modifAttaque(int modif){
         this.attaque = this.attaque + modif;
     }
@@ -108,8 +116,8 @@ public abstract class Creature {
         }
     }
     public void dealDamageToMagic(Creature Crea){
-        if (Crea.getDefense() - this.getAttaque() < 0) {
-            Crea.setPointDeVie((Crea.getPointDeVie() + Crea.getDefense()) - this.getAttaque());
+        if (Crea.getDefense() - this.getmagicattaque() < 0) {
+            Crea.setPointDeVie((Crea.getPointDeVie() + Crea.getDefense()) - this.getmagicattaque());
             this.setTour(0);
         }
     }

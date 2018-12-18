@@ -117,24 +117,52 @@ public class CombatScreen implements Screen {
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_ENTER:
-                switch (this.position) {
-                    case 0:
-                        if (mortPersonnage(player)){
-                            return new LoseScreen(player);
-                        }
-                        player.getGroupCreature().get(nextPlayer).dealDamageTo(
-                                creature.getGroupCreature().get(choix));
-                        nextPlayer = -1;
-                        testMort(creature,choix);
-                        if(testMortGroupe(groupCreature,numero)) {
-                            return new PlayScreen(world, screen.getVillage(), player, groupCreature);
-                        }
-                        return this;
-                    case 1 :
-                        player.getGroupCreature().get(nextPlayer).dealDamageTo(
-                                creature.getGroupCreature().get(choix));
-                    case 2:
-                        return new PlayScreen(world, village, player, groupCreature);
+                if (player.getGroupCreature().get(0).getName()=="Mage") {
+                    switch (this.position) {
+                        case 0:
+                            if (mortPersonnage(player)) {
+                                return new LoseScreen(player);
+                            }
+                            player.getGroupCreature().get(nextPlayer).dealDamageTo(
+                                    creature.getGroupCreature().get(choix));
+                            nextPlayer = -1;
+                            testMort(creature, choix);
+                            if (testMortGroupe(groupCreature, numero)) {
+                                return new PlayScreen(world, player, groupCreature);
+                            }
+                            return this;
+                        case 2:
+                            if (mortPersonnage(player)) {
+                                return new LoseScreen(player);
+                            }
+                            player.getGroupCreature().get(nextPlayer).dealDamageToMagic(
+                                    creature.getGroupCreature().get(choix));
+                            nextPlayer = -1;
+                            testMort(creature, choix);
+                            if (testMortGroupe(groupCreature, numero)) {
+                                return new PlayScreen(world, player, groupCreature);
+                            }
+                            return this;
+                        case 1:
+                            return new PlayScreen(world, player, groupCreature);
+                    }
+                }else {
+                    switch (this.position) {
+                        case 0:
+                            if (mortPersonnage(player)) {
+                                return new LoseScreen(player);
+                            }
+                            player.getGroupCreature().get(nextPlayer).dealDamageTo(
+                                    creature.getGroupCreature().get(choix));
+                            nextPlayer = -1;
+                            testMort(creature, choix);
+                            if (testMortGroupe(groupCreature, numero)) {
+                                return new PlayScreen(world, player, groupCreature);
+                            }
+                            return this;
+                        case 1:
+                            return new PlayScreen(world, player, groupCreature);
+                    }
                 }
             case KeyEvent.VK_ESCAPE:
                 exit(1);
@@ -159,12 +187,21 @@ public class CombatScreen implements Screen {
                 }
                 return this;*/
             case KeyEvent.VK_DOWN:
-                position = (position+1)%3;
+                if (player.getGroupCreature().get(0).getName()=="Mage"){
+                    position = (position+1)%3;
+                }else position = (position+1)%2;
                 break;
             case KeyEvent.VK_UP:
-                position = (position-1)%3;
-                if (position<0){
-                    position = (position+3);
+                if (player.getGroupCreature().get(0).getName()=="Mage"){
+                    position = (position-1)%3;
+                    if (position<0){
+                        position = (position+3);
+                    }
+                }else{
+                    position = (position-1)%2;
+                    if (position<0){
+                        position = (position+2);
+                    }
                 }
                 break;
         }

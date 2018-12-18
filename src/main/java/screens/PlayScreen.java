@@ -144,7 +144,7 @@ public class PlayScreen implements Screen {
 	public void displayOutput(AsciiPanel terminal) {
 		terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
 		terminal.clear();
-		int range = 4;
+		int range =4;
 
 		int left = getScrollX();
 		int top = getScrollY();

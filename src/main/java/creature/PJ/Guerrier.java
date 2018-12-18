@@ -13,6 +13,7 @@ public class Guerrier extends PJ{
         vitesse = 6;
         tour = 0;
         this.attaque = attaque;
+        this.magicattaque = 0;
         glyph = 'G';
         this.inventory = new Inventory(10);
         this.defense = 0;
