@@ -26,7 +26,14 @@ public class CreatureFactory {
 
     public GroupCreature newPlayerVillage(GroupCreature player){
         //244 pied de biche
-        GroupCreature playerVillage = new GroupCreature(world, '@', AsciiPanel.green, new Guerrier("Bob",20,1));
+        GroupCreature playerVillage;
+        if (player.glyph() == 'M') {
+            System.out.println("Mage");
+             playerVillage = new GroupCreature(world, player.glyph(), player.getColor(), new Mage(player.getGroupCreature().get(0).getName(), player.getGroupCreature().get(0).getPointDeVieMax(), player.getGroupCreature().get(0).getAttaque(), player.getGroupCreature().get(0).getmagicattaque()));
+        } else {
+            System.out.println("Guerrier");
+             playerVillage = new GroupCreature(world, player.glyph(), player.getColor(), new Guerrier(player.getGroupCreature().get(0).getName(), player.getGroupCreature().get(0).getPointDeVieMax(), player.getGroupCreature().get(0).getAttaque()));
+        }
         playerVillage.x = world.getPtVillage().x;
         playerVillage.y = world.getPtVillage().y;
         new PlayerAi(playerVillage);
@@ -60,4 +67,9 @@ public class CreatureFactory {
 		return player;
 	}
 	*/
+
+    public GroupCreature newVillageois(int x, int y){
+        GroupCreature villageois = new GroupCreature(world, 'v', AsciiPanel.brightMagenta, x, y);
+        return villageois;
+    }
 }

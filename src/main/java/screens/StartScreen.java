@@ -10,6 +10,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 import asciiPanel.AsciiPanel;
+import screens.Village.VillageScreen;
 
 import static java.lang.System.exit;
 

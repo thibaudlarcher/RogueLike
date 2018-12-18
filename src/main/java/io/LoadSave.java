@@ -200,14 +200,6 @@ public class LoadSave {
                         //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
 
                         break;
-                    case "7" :
-                        itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
-                        items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemPierreDeTeleportation((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4]);
-                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
-
-                        break;
-
-
                 }
 
             }
@@ -217,51 +209,6 @@ public class LoadSave {
             error =1;
         }
     }
-
-//    private void loadItemVillage(){
-//        itemsvillage = new Item[width+40][height];
-//        itemPointList = new ArrayList<>();
-//        try{
-//            String str;
-//            BufferedReader fichier = new BufferedReader(new FileReader("src/main/resources/itemVillage.txt"));
-//            while ((str = fichier.readLine()) != null) {
-//                String sep[]= str.split(" ");
-//                switch (sep[0]){
-//                    case "1" :
-//                        itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
-//                        itemsvillage[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemArme((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
-//                        break;
-//                    case "2" :
-//                        itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
-//                        itemsvillage[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementArmure((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
-//                        break;
-//                    case "3" :
-//                        itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
-//                        itemsvillage[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementBotte((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
-//                        break;
-//                    case "4" :
-//                        itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
-//                        itemsvillage[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemPotion((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
-//                        break;
-//                    case "5" :
-//                        itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
-//                        itemsvillage[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementCasque((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
-//                        break;
-//                    case "6" :
-//                        itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
-//                        itemsvillage[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementPantalon((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
-//                        break;
-//
-//
-//
-//                }
-//
-//            }
-//            fichier.close();
-//        }catch (IOException e) {
-//            e.printStackTrace();
-//        }
-//    }
 
     private void loadPlayer(){
         try{
@@ -328,17 +275,6 @@ public class LoadSave {
                             else player.getGroupCreature().get(0).inventory().setPantalonEquipe(false);
 
                             break;
-                        case "7" :
-                            ItemPierreDeTeleportation itemPTP ;
-                            itemPTP = new ItemPierreDeTeleportation(sep[1].charAt(0), new Color(Integer.parseInt(sep[3]),Integer.parseInt(sep[4]),Integer.parseInt(sep[2])), sep[5]);
-                            player.getGroupCreature().get(0).pickupItem(itemPTP);
-                            if(sep[8].equals("true")) {
-                                player.getGroupCreature().get(0).inventory().setPantalonEquipe(true);
-                                itemPTP.setEquipe(true);
-                            }
-                            else player.getGroupCreature().get(0).inventory().setPantalonEquipe(false);
-
-                            break;
                     }
                 } else{
                     pt = new Point(Integer.parseInt(sep[0]),Integer.parseInt(sep[1]));
@@ -363,7 +299,8 @@ public class LoadSave {
                     player.getGroupCreature().get(0).setPointDeVieMax(Integer.parseInt(sep[4]));
                     player.getGroupCreature().get(0).setName(sep[8]);
                     player.getGroupCreature().get(0).setGlyph(sep[7].charAt(0));
-                    player.getGroupCreature().get(0).setNiveau(Integer.parseInt(sep[12]));
+                    player.getGroupCreature().get(0).setNiveau(Integer.parseInt(sep[13]));
+                    player.getGroupCreature().get(0).inventory().setMonnaie(Integer.parseInt(sep[9]));
                 }
             }
             fichier.close();

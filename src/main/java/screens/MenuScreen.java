@@ -60,7 +60,9 @@ public class MenuScreen implements Screen {
             case KeyEvent.VK_ENTER:
                 switch (this.choix){
                     case 0 :
-                        new Save(screen);
+                        if (inVillage == true){
+                            new Save(screen, villageScreen);
+                        } else new Save(screen);
                         break;
                     case 1 :
                         if (inVillage == true){
