@@ -25,7 +25,7 @@ public class LoseScreen implements Screen {
 	}
 
 	public void restartchoice(){
-		player.getGroupCreature().get(0).setPointDeVie(20);
+		player.getGroupCreature().get(0).setPointDeVie(player.getGroupCreature().get(0).getPointDeVieMax());
 		player.getGroupCreature().get(0).inventory().removeAllItem();
 		player.getGroupCreature().get(0).inventory().setArmeEquipe(false);
 		player.getGroupCreature().get(0).inventory().setArmureEquipe(false);

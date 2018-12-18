@@ -27,10 +27,11 @@ public class StatScreen implements Screen {
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
-        terminal.writeCenter("Stats", 5,new Color(255, 255, 255));
-        //System.out.println(terminal.getWidth());
-        for (int var=0;var<140-1;var++){
-            terminal.write("- ", var, 3, white);
+        terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
+        terminal.clear();
+        for (int j = 0; j < 140; j++){
+            terminal.write((char) 196, j, 4, Color.WHITE);
+            j++;
         }
         terminal.writeCenter("Point de vie : "+player.getGroupCreature().get(0).getPointDeVie()+"/"+
                 player.getGroupCreature().get(0).getPointDeVieMax(),10,Color.white);
@@ -38,6 +39,7 @@ public class StatScreen implements Screen {
         terminal.writeCenter("Point d'attaque : "+player.getGroupCreature().get(0).getAttaque(),15,Color.white);
         terminal.writeCenter("Defense : "+ player.getGroupCreature().get(0).getDefense(), 20, Color.WHITE);
         terminal.writeCenter("Vitesse : "+player.getGroupCreature().get(0).getVitesse(),25,Color.white);
+        terminal.writeCenter("Magic attaque : "+player.getGroupCreature().get(0).getmagicattaque(),30,Color.white);
 
         terminal.write("Menu [R]", 0,40,Color.white);
         terminal.write("Jeux [ESC]", 130,40,Color.white);

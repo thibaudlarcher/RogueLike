@@ -38,6 +38,8 @@ public class InventoryScreen implements Screen {
         Inventory currentInventory = player.getGroupCreature().get(0).inventory();
         terminal.writeCenter("INVENTORY", 1, Color.WHITE);
         terminal.writeCenter("Taille : " + joueur.inventory().getSize() + "/" + joueur.inventory().getSizeMax(),2,Color.white);
+        terminal.write("Point de vie : "+player.getGroupCreature().get(0).getPointDeVie()+"/"+player.getGroupCreature().get(0).getPointDeVieMax()
+                ,115,33,Color.white);
         for (int j = 0; j < 140; j++){
             terminal.write((char) 196, j, 4, Color.WHITE);
             j++;
@@ -169,7 +171,14 @@ public class InventoryScreen implements Screen {
                 if (currentInventory.getArmeEquipe() == false){
                     item.setEquipe(true);
                     currentInventory.setArmeEquipe(true);
-                    player.getGroupCreature().get(0).modifAttaque(item.getDammage());
+                    if (item.getName()=="baton" && player.getGroupCreature().get(0).getName() == "Mage"){
+                        player.getGroupCreature().get(0).modifAttaque(item.getDammage());
+                        player.getGroupCreature().get(0).setmagicattaque(item.getDammage()*2);
+                    }else if (item.getName()=="epee" && player.getGroupCreature().get(0).getName() == "Mage"){
+                        player.getGroupCreature().get(0).modifAttaque(item.getDammage());
+                        player.getGroupCreature().get(0).setmagicattaque(player.getGroupCreature().get(0).getmagicattaque()-3);
+                    }
+                    else player.getGroupCreature().get(0).modifAttaque(item.getDammage());
                     return new InventoryScreen(screen);
                 }
             } else if (item.getType() == "armure"){

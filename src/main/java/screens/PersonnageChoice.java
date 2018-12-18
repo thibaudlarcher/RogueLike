@@ -16,9 +16,9 @@ public class PersonnageChoice implements Screen {
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
-        terminal.writeCenter("Choix du personnage", 5,new Color(255, 255, 255));
-        terminal.writeCenter("Guerrier", 10,this.choix == 0 ? brightRed : white);
-        terminal.writeCenter("Mage", 15,this.choix == 1 ? brightRed : white );
+        terminal.writeCenter("Choix du personnage", 10,new Color(255, 255, 255));
+        terminal.writeCenter("Guerrier", 15,this.choix == 0 ? brightRed : white);
+        terminal.writeCenter("Mage", 20,this.choix == 1 ? brightRed : white );
     }
 
     @Override
@@ -27,9 +27,9 @@ public class PersonnageChoice implements Screen {
             case KeyEvent.VK_ENTER:
                 switch (this.choix){
                     case 0 :
-                        return new PlayScreen(new Guerrier("Guerrier",30,5));
+                        return new PlayScreen(new Guerrier("Guerrier",30,8));
                     case 1 :
-                        return new PlayScreen(new Mage("Mage",20,15));
+                        return new PlayScreen(new Mage("Mage",100,3,5));
                 }
             case KeyEvent.VK_DOWN:
                 choix = (choix+1)%2;
