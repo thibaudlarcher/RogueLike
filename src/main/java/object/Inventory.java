@@ -23,7 +23,7 @@ public class Inventory {
 
     private int monnaie;
     public int getMonnaie(){ return this.monnaie; }
-
+    public void setMonnaie(int monnaie){ this.monnaie = monnaie; }
     public void addMonnaie(int gain){ this.monnaie = this.monnaie + gain; }
     public void removeMonnaie(int prix){ this.monnaie = this.monnaie - prix; }
 
