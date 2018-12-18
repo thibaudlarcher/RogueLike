@@ -27,4 +27,9 @@ public class ItemPierreDeTeleportation extends Item {
     public int getEffet() {
         return 0;
     }
+
+    @Override
+    public String toString(){
+        return 7 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + " " + valeur + " " + equipe;
+    }
 }

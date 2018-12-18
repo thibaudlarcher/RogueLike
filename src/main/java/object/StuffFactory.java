@@ -53,7 +53,7 @@ public class StuffFactory {
 	}
 
 	public  Item newPierreTP(){
-		Item pierreTP = new ItemPierreDeTeleportation((char) 254, Color.black,"pierre de teleportation");
+		Item pierreTP = new ItemPierreDeTeleportation((char) 254, Color.black,"pierreDeTeleportation");
 		world.addItemAtLocation(pierreTP);
 		return pierreTP;
 	}

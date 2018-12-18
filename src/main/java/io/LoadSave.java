@@ -31,11 +31,13 @@ public class LoadSave {
     private int height;
     private World world;
     private World village;
+    private int error;
 
 
     public LoadSave(){
         this.width = 100;
         this.height = 100;
+        this.error = 0;
         loadTile();
         loadPlayer();
         loadItem();
@@ -54,8 +56,13 @@ public class LoadSave {
     }
 
     public PlayScreen Test(){
-        PlayScreen screen = new PlayScreen(world, village, player, groupCreature);
-        return screen;
+        if(error == 1){
+            System.err.println();
+            System.err.println();
+            System.err.println("        The new part started backup does not exist or is corrupt");
+            return new PlayScreen();
+        }
+        return new PlayScreen(world, village, player, groupCreature);
     }
 
     private void loadTile(){
@@ -65,83 +72,85 @@ public class LoadSave {
             int i = 0;
             BufferedReader fichier = new BufferedReader(new FileReader("src/main/resources/world.txt"));
             while ((str = fichier.readLine()) != null) {
-                for(int j = 0; j < str.length();j++){
+                for(int j = 0;j<str.length();j++){
                     switch (str.charAt(j)){
                         case '.':
-                            System.out.print('.');
-                            tiles[j][i] = Tile.FLOOR;
+                            //System.out.print('.');
+                            tiles[i][j] = Tile.FLOOR;
                             break;
                         case (char)177:
-                            System.out.print((char)177);
-                            tiles[j][i] = Tile.WALL;
+                            //System.out.print((char)177);
+                            tiles[i][j] = Tile.WALL;
                             break;
                         case 'o':
-                            System.out.print((char)244);
-                            tiles[j][i] = Tile.ITEMS;
+                            //System.out.print((char)244);
+                            tiles[i][j] = Tile.ITEMS;
                             break;
                         case (char)79:
-                            System.out.print((char)79);
-                            tiles[j][i] = Tile.EXIT;
+                            //System.out.print((char)79);
+                            tiles[i][j] = Tile.EXIT;
                             break;
-                        case (char)86:
-                            System.out.print((char)86);
-                            tiles[j][i] = Tile.VILLAGEPORTAL;
+                        case (char) 86:
+                            //System.out.print((char)79);
+                            tiles[i][j] = Tile.VILLAGEPORTAL;
                             break;
                         case 'x':
-                            System.out.print('x');
-                            tiles[j][i] = Tile.BOUNDS;
+                            //System.out.print('x');
+                            tiles[i][j] = Tile.BOUNDS;
                             break;
                         case (char)251:
-                            System.out.print((char)250);
-                            tiles[j][i] = Tile.FLOORALREADYVISITED;
+                            //System.out.print((char)250);
+                            tiles[i][j] = Tile.FLOORALREADYVISITED;
                             break;
                         case (char)178:
-                            System.out.print((char)177);
-                            tiles[j][i] = Tile.WALLUNKNOW;
+                            //System.out.print((char)177);
+                            tiles[i][j] = Tile.WALLUNKNOW;
                             break;
                         case (char)179:
-                            System.out.print((char)177);
-                            tiles[j][i] = Tile.WALLALREADYVISITED;
+                            //System.out.print((char)177);
+                            tiles[i][j] = Tile.WALLALREADYVISITED;
                             break;
                         case (char)80:
-                            System.out.print((char)79);
-                            tiles[j][i] = Tile.EXITUNKNOW;
-                            break;
-                        case (char)81:
-                            System.out.print((char)79);
-                            tiles[j][i] = Tile.EXITALREADYVISITED;
-                            break;
-                        case 'p':
-                            System.out.print('o');
-                            tiles[j][i] = Tile.ITEMSUNKNOW;
-                            break;
-                        case 'q':
-                            System.out.print('o');
-                            tiles[j][i] = Tile.ITEMALREADYVISITED;
-                            break;
-                        case (char)252:
-                            System.out.print((char)250);
-                            tiles[j][i] = Tile.FLOORUNKNOW;
+                            //System.out.print((char)79);
+                            tiles[i][j] = Tile.EXITUNKNOW;
                             break;
                         case (char)87:
-                            System.out.print((char)87);
-                            tiles[j][i] = Tile.VILLAGEPORTALUNKNOW;
+                            //System.out.print((char)79);
+                            tiles[i][j] = Tile.VILLAGEPORTALUNKNOW;
                             break;
                         case (char)88:
-                            System.out.print((char)88);
-                            tiles[j][i] = Tile.VILLAGEPORTALALREADYVISITED;
+                            //System.out.print((char)79);
+                            tiles[i][j] = Tile.VILLAGEPORTALALREADYVISITED;
+                            break;
+                        case (char)81:
+                            //System.out.print((char)79);
+                            tiles[i][j] = Tile.EXITALREADYVISITED;
+                            break;
+                        case 'p':
+                            //System.out.print('o');
+                            tiles[i][j] = Tile.ITEMSUNKNOW;
+                            break;
+                        case 'q':
+                            //System.out.print('o');
+                            tiles[i][j] = Tile.ITEMALREADYVISITED;
+                            //System.out.println("test");
+                            break;
+                        case (char)252:
+                            //System.out.print((char)250);
+                            tiles[i][j] = Tile.FLOORUNKNOW;
                             break;
                         default:
                             exit(1);
                     }
                 }
-                System.out.println();
+                //System.out.println();
                 i++;
             }
             //System.out.println(i);
             fichier.close();
         }catch (IOException e) {
             e.printStackTrace();
+            error =1;
         }
     }
 
@@ -157,28 +166,44 @@ public class LoadSave {
                     case "1" :
                         itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemArme((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //tem.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
                         break;
                     case "2" :
                         itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementArmure((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
                         break;
                     case "3" :
                         itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementBotte((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
                         break;
                     case "4" :
                         itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemPotion((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
                         break;
                     case "5" :
                         itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementCasque((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
                         break;
                     case "6" :
                         itemPointList.add(new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[1])));
                         items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemEquipementPantalon((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4], Integer.parseInt(sep[5]),Integer.parseInt(sep[9]));
-                        break;
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
 
+                        break;
+                    case "7" :
+                        itemPointList.add(new Point(Integer.parseInt(sep[1]),Integer.parseInt(sep[2])));
+                        items[Integer.parseInt(sep[1])][Integer.parseInt(sep[2])] = new ItemPierreDeTeleportation((char)Integer.parseInt(sep[3]), new Color(Integer.parseInt(sep[8]),Integer.parseInt(sep[6]),Integer.parseInt(sep[7])), sep[4]);
+                        //System.out.println(Integer.parseInt(sep[1]) + " " + Integer.parseInt(sep[2]));
+
+                        break;
 
 
                 }
@@ -187,6 +212,7 @@ public class LoadSave {
             fichier.close();
         }catch (IOException e) {
             e.printStackTrace();
+            error =1;
         }
     }
 
@@ -328,6 +354,7 @@ public class LoadSave {
             fichier.close();
         }catch (IOException e) {
             e.printStackTrace();
+            error =1;
         }
     }
 
@@ -343,6 +370,7 @@ public class LoadSave {
             fichier.close();
         }catch (IOException e) {
             e.printStackTrace();
+            error =1;
         }
     }
 }

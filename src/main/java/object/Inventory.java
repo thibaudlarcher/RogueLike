@@ -116,6 +116,13 @@ public class Inventory {
         }
         return max;
     }
+
+    public void removeAllItem(){
+        for (int i = 0; i < items.length; i++) {
+                items[i] = null;
+            }
+        }
+
 }
 
 
