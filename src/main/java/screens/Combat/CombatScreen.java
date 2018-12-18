@@ -128,7 +128,7 @@ public class CombatScreen implements Screen {
                             nextPlayer = -1;
                             testMort(creature, choix);
                             if (testMortGroupe(groupCreature, numero)) {
-                                return new PlayScreen(world, player, groupCreature);
+                                return new PlayScreen(world,village, player, groupCreature);
                             }
                             return this;
                         case 2:
@@ -140,11 +140,11 @@ public class CombatScreen implements Screen {
                             nextPlayer = -1;
                             testMort(creature, choix);
                             if (testMortGroupe(groupCreature, numero)) {
-                                return new PlayScreen(world, player, groupCreature);
+                                return new PlayScreen(world,village, player, groupCreature);
                             }
                             return this;
                         case 1:
-                            return new PlayScreen(world, player, groupCreature);
+                            return new PlayScreen(world,village, player, groupCreature);
                     }
                 }else {
                     switch (this.position) {
@@ -157,11 +157,11 @@ public class CombatScreen implements Screen {
                             nextPlayer = -1;
                             testMort(creature, choix);
                             if (testMortGroupe(groupCreature, numero)) {
-                                return new PlayScreen(world, player, groupCreature);
+                                return new PlayScreen(world,village, player, groupCreature);
                             }
                             return this;
                         case 1:
-                            return new PlayScreen(world, player, groupCreature);
+                            return new PlayScreen(world,village, player, groupCreature);
                     }
                 }
             case KeyEvent.VK_ESCAPE:
