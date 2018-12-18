@@ -7,7 +7,7 @@ import java.awt.*;
 
 public class Mage extends PJ{
 
-    public Mage(String name, int pointDeVie, int attaque,int magicattaque) {
+    public Mage(String name, int pointDeVie, int attaque, int magicattaque) {
         this.color = new Color(171,71,188);
         pointDeVieMax = pointDeVie;
         this.pointDeVie = pointDeVie;

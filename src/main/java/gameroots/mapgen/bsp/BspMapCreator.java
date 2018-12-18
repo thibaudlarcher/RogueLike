@@ -93,6 +93,12 @@ public class BspMapCreator {
 		// convert empty tiles into floor
 		convertVoid(map);
 
+//		for (int i = 0; i < mapWidth; i++){
+//			for (int j = 0; j < mapHeight; j++){
+//				System.out.print(map[i][j]);
+//			}
+//			System.out.println();
+//		}
 
 		return map;
 	}
@@ -114,7 +120,7 @@ public class BspMapCreator {
 		renderWalls(map);
 		renderDoors(map);
 		renderPersonnage(map);
-		renderMonster(map);
+		renderVillageois(map);
 
 		// make sure room floor tiles are properly set
 		// and collect rooms by tile
@@ -403,7 +409,6 @@ public class BspMapCreator {
 	}
 
 	private void renderItems(char[][] map) {
-
 		for (int i = 0; i < rooms.size(); i++) {
 			int randx = (int) (Math.random() * (rooms.get(i).getWidth()-2)) + rooms.get(i).getX()+1;
 			int randy = (int) (Math.random() * (rooms.get(i).getHeight()-2)) + rooms.get(i).getY()+1;
@@ -431,6 +436,15 @@ public class BspMapCreator {
 				map[randY][randX] = TileChar.charMonster;
 				//System.out.println("TestRender");
 			}
+		}
+	}
+
+	private void renderVillageois(char[][] map){
+		for(int i = 0; i < rooms.size(); i++){
+			int randX = ((int)(Math.random() * ( rooms.get(i).getWidth()-2)))+ rooms.get(i).getX()+1;
+			int randY = (int)(Math.random() * ( rooms.get(i).getHeight()-2))+ rooms.get(i).getY()+1;
+
+			map[randY][randX] = TileChar.charVillageois;
 		}
 	}
 }
