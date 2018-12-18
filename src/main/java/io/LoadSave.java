@@ -3,6 +3,7 @@ package io;
 import Tiles.Tile;
 import creature.*;
 import creature.PJ.Guerrier;
+import creature.PJ.Mage;
 import object.Items.*;
 import screens.PlayScreen;
 import screens.Village.VillageScreen;
@@ -344,7 +345,19 @@ public class LoadSave {
                     ptSpawn = new Point(Integer.parseInt(sep[2]),Integer.parseInt(sep[3]));
                     world = new World( tiles, pt, ptSpawn, items, listMonster);
                     CreatureFactory creatureFactory = new CreatureFactory(world);
-                    player = creatureFactory.newPlayer(new Guerrier("Bob",30,5));
+                    switch (sep[7].charAt(0)){
+                        case 'M' :
+                            player = creatureFactory.newPlayer(new Mage());
+                            break;
+                        case 'G' :
+                            player = creatureFactory.newPlayer(new Guerrier());
+                            break;
+                        default:;
+                            player = creatureFactory.newPlayer(new Guerrier("Bob",30,5));
+                            break;
+
+                    }
+
                     player.getGroupCreature().get(0).setPointDeVie(Integer.parseInt(sep[5]));
                     player.getGroupCreature().get(0).setAttaque(Integer.parseInt(sep[6]));
                     player.getGroupCreature().get(0).setPointDeVieMax(Integer.parseInt(sep[4]));

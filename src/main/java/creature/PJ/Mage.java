@@ -20,6 +20,15 @@ public class Mage extends PJ{
         this.defense = 0;
     }
 
+    public Mage() {
+        this.color = new Color(171,71,188);
+        vitesse = 6;
+        tour = 0;
+        glyph = 'M';
+        this.inventory = new Inventory(10);
+        this.defense = 0;
+    }
+
     @Override
     public void pickupItem(Item item){
         if (!(inventory.isFull()) || item != null){

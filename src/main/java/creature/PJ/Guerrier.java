@@ -18,6 +18,15 @@ public class Guerrier extends PJ{
         this.defense = 0;
     }
 
+    public Guerrier() {
+        this.color = brightGreen;
+        vitesse = 6;
+        tour = 0;
+        glyph = 'G';
+        this.inventory = new Inventory(10);
+        this.defense = 0;
+    }
+
     @Override
     public void pickupItem(Item item){
         if (!(inventory.isFull()) || item != null){
