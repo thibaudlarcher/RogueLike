@@ -325,4 +325,20 @@ public class LoadSave {
             error =1;
         }
     }
+
+    public Tile[][] getTiles() {
+        return tiles;
+    }
+
+    public Item[][] getItems() {
+        return items;
+    }
+
+    public GroupCreature getPlayer() {
+        return player;
+    }
+
+    public ArrayList<Point> getListMonster() {
+        return listMonster;
+    }
 }
