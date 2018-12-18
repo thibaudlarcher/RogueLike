@@ -37,8 +37,8 @@ public class PlayScreen implements Screen {
 		createItems(stuffFactory);
 
 		groupCreature = new ArrayList<GroupCreature>();
-		ArrayList<Point>listMonster = world.getListMonster();
-		for(int i = 0 ; i<listMonster.size();i++){
+		ArrayList<Point> listMonster = world.getListMonster();
+		for(int i = 0 ; i < listMonster.size(); i++){
 			Point p = listMonster.get(i);
 			groupCreature.add(creatureFactory.newMonster((int)p.getY(),(int)p.getX()));
 		}
@@ -54,13 +54,18 @@ public class PlayScreen implements Screen {
 		this.groupCreature = groupCreature;
 	}
 
-	public PlayScreen(PlayScreen screen){
+	public PlayScreen(PlayScreen screen, GroupCreature playervillage){
 		screenWidth = 140;
 		screenHeight = 40;
 		inVillage = false;
 		this.world = screen.getWorld();
 		this.village = screen.getVillage();
 		this.player = screen.getPlayer();
+		for (int i = 0; i < playervillage.getGroupCreature().get(0).inventory().getSizeMax(); i++){
+			if (playervillage.getGroupCreature().get(0).inventory().get(i) != null){
+				player.getGroupCreature().get(0).inventory().add(playervillage.getGroupCreature().get(0).inventory().get(i));
+			}
+		}
 		this.groupCreature = screen.getGroupCreature();
 		this.player.x = world.getPtSpawn().x;
 		this.player.y = world.getPtSpawn().y;
@@ -144,7 +149,7 @@ public class PlayScreen implements Screen {
 	public void displayOutput(AsciiPanel terminal) {
 		terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
 		terminal.clear();
-		int range = 4;
+		int range = 10;
 
 		int left = getScrollX();
 		int top = getScrollY();
@@ -355,6 +360,7 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_P: return testPickUpItem();
 			case KeyEvent.VK_C: return new StatScreen(this);
 			case KeyEvent.VK_H: return new HelpScreen(this);
+			case KeyEvent.VK_V: return new VillageScreen(this, village);
 			/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 			case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 			case KeyEvent.VK_U: player.moveBy( 1,-1); break;

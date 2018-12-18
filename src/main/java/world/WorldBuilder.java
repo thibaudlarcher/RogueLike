@@ -14,6 +14,7 @@ public class WorldBuilder {
 	private Point ptSpawnVillage;
 	private ArrayList<Point> itemPointList;
 	private ArrayList<Point> ptmonstre;
+	private ArrayList<Point> ptvillageois;
 	private boolean inVillage;
 
 	public WorldBuilder(int width, int height) {
@@ -22,6 +23,7 @@ public class WorldBuilder {
 		this.tiles = new Tile[width][height];
 		this.itemPointList = new ArrayList<>();
 		this.ptmonstre = new ArrayList<Point>();
+		this.ptvillageois = new ArrayList<Point>();
 	}
 
 	public World build() {
@@ -41,7 +43,7 @@ public class WorldBuilder {
         bspMapCreator.setMaxIterations(0);
         bspMapCreator.setMapDimension(this.width, this.height);
         ch = bspMapCreator.createMapVillage();
-        return new World(VillageGenerating(ch), ptSpawnVillage, ptmonstre);
+        return new World(VillageGenerating(ch), ptSpawnVillage, ptvillageois);
     }
 
 	public Tile[][] WorldGenerating(char[][] ch){
@@ -66,9 +68,29 @@ public class WorldBuilder {
                   }
             }
         }
+        //test();
         tiles = InsertVillagePortal();
         return tiles = InsertExit();
     }
+
+//    public void test(){
+//	    for (int i = 0; i < this.width; i++){
+//	        for (int j = 0; j < this.height; j++){
+//	            if (tiles[i][j] == Tile.FLOORUNKNOW){
+//	                System.out.print(Tile.FLOORUNKNOW.glyph());
+//                } else if (tiles[i][j] == Tile.WALLUNKNOW){
+//	                System.out.print(Tile.WALLUNKNOW.glyph());
+//                } else if (tiles[i][j] == Tile.BOUNDS){
+//	                System.out.print(Tile.BOUNDS.glyph());
+//                } else if (tiles[i][j] == Tile.ITEMSUNKNOW){
+//	                System.out.print(Tile.ITEMSUNKNOW.glyph());
+//                } else if (tiles[i][j] == Tile.VILLAGEPORTALUNKNOW){
+//	                System.out.print(Tile.VILLAGEPORTALUNKNOW.glyph());
+//                }
+//            }
+//            System.out.println();
+//        }
+//    }
 
     public Tile[][] VillageGenerating(char[][] ch){
         for (int i = 0; i < this.width; i++){
@@ -82,9 +104,9 @@ public class WorldBuilder {
                 } else if (ch[j][i]=='@'){
                     tiles[i][j] = Tile.FLOOR;
                     ptSpawnVillage = new Point(i,j);
-                } else if (ch[j][i]==(char)144){
-                    tiles[i][j] = Tile.FLOOR;
-                    ptmonstre.add(new Point(j,i));
+                } else if (ch[j][i]=='w'){
+                    tiles[i][j] = Tile.VILLAGEOISVISITED;
+                    ptvillageois.add(new Point(i,j));
                 }
             }
         }

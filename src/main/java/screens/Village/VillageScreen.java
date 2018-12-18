@@ -10,15 +10,16 @@ import screens.Item.PickUpItemScreen;
 import world.World;
 import java.awt.*;
 import java.awt.event.KeyEvent;
+import java.util.ArrayList;
 
 public class VillageScreen implements Screen {
 
     private World village;
     private GroupCreature playerVillage;
+    private ArrayList<GroupCreature> groupVillageois;
     private int screenWidth;
     private int screenHeight;
     private PlayScreen playscreen;
-
 
     public VillageScreen(PlayScreen screen, World village){
         screenWidth = 140;
@@ -26,9 +27,16 @@ public class VillageScreen implements Screen {
         this.playscreen = screen;
         this.village = village;
 
-        CreatureFactory creatureFactory = new CreatureFactory(village);
+        CreatureFactory creatureFactory = new CreatureFactory(this.village);
         this.playerVillage = creatureFactory.newPlayerVillage(screen.getPlayer());
         this.playerVillage.setWorld(village);
+
+        groupVillageois = new ArrayList<GroupCreature>();
+        ArrayList<Point> listVillageois = village.getListVillageois();
+        for (int i = 0; i < listVillageois.size(); i++){
+            Point p = listVillageois.get(i);
+            groupVillageois.add(creatureFactory.newVillageois((int) p.getX(), (int) p.getY()));
+        }
     }
 
     public VillageScreen(VillageScreen villageScreen, PlayScreen screen){
@@ -37,6 +45,7 @@ public class VillageScreen implements Screen {
         this.playscreen = screen;
         this.village = villageScreen.getVillage();
         this.playerVillage = villageScreen.getPlayer();
+        this.groupVillageois = villageScreen.groupVillageois;
     }
 
     public int getScrollX() { return Math.max(0, Math.min(playerVillage.x - screenWidth / 2, village.width() - screenWidth)); }
@@ -44,73 +53,85 @@ public class VillageScreen implements Screen {
     public int getScrollY() { return Math.max(0, Math.min(playerVillage.y - screenHeight / 2, village.height() - screenHeight)); }
 
     private void displayTiles(AsciiPanel terminal, int left, int top,int playerx,int playery, int range) {
-        for (int x = 0; x < screenWidth; x++){
-            for (int y = 0; y < screenHeight; y++){
+        for (int x = 0; x < screenWidth; x++) {
+            for (int y = 0; y < screenHeight; y++) {
                 int wx = x + left;
                 int wy = y + top;
-                if (x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top){
-                    if (village.tile(wx,wy)==Tile.WALLUNKNOW || village.tile(wx,wy)==Tile.WALLALREADYVISITED){
-                        village.tiles[wx][wy]=Tile.WALL;
-                        terminal.write(village.glyph(wx, wy), x, y, village.color(wx,wy));
-                    } else if (village.tile(wx,wy)==Tile.EXITUNKNOW || village.tile(wx,wy)==Tile.EXITALREADYVISITED){
-                        village.tiles[wx][wy]=Tile.EXIT;
-                        terminal.write(village.glyph(wx, wy), x, y, village.color(wx,wy));
-                    } else if (village.tile(wx,wy)==Tile.FLOORUNKNOW || village.tile(wx,wy)==Tile.FLOORALREADYVISITED){
-                        village.tiles[wx][wy]=Tile.FLOOR;
-                        terminal.write(village.glyph(wx, wy), x, y, village.color(wx,wy));
-                    } else if (village.tile(wx,wy)==Tile.VILLAGEPORTALUNKNOW || village.tile(wx,wy)==Tile.VILLAGEPORTALALREADYVISITED){
-                        village.tiles[wx][wy]=Tile.VILLAGEPORTAL;
-                        terminal.write(village.glyph(wx, wy), x, y, village.color(wx,wy));
-                    } else if (village.tile(wx,wy)==Tile.ITEMSUNKNOW || village.tile(wx,wy)==Tile.ITEMALREADYVISITED){
-                        village.tiles[wx][wy]=Tile.ITEMS;
-                        if (village.item(wx,wy).getName()=="baton"){
-                            village.item(wx,wy).setColor(new Color(128,64,0));
+
+                for (int l = 0; l < groupVillageois.size(); l++) {
+                    if ((groupVillageois.get(l).x - left) > playerVillage.x - left - range && (groupVillageois.get(l).y - top) > playerVillage.y - top - range
+                            && (groupVillageois.get(l).x - left) < playerVillage.x - left + range && (groupVillageois.get(l).y - top) < playerVillage.y - top + range) {
+                        terminal.write(groupVillageois.get(l).glyph(), groupVillageois.get(l).x - left, groupVillageois.get(l).y - top, groupVillageois.get(l).getColor());
+                    }
+                }
+
+                if (x > playerx - range - left && x < playerx + range - left && y > playery - range - top && y < playery + range - top) {
+                    if (village.tile(wx, wy) == Tile.WALLUNKNOW || village.tile(wx, wy) == Tile.WALLALREADYVISITED) {
+                        village.tiles[wx][wy] = Tile.WALL;
+                        terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                    } else if (village.tile(wx, wy) == Tile.EXITUNKNOW || village.tile(wx, wy) == Tile.EXITALREADYVISITED) {
+                        village.tiles[wx][wy] = Tile.EXIT;
+                        terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                    } else if (village.tile(wx, wy) == Tile.VILLAGEOISVISITED) {
+                        village.tiles[wx][wy] = Tile.VILLAGEOIS;
+                        terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                    } else if (village.tile(wx, wy) == Tile.FLOORUNKNOW || village.tile(wx, wy) == Tile.FLOORALREADYVISITED) {
+                        village.tiles[wx][wy] = Tile.FLOOR;
+                        terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                    } else if (village.tile(wx, wy) == Tile.VILLAGEPORTALUNKNOW || village.tile(wx, wy) == Tile.VILLAGEPORTALALREADYVISITED) {
+                        village.tiles[wx][wy] = Tile.VILLAGEPORTAL;
+                        terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                    } else if (village.tile(wx, wy) == Tile.ITEMSUNKNOW || village.tile(wx, wy) == Tile.ITEMALREADYVISITED) {
+                        village.tiles[wx][wy] = Tile.ITEMS;
+                        if (village.item(wx, wy).getName() == "baton") {
+                            village.item(wx, wy).setColor(new Color(128, 64, 0));
                             terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
-                        } else if (village.item(wx,wy).getName()=="epee"){
-                            village.item(wx,wy).setColor(new Color(128,128,128));
+                        } else if (village.item(wx, wy).getName() == "epee") {
+                            village.item(wx, wy).setColor(new Color(128, 128, 128));
                             terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
-                        } else if (village.item(wx,wy).getName()=="potion"){
-                            village.item(wx,wy).setColor(new Color(255,77,77));
+                        } else if (village.item(wx, wy).getName() == "potion") {
+                            village.item(wx, wy).setColor(new Color(255, 77, 77));
                             terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
-                        } else if (village.item(wx,wy).getName()=="armure"){
-                            village.item(wx,wy).setColor(new Color(140,140,140));
+                        } else if (village.item(wx, wy).getName() == "armure") {
+                            village.item(wx, wy).setColor(new Color(140, 140, 140));
                             terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
-                        } else if (village.item(wx,wy).getName()=="botte"){
-                            village.item(wx,wy).setColor(new Color(155, 89, 30));
+                        } else if (village.item(wx, wy).getName() == "botte") {
+                            village.item(wx, wy).setColor(new Color(155, 89, 30));
                             terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
-                        } else if (village.item(wx,wy).getName()=="casque"){
-                            village.item(wx,wy).setColor(new Color(20, 86,123));
+                        } else if (village.item(wx, wy).getName() == "casque") {
+                            village.item(wx, wy).setColor(new Color(20, 86, 123));
                             terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
-                        } else if (village.item(wx,wy).getName()=="pantalon"){
-                            village.item(wx,wy).setColor(new Color(123, 49, 39));
+                        } else if (village.item(wx, wy).getName() == "pantalon") {
+                            village.item(wx, wy).setColor(new Color(123, 49, 39));
                             terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
-                        } else if (village.item(wx,wy).getName() == "pierre de teleportation"){
-                            village.item(wx,wy).setColor(new Color(0, 19, 255));
+                        } else if (village.item(wx, wy).getName() == "pierre de teleportation") {
+                            village.item(wx, wy).setColor(new Color(0, 19, 255));
                             terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
                         }
-                    }
-                    else{
+                    } else {
                         terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
                     }
-                } else if (village.tile(wx,wy)==Tile.WALL && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
-                    village.tiles[wx][wy]=Tile.WALLALREADYVISITED;
-                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx,wy));
-                } else if (village.tile(wx,wy)==Tile.EXIT && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
-                    village.tiles[wx][wy]=Tile.EXITALREADYVISITED;
-                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx,wy));
-                } else if (village.tile(wx,wy)==Tile.FLOOR && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
-                    village.tiles[wx][wy]=Tile.FLOORALREADYVISITED;
-                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx,wy));
-                } else if (village.tile(wx,wy)==Tile.VILLAGEPORTAL && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
-                    village.tiles[wx][wy]=Tile.VILLAGEPORTALALREADYVISITED;
-                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx,wy));
-                } else if (village.tile(wx,wy)==Tile.ITEMS && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
-                    village.tiles[wx][wy]=Tile.ITEMALREADYVISITED;
-                    village.item(wx,wy).setColor(Color.gray);
-                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx,wy));
-                }
-                else {
-                    terminal.write(village.glyph(wx, wy), x, y,village.color(wx,wy));
+                } else if (village.tile(wx, wy) == Tile.WALL && !(x > playerx - range - left && x < playerx + range - left && y > playery - range - top && y < playery + range - top)) {
+                    village.tiles[wx][wy] = Tile.WALLALREADYVISITED;
+                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                } else if (village.tile(wx, wy) == Tile.EXIT && !(x > playerx - range - left && x < playerx + range - left && y > playery - range - top && y < playery + range - top)) {
+                    village.tiles[wx][wy] = Tile.EXITALREADYVISITED;
+                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                } else if (village.tile(wx, wy) == Tile.FLOOR && !(x > playerx - range - left && x < playerx + range - left && y > playery - range - top && y < playery + range - top)) {
+                    village.tiles[wx][wy] = Tile.FLOORALREADYVISITED;
+                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                } else if (village.tile(wx, wy) == Tile.VILLAGEOIS && !(x > playerx - range - left && x < playerx + range - left && y > playery - range - top && y < playery + range - top)) {
+                    village.tiles[wx][wy] = Tile.VILLAGEOISVISITED;
+                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                } else if (village.tile(wx, wy) == Tile.VILLAGEPORTAL && !(x > playerx - range - left && x < playerx + range - left && y > playery - range - top && y < playery + range - top)) {
+                    village.tiles[wx][wy] = Tile.VILLAGEPORTALALREADYVISITED;
+                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                } else if (village.tile(wx, wy) == Tile.ITEMS && !(x > playerx - range - left && x < playerx + range - left && y > playery - range - top && y < playery + range - top)) {
+                    village.tiles[wx][wy] = Tile.ITEMALREADYVISITED;
+                    village.item(wx, wy).setColor(Color.gray);
+                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
+                } else {
+                    terminal.write(village.glyph(wx, wy), x, y, village.color(wx, wy));
                 }
             }
         }
@@ -126,7 +147,7 @@ public class VillageScreen implements Screen {
         int left = getScrollX();
         int top = getScrollY();
 
-        displayTiles(terminal, left, top,playerVillage.x,playerVillage.y,range);
+        displayTiles(terminal, left, top,playerVillage.x, playerVillage.y,range);
         terminal.write(playerVillage.glyph(), playerVillage.x - left, playerVillage.y - top, playerVillage.getColor());
 
         //terminal.writeCenter("-- bonjour --", 41);
@@ -148,15 +169,13 @@ public class VillageScreen implements Screen {
     }
 
     private Screen testRencontre(){
-//        for(int i = 0; i < groupCreature.size();i++) {
-//            if (groupCreature.get(i).isNextTo(playerVillage.getX(),playerVillage.getY())) {
-//                return new CombatScreen(groupCreature, playerVillage, village, i);
-//            }
-//        }
+        if (village.tile(playerVillage.x, playerVillage.y) == Tile.VILLAGEOIS) {
+            return new VillageoisScreen(this);
+        }
         if (village.tile(playerVillage.x, playerVillage.y)==Tile.EXIT){
             playscreen.setInVillage(false);
             GroupCreature player = playscreen.getPlayer();
-            return new PlayScreen(this.playscreen);
+            return new PlayScreen(this.playscreen, this.playerVillage);
         }
         return this;
     }
@@ -210,4 +229,10 @@ public class VillageScreen implements Screen {
     public GroupCreature getPlayer() {
         return playerVillage;
     }
+
+    public ArrayList<GroupCreature> getGroupVillageois(){
+        return groupVillageois;
+    }
+
+    public PlayScreen getPlayscreen(){ return playscreen; }
 }

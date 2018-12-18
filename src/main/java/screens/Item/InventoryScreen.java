@@ -22,7 +22,6 @@ public class InventoryScreen implements Screen {
     private ArrayList<GroupCreature> groupCreature;
     private GroupCreature player;
     private int pos;
-    private Inventory inventaire;
     private boolean inVillage;
 
     public InventoryScreen (PlayScreen screen){
@@ -98,9 +97,6 @@ public class InventoryScreen implements Screen {
                 terminal.write("Valeur : " + Integer.toString(joueur.inventory().get(i).getValeur()), 82, 6 + 2 * i, this.pos == i ? Color.yellow : Color.GRAY);
                 terminal.write("Equipe : ", 95, 6 + 2 * i, Color.GRAY);
                 terminal.write(Boolean.toString(joueur.inventory().get(i).isEquipe()), 104, 6 + 2 * i, currentInventory.get(i).isEquipe() ? Color.green : Color.red);
-            } else if (joueur.inventory().get(i) != null && joueur.inventory().get(i).getType() == "pierreTP") {
-                terminal.write(joueur.inventory().get(i).getName(), 2, 6 + 2 * i, this.pos == i ? Color.yellow : Color.white);
-                terminal.write("Cette pierre vous teleportera directement au world.", 27, 6 + 2 * i, this.pos == i ? Color.yellow : Color.gray);
             }
         }
 
@@ -150,12 +146,12 @@ public class InventoryScreen implements Screen {
         terminal.writeCenter("[ENTER] or [E] to equip/take off current item",38, Color.GRAY);
         terminal.writeCenter("[ESCAPE] or [I] to resume game / [R] go to Menu", 42, Color.white);
 
-        if (pos >= 0 && currentInventory.get(pos).getType() == "potion" || pos >= 0 && currentInventory.get(pos).getType() == "pierreTP"){
+        if (pos >= 0 && currentInventory.get(pos).getType() == "potion"){
             terminal.writeCenter("Press [ENTER] to use",36, Color.GRAY);
         }
     }
 
-    public Screen testEquipe(Item item){
+    private Screen testEquipe(Item item){
         if (item.getType() != "potion") {
                 if (item.isEquipe() == false) {
                     return equipeItem(item);
@@ -163,7 +159,7 @@ public class InventoryScreen implements Screen {
         } else return testPotion(item);
     }
 
-    public Screen testPotion(Item item){
+    private Screen testPotion(Item item){
         if (item.getType() == "potion"){
             player.getGroupCreature().get(0).modifPointDeVie(item.getEffet());
             player.getGroupCreature().get(0).inventory().remove(item);
@@ -173,7 +169,7 @@ public class InventoryScreen implements Screen {
         } else return this;
     }
 
-    public Screen equipeItem(Item item){
+    private Screen equipeItem(Item item){
         Inventory currentInventory = player.getGroupCreature().get(0).inventory();
         if (item.isEquipe() == false){
             if (item.getType() == "arme"){
@@ -226,7 +222,7 @@ public class InventoryScreen implements Screen {
         return this;
     }
 
-    public Screen deequipeItem(Item item){
+    private Screen deequipeItem(Item item){
         Inventory currentInventory = player.getGroupCreature().get(0).inventory();
         if (item.isEquipe() == true){
             if (item.getType() == "arme"){

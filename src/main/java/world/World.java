@@ -14,13 +14,14 @@ public class World {
 	private Point ptVillage;
 	public int width() { return width; }
 	private ArrayList<Point> listMonster;
+	private ArrayList<Point> listVillageois;
 	private int height;
 	public int height() { return height; }
 	private Point ptSpawn;
 	public Point getPtSpawn(){ return ptSpawn; }
 
 	//World pour le build du world
-	public World(Tile[][] tiles, Point pt, Point ptSpawn, ArrayList<Point> itemPointList,ArrayList<Point> listMonster){
+	public World(Tile[][] tiles, Point pt, Point ptSpawn, ArrayList<Point> itemPointList, ArrayList<Point> listMonster){
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
@@ -32,13 +33,13 @@ public class World {
 	}
 
 	//World pour le build du village
-	public World(Tile[][] tiles, Point pt, ArrayList<Point> listMonster){
+	public World(Tile[][] tiles, Point pt, ArrayList<Point> listVillageois){
 		this.tiles = tiles;
 		this.width = tiles.length;
 		this.height = tiles[0].length;
 		this.ptVillage = pt;
 		this.items = new Item[width+40][height];
-		this.listMonster = listMonster;
+		this.listVillageois = listVillageois;
 	}
 
 	//World pour load le world
@@ -132,6 +133,8 @@ public class World {
 	public ArrayList<Point> getListMonster() {
 		return listMonster;
 	}
+
+	public ArrayList<Point> getListVillageois(){ return  listVillageois; }
 
 	public Tile[][] getTiles() {
 		return tiles;

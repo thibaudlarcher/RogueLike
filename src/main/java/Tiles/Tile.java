@@ -22,7 +22,9 @@ public enum Tile {
 	ITEMSUNKNOW('o', AsciiPanel.black),
 	ITEMALREADYVISITED('o', AsciiPanel.black),
 	ITEMS('o', AsciiPanel.black),
-	MONSTER((char)64, AsciiPanel.brightYellow);
+	MONSTER((char)64, AsciiPanel.brightYellow),
+	VILLAGEOIS('v', AsciiPanel.brightMagenta),
+	VILLAGEOISVISITED('v', AsciiPanel.brightBlack);
 
 	
 	private char glyph;

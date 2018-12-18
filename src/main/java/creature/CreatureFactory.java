@@ -60,4 +60,9 @@ public class CreatureFactory {
 		return player;
 	}
 	*/
+
+    public GroupCreature newVillageois(int x, int y){
+        GroupCreature villageois = new GroupCreature(world, 'v', AsciiPanel.brightMagenta, x, y);
+        return villageois;
+    }
 }
