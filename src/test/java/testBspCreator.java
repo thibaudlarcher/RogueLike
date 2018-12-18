@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class testBspCreator {
     static World world;
-    char [][] tiles =null;
+    char [][] tiles = null;
     @BeforeAll
     public static void testWorld(){
         world = new WorldBuilder(100	, 100).build();
