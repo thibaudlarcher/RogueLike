@@ -77,68 +77,68 @@ public class LoadSave {
                     switch (str.charAt(j)){
                         case '.':
                             //System.out.print('.');
-                            tiles[i][j] = Tile.FLOOR;
+                            tiles[j][i] = Tile.FLOOR;
                             break;
                         case (char)177:
                             //System.out.print((char)177);
-                            tiles[i][j] = Tile.WALL;
+                            tiles[j][i] = Tile.WALL;
                             break;
                         case 'o':
                             //System.out.print((char)244);
-                            tiles[i][j] = Tile.ITEMS;
+                            tiles[j][i] = Tile.ITEMS;
                             break;
                         case (char)79:
                             //System.out.print((char)79);
-                            tiles[i][j] = Tile.EXIT;
+                            tiles[j][i] = Tile.EXIT;
                             break;
                         case (char) 86:
                             //System.out.print((char)79);
-                            tiles[i][j] = Tile.VILLAGEPORTAL;
+                            tiles[j][i] = Tile.VILLAGEPORTAL;
                             break;
                         case 'x':
                             //System.out.print('x');
-                            tiles[i][j] = Tile.BOUNDS;
+                            tiles[j][i] = Tile.BOUNDS;
                             break;
                         case (char)251:
                             //System.out.print((char)250);
-                            tiles[i][j] = Tile.FLOORALREADYVISITED;
+                            tiles[j][i] = Tile.FLOORALREADYVISITED;
                             break;
                         case (char)178:
                             //System.out.print((char)177);
-                            tiles[i][j] = Tile.WALLUNKNOW;
+                            tiles[j][i] = Tile.WALLUNKNOW;
                             break;
                         case (char)179:
                             //System.out.print((char)177);
-                            tiles[i][j] = Tile.WALLALREADYVISITED;
+                            tiles[j][i] = Tile.WALLALREADYVISITED;
                             break;
                         case (char)80:
                             //System.out.print((char)79);
-                            tiles[i][j] = Tile.EXITUNKNOW;
+                            tiles[j][i] = Tile.EXITUNKNOW;
                             break;
                         case (char)87:
                             //System.out.print((char)79);
-                            tiles[i][j] = Tile.VILLAGEPORTALUNKNOW;
+                            tiles[j][i] = Tile.VILLAGEPORTALUNKNOW;
                             break;
                         case (char)88:
                             //System.out.print((char)79);
-                            tiles[i][j] = Tile.VILLAGEPORTALALREADYVISITED;
+                            tiles[j][i] = Tile.VILLAGEPORTALALREADYVISITED;
                             break;
                         case (char)81:
                             //System.out.print((char)79);
-                            tiles[i][j] = Tile.EXITALREADYVISITED;
+                            tiles[j][i] = Tile.EXITALREADYVISITED;
                             break;
                         case 'p':
                             //System.out.print('o');
-                            tiles[i][j] = Tile.ITEMSUNKNOW;
+                            tiles[j][i] = Tile.ITEMSUNKNOW;
                             break;
                         case 'q':
                             //System.out.print('o');
-                            tiles[i][j] = Tile.ITEMALREADYVISITED;
+                            tiles[j][i] = Tile.ITEMALREADYVISITED;
                             //System.out.println("test");
                             break;
                         case (char)252:
                             //System.out.print((char)250);
-                            tiles[i][j] = Tile.FLOORUNKNOW;
+                            tiles[j][i] = Tile.FLOORUNKNOW;
                             break;
                         default:
                             exit(1);
