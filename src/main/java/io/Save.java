@@ -141,7 +141,8 @@ public class Save {
                 writer.write(Integer.toString(player.getGroupCreature().get(i).getAttaque())+ " ");
                 writer.write(player.getGroupCreature().get(i).getGlyph()+ " ");
                 writer.write(player.getGroupCreature().get(i).getName()+ " ");
-                writer.write(player.getGroupCreature().get(i).getColor().getBlue()+ " "+player.getGroupCreature().get(i).getColor().getRed() + " "+player.getGroupCreature().get(i).getColor().getGreen());
+                writer.write(player.getGroupCreature().get(i).getColor().getBlue()+ " "+player.getGroupCreature().get(i).getColor().getRed() + " "+player.getGroupCreature().get(i).getColor().getGreen() + " ");
+                writer.write(String.valueOf(player.getGroupCreature().get(i).getNiveau()));
                 writer.newLine();
                 writer.write("<Inventory>");
                 writer.newLine();

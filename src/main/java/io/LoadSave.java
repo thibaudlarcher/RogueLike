@@ -363,6 +363,7 @@ public class LoadSave {
                     player.getGroupCreature().get(0).setPointDeVieMax(Integer.parseInt(sep[4]));
                     player.getGroupCreature().get(0).setName(sep[8]);
                     player.getGroupCreature().get(0).setGlyph(sep[7].charAt(0));
+                    player.getGroupCreature().get(0).setNiveau(Integer.parseInt(sep[12]));
                 }
             }
             fichier.close();
