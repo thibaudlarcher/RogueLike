@@ -27,17 +27,17 @@ public class PersonnageChoice implements Screen {
             case KeyEvent.VK_ENTER:
                 switch (this.choix){
                     case 0 :
-                        return new PlayScreen(new Guerrier("Bob",30,5));
+                        return new PlayScreen(new Guerrier("Guerrier",30,5));
                     case 1 :
-                        return new PlayScreen(new Mage("Bob",20,15));
+                        return new PlayScreen(new Mage("Mage",20,15));
                 }
             case KeyEvent.VK_DOWN:
-                choix = (choix+1)%3;
+                choix = (choix+1)%2;
                 break;
             case KeyEvent.VK_UP:
-                choix = (choix-1)%3;
+                choix = (choix-1)%2;
                 if (choix<0){
-                    choix = (choix+3);
+                    choix = (choix+2);
                 }
                 break;
         }

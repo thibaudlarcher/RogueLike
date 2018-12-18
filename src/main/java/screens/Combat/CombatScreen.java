@@ -100,9 +100,12 @@ public class CombatScreen implements Screen {
         }
     }
 
-    public static void afficheMenu(AsciiPanel terminal,CombatScreen menu){
+    public void afficheMenu(AsciiPanel terminal,CombatScreen menu){
         terminal.write("Attaque", 105 ,7, menu.position == 0 ? brightRed : white );
-        terminal.write("Fuite", 105 ,10, menu.position == 1 ? brightRed : white );
+        terminal.write("Fuite", 105 ,13, menu.position == 1 ? brightRed : white );
+        if (this.player.getGroupCreature().get(0).getName()=="Mage"){
+            terminal.write("Boule de feu", 105 ,10, menu.position == 2 ? brightRed : white );
+        }
     }
 
     @Override
@@ -122,7 +125,10 @@ public class CombatScreen implements Screen {
                             return new PlayScreen(world, player, groupCreature);
                         }
                         return this;
-                    case 1:
+                    case 1 :
+                        player.getGroupCreature().get(nextPlayer).dealDamageTo(
+                                creature.getGroupCreature().get(choix));
+                    case 2:
                         return new PlayScreen(world, player, groupCreature);
                 }
             case KeyEvent.VK_ESCAPE:
@@ -137,7 +143,7 @@ public class CombatScreen implements Screen {
                     this.choix--;
                 }
                 return this;
-            case KeyEvent.VK_DOWN:
+            /*case KeyEvent.VK_DOWN:
                 if (this.position != 1) {
                     this.position++;
                 }
@@ -146,7 +152,16 @@ public class CombatScreen implements Screen {
                 if (this.position != 0) {
                     this.position--;
                 }
-                return this;
+                return this;*/
+            case KeyEvent.VK_DOWN:
+                position = (position+1)%3;
+                break;
+            case KeyEvent.VK_UP:
+                position = (position-1)%3;
+                if (position<0){
+                    position = (position+3);
+                }
+                break;
         }
         /*if(player.isDead()){
             return new LoseScreen();
