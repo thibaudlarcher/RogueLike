@@ -47,8 +47,6 @@ public class testBspCreator {
         assertTrue(true);
     }
 
-    public void testCreature() {
-    }
 
     @Test
     public void testItem() {
