@@ -5,9 +5,26 @@ import creature.GroupCreature;
 
 import static asciiPanel.AsciiPanel.brightRed;
 
+/**
+ * Classe de l'affichage de stats des Créatures
+ *
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
+
 public class AffichageStat {
+    /**
+     * Constructeur de la classe AffichageStat.
+     */
     private AffichageStat() { }
 
+    /**
+     * Affichage des Point de vies en fonction des points de vie max pour les monstres et le player.
+     * @param terminal Screen asciipanel
+     * @param creature Monstre
+     * @param player Player
+     */
     public static void affichePV(AsciiPanel terminal, GroupCreature creature, GroupCreature player) {
         int yCrea = 9;
         int yPlayer = 25;

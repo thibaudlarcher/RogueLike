@@ -1,5 +1,14 @@
 package gameroots.mapgen;
 
+/**
+ * Classe de la création des tiles
+ *
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ * classe qui définit les tiles
+ */
+
 public class TileChar {
 	public static char charCell = '&';
 

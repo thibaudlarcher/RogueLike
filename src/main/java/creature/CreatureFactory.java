@@ -7,13 +7,32 @@ import world.*;
 import player.*;
 import monster.*;
 
+/**
+ * Classe des Creature factory.
+ *
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ */
+
 public class CreatureFactory {
+    /**
+     * Création d'un world
+     */
     private World world;
 
+    /**
+     * Constructeur du Creature factory avec un world.
+     * @param world Elle prend en paramètre un wolrd
+     */
     public CreatureFactory(World world){
         this.world = world;
     }
 
+    /**
+     * Permet de créer un nouveau player jouable en fonction du choix de classe effectuée.
+     * @param choix La classe que l'utilisateur choisi
+     * @return Un type GroupeCréature qui représente le player
+     */
     public GroupCreature newPlayer(PJ choix){
         //244 pied de biche
         //PJ choice = new Mage("bob",15,10);
@@ -24,6 +43,11 @@ public class CreatureFactory {
         return player;
     }
 
+    /**
+     * Permet de créer un nouveau villageois.
+     * @param player Prends un player
+     * @return un villageois
+     */
     public GroupCreature newPlayerVillage(GroupCreature player){
         //244 pied de biche
         GroupCreature playerVillage;
@@ -53,6 +77,12 @@ public class CreatureFactory {
 		return player;
 	}*/
 
+    /**
+     * Permet de créer un nouveau monstre.
+     * @param x Position x du monstre
+     * @param y Position y du monstre
+     * @return retourne le groupe créature
+     */
     public GroupCreature newMonster(int x, int y){
 		GroupCreature monster = new GroupCreature(world, (char)155, AsciiPanel.brightYellow, x, y);
 		new MonsterAI(monster);

@@ -4,19 +4,66 @@ import gameroots.mapgen.bsp.BspMapCreator;
 import java.awt.*;
 import java.util.ArrayList;
 
-
+/**
+ * Classe de la construction du monde
+ *
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
 public class WorldBuilder {
-	private int width;
-	private int height;
-	private Tile[][] tiles;
-	private char[][] ch;
-	private Point ptSpawn;
-	private Point ptSpawnVillage;
-	private ArrayList<Point> itemPointList;
-	private ArrayList<Point> ptmonstre;
-	private ArrayList<Point> ptvillageois;
-	private boolean inVillage;
 
+    /**
+     * Stock la largeur
+     */
+	private int width;
+
+    /**
+     * Stock la hauteur
+     */
+	private int height;
+
+    /**
+     * Stock les tiles
+     */
+	private Tile[][] tiles;
+
+    /**
+     * Stock les chars du BSP Creator
+     */
+	private char[][] ch;
+
+    /**
+     * Point du spawn du player
+     */
+	private Point ptSpawn;
+
+    /**
+     * Point du spawn du villages
+     */
+	private Point ptSpawnVillage;
+
+    /**
+     * Liste des points de chaque items
+     */
+	private ArrayList<Point> itemPointList;
+
+    /**
+     * Liste des points de chaque monstres
+     */
+	private ArrayList<Point> ptmonstre;
+
+	/**
+     * Savoir si on est dans le village
+	 */
+	private boolean inVillage;
+    private ArrayList<Point> ptvillageois;
+
+    /**
+     * Constructeur du World Builder
+     * @param width Largeur
+     * @param height Hauteur
+     */
 	public WorldBuilder(int width, int height) {
 		this.width = width;
 		this.height = height;
@@ -26,6 +73,10 @@ public class WorldBuilder {
 		this.ptvillageois = new ArrayList<Point>();
 	}
 
+    /**
+     * Permet de construire le monde
+     * @return World
+     */
 	public World build() {
 	    inVillage = false;
         BspMapCreator bspMapCreator = new BspMapCreator();
@@ -36,6 +87,10 @@ public class WorldBuilder {
         return new World(WorldGenerating(ch), ptSpawn, ptSpawn, itemPointList, ptmonstre);
 	}
 
+    /**
+     * Permet de construire le village
+     * @return Wolrd village
+     */
     public World buildVillage() {
 	    inVillage = true;
         BspMapCreator bspMapCreator = new BspMapCreator();
@@ -46,6 +101,11 @@ public class WorldBuilder {
         return new World(VillageGenerating(ch), ptSpawnVillage, ptvillageois);
     }
 
+    /**
+     * Permet de générer le monde du jeu grace au char[][] du BSP creator
+     * @param ch Char[][]
+     * @return Tile[][]
+     */
 	public Tile[][] WorldGenerating(char[][] ch){
         for (int i = 0; i < this.width; i++){
             for (int j = 0; j < this.height; j++){
@@ -68,30 +128,15 @@ public class WorldBuilder {
                   }
             }
         }
-        //test();
         tiles = InsertVillagePortal();
         return tiles = InsertExit();
     }
 
-//    public void test(){
-//	    for (int i = 0; i < this.width; i++){
-//	        for (int j = 0; j < this.height; j++){
-//	            if (tiles[i][j] == Tile.FLOORUNKNOW){
-//	                System.out.print(Tile.FLOORUNKNOW.glyph());
-//                } else if (tiles[i][j] == Tile.WALLUNKNOW){
-//	                System.out.print(Tile.WALLUNKNOW.glyph());
-//                } else if (tiles[i][j] == Tile.BOUNDS){
-//	                System.out.print(Tile.BOUNDS.glyph());
-//                } else if (tiles[i][j] == Tile.ITEMSUNKNOW){
-//	                System.out.print(Tile.ITEMSUNKNOW.glyph());
-//                } else if (tiles[i][j] == Tile.VILLAGEPORTALUNKNOW){
-//	                System.out.print(Tile.VILLAGEPORTALUNKNOW.glyph());
-//                }
-//            }
-//            System.out.println();
-//        }
-//    }
-
+    /**
+     * Permet de générer le villages grace au Char[][] du BSP creator
+     * @param ch Char[][]
+     * @return Tile[][]
+     */
     public Tile[][] VillageGenerating(char[][] ch){
         for (int i = 0; i < this.width; i++){
             for (int j = 0; j < this.height; j++){
@@ -113,6 +158,10 @@ public class WorldBuilder {
         return tiles = InsertExit();
     }
 
+    /**
+     * Permet de générer la sortie dans la Map
+     * @return Tile[][]
+     */
     public Tile [][] InsertExit(){
         int x;
         int y;
@@ -130,6 +179,10 @@ public class WorldBuilder {
 	    return tiles;
     }
 
+    /**
+     * Permet de générer le protail vers le village
+     * @return Tile[][]
+     */
     public Tile [][] InsertVillagePortal(){
         int x;
         int y;

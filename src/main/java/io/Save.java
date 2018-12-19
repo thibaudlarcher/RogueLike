@@ -12,12 +12,39 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+/**
+ * Classe de la Sauvegarde
+ *
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
+
 public class Save {
+    /**
+     * Stocket un play screen.
+     */
     PlayScreen screen;
+
+    /**
+     * Permet de stocket un player.
+     */
     GroupCreature player;
+
+    /**
+     * Permet de stocker les créatures.
+     */
     ArrayList<Creature> creatures;
+
+    /**
+     * Permet de stocker les monstres.
+     */
     ArrayList<GroupCreature> monster;
 
+    /**
+     * Constructeur de la classe save
+     * @param screen PlayScreen
+     */
     public Save(PlayScreen screen) {
         this.screen = screen;
         this.player = screen.getPlayer();
@@ -47,8 +74,11 @@ public class Save {
         saveItem();
     }
 
-
-    public void saveInventory(BufferedWriter writer) {
+    /**
+     * On sauvegarde l'inventaire du personnages.
+     * @param writer L'inventaire
+     */
+    public void saveIventory(BufferedWriter writer){
         for (int i = 0; i < creatures.get(0).inventory().getSize(); i++) {
             try {
                 if (creatures.get(0).inventory().get(i) != null) {
@@ -61,6 +91,9 @@ public class Save {
         }
     }
 
+    /**
+     * On sauvegarde le monde.
+     */
     public void saveWorld() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/world.txt"));
@@ -147,6 +180,9 @@ public class Save {
         }
     }
 
+    /**
+     * On sauvegarde le player.
+     */
     public void savePlayer() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/player.txt"));
@@ -173,8 +209,10 @@ public class Save {
 
     }
 
-
-    public void saveMonster() {
+    /**
+     * On sauvegarde les Monstres.
+     */
+    public void saveMonster(){
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/monster.txt"));
             for (int i = 0; i < monster.size(); i++) {
@@ -187,6 +225,9 @@ public class Save {
         }
     }
 
+    /**
+     * On sauvegarde les items sur la Map.
+     */
     public void saveItem() {
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter("src/main/resources/item.txt"));
