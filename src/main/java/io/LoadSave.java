@@ -57,7 +57,7 @@ public class LoadSave {
         }
     }
 
-    public PlayScreen Test(){
+    public PlayScreen PlayScreen(){
         if(error == 1){
             System.err.println();
             System.err.println();

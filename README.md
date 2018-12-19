@@ -8,6 +8,12 @@ et des Monstres. Vous aurez la possibilité d'acheter ou de vendre vos items en 
 
 Vous pourrez choisir parmis deux classes Le Mage ou Le guerrier.(De nouvelles classes arriverons bientôt).
 
+### Contrôle
+-Pour ce déplacer utiliser ZQSD ou les fléches directionnelles.\
+-Pour le menu du jeu appuyer sur la touche echap. Vous pourrez alors sauvegarde acceder à votre inventaire ou quitter le jeu \
+-Pour ouvrir l'inventaire appuyer sur i.\
+-Lorsque vous serrez sur un objet appuyer sur p pour le mettre dans votre invenatire.\
+-Et pour plus de détaille appuyer sur H pour les aides
 ### Installation
 Télécharger ou cloner le répértoire.
 Allez dans le repertoire et taper la commande

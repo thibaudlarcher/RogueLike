@@ -33,7 +33,7 @@ public class LoadSreen implements Screen{
                     case 0 :
                         return new PersonnageChoice();
                     case 1 :
-                        return new LoadSave().Test();
+                        return new LoadSave().PlayScreen();
                     case 2 :
                          exit(0);
                 }
