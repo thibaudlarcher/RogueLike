@@ -1,8 +1,8 @@
 package screens.Combat;
 
 import asciiPanel.AsciiPanel;
-import creature.Monstre.*;
-import screens.EndGameScreen.LoseScreen;
+import creature.monstre.*;
+import screens.EndGame.LoseScreen;
 import screens.PlayScreen;
 import creature.GroupCreature;
 import screens.Screen;

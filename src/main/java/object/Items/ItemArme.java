@@ -1,4 +1,5 @@
-package object.Items;
+package object.items;
+
 import java.awt.*;
 
 /**
@@ -29,7 +30,7 @@ public class ItemArme extends Item {
         this.equipe = false;
     }
 
-    public int getDammage(){
+    public int getDammage() {
         return this.Dammage;
     }
 
@@ -42,7 +43,7 @@ public class ItemArme extends Item {
     }
 
     @Override
-    public String toString(){
-        return 1 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + Dammage + " " + valeur + " " + equipe;
+    public String toString() {
+        return 1 + " " + glyph + " " + color.getBlue() + " " + color.getRed() + " " + color.getGreen() + " " + name + " " + Dammage + " " + valeur + " " + equipe;
     }
 }

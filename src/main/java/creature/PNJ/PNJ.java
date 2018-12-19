@@ -1,8 +1,8 @@
-package creature.PNJ;
+package creature.pnj;
 
 import creature.Creature;
 import object.Inventory;
-import object.Items.Item;
+import object.items.Item;
 
 public abstract class PNJ extends Creature {
 

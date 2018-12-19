@@ -1,7 +1,7 @@
-package creature.PJ;
+package creature.pj;
 
 import object.Inventory;
-import object.Items.Item;
+import object.items.Item;
 import creature.Creature;
 
 public abstract class PJ extends Creature {

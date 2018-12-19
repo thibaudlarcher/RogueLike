@@ -1,6 +1,5 @@
-package screens.EndGameScreen;
+package screens.EndGame;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import asciiPanel.AsciiPanel;

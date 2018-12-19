@@ -1,26 +1,29 @@
-package screens;
+package screens.Start;
 
 import asciiPanel.AsciiPanel;
-import creature.PJ.Guerrier;
-import creature.PJ.Mage;
+import io.LoadSave;
+import screens.Screen;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
+import static java.lang.System.exit;
 
-public class PersonnageChoice implements Screen {
+public class LoadSreen implements Screen {
 
     private int choix;
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
-        terminal.writeCenter("Choix du personnage", 10,new Color(255, 255, 255));
-        terminal.writeCenter("Guerrier", 15,this.choix == 0 ? brightRed : white);
-        terminal.writeCenter("Mage", 20,this.choix == 1 ? brightRed : white );
-        terminal.writeCenter("Retour", 25,this.choix == 2 ? brightRed : white );
-    }
+        terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
+        terminal.clear();
+        terminal.writeCenter("Menu", 10,new Color(255, 255, 255));
+        terminal.writeCenter("Nouveau", 15,this.choix == 0 ? brightRed : white);
+        terminal.writeCenter("Charger", 20,this.choix == 1 ? brightRed : white );
+        terminal.writeCenter("Quitter", 25,this.choix == 2 ? brightRed : white);
+       }
 
     @Override
     public Screen respondToUserInput(KeyEvent key) {
@@ -28,12 +31,14 @@ public class PersonnageChoice implements Screen {
             case KeyEvent.VK_ENTER:
                 switch (this.choix){
                     case 0 :
-                        return new PlayScreen(new Guerrier("Guerrier",30,8));
+                        return new PersonnageChoice();
                     case 1 :
-                        return new PlayScreen(new Mage("Mage",100,3,5));
+                        return new LoadSave().PlayScreen();
                     case 2 :
-                        return new LoadSreen();
+                         exit(0);
                 }
+            /*case KeyEvent.VK_ESCAPE :
+                return new PlayScreen();*/
             case KeyEvent.VK_DOWN:
                 choix = (choix+1)%3;
                 break;

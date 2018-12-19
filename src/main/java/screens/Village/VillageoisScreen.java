@@ -4,7 +4,7 @@ import asciiPanel.AsciiPanel;
 import creature.Creature;
 import creature.GroupCreature;
 import object.Inventory;
-import object.Items.*;
+import object.items.*;
 import screens.Screen;
 import world.World;
 import java.awt.*;

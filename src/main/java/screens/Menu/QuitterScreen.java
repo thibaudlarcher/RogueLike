@@ -1,7 +1,9 @@
-package screens;
+package screens.Menu;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
+import screens.PlayScreen;
+import screens.Screen;
 import screens.Village.VillageScreen;
 import world.World;
 

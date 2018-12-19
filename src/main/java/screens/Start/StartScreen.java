@@ -1,16 +1,14 @@
-package screens;
+package screens.Start;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.*;
-import java.util.Timer;
-import java.util.TimerTask;
 
 import asciiPanel.AsciiPanel;
-import screens.Village.VillageScreen;
+import screens.Screen;
+import screens.Start.LoadSreen;
 
 import static java.lang.System.exit;
 

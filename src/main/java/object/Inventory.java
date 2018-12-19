@@ -1,6 +1,6 @@
 package object;
 
-import object.Items.*;
+import object.items.*;
 
 /**
  * Classe pour gérer l'inventaire du personnage.
@@ -26,7 +26,9 @@ public class Inventory {
     /**
      * @return vrai ou faux selon si un item casque est équipé ou non.
      */
-    public boolean getCasqueEquipe(){ return this.casque; }
+    public boolean getCasqueEquipe() {
+        return this.casque;
+    }
 
     /**
      * Attribut pour gérer si un item armure est équipé ou non.
@@ -36,7 +38,9 @@ public class Inventory {
     /**
      * @return vrai ou faux selon si un item armure est équipé ou non.
      */
-    public boolean getArmureEquipe(){ return this.armure; }
+    public boolean getArmureEquipe() {
+        return this.armure;
+    }
 
     /**
      * Attribut pour gérer si un item pantalon est équipé ou non.
@@ -46,7 +50,9 @@ public class Inventory {
     /**
      * @return vrai ou faux selon si un item pantalon est équipé ou non.
      */
-    public boolean getPantalonEquipe(){ return this.pantalon; }
+    public boolean getPantalonEquipe() {
+        return this.pantalon;
+    }
 
     /**
      * Attribut pour gérer si un item botte est équipé ou non.
@@ -56,7 +62,9 @@ public class Inventory {
     /**
      * @return vrai ou faux selon si un item botte est équipé ou non.
      */
-    public boolean getBotteEquipe(){ return this.botte; }
+    public boolean getBotteEquipe() {
+        return this.botte;
+    }
 
     /**
      * Attribut pour gérer si un item arme est équipé ou non.
@@ -66,7 +74,9 @@ public class Inventory {
     /**
      * @return vrai ou faux selon si un item arme est équipé ou non.
      */
-    public boolean getArmeEquipe(){ return this.arme; }
+    public boolean getArmeEquipe() {
+        return this.arme;
+    }
 
     /**
      * Attribut pour gérer la monnaie du personnage.
@@ -76,25 +86,33 @@ public class Inventory {
     /**
      * @return la monnaie du personnage.
      */
-    public int getMonnaie(){ return this.monnaie; }
+    public int getMonnaie() {
+        return this.monnaie;
+    }
 
     /**
      * Méthode pour définir la monnaie du personnage.
      * @param monnaie le nouveau montant de la monnaie du personnage.
      */
-    public void setMonnaie(int monnaie){ this.monnaie = monnaie; }
+    public void setMonnaie(int monnaie) {
+        this.monnaie = monnaie;
+    }
 
     /**
      * Méthode pour ajouter de la monnaie.
      * @param gain le gain du personnage.
      */
-    public void addMonnaie(int gain){ this.monnaie = this.monnaie + gain; }
+    public void addMonnaie(int gain) {
+        this.monnaie = this.monnaie + gain;
+    }
 
     /**
      * Méthode pour retirer de la monnaie .
      * @param prix le prix a retirer.
      */
-    public void removeMonnaie(int prix){ this.monnaie = this.monnaie - prix; }
+    public void removeMonnaie(int prix) {
+        this.monnaie = this.monnaie - prix;
+    }
 
     /**
      * @return le tableau d'item.
@@ -104,7 +122,7 @@ public class Inventory {
     }
 
     /**
-     *
+     * Méthode pour récupérer l'item à l'indice i.
      * @param i l'indice du tableau.
      * @return l'item situé à l'indice i du tableau d'item.
      */
@@ -113,7 +131,7 @@ public class Inventory {
     }
 
     /**
-     * Constructeur de la classe
+     * Constructeur de la classe.
      * @param max la taille max du tableau et donc de l'inventaire.
      */
     public Inventory(int max) {
@@ -130,7 +148,7 @@ public class Inventory {
      * Méthode pour définir si un item casque est équipé ou non.
      * @param e vrai ou faux selon si un item casque est équipé ou non.
      */
-    public void setCasqueEquipe(boolean e){
+    public void setCasqueEquipe(boolean e) {
         this.casque = e;
     }
 
@@ -138,7 +156,7 @@ public class Inventory {
      * Méthode pour définir si un item armure est équipé ou non.
      * @param e vrai ou faux selon si un item armure est équipé ou non.
      */
-    public void setArmureEquipe(boolean e){
+    public void setArmureEquipe(boolean e) {
         this.armure = e;
     }
 
@@ -146,7 +164,7 @@ public class Inventory {
      * Méthode pour définir si un item pantalon est équipé ou non.
      * @param e vrai ou faux selon si un item pantalon est équipé ou non.
      */
-    public void setPantalonEquipe(boolean e){
+    public void setPantalonEquipe(boolean e) {
         this.pantalon = e;
     }
 
@@ -154,7 +172,7 @@ public class Inventory {
      * Méthode pour définir si un item botte est équipé ou non.
      * @param e vrai ou faux selon si un item botte est équipé ou non.
      */
-    public void setBotteEquipe(boolean e){
+    public void setBotteEquipe(boolean e) {
         this.botte = e;
     }
 
@@ -182,7 +200,7 @@ public class Inventory {
     /**
      * @return la taille max de l'inventaire.
      */
-    public int getSizeMax(){
+    public int getSizeMax() {
         return this.max;
     }
 
@@ -205,8 +223,9 @@ public class Inventory {
     public boolean isFull() {
         int size = 0;
         for (int i = 0; i < items.length; i++) {
-            if (items[i] != null)
+            if (items[i] != null) {
                 size++;
+            }
         }
         if (size == items.length) {
             return true;
@@ -218,10 +237,10 @@ public class Inventory {
      * Méthode pour connaitre le nombre d'item dans l'inventaire.
      * @return le nombre d'item présent dans l'inventaire.
      */
-    public int getSize(){
+    public int getSize() {
         int size = 0;
-        for (int i = 0; i < items.length; i++){
-            if (items[i] != null){
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
                 size++;
             }
         }
@@ -231,11 +250,11 @@ public class Inventory {
     /**
      * @return l'indice max du dernier item.
      */
-    public int getIndiceMaxItem(){
+    public int getIndiceMaxItem() {
         int max = 0;
-        for (int i = 0; i < items.length; i++){
-            if (items[i] != null){
-                if (i > max){
+        for (int i = 0; i < items.length; i++) {
+            if (items[i] != null) {
+                if (i > max) {
                     max = i;
                 }
             }
@@ -246,11 +265,11 @@ public class Inventory {
     /**
      * Méthode pour supprimer tout les items presents dans l'inventaire.
      */
-    public void removeAllItem(){
+    public void removeAllItem() {
         for (int i = 0; i < items.length; i++) {
-                items[i] = null;
-            }
+            items[i] = null;
         }
+    }
 
 }
 

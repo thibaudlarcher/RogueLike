@@ -1,4 +1,4 @@
-package screens;
+package screens.Menu;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -6,9 +6,10 @@ import java.util.ArrayList;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
-import object.Inventory;
+import screens.*;
 import screens.Item.InventoryScreen;
 import io.Save;
+import screens.Start.LoadSreen;
 import screens.Village.VillageScreen;
 import world.World;
 

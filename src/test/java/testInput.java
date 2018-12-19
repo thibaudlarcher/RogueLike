@@ -1,9 +1,8 @@
 import Tiles.Tile;
 import creature.GroupCreature;
-import creature.PJ.Guerrier;
+import creature.pj.Guerrier;
 import io.LoadSave;
 import io.Save;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import screens.PlayScreen;

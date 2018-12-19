@@ -3,7 +3,7 @@ package io;
 import Tiles.Tile;
 import creature.Creature;
 import creature.GroupCreature;
-import object.Items.Item;
+import object.items.Item;
 import screens.PlayScreen;
 import screens.Village.VillageScreen;
 

@@ -2,7 +2,7 @@ package world;
 
 import java.awt.*;
 import java.util.ArrayList;
-import object.Items.Item;
+import object.items.Item;
 import Tiles.*;
 
 public class World {

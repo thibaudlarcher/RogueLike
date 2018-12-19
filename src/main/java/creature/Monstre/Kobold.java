@@ -1,6 +1,6 @@
-package creature.Monstre;
-import object.Items.Item;
+package creature.monstre;
 
+import object.items.Item;
 import static asciiPanel.AsciiPanel.red;
 
 public class Kobold extends Monstre {

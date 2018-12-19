@@ -1,4 +1,4 @@
-package object.Items;
+package object.items;
 
 import java.awt.*;
 
@@ -20,7 +20,7 @@ public class ItemEquipementPantalon extends Item {
      * @param defense la defense que procure l'item.
      * @param valeur la valeure marchande de l'item.
      */
-    public ItemEquipementPantalon(char glyph, Color color, String name, int defense, int valeur){
+    public ItemEquipementPantalon(char glyph, Color color, String name, int defense, int valeur) {
         this.glyph = glyph;
         this.color = color;
         this.name = name;
@@ -46,7 +46,7 @@ public class ItemEquipementPantalon extends Item {
     }
 
     @Override
-    public String toString(){
-        return 6 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + defense+ " " + valeur + " " + equipe;
+    public String toString() {
+        return 6 + " " + glyph + " " + color.getBlue() + " " + color.getRed() + " " + color.getGreen() + " " + name + " " + defense + " " + valeur + " " + equipe;
     }
 }

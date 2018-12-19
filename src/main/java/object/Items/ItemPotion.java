@@ -1,4 +1,4 @@
-package object.Items;
+package object.items;
 
 import java.awt.*;
 
@@ -20,7 +20,7 @@ public class ItemPotion extends Item {
      * @param effet l'effet que procure l'item.
      * @param valeur la valeur marchande de l'item.
      */
-    public ItemPotion(char glyph, Color color, String name, int effet, int valeur){
+    public ItemPotion(char glyph, Color color, String name, int effet, int valeur) {
         this.glyph = glyph;
         this.color = color;
         this.name = name;
@@ -33,7 +33,7 @@ public class ItemPotion extends Item {
     /**
      * @return l'effet que procure l'item.
      */
-    public int getEffet(){
+    public int getEffet() {
         return this.effet;
     }
 
@@ -44,8 +44,9 @@ public class ItemPotion extends Item {
     public int getDefense() {
         return 0;
     }
+
     @Override
-    public String toString(){
-        return 4 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + effet+ " " + valeur + " " + equipe;
+    public String toString() {
+        return 4 + " " + glyph + " " + color.getBlue() + " " + color.getRed() + " " + color.getGreen() + " " + name + " " + effet + " " + valeur + " " + equipe;
     }
 }

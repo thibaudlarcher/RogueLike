@@ -6,12 +6,14 @@ import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
 import Tiles.Tile;
 import creature.*;
-import creature.PJ.PJ;
+import creature.pj.PJ;
 import object.StuffFactory;
 import screens.Combat.CombatScreen;
-import screens.EndGameScreen.WinScreen;
+import screens.EndGame.WinScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
+import screens.Menu.*;
+import screens.Menu.StatScreen;
 import screens.Village.VillageScreen;
 import world.*;
 

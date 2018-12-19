@@ -1,12 +1,12 @@
-package creature.PJ;
-import object.Items.*;
+package creature.pj;
+import object.items.*;
 import object.*;
 import static asciiPanel.AsciiPanel.brightGreen;
 
-public class Guerrier extends PJ{
+public class Guerrier extends PJ {
 
     public Guerrier(String name, int pointDeVie, int attaque) {
-       this.color = brightGreen;
+        this.color = brightGreen;
         pointDeVieMax = pointDeVie;
         this.pointDeVie = pointDeVie;
         this.name = name;
@@ -29,14 +29,14 @@ public class Guerrier extends PJ{
     }
 
     @Override
-    public void pickupItem(Item item){
-        if (!(inventory.isFull()) || item != null){
+    public void pickupItem(Item item) {
+        if (!(inventory.isFull()) || item != null) {
             inventory.add(item);
         }
     }
 
     @Override
-    public void dropItem(Item item){
+    public void dropItem(Item item) {
         inventory.remove(item);
     }
 
