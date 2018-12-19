@@ -9,6 +9,7 @@ public class testMonster {
     public void Init(){
         this.world = new WorldBuilder(100	, 100).build();
     }
+
     @Test
     public void testNbMonster(){
 
