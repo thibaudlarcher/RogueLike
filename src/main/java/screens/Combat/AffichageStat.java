@@ -1,4 +1,4 @@
-package screens.Combat;
+package screens.combat;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;

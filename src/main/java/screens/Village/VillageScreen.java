@@ -1,15 +1,15 @@
-package screens.Village;
+package screens.village;
 
 import Tiles.Tile;
 import asciiPanel.AsciiPanel;
 import creature.CreatureFactory;
 import creature.GroupCreature;
 import screens.*;
-import screens.EndGame.WinScreen;
-import screens.Item.InventoryScreen;
-import screens.Item.PickUpItemScreen;
-import screens.Menu.*;
-import screens.Menu.StatScreen;
+import screens.endGame.WinScreen;
+import screens.item.InventoryScreen;
+import screens.item.PickUpItemScreen;
+import screens.menu.*;
+import screens.menu.StatScreen;
 import world.World;
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -24,7 +24,7 @@ public class VillageScreen implements Screen {
     private int screenHeight;
     private PlayScreen playscreen;
 
-    public VillageScreen(PlayScreen screen, World village){
+    public VillageScreen(PlayScreen screen, World village) {
         screenWidth = 140;
         screenHeight = 40;
         this.playscreen = screen;
@@ -36,14 +36,14 @@ public class VillageScreen implements Screen {
 
         groupVillageois = new ArrayList<GroupCreature>();
         ArrayList<Point> listVillageois = village.getListVillageois();
-        for (int i = 0; i < listVillageois.size(); i++){
+        for (int i = 0; i < listVillageois.size(); i++) {
             Point p = listVillageois.get(i);
             groupVillageois.add(creatureFactory.newVillageois((int) p.getX(), (int) p.getY()));
         }
         this.playerVillage.getGroupCreature().get(0).inventory().setMonnaie(screen.getPlayer().getGroupCreature().get(0).inventory().getMonnaie());
     }
 
-    public VillageScreen(VillageScreen villageScreen, PlayScreen screen){
+    public VillageScreen(VillageScreen villageScreen, PlayScreen screen) {
         screenWidth = 140;
         screenHeight = 40;
         this.playscreen = screen;
@@ -52,9 +52,13 @@ public class VillageScreen implements Screen {
         this.groupVillageois = villageScreen.groupVillageois;
     }
 
-    public int getScrollX() { return Math.max(0, Math.min(playerVillage.x - screenWidth / 2, village.width() - screenWidth)); }
+    public int getScrollX() {
+        return Math.max(0, Math.min(playerVillage.x - screenWidth / 2, village.width() - screenWidth));
+    }
 
-    public int getScrollY() { return Math.max(0, Math.min(playerVillage.y - screenHeight / 2, village.height() - screenHeight)); }
+    public int getScrollY() {
+        return Math.max(0, Math.min(playerVillage.y - screenHeight / 2, village.height() - screenHeight));
+    }
 
     private void displayTiles(AsciiPanel terminal, int left, int top,int playerx,int playery, int range) {
         for (int x = 0; x < screenWidth; x++) {
@@ -155,10 +159,9 @@ public class VillageScreen implements Screen {
         terminal.write(playerVillage.glyph(), playerVillage.x - left, playerVillage.y - top, playerVillage.getColor());
 
         //terminal.writeCenter("-- bonjour --", 41);
-        terminal.write("Vie : "+playerVillage.getGroupCreature().get(0).getPointDeVie()+"/"
-                +playerVillage.getGroupCreature().get(0).getPointDeVieMax() ,110, 41,Color.white);
+        terminal.write("Vie : " + playerVillage.getGroupCreature().get(0).getPointDeVie() + "/" + playerVillage.getGroupCreature().get(0).getPointDeVieMax(),110, 41,Color.white);
 
-        terminal.write("Floor : "+playerVillage.getGroupCreature().get(0).getNiveau() ,125, 41,Color.white);
+        terminal.write("Floor : " + playerVillage.getGroupCreature().get(0).getNiveau() ,125, 41,Color.white);
 
         if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS) {
             terminal.write("Press [P] to pickup item", 3, 41);
@@ -166,17 +169,19 @@ public class VillageScreen implements Screen {
         }
     }
 
-    private Screen testPickUpItem(){
-        if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS && village.item(playerVillage.x, playerVillage.y) != null){
+    private Screen testPickUpItem() {
+        if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS && village.item(playerVillage.x, playerVillage.y) != null) {
             return new PickUpItemScreen(this, this.playscreen);
-        } else return this;
+        } else {
+            return this;
+        }
     }
 
-    private Screen testRencontre(){
+    private Screen testRencontre() {
         if (village.tile(playerVillage.x, playerVillage.y) == Tile.VILLAGEOIS) {
             return new VillageoisScreen(this);
         }
-        if (village.tile(playerVillage.x, playerVillage.y)==Tile.EXIT){
+        if (village.tile(playerVillage.x, playerVillage.y) == Tile.EXIT) {
             playscreen.setInVillage(false);
             GroupCreature player = playscreen.getPlayer();
             return new PlayScreen(this.playscreen, this.playerVillage);
@@ -234,9 +239,11 @@ public class VillageScreen implements Screen {
         return playerVillage;
     }
 
-    public ArrayList<GroupCreature> getGroupVillageois(){
+    public ArrayList<GroupCreature> getGroupVillageois() {
         return groupVillageois;
     }
 
-    public PlayScreen getPlayscreen(){ return playscreen; }
+    public PlayScreen getPlayscreen() {
+        return playscreen;
+    }
 }

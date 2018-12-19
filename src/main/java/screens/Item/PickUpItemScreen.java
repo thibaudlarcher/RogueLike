@@ -1,11 +1,11 @@
-package screens.Item;
+package screens.item;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
 import object.items.*;
 import screens.PlayScreen;
 import screens.Screen;
-import screens.Village.VillageScreen;
+import screens.village.VillageScreen;
 import world.World;
 
 import java.awt.*;
@@ -37,8 +37,8 @@ public class PickUpItemScreen implements Screen {
         inVillage = true;
     }
 
-    private void pickUpItem(){
-        if (world.item(player.x,player.y) != null){
+    private void pickUpItem() {
+        if (world.item(player.x,player.y) != null) {
             if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
                 player.getGroupCreature().get(0).pickupItem(world.item(player.x, player.y));
                 this.world.itemPickVide(player.x, player.y);
@@ -56,29 +56,26 @@ public class PickUpItemScreen implements Screen {
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("degats : " + Integer.toString(currentItem.getDammage()), 16, Color.white);
                 terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
-            } else if (currentItem.getType() == "potion"){
+            } else if (currentItem.getType() == "potion") {
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("soins : " + Integer.toString(currentItem.getEffet()), 16, Color.white);
                 terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
-            } else if (currentItem.getType() == "armure"){
+            } else if (currentItem.getType() == "armure") {
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
                 terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
-            } else if (currentItem.getType() == "botte"){
+            } else if (currentItem.getType() == "botte") {
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
                 terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
-            } else if (currentItem.getType() == "casque"){
+            } else if (currentItem.getType() == "casque") {
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
                 terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
-            } else if (currentItem.getType() == "pantalon"){
+            } else if (currentItem.getType() == "pantalon") {
                 terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
                 terminal.writeCenter("defense : " + Integer.toString(currentItem.getDefense()), 16, Color.white);
                 terminal.writeCenter("valeur : " + Integer.toString(currentItem.getValeur()), 17, Color.white);
-            } else if (currentItem.getType() == "pierreTP"){
-                terminal.writeCenter("item : " + currentItem.getName(), 15, Color.white);
-                terminal.writeCenter("Une pierre tres puissante qui vous permettra de vous rendre au world.",16, Color.WHITE);
             }
 
             if (!(player.getGroupCreature().get(0).inventory().isFull())) {
@@ -89,8 +86,8 @@ public class PickUpItemScreen implements Screen {
             terminal.writeCenter("Press [ESCAPE] to resume game", 31, Color.GRAY);
         }
 
-        if (currentItem == null){
-            terminal.writeCenter("Item collected",15,Color.white);
+        if (currentItem == null) {
+            terminal.writeCenter("item collected",15,Color.white);
             terminal.writeCenter("Press [ESCAPE] to resume game", 30, Color.GRAY);
         }
     }
@@ -100,11 +97,11 @@ public class PickUpItemScreen implements Screen {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_ENTER:
             case KeyEvent.VK_ESCAPE:
-                if (inVillage == true){
+                if (inVillage == true) {
                     return new VillageScreen(villageScreen, screen);
                 } else return new PlayScreen(world, screen.getVillage(), player, groupCreature);
             case KeyEvent.VK_P: pickUpItem();
-            return this;
+                return this;
         }
         return this;
     }

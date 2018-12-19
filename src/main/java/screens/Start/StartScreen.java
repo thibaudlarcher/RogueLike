@@ -1,4 +1,4 @@
-package screens.Start;
+package screens.start;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -8,7 +8,6 @@ import java.io.IOException;
 
 import asciiPanel.AsciiPanel;
 import screens.Screen;
-import screens.Start.LoadSreen;
 
 import static java.lang.System.exit;
 
@@ -21,7 +20,7 @@ public class StartScreen implements Screen {
             String str;
             BufferedReader fichier = new BufferedReader(new FileReader("src/main/resources/LogoMenu.txt"));
             while ((str = fichier.readLine()) != null) {
-                String sep[] = str.split(" ");
+                String[] sep = str.split(" ");
                 terminal.write(sep[0], Integer.parseInt(sep[1]),Integer.parseInt(sep[2]), new Color(Integer.parseInt(sep[3]), Integer.parseInt(sep[4]), Integer.parseInt(sep[5])));
             }
             fichier.close();

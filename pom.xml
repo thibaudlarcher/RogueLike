@@ -31,7 +31,17 @@
         </dependency>
     </dependencies>
     <build>
+        <testSourceDirectory>${basedir}/src/test/java/</testSourceDirectory>
         <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.0.0</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                </configuration>
+            </plugin>
             <plugin>
                 <!-- Build an executable JAR -->
                 <groupId>org.apache.maven.plugins</groupId>
@@ -53,6 +63,20 @@
                 <configuration>
                     <source>7</source>
                     <target>7</target>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>3.0.0-M1</version>
+                <configuration>
+                    <includes>
+                        <!-- Ajouté vos fichiers Test ICI -->
+                        <include>**/testBSPCreator.java</include>
+                        <include>**/testInput.java</include>
+                        <include>**/testMonster.java</include>
+                        <include>**/testObject.java</include>
+                    </includes>
                 </configuration>
             </plugin>
         </plugins>

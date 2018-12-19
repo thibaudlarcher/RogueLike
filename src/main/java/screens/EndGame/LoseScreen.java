@@ -1,4 +1,4 @@
-package screens.EndGame;
+package screens.endGame;
 
 import java.awt.event.KeyEvent;
 
@@ -15,17 +15,17 @@ public class LoseScreen implements Screen {
 	private GroupCreature player;
 	private int choix;
 
-	public LoseScreen(GroupCreature player){
-		this.player=player;
+	public LoseScreen(GroupCreature player) {
+		this.player = player;
 	}
 
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
-		terminal.writeCenter("Continue", 10,this.choix == 0 ? brightRed : white );
+		terminal.writeCenter("Restart", 10,this.choix == 0 ? brightRed : white);
 		terminal.writeCenter("Quit", 15,this.choix == 1 ? brightRed : white);
 	}
 
-	public void restartchoice(){
+	public void restartchoice() {
 		player.getGroupCreature().get(0).setPointDeVie(player.getGroupCreature().get(0).getPointDeVieMax());
 		player.getGroupCreature().get(0).inventory().removeAllItem();
 		player.getGroupCreature().get(0).inventory().setArmeEquipe(false);
@@ -39,23 +39,23 @@ public class LoseScreen implements Screen {
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()) {
 			case KeyEvent.VK_ENTER:
-			switch (this.choix) {
-				case 0:
-					restartchoice();
-					return new PlayScreen(player);
-				case 1:
-					exit(1);
-					break;
-			}
+				switch (this.choix) {
+					case 0:
+						restartchoice();
+						return new PlayScreen(player);
+					case 1:
+						exit(1);
+						break;
+				}
 			case KeyEvent.VK_ESCAPE:
 				exit(1);
 			case KeyEvent.VK_DOWN:
-				choix = (choix+1)%2;
+				choix = (choix + 1) % 2;
 				break;
 			case KeyEvent.VK_UP:
-				choix = (choix-1)%2;
-				if (choix<0){
-					choix = (choix+2);
+				choix = (choix - 1) % 2;
+				if (choix < 0) {
+					choix = (choix + 2);
 				}
 				break;
 		}

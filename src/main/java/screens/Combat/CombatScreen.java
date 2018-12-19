@@ -1,8 +1,8 @@
-package screens.Combat;
+package screens.combat;
 
 import asciiPanel.AsciiPanel;
 import creature.monstre.*;
-import screens.EndGame.LoseScreen;
+import screens.endGame.LoseScreen;
 import screens.PlayScreen;
 import creature.GroupCreature;
 import screens.Screen;
@@ -13,10 +13,10 @@ import java.util.ArrayList;
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
-import static screens.Combat.AffichageStat.*;
-import static screens.Combat.GestionTour.testJoueurTour;
-import static screens.Combat.TestMort.*;
-import static screens.Combat.AffichageDesign.*;
+import static screens.combat.AffichageStat.*;
+import static combat.GestionTour.testJoueurTour;
+import static combat.TestMort.*;
+import static screens.combat.AffichageDesign.*;
 
 public class CombatScreen implements Screen {
     private World world;
@@ -35,14 +35,14 @@ public class CombatScreen implements Screen {
         position = 0;
         nextPlayer = -1;
         nextCrea = -1;
-        this.world=world;
+        this.world = world;
         this.village = village;
         this.screen = screen;
         this.groupCreature = groupCreature;
         this.player = player;
         this.numero = numero;
         creature = groupCreature.get(numero);
-        if(creature.getGroupCreature().size() == 0){
+        if (creature.getGroupCreature().size() == 0) {
             creature.getGroupCreature().add(new Kobold());
             creature.getGroupCreature().add(new Kobold());
             creature.getGroupCreature().add(new Kobold());
@@ -52,7 +52,7 @@ public class CombatScreen implements Screen {
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
-        while((nextPlayer = testJoueurTour(player)) == -1) {
+        while ((nextPlayer = testJoueurTour(player)) == -1) {
             terminal.setDefaultBackgroundColor(new Color(125,125,125));
             terminal.clear();
             afficheMenu(terminal, this);
@@ -68,7 +68,7 @@ public class CombatScreen implements Screen {
                         player.getGroupCreature().get(i).getColor());
             }
             affichePV(terminal, creature, player);
-            if((nextCrea = testJoueurTour(creature)) != -1) {
+            if ((nextCrea = testJoueurTour(creature)) != -1) {
                 ((Monstre) creature.getGroupCreature().get(nextCrea)).takeAction(player);
                 nextCrea = -1;
             }
@@ -79,12 +79,11 @@ public class CombatScreen implements Screen {
                 player.getGroupCreature().get(i).updateTour();
             }
         }
-        if (player.getGroupCreature().get(0).getPointDeVie()<=0){
+        if (player.getGroupCreature().get(0).getPointDeVie() <= 0) {
             terminal.clear();
             terminal.writeCenter("You Die.", 3, Color.red);
             terminal.writeCenter("Press [ENTER] to continue",38, Color.black);
-        }
-        else {
+        } else {
             terminal.setDefaultBackgroundColor(new Color(125, 125, 125));
             terminal.clear();
             afficheMenu(terminal, this);
@@ -104,11 +103,11 @@ public class CombatScreen implements Screen {
         }
     }
 
-    public void afficheMenu(AsciiPanel terminal,CombatScreen menu){
-        terminal.write("Attaque", 105 ,7, menu.position == 0 ? brightRed : white );
-        terminal.write("Fuite", 105 ,13, menu.position == 1 ? brightRed : white );
-        if (this.player.getGroupCreature().get(0).getName()=="Mage"){
-            terminal.write("Boule de feu", 105 ,10, menu.position == 2 ? brightRed : white );
+    public void afficheMenu(AsciiPanel terminal,CombatScreen menu) {
+        terminal.write("Attaque", 105,7, menu.position == 0 ? brightRed : white);
+        terminal.write("Fuite", 105,13, menu.position == 1 ? brightRed : white);
+        if (this.player.getGroupCreature().get(0).getName() == "Mage") {
+            terminal.write("Boule de feu", 105,10, menu.position == 2 ? brightRed : white);
         }
     }
 
@@ -116,7 +115,7 @@ public class CombatScreen implements Screen {
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_ENTER:
-                if (player.getGroupCreature().get(0).getName()=="Mage") {
+                if (player.getGroupCreature().get(0).getName() == "Mage") {
                     switch (this.position) {
                         case 0:
                             if (mortPersonnage(player)) {
@@ -145,7 +144,7 @@ public class CombatScreen implements Screen {
                         case 1:
                             return new PlayScreen(world,village, player, groupCreature);
                     }
-                }else {
+                } else {
                     switch (this.position) {
                         case 0:
                             if (mortPersonnage(player)) {
@@ -166,7 +165,7 @@ public class CombatScreen implements Screen {
             case KeyEvent.VK_ESCAPE:
                 exit(1);
             case KeyEvent.VK_RIGHT:
-                if (this.choix != creature.getGroupCreature().size()-1) {
+                if (this.choix != creature.getGroupCreature().size() - 1) {
                     this.choix++;
                 }
                 return this;
@@ -186,20 +185,22 @@ public class CombatScreen implements Screen {
                 }
                 return this;*/
             case KeyEvent.VK_DOWN:
-                if (player.getGroupCreature().get(0).getName()=="Mage"){
-                    position = (position+1)%3;
-                }else position = (position+1)%2;
+                if (player.getGroupCreature().get(0).getName() == "Mage") {
+                    position = (position + 1) % 3;
+                } else {
+                    position = (position + 1) % 2;
+                }
                 break;
             case KeyEvent.VK_UP:
-                if (player.getGroupCreature().get(0).getName()=="Mage"){
-                    position = (position-1)%3;
-                    if (position<0){
-                        position = (position+3);
+                if (player.getGroupCreature().get(0).getName() == "Mage") {
+                    position = (position - 1) % 3;
+                    if (position < 0) {
+                        position = (position + 3);
                     }
-                }else{
-                    position = (position-1)%2;
-                    if (position<0){
-                        position = (position+2);
+                } else {
+                    position = (position - 1) % 2;
+                    if (position < 0) {
+                        position = (position + 2);
                     }
                 }
                 break;

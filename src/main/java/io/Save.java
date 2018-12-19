@@ -5,7 +5,7 @@ import creature.Creature;
 import creature.GroupCreature;
 import object.items.Item;
 import screens.PlayScreen;
-import screens.Village.VillageScreen;
+import screens.village.VillageScreen;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
