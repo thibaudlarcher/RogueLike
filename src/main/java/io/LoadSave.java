@@ -301,6 +301,13 @@ public class LoadSave {
                     player.getGroupCreature().get(0).setGlyph(sep[7].charAt(0));
                     player.getGroupCreature().get(0).setNiveau(Integer.parseInt(sep[13]));
                     player.getGroupCreature().get(0).inventory().setMonnaie(Integer.parseInt(sep[9]));
+
+                    System.out.println(player.getGroupCreature().get(0).getPointDeVie());
+                    System.out.println(player.getGroupCreature().get(0).getAttaque());
+                    System.out.println(player.getGroupCreature().get(0).getPointDeVieMax());
+                    System.out.println(player.getGroupCreature().get(0).getName());
+                    System.out.println(player.getGroupCreature().get(0).getGlyph());
+                    System.out.println(player.getGroupCreature().get(0).getNiveau());
                 }
             }
             fichier.close();
