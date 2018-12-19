@@ -110,7 +110,7 @@ public class VillageoisScreen implements Screen {
         return this;
     }
 
-    private void achatPotion(){
+    public void achatPotion(){
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 16) {
                 player.getGroupCreature().get(0).inventory().add(new ItemPotion((char) 225, Color.black, "potion", 10, 14));
@@ -119,7 +119,7 @@ public class VillageoisScreen implements Screen {
         }
     }
 
-    private void achatEpee(){
+    public void achatEpee(){
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 23) {
                 player.getGroupCreature().get(0).inventory().add(new ItemArme((char) 197, Color.black, "epee", 8, 21));
@@ -128,7 +128,7 @@ public class VillageoisScreen implements Screen {
         }
     }
 
-    private void achatCasque(){
+    public void achatCasque(){
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 14) {
                 player.getGroupCreature().get(0).inventory().add(new ItemEquipementCasque((char) 94, Color.black, "casque", 1, 12));
@@ -137,7 +137,7 @@ public class VillageoisScreen implements Screen {
         }
     }
 
-    private void achatBaton(){
+    public void achatBaton(){
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 8) {
                 player.getGroupCreature().get(0).inventory().add(new ItemArme((char) 179, Color.black, "baton", 3, 6));
@@ -146,7 +146,7 @@ public class VillageoisScreen implements Screen {
         }
     }
 
-    private void achatArmure(){
+    public void achatArmure(){
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 19) {
                 player.getGroupCreature().get(0).inventory().add(new ItemEquipementArmure((char) 190, Color.black, "armure", 2, 17));
@@ -155,7 +155,7 @@ public class VillageoisScreen implements Screen {
         }
     }
 
-    private void achatPantalon(){
+    public void achatPantalon(){
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 16) {
                 player.getGroupCreature().get(0).inventory().add(new ItemEquipementPantalon((char) 186, Color.black, "pantalon", 2, 14));
@@ -164,7 +164,7 @@ public class VillageoisScreen implements Screen {
         }
     }
 
-    private void achatBotte(){
+    public void achatBotte(){
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 12) {
                 player.getGroupCreature().get(0).inventory().add(new ItemEquipementBotte((char) 200, Color.black, "botte", 1, 10));
@@ -173,7 +173,7 @@ public class VillageoisScreen implements Screen {
         }
     }
 
-    private void vendre(Item item){
+    public void vendre(Item item){
         if (item != null) {
             player.getGroupCreature().get(0).inventory().addMonnaie(item.getValeur());
             player.getGroupCreature().get(0).inventory().remove(item);

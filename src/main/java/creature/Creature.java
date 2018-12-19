@@ -60,7 +60,7 @@ public abstract class Creature {
 
     public void modifPointDeVie(int modif){
         if (this.pointDeVie < this.pointDeVieMax) {
-            if (this.pointDeVie + modif > 20) {
+            if (this.pointDeVie + modif > this.getPointDeVieMax()) {
                 this.pointDeVie = this.pointDeVieMax;
             } else { this.pointDeVie = this.pointDeVie + modif; }
         }

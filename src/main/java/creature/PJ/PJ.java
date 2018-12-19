@@ -17,6 +17,10 @@ public abstract class PJ extends Creature {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public abstract void pickupItem(Item item);
 
     public abstract void dropItem(Item item);

@@ -21,6 +21,7 @@ public class testMonster {
         screen = new PlayScreen(new Guerrier("Guerrier",30,8));
         world = screen.getWorld();
     }
+
     @Test
 
     public void testNbMonster(){
