@@ -2,9 +2,24 @@ package object.Items;
 
 import java.awt.*;
 
+/**
+ * Classe pour gérer les items de type pantalon.
+ */
 public class ItemEquipementPantalon extends Item {
+
+    /**
+     * Attribut pour la défense que procure l'item.
+     */
     private int defense;
 
+    /**
+     * Constructeur de la classe.
+     * @param glyph le glyphe de l'item.
+     * @param color la couleur de l'item.
+     * @param name le nom de l'item.
+     * @param defense la defense que procure l'item.
+     * @param valeur la valeure marchande de l'item.
+     */
     public ItemEquipementPantalon(char glyph, Color color, String name, int defense, int valeur){
         this.glyph = glyph;
         this.color = color;
@@ -19,6 +34,9 @@ public class ItemEquipementPantalon extends Item {
         return 0;
     }
 
+    /**
+     * @return la defense que procure l'item.
+     */
     public int getDefense() {
         return this.defense;
     }
