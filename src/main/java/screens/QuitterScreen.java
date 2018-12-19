@@ -13,16 +13,55 @@ import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
 
-public class QuitterScreen implements Screen {
+/**
+ * Classe du screen de quitter le jeu
+ *
+ * @see Screen
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
 
+public class QuitterScreen implements Screen {
+    /**
+     * Screen du jeu
+     */
     private PlayScreen screen;
+
+    /**
+     * Screen du village
+     */
     private VillageScreen villageScreen;
+
+    /**
+     * World
+     */
     private World world;
+
+    /**
+     * Player
+     */
     private GroupCreature player;
+
+    /**
+     * groupe de créature
+     */
     private ArrayList<GroupCreature> groupCreature;
+
+    /**
+     * Choix de quitter
+     */
     private int choix;
+
+    /**
+     * Savoir si on est dans le villages
+     */
     private boolean inVillage;
 
+    /**
+     * Constructeur de la classe QuitterScreen
+     * @param screen Screen du jeu
+     */
     public QuitterScreen(PlayScreen screen){
         this.screen = screen;
         this.world=screen.getWorld();
@@ -31,6 +70,11 @@ public class QuitterScreen implements Screen {
         inVillage = false;
     }
 
+    /**
+     * Constructeur alternatif
+     * @param villageScreen Screen villages
+     * @param screen Screen du jeu
+     */
     public QuitterScreen(VillageScreen villageScreen, PlayScreen screen){
         this.villageScreen = villageScreen;
         this.screen = screen;
@@ -39,6 +83,10 @@ public class QuitterScreen implements Screen {
         inVillage = true;
     }
 
+    /**
+     * Permet d'afficher le choix de quitter
+     * @param terminal asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
        terminal.writeCenter("Voulez-vous quitter la partie ?",15,Color.white);
@@ -46,6 +94,11 @@ public class QuitterScreen implements Screen {
         terminal.write("Non",73,20,this.choix == 1 ? brightRed : white);
     }
 
+    /**
+     * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+     * @param key Appuie sur une touche
+     * @return Un Screen
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {

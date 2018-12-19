@@ -14,16 +14,56 @@ import screens.Item.PickUpItemScreen;
 import screens.Village.VillageScreen;
 import world.*;
 
+/**
+ * Classe du screen du jeu
+ *
+ * @see Screen
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
+
 public class PlayScreen implements Screen {
 	private int i =0;
+	/**
+	 * Stock le world
+	 */
 	private World world;
+
+	/**
+	 * Stock le player
+	 */
 	private GroupCreature player;
+
+	/**
+	 * Stock le groupe de créature
+	 */
 	private ArrayList<GroupCreature> groupCreature;
+
+	/**
+	 * taille en largeur de l'écran
+	 */
 	private int screenWidth;
+
+	/**
+	 * taille en hauteur de l'écran
+	 */
 	private int screenHeight;
+
+	/**
+	 * world village
+	 */
 	private World village;
+
+	/**
+	 * Si on se trouve dans le village
+	 */
 	private boolean inVillage;
 
+	/**
+	 * Constructeur de la classe PlayScreen
+	 * @param choix Player
+	 */
 	public PlayScreen(PJ choix){
 		screenWidth = 140;
 		screenHeight = 40;
@@ -44,6 +84,13 @@ public class PlayScreen implements Screen {
 		}
 	}
 
+	/**
+	 * Constructeur alternatif
+	 * @param world Monde
+	 * @param village Village
+	 * @param player Player
+	 * @param groupCreature Groupe de créature
+	 */
 	public PlayScreen(World world, World village, GroupCreature player,ArrayList<GroupCreature> groupCreature){
 		screenWidth = 140;
 		screenHeight = 40;
@@ -54,6 +101,10 @@ public class PlayScreen implements Screen {
 		this.groupCreature = groupCreature;
 	}
 
+	/**
+	 * Constructeur alternatif
+	 * @param screen Screen de jeu
+	 */
 	public PlayScreen(PlayScreen screen){
 		screenWidth = 140;
 		screenHeight = 40;
@@ -67,6 +118,11 @@ public class PlayScreen implements Screen {
 		player.setWorld(this.world);
 	}
 
+	/**
+	 * Constructeur alternatif
+	 * @param player player
+	 * @param village village
+	 */
 	public PlayScreen(GroupCreature player, World village){
         screenWidth = 140;
         screenHeight = 40;
@@ -93,6 +149,10 @@ public class PlayScreen implements Screen {
 		}
     }
 
+	/**
+	 * Constructeur alternatif
+	 * @param player player
+	 */
 	public PlayScreen(GroupCreature player){
 		screenWidth = 140;
 		screenHeight = 40;
@@ -117,12 +177,22 @@ public class PlayScreen implements Screen {
 		}
 	}
 
+	/**
+	 * Permet de créer un world
+	 */
 	private void createWorld(){
 		world = new WorldBuilder(100	, 100).build();
 	}
 
+	/**
+	 * Permet de créer un village
+	 */
 	private void createVillage(){ village = new WorldBuilder(100	, 100).buildVillage(); }
 
+	/**
+	 * Permet de créer des items dans les Maps
+	 * @param factory Items
+	 */
 	private void createItems(StuffFactory factory) {
 		for (int i = 0; i < 5; i++) {
 			factory.newPotion();
@@ -136,10 +206,22 @@ public class PlayScreen implements Screen {
 		}
 	}
 
+	/**
+	 * Le scroll en x
+	 * @return valeur des scroll
+	 */
 	public int getScrollX() { return Math.max(0, Math.min(player.x - screenWidth / 2, world.width() - screenWidth)); }
-	
+
+	/**
+	 * Le scroll en y
+	 * @return valeur des scroll
+	 */
 	public int getScrollY() { return Math.max(0, Math.min(player.y - screenHeight / 2, world.height() - screenHeight)); }
-	
+
+	/**
+	 * Permet d'afficher toute la map du jeu
+	 * @param terminal Asciipanel
+	 */
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
 		terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
@@ -164,6 +246,9 @@ public class PlayScreen implements Screen {
 		}
 	}
 
+	/**
+	 * permet de faire bouger les monstres
+	 */
 	private void creatureMove(){
 		for(int i = 0 ; i<groupCreature.size();i++){
 			int rand = (int)((Math.random() * ( 4 )));
@@ -184,6 +269,15 @@ public class PlayScreen implements Screen {
 		}
 	}
 
+	/**
+	 * Permet d'afficher les tiles
+	 * @param terminal asciipanel
+	 * @param left Scroll en x
+	 * @param top Scroll en y
+	 * @param playerx Position en x du player
+	 * @param playery Position en y du player
+	 * @param range champs de vision
+	 */
 	private void displayTiles(AsciiPanel terminal, int left, int top,int playerx,int playery, int range) {
 		int indicexm,indicexma,indiceym,indiceyma;
 		for (int x = 0; x < screenWidth; x++){
@@ -298,6 +392,10 @@ public class PlayScreen implements Screen {
 		terminal.write(player.glyph(), player.x - left, player.y - top, player.getColor());
 	}
 
+	/**
+	 * Permet de tester le rencontre entre player et monstres
+	 * @return le Screen du combat
+	 */
 	private Screen testRencontre(){
 		for(int i = 0; i < groupCreature.size();i++) {
 			if (groupCreature.get(i).isNextTo(player.getX(),player.getY())) {
@@ -313,12 +411,21 @@ public class PlayScreen implements Screen {
 		return this;
 	}
 
+	/**
+	 * Permet de tester si le player peut récupérer un item
+	 * @return Screen de la récupération de l'item
+	 */
 	private Screen testPickUpItem(){
 		if (world.tile(player.x, player.y) == Tile.ITEMS && world.item(player.x, player.y) != null){
 			return new PickUpItemScreen(this);
 		} else return this;
 	}
 
+	/**
+	 * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+	 * @param key Appuie sur une touche
+	 * @return Un Screen
+	 */
 	@Override
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()) {
@@ -365,21 +472,45 @@ public class PlayScreen implements Screen {
 		return this;
 	}
 
+	/**
+	 * Getter du world
+	 * @return world
+	 */
 	public World getWorld() {
 		return world;
 	}
 
+	/**
+	 * getter du player
+	 * @return player
+	 */
 	public GroupCreature getPlayer() {
 		return player;
 	}
 
+	/**
+	 * getter du croupe de créatures
+	 * @return groupe de créatures
+	 */
 	public ArrayList<GroupCreature> getGroupCreature() {
 		return groupCreature;
 	}
 
+	/**
+	 * getter du world du village
+	 * @return world
+	 */
 	public World getVillage(){ return village; }
 
+	/**
+	 * getter de savoir si le player est dans le villages
+	 * @return boolean
+	 */
 	public boolean getInVillage(){ return inVillage; }
 
+	/**
+	 * Modification de savoir si on est dans le village
+	 * @param b boolean
+	 */
 	public void setInVillage(boolean b){ inVillage = b; }
 }

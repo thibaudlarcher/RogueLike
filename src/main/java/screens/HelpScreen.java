@@ -9,14 +9,51 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+
+/**
+ * Classe du screen d'aide
+ *
+ * @see Screen
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
+
 public class HelpScreen implements Screen {
+    /**
+     * Le Screen du jeu
+     */
     private PlayScreen screen;
+
+    /**
+     * Le screen du village
+     */
     private VillageScreen villageScreen;
+
+    /**
+     * Le World
+     */
     private World world;
+
+    /**
+     * La créature
+     */
     private GroupCreature player;
+
+    /**
+     * Le groupe de créature
+     */
     private ArrayList<GroupCreature> GroupCreature;
+
+    /**
+     * Booléan si c'est dans le village
+     */
     private boolean inVilllage;
 
+    /**
+     * Constructeur du HelpScreen
+     * @param screen Screen du jeu
+     */
     public HelpScreen (PlayScreen screen){
         this.screen = screen;
         this.GroupCreature = screen.getGroupCreature();
@@ -25,6 +62,11 @@ public class HelpScreen implements Screen {
         inVilllage = false;
     }
 
+    /**
+     * Constructeur alternatif de la classe HelpScreen
+     * @param villageScreen Screen du village
+     * @param screen Screen du jeu
+     */
     public HelpScreen (VillageScreen villageScreen, PlayScreen screen){
         this.villageScreen = villageScreen;
         this.player = villageScreen.getPlayer();
@@ -33,6 +75,10 @@ public class HelpScreen implements Screen {
         inVilllage = true;
     }
 
+    /**
+     * Permet d'afficher l'help sur le terminal asciipanel
+     * @param terminal asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.writeCenter("Help", 2, Color.WHITE);
@@ -44,6 +90,11 @@ public class HelpScreen implements Screen {
         terminal.writeCenter("[D] Lacher un Item",18, new Color(53, 118, 63));
     }
 
+    /**
+     * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+     * @param key Appuie sur une touche
+     * @return Un Screen
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {

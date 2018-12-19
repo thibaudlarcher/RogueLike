@@ -11,15 +11,46 @@ import world.World;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
-public class VillageScreen implements Screen {
+/**
+ * Classe du village
+ *
+ * @see Screen
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
 
+public class VillageScreen implements Screen {
+    /**
+     * world du village
+     */
     private World village;
+
+    /**
+     * les villageois
+     */
     private GroupCreature playerVillage;
+
+    /**
+     * taille du l'affichage Largeur
+     */
     private int screenWidth;
+
+    /**
+     * taille du l'affichage Hauteur
+     */
     private int screenHeight;
+
+    /**
+     * Screen play
+     */
     private PlayScreen playscreen;
 
-
+    /**
+     * Constructeur de la classe VillageScreen
+     * @param screen Screen
+     * @param village world du village
+     */
     public VillageScreen(PlayScreen screen, World village){
         screenWidth = 140;
         screenHeight = 40;
@@ -31,6 +62,11 @@ public class VillageScreen implements Screen {
         this.playerVillage.setWorld(village);
     }
 
+    /**
+     * Constructeur alternatif a la classe VillageScreen
+     * @param villageScreen Screen
+     * @param screen world du village
+     */
     public VillageScreen(VillageScreen villageScreen, PlayScreen screen){
         screenWidth = 140;
         screenHeight = 40;
@@ -39,10 +75,27 @@ public class VillageScreen implements Screen {
         this.playerVillage = villageScreen.getPlayer();
     }
 
+    /**
+     * Méthode pour le scroll du personnage
+     * @return valeur du scoll en largeur
+     */
     public int getScrollX() { return Math.max(0, Math.min(playerVillage.x - screenWidth / 2, village.width() - screenWidth)); }
 
+    /**
+     * Méthode pour le scroll du personnage
+     * @return valeur du scoll en hauteur
+     */
     public int getScrollY() { return Math.max(0, Math.min(playerVillage.y - screenHeight / 2, village.height() - screenHeight)); }
 
+    /**
+     * Permet d'afficher les tiles sur l'écran
+     * @param terminal asciipanel
+     * @param left le scroll en x
+     * @param top le scroll en y
+     * @param playerx position en x du player
+     * @param playery position en y du player
+     * @param range le champ de vision du player
+     */
     private void displayTiles(AsciiPanel terminal, int left, int top,int playerx,int playery, int range) {
         for (int x = 0; x < screenWidth; x++){
             for (int y = 0; y < screenHeight; y++){
@@ -117,6 +170,10 @@ public class VillageScreen implements Screen {
         terminal.write(playerVillage.glyph(), playerVillage.x - left, playerVillage.y - top, playerVillage.getColor());
     }
 
+    /**
+     * Permet d'afficher dans le terminal de ascii panel
+     * @param terminal asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
@@ -141,12 +198,20 @@ public class VillageScreen implements Screen {
         }
     }
 
+    /**
+     * Permet de tester si on peut récupérer un item sur un tile
+     * @return le Screen du pickup item
+     */
     private Screen testPickUpItem(){
         if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS && village.item(playerVillage.x, playerVillage.y) != null){
             return new PickUpItemScreen(this, this.playscreen);
         } else return this;
     }
 
+    /**
+     * Permet de tester si on peux rencontrer le villageoi
+     * @return me Screen
+     */
     private Screen testRencontre(){
 //        for(int i = 0; i < groupCreature.size();i++) {
 //            if (groupCreature.get(i).isNextTo(playerVillage.getX(),playerVillage.getY())) {
@@ -160,7 +225,11 @@ public class VillageScreen implements Screen {
         }
         return this;
     }
-
+    /**
+     * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+     * @param key Appuie sur une touche
+     * @return Un Screen
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {

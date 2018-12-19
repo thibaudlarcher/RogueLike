@@ -12,15 +12,45 @@ import java.util.ArrayList;
 import static asciiPanel.AsciiPanel.white;
 
 public class StatScreen implements Screen {
-
+    /**
+     * Screen du jeu
+     */
     private PlayScreen screen;
+
+    /**
+     * Screen du village
+     */
     private VillageScreen villageScreen;
+
+    /**
+     * world
+     */
     private World world;
+
+    /**
+     * Player
+     */
     private GroupCreature player;
+
+    /**
+     * Groupe des créatures
+     */
     private ArrayList<GroupCreature> groupCreature;
+
+    /**
+     * Choix dans le key
+     */
     private int choix;
+
+    /**
+     * Savoir si tu es dans le village
+     */
     private boolean inVillage;
 
+    /**
+     * Constructeur de la classe Stat Screen
+     * @param screen Screen du jeu
+     */
     public StatScreen(PlayScreen screen){
         this.screen = screen;
         this.world=screen.getWorld();
@@ -29,6 +59,11 @@ public class StatScreen implements Screen {
         inVillage = false;
     }
 
+    /**
+     * Constructeur alternatif
+     * @param villageScreen Screen du village
+     * @param screen Scrren du jeu
+     */
     public StatScreen(VillageScreen villageScreen, PlayScreen screen){
         this.villageScreen = villageScreen;
         this.world = villageScreen.getVillage();
@@ -37,6 +72,10 @@ public class StatScreen implements Screen {
         inVillage = true;
     }
 
+    /**
+     * Permet d'afficher toutes les stats du player
+     * @param terminal Asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
@@ -57,6 +96,11 @@ public class StatScreen implements Screen {
         terminal.write("Jeux [ESC]", 130,40,Color.white);
     }
 
+    /**
+     * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+     * @param key Appuie sur une touche
+     * @return Un Screen
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {

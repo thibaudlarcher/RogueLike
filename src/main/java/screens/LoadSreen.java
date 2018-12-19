@@ -11,10 +11,26 @@ import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
 import static java.lang.System.in;
 
+/**
+ * Classe du screen de chargement
+ *
+ * @see Screen
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
+
 public class LoadSreen implements Screen{
 
+    /**
+     * choix du key event
+     */
     private int choix;
 
+    /**
+     * permet d'afficher le choix de l'écran titre
+     * @param terminal AsciiPanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
@@ -25,6 +41,11 @@ public class LoadSreen implements Screen{
         terminal.writeCenter("Quitter", 25,this.choix == 2 ? brightRed : white);
        }
 
+    /**
+     * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+     * @param key Appuie sur une touche
+     * @return Un Screen
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {

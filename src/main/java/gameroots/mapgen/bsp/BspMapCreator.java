@@ -6,49 +6,97 @@ import gameroots.shared.geom.IntRect;
 import java.util.*;
 
 /**
- * Dungeon generator using a BSP tree Algorithm.
+ * Classe de la création d'un Donjon
+ *
+ * @see CellNode
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
  */
 
 public class BspMapCreator {
+
 	/**
-	 * @param rnd : Number under seed form for random calculated.
-	 * @param cellPad : Separate cell of a room
-	 * @param roomPad : Separate number of separation cell by room
-	 * @param mapWidth : Width of map
-	 * @param mapHeight : Height of map
-	 * @param maxIteration : Iteration maximum of separate cell
-	 * @param minRoomSize : minimum of room size
-	 * @param roomsByTile :
-	 * @param rooms :
-	 * @param roomsbyNumber :
+	 * Un nombre aléatoire calculer grâce au seed.
 	 */
 	static Random rnd = new Random();
+
+	/**
+	 * Permet de séparer les rooms.
+	 */
 	static int cellPad = 12;
+
+	/**
+	 * Séparer les nombre de cell en rooms.
+	*/
 	static int roomPad = 2;
+
+	/**
+	 * Largeur de la map.
+	 */
 	private int mapWidth;
+
+	/**
+	 * Hauteur de la map.
+	 */
 	private int mapHeight;
+
+	/**
+	 * Nombre d'itération pour le nombre de création de room sur la map.
+	 */
 	private int maxIterations;
+
+	/**
+	 * Taille minimum d'un room.
+	 */
 	private int minRoomSize;
+
+	/**
+	 * Permet de stocker les rooms avec leur tiles respectifs.
+	 */
 	private Map<IntPoint, Integer> roomsByTile;
+
+	/**
+	 * Permet de stocket les rooms dans une liste.
+	 */
 	private List<IntRect> rooms;
+
+	/**
+	 * Permet de stocket l'emplacement des rooms.
+	 */
 	private Map<Integer, IntRect> roomsByNumber;
 
+	/**
+	 * Constructeur de la classe prenant en paramètre la hauteur et la largeur.
+	 * @param width Largeur
+	 * @param height hauteur
+	 */
 	public BspMapCreator(int width, int height) {
 		this();
 		this.mapWidth = width;
 		this.mapHeight = height;
 	}
 
+	/**
+	 * Constructeur de la classe par défaut
+	 */
 	public BspMapCreator() {
 		roomsByTile = new HashMap<>();
 		roomsByNumber = new HashMap<>();
 		rooms = new ArrayList<>();
 	}
 
+	/**
+	 * Modifier le nombre maximum d'itération.
+	 * @param maxIterations Nombre d'itération
+	 */
 	public void setMaxIterations(int maxIterations) {
 		this.maxIterations = maxIterations;
 	}
 
+	/**
+	 * Permet de modifier la taille minimum des rooms.
+	 * @param minRoomSize Valeur de la taille
+	 */
 	public void setMinRoomSize(int minRoomSize) {
 		if (minRoomSize < 5) {
 			throw new RuntimeException("Le minimum de la Room est de 5");
@@ -56,14 +104,23 @@ public class BspMapCreator {
 		this.minRoomSize = minRoomSize;
 	}
 
+	/**
+	 * Permet de modifier la taille de la map.
+	 * @param mapWidth Largeur
+	 * @param mapHeight Hauteur
+	 */
 	public void setMapDimension(int mapWidth, int mapHeight) {
 		this.mapWidth = mapWidth;
 		this.mapHeight = mapHeight;
 	}
 
+	/**
+	 * Permet de la création de la map de jeu.
+	 * @return un tableau double entrées de caractères
+	 */
 	public char[][] createMap() {
 
-		// generate BSP tree
+		// Génération du BSP tree
 		CellNode root = new CellNode(0, 0, mapWidth, mapHeight);
 		root.width = mapWidth;
 		root.height = mapHeight;
@@ -71,7 +128,7 @@ public class BspMapCreator {
 		insertRooms(root);
 		connectRooms(root);
 
-		// render map characters
+		// Rend la map des caractères
 		char[][] map = initMap();
 		renderCorridors(map, root);
 		renderRooms(map, root);
@@ -81,8 +138,11 @@ public class BspMapCreator {
 		renderItems(map);
 		renderMonster(map);
 
-		// make sure room floor tiles are properly set
-		// and collect rooms by tile
+
+		/*
+		Il check si le sol des room est bien fait
+		et il récupère les rooms avec leur caractères
+		 */
 		for (int i = 0; i < rooms.size(); i++) {
 			IntRect room = rooms.get(i);
 			//System.out.println(room);
@@ -90,16 +150,20 @@ public class BspMapCreator {
 			floodFill(map, room, i);
 		}
 
-		// convert empty tiles into floor
+		// Convertis le vide par du sol
 		convertVoid(map);
 
 
 		return map;
 	}
 
+	/**
+	 * Permet de la création de la map du village.
+	 * @return Un tableau à double entrée
+	 */
 	public char[][] createMapVillage() {
 
-		// generate BSP tree
+		// Génération du BSP tree
 		CellNode root = new CellNode(0, 0, mapWidth, mapHeight);
 		root.width = mapWidth;
 		root.height = mapHeight;
@@ -107,7 +171,7 @@ public class BspMapCreator {
 		insertRooms(root);
 		connectRooms(root);
 
-		// render map characters
+		// Rend la map des caractères
 		char[][] map = initMap();
 		renderCorridors(map, root);
 		renderRooms(map, root);
@@ -116,8 +180,10 @@ public class BspMapCreator {
 		renderPersonnage(map);
 		renderMonster(map);
 
-		// make sure room floor tiles are properly set
-		// and collect rooms by tile
+		/*
+		Il check si le sol des room est bien fait
+		et il récupère les rooms avec leur caractères
+		 */
 		for (int i = 0; i < rooms.size(); i++) {
 			IntRect room = rooms.get(i);
 			//System.out.println(room);
@@ -125,13 +191,19 @@ public class BspMapCreator {
 			floodFill(map, room, i);
 		}
 
-		// convert empty tiles into floor
+		// Convertis le vide par du sol
 		convertVoid(map);
 
 
 		return map;
 	}
 
+	/**
+	 * Permet de séparer les cellules de la map du jeu.
+	 * @see CellNode
+	 * @param parent représente une cellule
+	 * @param maxDepth valeur maximum de la profondeur du parcours des cellules
+	 */
 	private void splitCell(CellNode parent, int maxDepth) {
 		if (parent.depth < maxDepth && parent.width > 2 * cellPad && parent.height > 2 * cellPad) {
 			int depth = parent.depth + 1;
@@ -156,6 +228,10 @@ public class BspMapCreator {
 		}
 	}
 
+	/**
+	 * Insertion des rooms
+	 * @param node cellule
+	 */
 	private void insertRooms(CellNode node) {
 		if (node == null) {
 			return;
@@ -168,7 +244,7 @@ public class BspMapCreator {
 				int roomWidth = minRoomSize + rnd.nextInt(maxRoomWidth - minRoomSize);
 				int roomHeight = minRoomSize + rnd.nextInt(maxRoomHeight - minRoomSize);
 
-				// let room start at cell center to make sure corridors hit
+				// Il commence au centre de la cellule pour être sur que les couloirs touche les rooms
 				int hx = node.x + node.width / 2;
 				int hy = node.y + node.height / 2;
 
@@ -183,6 +259,10 @@ public class BspMapCreator {
 		insertRooms(node.right);
 	}
 
+	/**
+	 * Permet de faire la connexion entre les rooms.
+	 * @param node Cellules
+	 */
 	private void connectRooms(CellNode node) {
 		if (node == null) {
 			return;
@@ -200,8 +280,12 @@ public class BspMapCreator {
 		connectRooms(node.right);
 	}
 
+	/**
+	 * Permet de créer les mur tout autour des rooms et des couloires.
+	 * @param map Map
+	 */
 	private void renderWalls(char[][] map) {
-		// room walls
+		// Les murs des rooms
 		for (int y = 1; y < mapHeight - 1; y++) {
 			for (int x = 1; x < mapWidth - 1; x++) {
 				if (map[y][x] == TileChar.charTemp) {
@@ -221,7 +305,7 @@ public class BspMapCreator {
 			}
 		}
 
-		// corridor walls
+		// les murs des couloirs
 		for (int y = 1; y < mapHeight - 1; y++) {
 			for (int x = 1; x < mapWidth - 1; x++) {
 				if (map[y][x] == TileChar.charFloor) {
@@ -242,8 +326,12 @@ public class BspMapCreator {
 		}
 	}
 
+	/**
+	 * Permet de créer les portes a chaque entrée des rooms
+	 * @param map Map
+	 */
 	private void renderDoors(char[][] map) {
-		// char sequence indicating door placement
+		// Séquence de caractère qui montre où sont les portes
 		String roomToken = new StringBuilder().append(TileChar.charWall).append(TileChar.charTemp).append(TileChar.charTemp).append(TileChar.charWall).toString();
 
 		for (int y = 1; y < mapHeight - 1; y++) {
@@ -260,6 +348,14 @@ public class BspMapCreator {
 		}
 	}
 
+	/**
+	 * Permet de faire la relation avec les portes entre les rooms
+	 * @param map Map
+	 * @param x Position en x
+	 * @param y Postition en y
+	 * @param seq Séquence de caractères
+	 * @return Un booléan
+	 */
 	private boolean isHSeq(char[][] map, int x, int y, String seq) {
 		for (int i = 0; i < seq.length(); i++) {
 			if (map[y][x + i] != seq.charAt(i)) {
@@ -269,6 +365,14 @@ public class BspMapCreator {
 		return true;
 	}
 
+	/**
+	 * Permet de modifier la séquence de caractère.
+	 * @param map Map
+	 * @param x Position en x
+	 * @param y Position en y
+	 * @param seq Séquence de caractère
+	 * @return un booléan
+	 */
 	private boolean isVSeq(char[][] map, int x, int y, String seq) {
 		for (int i = 0; i < seq.length(); i++) {
 			if (map[y + i][x] != seq.charAt(i)) {
@@ -278,6 +382,12 @@ public class BspMapCreator {
 		return true;
 	}
 
+	/**
+	 * Permet de remplir les rooms de sol.
+	 * @param map Map
+	 * @param room Les rooms
+	 * @param roomNr valeur du parcours
+	 */
 	private void floodFill(char[][] map, IntRect room, int roomNr) {
 		ArrayDeque<IntPoint> todo = new ArrayDeque<>();
 		todo.push(new IntPoint(room.x + 1, room.y + 1));
@@ -302,20 +412,39 @@ public class BspMapCreator {
 		}
 	}
 
+	/**
+	 * Il va changer tous les caractères de chartemp par du sol
+	 * @param map Map
+	 * @param x Position en x
+	 * @param y Position en y
+	 * @return booléan
+	 */
 	private boolean isTempFloor(char[][] map, int x, int y) {
 		return map[y][x] == TileChar.charTemp || map[y][x] == TileChar.charFloor;
 	}
 
+	/**
+	 * Permet de savoir si c'est des portes
+	 * @param map Map
+	 * @param x Position en x
+	 * @param y Position en y
+	 * @return un booléan
+	 */
 	private boolean isDoor(char[][] map, int x, int y) {
 		return map[y][x] == TileChar.charDoorH || map[y][x] == TileChar.charDoorV;
 	}
 
+	/**
+	 * Permet de représenter les bordures des cellules.
+	 * @param map Map
+	 * @param node Cellule
+	 */
 	private void renderCellBorders(char[][] map, CellNode node) {
 		if (node == null) {
 			return;
 		}
 
-		// render cell borders
+		// représente les bords des cellules
 		for (int x = node.x; x < node.x + node.width; x++) {
 			map[node.y][x] = TileChar.charCell;
 			map[node.y + node.height - 1][x] = TileChar.charCell;
@@ -330,12 +459,17 @@ public class BspMapCreator {
 		renderCellBorders(map, node.right);
 	}
 
+	/**
+	 * Représentation des couloirs.
+	 * @param map Map
+	 * @param node Cellule
+	 */
 	private void renderCorridors(char[][] map, CellNode node) {
 		if (node == null) {
 			return;
 		}
 
-		// render corridors
+		// Représentation de couloirs
 		IntRect corridor = node.corridor;
 		if (corridor != null) {
 			for (int y = corridor.y; y < corridor.y + corridor.height; y++) {
@@ -349,12 +483,17 @@ public class BspMapCreator {
 		renderCorridors(map, node.right);
 	}
 
+	/**
+	 * Permet de représenter les rooms.
+	 * @param map map
+	 * @param node cellule
+	 */
 	private void renderRooms(char[][] map, CellNode node) {
 		if (node == null) {
 			return;
 		}
 
-		// render room
+		// Représenter les rooms
 		IntRect room = node.room;
 		if (room != null) {
 			for (int x = room.x; x < room.x + room.width; x++) {
@@ -370,6 +509,10 @@ public class BspMapCreator {
 		renderRooms(map, node.right);
 	}
 
+	/**
+	 * Permet de convertir le vide par un tile de sol void.
+	 * @param map Map
+	 */
 	private void convertVoid(char[][] map) {
 		for (int y = 0; y < mapHeight; y++) {
 			for (int x = 0; x < mapWidth; x++) {
@@ -380,6 +523,10 @@ public class BspMapCreator {
 		}
 	}
 
+	/**
+	 * Initialise la map.
+	 * @return Tableau a double entrée
+	 */
 	private char[][] initMap() {
 		char[][] map = new char[mapHeight][mapWidth];
 		for (int y = 0; y < mapHeight; y++) {
@@ -390,6 +537,10 @@ public class BspMapCreator {
 		return map;
 	}
 
+	/**
+	 * Représenter le personnage.
+	 * @param map Map
+	 */
 	private void renderPersonnage(char[][] map){
 		int xmin = rooms.get(0).getX();
 		int ymin = rooms.get(0).getY();
@@ -402,18 +553,24 @@ public class BspMapCreator {
 		map[ymin+1][xmin+1] = TileChar.charPerso;
 	}
 
+	/**
+	 * Représenter les items.
+	 * @param map Map
+	 */
 	private void renderItems(char[][] map) {
 
 		for (int i = 0; i < rooms.size(); i++) {
 			int randx = (int) (Math.random() * (rooms.get(i).getWidth()-2)) + rooms.get(i).getX()+1;
 			int randy = (int) (Math.random() * (rooms.get(i).getHeight()-2)) + rooms.get(i).getY()+1;
 
-			//System.out.println("randX item : "+randx+ " randY item : "+randy);
 			map[randy][randx] = TileChar.charItem;
 		}
 	}
 
-
+	/**
+	 * Représentation des monstres.
+	 * @param map Map
+	 */
 	private void renderMonster(char[][] map){
 		int xmin = rooms.get(0).getX();
 		int min = 0;
@@ -429,7 +586,6 @@ public class BspMapCreator {
 				int randX = ((int)(Math.random() * ( rooms.get(i).getWidth()-2)))+ rooms.get(i).getX()+1;
 				int randY = (int)(Math.random() * ( rooms.get(i).getHeight()-2))+ rooms.get(i).getY()+1;
 				map[randY][randX] = TileChar.charMonster;
-				//System.out.println("TestRender");
 			}
 		}
 	}

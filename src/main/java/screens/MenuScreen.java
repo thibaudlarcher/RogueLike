@@ -15,16 +15,55 @@ import world.World;
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 
-public class MenuScreen implements Screen {
+/**
+ * Classe du screen du menu
+ *
+ * @see Screen
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
 
+public class MenuScreen implements Screen {
+    /**
+     * Screen du jeu
+     */
     private PlayScreen screen;
+
+    /**
+     * Screen du village
+     */
     private VillageScreen villageScreen;
+
+    /**
+     * Le world
+     */
     private World world;
+
+    /**
+     * Le player
+     */
     private GroupCreature player;
+
+    /**
+     * La liste du groupe de créature
+     */
     private ArrayList<GroupCreature> groupCreature;
+
+    /**
+     * Le choix dans le menu
+     */
     private int choix;
+
+    /**
+     * Si le player est dans le village
+     */
     private boolean inVillage;
 
+    /**
+     * Constructeur du Screen du menu
+     * @param screen Screen
+     */
     public MenuScreen(PlayScreen screen) {
         this.screen = screen;
         this.world=screen.getWorld();
@@ -33,6 +72,11 @@ public class MenuScreen implements Screen {
         inVillage = false;
     }
 
+    /**
+     * Constructeur alternatif au screen menu
+     * @param villageScreen Screen du village
+     * @param screen Screen du jeu
+     */
     public MenuScreen(VillageScreen villageScreen, PlayScreen screen) {
         this.villageScreen = villageScreen;
         this.world = villageScreen.getVillage();
@@ -41,6 +85,10 @@ public class MenuScreen implements Screen {
         inVillage = true;
     }
 
+    /**
+     * Premet d'afficher le menu
+     * @param terminal Asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
@@ -54,6 +102,11 @@ public class MenuScreen implements Screen {
         terminal.writeCenter("Quitter", 35,this.choix == 5 ? brightRed : white);
     }
 
+    /**
+     * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+     * @param key Appuie sur une touche
+     * @return Un Screen
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
