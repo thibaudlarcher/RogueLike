@@ -1,12 +1,12 @@
 # Rogue Like
 
 ### Principe
-Petit jeu basé sur le Rogue Like
+Petit jeu basé sur le principe du Rogue Like.
 
-La carte du monde est basé sur une génération aléatoire. Vous pourrez explorer les piéces pour trouver de l'équipements, des Objets
-et des Monstres. Vous aurez la possibilité d'acheter ou de vendre vos items en trop pour de l'argent.
+La carte du monde est basée sur une génération aléatoire. Vous pourrez explorer les pièces afin de trouver de l'équipements, des Objets
+et des Monstres. Vous aurez la possibilité d'acheter ou de vendre vos items pour de l'argent.
 
-Vous pourrez choisir parmis deux classes Le Mage ou Le guerrier.(De nouvelles classes arriverons bientôt).
+Vous pouvez choisir parmis deux classes Mage ou Guerrier. (De nouvelles classes arriverons bientôt)
 
 ### Contrôle
 -Pour ce déplacer utiliser ZQSD ou les fléches directionnelles.\
@@ -16,15 +16,15 @@ Vous pourrez choisir parmis deux classes Le Mage ou Le guerrier.(De nouvelles cl
 -Et pour plus de détaille appuyer sur H pour les aides
 ### Installation
 Télécharger ou cloner le répértoire.
-Allez dans le repertoire et taper la commande
+Allez dans le répertoire et taper la commande :
 ```
 mvn package
 ```
-Pour finir pour lancer le jeux
+Pour finir, lancer le jeux avec la commande :
 ```
 java -jar target/RogueLike-1.0-SNAPSHOT.jar
 ```
-Attention Maven peux avoir des difficultés avec un chemin qui possede un espace.
-Il ce peux que vous soyez obliger d'installer AsciiPannel. Des tuto sont disponnible sur internet.
+Attention, Maven peut avoir des difficultés avec un chemin qui possède un espace.
+Il se peut que vous soyez obliger d'installer AsciiPannel. Des tutoriels sont disponible sur internet.
 
-Bonne Amusement.
+Bon amusement.

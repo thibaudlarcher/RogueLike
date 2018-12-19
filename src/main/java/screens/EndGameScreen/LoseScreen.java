@@ -1,10 +1,12 @@
-package screens;
+package screens.EndGameScreen;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
+import screens.PlayScreen;
+import screens.Screen;
 
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;

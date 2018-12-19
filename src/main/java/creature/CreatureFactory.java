@@ -28,10 +28,10 @@ public class CreatureFactory {
         //244 pied de biche
         GroupCreature playerVillage;
         if (player.glyph() == 'M') {
-            System.out.println("Mage");
+//            System.out.println("Mage");
              playerVillage = new GroupCreature(world, player.glyph(), player.getColor(), new Mage(player.getGroupCreature().get(0).getName(), player.getGroupCreature().get(0).getPointDeVieMax(), player.getGroupCreature().get(0).getAttaque(), player.getGroupCreature().get(0).getmagicattaque()));
         } else {
-            System.out.println("Guerrier");
+//            System.out.println("Guerrier");
              playerVillage = new GroupCreature(world, player.glyph(), player.getColor(), new Guerrier(player.getGroupCreature().get(0).getName(), player.getGroupCreature().get(0).getPointDeVieMax(), player.getGroupCreature().get(0).getAttaque()));
         }
         playerVillage.x = world.getPtVillage().x;
