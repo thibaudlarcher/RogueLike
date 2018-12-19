@@ -8,23 +8,59 @@ import screens.*;
 import screens.endGame.WinScreen;
 import screens.item.InventoryScreen;
 import screens.item.PickUpItemScreen;
-import screens.menu.*;
+import screens.menu.HelpScreen;
+import screens.menu.MenuScreen;
 import screens.menu.StatScreen;
 import world.World;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-public class VillageScreen implements Screen {
+/**
+ * Classe du village
+ *
+ * @see Screen
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
 
+public class VillageScreen implements Screen {
+    /**
+     * world du village
+     */
     private World village;
+
+    /**
+     * les villageois
+     */
     private GroupCreature playerVillage;
+    /**
+     * groupe de Villageois
+     */
     private ArrayList<GroupCreature> groupVillageois;
+
+    /**
+     * taille du l'affichage Largeur
+     */
     private int screenWidth;
+
+    /**
+     * taille du l'affichage Hauteur
+     */
     private int screenHeight;
+
+    /**
+     * Screen play
+     */
     private PlayScreen playscreen;
 
-    public VillageScreen(PlayScreen screen, World village) {
+    /**
+     * Constructeur de la classe VillageScreen
+     * @param screen Screen
+     * @param village world du village
+     */
+    public VillageScreen(PlayScreen screen, World village){
         screenWidth = 140;
         screenHeight = 40;
         this.playscreen = screen;
@@ -36,14 +72,19 @@ public class VillageScreen implements Screen {
 
         groupVillageois = new ArrayList<GroupCreature>();
         ArrayList<Point> listVillageois = village.getListVillageois();
-        for (int i = 0; i < listVillageois.size(); i++) {
+        for (int i = 0; i < listVillageois.size(); i++){
             Point p = listVillageois.get(i);
             groupVillageois.add(creatureFactory.newVillageois((int) p.getX(), (int) p.getY()));
         }
         this.playerVillage.getGroupCreature().get(0).inventory().setMonnaie(screen.getPlayer().getGroupCreature().get(0).inventory().getMonnaie());
     }
 
-    public VillageScreen(VillageScreen villageScreen, PlayScreen screen) {
+    /**
+     * Constructeur alternatif a la classe VillageScreen
+     * @param villageScreen Screen
+     * @param screen world du village
+     */
+    public VillageScreen(VillageScreen villageScreen, PlayScreen screen){
         screenWidth = 140;
         screenHeight = 40;
         this.playscreen = screen;
@@ -52,14 +93,27 @@ public class VillageScreen implements Screen {
         this.groupVillageois = villageScreen.groupVillageois;
     }
 
-    public int getScrollX() {
-        return Math.max(0, Math.min(playerVillage.x - screenWidth / 2, village.width() - screenWidth));
-    }
+    /**
+     * Méthode pour le scroll du personnage
+     * @return valeur du scoll en largeur
+     */
+    public int getScrollX() { return Math.max(0, Math.min(playerVillage.x - screenWidth / 2, village.width() - screenWidth)); }
 
-    public int getScrollY() {
-        return Math.max(0, Math.min(playerVillage.y - screenHeight / 2, village.height() - screenHeight));
-    }
+    /**
+     * Méthode pour le scroll du personnage
+     * @return valeur du scoll en hauteur
+     */
+    public int getScrollY() { return Math.max(0, Math.min(playerVillage.y - screenHeight / 2, village.height() - screenHeight)); }
 
+    /**
+     * Permet d'afficher les tiles sur l'écran
+     * @param terminal asciipanel
+     * @param left le scroll en x
+     * @param top le scroll en y
+     * @param playerx position en x du player
+     * @param playery position en y du player
+     * @param range le champ de vision du player
+     */
     private void displayTiles(AsciiPanel terminal, int left, int top,int playerx,int playery, int range) {
         for (int x = 0; x < screenWidth; x++) {
             for (int y = 0; y < screenHeight; y++) {
@@ -146,6 +200,10 @@ public class VillageScreen implements Screen {
         terminal.write(playerVillage.glyph(), playerVillage.x - left, playerVillage.y - top, playerVillage.getColor());
     }
 
+    /**
+     * Permet d'afficher dans le terminal de ascii panel
+     * @param terminal asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(0, 0, 0));
@@ -159,9 +217,10 @@ public class VillageScreen implements Screen {
         terminal.write(playerVillage.glyph(), playerVillage.x - left, playerVillage.y - top, playerVillage.getColor());
 
         //terminal.writeCenter("-- bonjour --", 41);
-        terminal.write("Vie : " + playerVillage.getGroupCreature().get(0).getPointDeVie() + "/" + playerVillage.getGroupCreature().get(0).getPointDeVieMax(),110, 41,Color.white);
+        terminal.write("Vie : "+playerVillage.getGroupCreature().get(0).getPointDeVie()+"/"
+                +playerVillage.getGroupCreature().get(0).getPointDeVieMax() ,110, 41,Color.white);
 
-        terminal.write("Floor : " + playerVillage.getGroupCreature().get(0).getNiveau() ,125, 41,Color.white);
+        terminal.write("Floor : "+playerVillage.getGroupCreature().get(0).getNiveau() ,125, 41,Color.white);
 
         if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS) {
             terminal.write("Press [P] to pickup item", 3, 41);
@@ -169,26 +228,36 @@ public class VillageScreen implements Screen {
         }
     }
 
-    private Screen testPickUpItem() {
-        if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS && village.item(playerVillage.x, playerVillage.y) != null) {
+    /**
+     * Permet de tester si on peut récupérer un item sur un tile
+     * @return le Screen du pickup item
+     */
+    private Screen testPickUpItem(){
+        if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS && village.item(playerVillage.x, playerVillage.y) != null){
             return new PickUpItemScreen(this, this.playscreen);
-        } else {
-            return this;
-        }
+        } else return this;
     }
 
-    private Screen testRencontre() {
+    /**
+     * Permet de tester si on peux rencontrer le villageoi
+     * @return me Screen
+     */
+    private Screen testRencontre(){
         if (village.tile(playerVillage.x, playerVillage.y) == Tile.VILLAGEOIS) {
             return new VillageoisScreen(this);
         }
-        if (village.tile(playerVillage.x, playerVillage.y) == Tile.EXIT) {
+        if (village.tile(playerVillage.x, playerVillage.y)==Tile.EXIT){
             playscreen.setInVillage(false);
             GroupCreature player = playscreen.getPlayer();
             return new PlayScreen(this.playscreen, this.playerVillage);
         }
         return this;
     }
-
+    /**
+     * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+     * @param key Appuie sur une touche
+     * @return Un Screen
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
@@ -239,11 +308,9 @@ public class VillageScreen implements Screen {
         return playerVillage;
     }
 
-    public ArrayList<GroupCreature> getGroupVillageois() {
+    public ArrayList<GroupCreature> getGroupVillageois(){
         return groupVillageois;
     }
 
-    public PlayScreen getPlayscreen() {
-        return playscreen;
-    }
+    public PlayScreen getPlayscreen(){ return playscreen; }
 }

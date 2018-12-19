@@ -17,23 +17,83 @@ import java.util.ArrayList;
 
 import static java.lang.System.exit;
 
-public class LoadSave {
+/**
+ * Classe de la chargement de la Sauvegarde
+ *
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
 
+public class LoadSave {
+    /**
+     * Sauvegarde les tiles.
+     */
     private Tile[][] tiles;
+
+    /**
+     * Sauvegarde les items.
+     */
     private Item[][] items;
+
+    /**
+     * Sauvegarde les emplacements de chaque item.
+     */
     private ArrayList<Point> itemPointList;
+
+    /**
+     * Sauvegarde l'emplacement du player.
+     */
     private Point pt;
+
+    /**
+     * Sauvegarde l'emplacement du villageoi.
+     */
     private Point ptSpawn;
+
+    /**
+     * Sauvegarde la liste de monstres sur la map.
+     */
     private ArrayList<Point> listMonster;
+
+    /**
+     * Sauvegarde la player.
+     */
     private GroupCreature player;
+
+    /**
+     * Sauvegarde la liste de toutes les créatures.
+     */
     private ArrayList<GroupCreature> groupCreature;
+
+    /**
+     * Sauvegarde la largeur de la Map
+     */
     private int width;
+
+    /**
+     * Sauvegarde la Hauteur de la Map.
+     */
     private int height;
+
+    /**
+     * Sauvegarde le world.
+     */
     private World world;
+
+    /**
+     * Sauvgarde la world du village.
+     */
     private World village;
+
+    /**
+     * Sauvegarde un possibilité d'erreur.
+     */
     private int error;
 
-
+    /**
+     * Constructeur par défaut du chargement de la sauvegarde.
+     */
     public LoadSave(){
         this.width = 100;
         this.height = 100;
@@ -55,6 +115,12 @@ public class LoadSave {
         }
     }
 
+    /**
+     * Permet de tester si la sauvegarde a été dégradée.
+     * Si c'est le cas alors toute la sauvegarde est supprimer et vous recommencez du début.
+     * Sinon elle lance le jeux tout a fait normalement.
+     * @return un play Screen
+     */
     public PlayScreen PlayScreen(){
         if(error == 1){
             System.err.println();
@@ -65,6 +131,9 @@ public class LoadSave {
         return new PlayScreen(world, village, player, groupCreature);
     }
 
+    /**
+     * Permet de charger les tiles.
+     */
     private void loadTile(){
         tiles = new Tile[width][height];
         try{
@@ -154,6 +223,9 @@ public class LoadSave {
         }
     }
 
+    /**
+     * Permet de charger les items.
+     */
     private void loadItem(){
         items = new Item[width+40][height];
         itemPointList = new ArrayList<>();
@@ -315,6 +387,9 @@ public class LoadSave {
         }
     }
 
+    /**
+     * permet de charger les monstres.
+     */
     private void loadMonster(){
         listMonster = new ArrayList<>();
         try{

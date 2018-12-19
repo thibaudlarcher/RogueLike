@@ -11,8 +11,21 @@ import screens.Screen;
 
 import static java.lang.System.exit;
 
+/**
+ * Classe du screen du start Screen
+ *
+ * @see Screen
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
+
 public class StartScreen implements Screen {
 
+    /**
+     * Permet d'afficher le start Screen
+     * @param terminal Asciipanel
+     */
     @Override
     public void displayOutput(final AsciiPanel terminal) {
 
@@ -30,6 +43,11 @@ public class StartScreen implements Screen {
         terminal.writeCenter("Press start to play", 41, new Color(255, 255, 255));
     }
 
+    /**
+     * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+     * @param key Appuie sur une touche
+     * @return Un Screen
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
