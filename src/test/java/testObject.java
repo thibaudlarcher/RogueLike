@@ -48,4 +48,6 @@ public class testObject {
         epee.setEquipe(true);
         assertTrue(epee.isEquipe());
     }
+
+
 }

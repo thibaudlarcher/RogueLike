@@ -35,13 +35,26 @@ public class HelpScreen implements Screen {
 
     @Override
     public void displayOutput(AsciiPanel terminal) {
-        terminal.writeCenter("Help", 2, Color.WHITE);
-        terminal.writeCenter("Raccourcis",7, Color.WHITE);
-        terminal.writeCenter("[ESCAPE] Afficher le Menu",10, new Color(53, 118, 63));
-        terminal.writeCenter("[I] Afficher l'Inventaire du Personnage",12, new Color(53, 118, 63));
-        terminal.writeCenter("[C] Afficher les Statistiques du Personnage",14, new Color(53, 118, 63));
-        terminal.writeCenter("[P] Recuperer un Item",16, new Color(53, 118, 63));
-        terminal.writeCenter("[D] Lacher un Item",18, new Color(53, 118, 63));
+        terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
+        terminal.clear();
+
+        for (int j = 0; j < 140; j++){
+            terminal.write((char) 196, j, 3, Color.WHITE);
+            j++;
+        }
+
+        terminal.writeCenter("Help", 1, Color.WHITE);
+        terminal.writeCenter("Raccourcis",5, Color.WHITE);
+        terminal.writeCenter("[ESCAPE] Afficher le Menu",8, AsciiPanel.brightBlack);
+        terminal.writeCenter("[I] Afficher l'Inventaire du Personnage",10, AsciiPanel.brightBlack);
+        terminal.writeCenter("[C] Afficher les Statistiques du Personnage",12, AsciiPanel.brightBlack);
+        terminal.writeCenter("[P] Recuperer un Item",14, AsciiPanel.brightBlack);
+        terminal.writeCenter("[D] Lacher un Item",16, AsciiPanel.brightBlack);
+        terminal.writeCenter("But du jeu",22, AsciiPanel.brightWhite);
+        terminal.writeCenter("Le but est d'explorer le donjon et de trouver la sortie tout en survivant face aux monstres.",24, AsciiPanel.brightBlack);
+        terminal.writeCenter("Vous pourrez trouver differents objets afin de vous aidez.",25, AsciiPanel.brightBlack);
+        terminal.writeCenter("Condition de victoire ",31, AsciiPanel.brightWhite);
+        terminal.writeCenter("Vous gagnerez une fois le niveau 99 passe.",33, AsciiPanel.brightBlack);
     }
 
     @Override

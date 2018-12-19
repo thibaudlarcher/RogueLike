@@ -1,9 +1,11 @@
-package screens;
+package screens.EndGameScreen;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import asciiPanel.AsciiPanel;
+import screens.Screen;
+import screens.StartScreen;
 
 import static java.lang.System.exit;
 
@@ -11,7 +13,7 @@ public class WinScreen implements Screen {
 
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
-		terminal.writeCenter("You won.", 3, Color.green);
+		terminal.writeCenter("Congratulation, you won!", 3, Color.green);
 		terminal.writeCenter("-- press [enter] to restart or [escape] to quit  --", 22);
 	}
 
@@ -24,6 +26,5 @@ public class WinScreen implements Screen {
 				exit(1);
 		}
 		return this;
-		//return key.getKeyCode() == KeyEvent.VK_ENTER ? new PlayScreen() : this;
 	}
 }

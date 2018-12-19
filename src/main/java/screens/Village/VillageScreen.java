@@ -5,6 +5,7 @@ import asciiPanel.AsciiPanel;
 import creature.CreatureFactory;
 import creature.GroupCreature;
 import screens.*;
+import screens.EndGameScreen.WinScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
 import world.World;

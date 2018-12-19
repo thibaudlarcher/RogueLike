@@ -9,13 +9,14 @@ import creature.*;
 import creature.PJ.PJ;
 import object.StuffFactory;
 import screens.Combat.CombatScreen;
+import screens.EndGameScreen.WinScreen;
 import screens.Item.InventoryScreen;
 import screens.Item.PickUpItemScreen;
 import screens.Village.VillageScreen;
 import world.*;
 
 public class PlayScreen implements Screen {
-	private int i =0;
+	private int i = 0;
 	private World world;
 	private GroupCreature player;
 	private ArrayList<GroupCreature> groupCreature;
@@ -313,7 +314,9 @@ public class PlayScreen implements Screen {
 			}
 		}
 		if (world.tile(player.x,player.y)==Tile.EXIT){
-			return new PlayScreen(player, village);
+			if (player.getGroupCreature().get(0).getNiveau() == 99){
+				return new WinScreen();
+			} else return new PlayScreen(player, village);
 		} else if (world.tile(player.x,player.y)==Tile.VILLAGEPORTAL){
 			inVillage = true;
 			return new VillageScreen(this, village);
@@ -331,10 +334,10 @@ public class PlayScreen implements Screen {
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()) {
 			case KeyEvent.VK_ESCAPE:
-				System.out.println("pt x : " +world.getPt().x + " pt y : " + world.getPt().y);
+//				System.out.println("pt x : " +world.getPt().x + " pt y : " + world.getPt().y);
 				return new MenuScreen(this);
-			case KeyEvent.VK_ENTER:
-				return new WinScreen();
+//			case KeyEvent.VK_ENTER:
+//				return new WinScreen();
 			case KeyEvent.VK_LEFT:
 			case KeyEvent.VK_Q: {
 				player.moveBy(-1, 0);
@@ -363,12 +366,13 @@ public class PlayScreen implements Screen {
 			case KeyEvent.VK_P: return testPickUpItem();
 			case KeyEvent.VK_C: return new StatScreen(this);
 			case KeyEvent.VK_H: return new HelpScreen(this);
-			case KeyEvent.VK_V: return new VillageScreen(this, village);
+//			case KeyEvent.VK_V: return new VillageScreen(this, village);
 			/*case KeyEvent.VK_J: player.moveBy( 0, 1); break;
 			case KeyEvent.VK_Y: player.moveBy(-1,-1); break;
 			case KeyEvent.VK_U: player.moveBy( 1,-1); break;
 			case KeyEvent.VK_B: player.moveBy(-1, 1); break;
 			case KeyEvent.VK_N: player.moveBy( 1, 1); break;*/
+//			case KeyEvent.VK_F: player.getGroupCreature().get(0).setNiveau(99);
 		}
 
 		return this;

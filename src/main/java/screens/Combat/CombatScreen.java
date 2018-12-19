@@ -2,7 +2,7 @@ package screens.Combat;
 
 import asciiPanel.AsciiPanel;
 import creature.Monstre.*;
-import screens.LoseScreen;
+import screens.EndGameScreen.LoseScreen;
 import screens.PlayScreen;
 import creature.GroupCreature;
 import screens.Screen;
@@ -13,7 +13,6 @@ import java.util.ArrayList;
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
-import static java.lang.System.setOut;
 import static screens.Combat.AffichageStat.*;
 import static screens.Combat.GestionTour.testJoueurTour;
 import static screens.Combat.TestMort.*;
