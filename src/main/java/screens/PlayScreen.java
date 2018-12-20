@@ -203,7 +203,7 @@ public class PlayScreen implements Screen {
 
 	/**
 	 * Permet de créer des items dans les Maps
-	 * @param factory Items
+	 * @param factory items
 	 */
 	private void createItems(StuffFactory factory) {
 		for (int i = 0; i < 5; i++) {

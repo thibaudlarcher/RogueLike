@@ -23,6 +23,12 @@ public class CreatureAi {
 		this.groupCreature.setCreatureAi(this);
 	}
 
+	/**
+	 * Permet de déplacer les Créatures.
+	 * @param x Position en x
+	 * @param y Position en y
+	 * @param tile Tile
+	 */
 	public void onEnter(int x, int y, Tile tile){
 	}
 }

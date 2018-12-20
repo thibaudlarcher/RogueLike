@@ -1,4 +1,4 @@
-package creature.monstre;
+package creature.Monstre;
 
 import object.items.Item;
 import static asciiPanel.AsciiPanel.red;

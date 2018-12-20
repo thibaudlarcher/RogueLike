@@ -2,7 +2,7 @@ package screens.combat;
 
 import asciiPanel.AsciiPanel;
 import creature.monstre.Kobold;
-import creature.monstre.Monstre;
+import creature.Monstre.Monstre;
 import screens.endGame.LoseScreen;
 import screens.PlayScreen;
 import creature.GroupCreature;

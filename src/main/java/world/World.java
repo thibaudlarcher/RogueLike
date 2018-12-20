@@ -304,7 +304,7 @@ public class World {
 
 	/**
 	 * Guetter des items
-	 * @return Items
+	 * @return items
 	 */
 	public Item[][] getItems() {
 		return items;

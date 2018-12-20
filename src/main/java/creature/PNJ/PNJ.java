@@ -41,7 +41,7 @@ public abstract class PNJ extends Creature {
     }
 
     /**
-     * On va tester la classe pour ramasser les Items sur le sol
+     * On va tester la classe pour ramasser les items sur le sol
      * On ne peut pas en prendre plus que la limite de l'inventaire
      * @param item item
      */
