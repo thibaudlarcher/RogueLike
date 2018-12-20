@@ -35,7 +35,7 @@ public class CreatureFactory {
      */
     public GroupCreature newPlayer(PJ choix){
         //244 pied de biche
-        //PJ choice = new Mage("bob",15,10);
+        //pj choice = new Mage("bob",15,10);
         GroupCreature player = new GroupCreature(world, choix.glyph, choix.color, choix);
         player.x = world.getPt().x;
         player.y = world.getPt().y;

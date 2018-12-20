@@ -6,7 +6,7 @@ import creature.Creature;
 
 /**
  *  Classe principale du Player extends Creature
- *  Elle est Extends a la Classe PJ
+ *  Elle est Extends a la Classe pj
  *
  * @see Creature
  * @author Groupe du InfinityRogue

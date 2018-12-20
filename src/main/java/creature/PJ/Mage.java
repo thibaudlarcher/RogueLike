@@ -6,7 +6,7 @@ import java.awt.*;
 
 /**
  *  Classe d'une classe de joueur
- *  Elle est Extends a la Classe PJ
+ *  Elle est Extends a la Classe pj
  *
  * @see PJ
  * @author Groupe du InfinityRogue
@@ -48,7 +48,7 @@ public class Mage extends PJ{
     }
 
     /**
-     * On va tester la classe pour ramasser les Items sur le sol
+     * On va tester la classe pour ramasser les items sur le sol
      * On ne peut pas en prendre plus que la limite de l'inventaire
      * @param item item
      */
