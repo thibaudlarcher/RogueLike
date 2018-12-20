@@ -60,8 +60,11 @@ public class World {
 	 * Stock la liste des monstres dans la Map
 	 */
 	private ArrayList<Point> listMonster;
+
+	/**
+	 * Liste des Villageois
+	 */
 	private ArrayList<Point> listVillageois;
-	private int height;
 
     /**
      * Permet de récupérer la hauteur

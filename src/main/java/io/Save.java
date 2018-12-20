@@ -200,7 +200,7 @@ public class Save {
                 writer.newLine();
                 writer.write("<Inventory>");
                 writer.newLine();
-                saveInventory(writer);
+                saveIventory(writer);
             }
             writer.close();
         } catch (IOException e) {
