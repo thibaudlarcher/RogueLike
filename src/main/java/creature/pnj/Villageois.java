@@ -3,7 +3,7 @@ package creature.pnj;
 import object.Inventory;
 
 /**
- * Classe villageois extends la classe principale PNJ
+ * Classe villageois extends la classe principale pnj
  *
  * @see PNJ
  * @author Groupe du InfinityRogue
@@ -13,7 +13,7 @@ import object.Inventory;
 public class Villageois extends PNJ {
     /**
      * Constructeur de la classe villageois
-     * @param name Nom du PNJ
+     * @param name Nom du pnj
      */
     public Villageois(String name){
         this.name = name;

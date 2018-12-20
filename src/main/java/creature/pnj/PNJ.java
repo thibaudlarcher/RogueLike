@@ -5,7 +5,7 @@ import object.Inventory;
 import object.items.Item;
 
 /**
- *  Classe principale du PNJ
+ *  Classe principale du pnj
  *  Elle est Extends a la Classe Creature
  *
  * @see Creature
@@ -15,12 +15,12 @@ import object.items.Item;
 
 public abstract class PNJ extends Creature {
     /**
-     * Nom du PNJ
+     * Nom du pnj
      */
     protected String name;
 
     /**
-     * Permet de récupérer le nom du PNJ
+     * Permet de récupérer le nom du pnj
      * @return Nom
      */
     public String getName() {
@@ -28,12 +28,12 @@ public abstract class PNJ extends Creature {
     }
 
     /**
-     * Inventaire du PNJ
+     * Inventaire du pnj
      */
     protected Inventory inventory;
 
     /**
-     * Permet de récupérer l'inventaire du PNJ
+     * Permet de récupérer l'inventaire du pnj
      * @return Inventaire
      */
     public Inventory inventory() {
