@@ -5,7 +5,7 @@ import asciiPanel.AsciiPanel;
 import creature.CreatureFactory;
 import creature.GroupCreature;
 import screens.*;
-import screens.endGame.WinScreen;
+import screens.endgame.WinScreen;
 import screens.item.InventoryScreen;
 import screens.item.PickUpItemScreen;
 import screens.menu.HelpScreen;
@@ -56,11 +56,11 @@ public class VillageScreen implements Screen {
     private PlayScreen playscreen;
 
     /**
-     * Constructeur de la classe VillageScreen
+     * Constructeur de la classe VillageScreen.
      * @param screen Screen
      * @param village world du village
      */
-    public VillageScreen(PlayScreen screen, World village){
+    public VillageScreen(PlayScreen screen, World village) {
         screenWidth = 140;
         screenHeight = 40;
         this.playscreen = screen;
@@ -72,7 +72,7 @@ public class VillageScreen implements Screen {
 
         groupVillageois = new ArrayList<GroupCreature>();
         ArrayList<Point> listVillageois = village.getListVillageois();
-        for (int i = 0; i < listVillageois.size(); i++){
+        for (int i = 0; i < listVillageois.size(); i++) {
             Point p = listVillageois.get(i);
             groupVillageois.add(creatureFactory.newVillageois((int) p.getX(), (int) p.getY()));
         }
@@ -80,11 +80,11 @@ public class VillageScreen implements Screen {
     }
 
     /**
-     * Constructeur alternatif a la classe VillageScreen
+     * Constructeur alternatif a la classe VillageScreen.
      * @param villageScreen Screen
      * @param screen world du village
      */
-    public VillageScreen(VillageScreen villageScreen, PlayScreen screen){
+    public VillageScreen(VillageScreen villageScreen, PlayScreen screen) {
         screenWidth = 140;
         screenHeight = 40;
         this.playscreen = screen;
@@ -94,19 +94,23 @@ public class VillageScreen implements Screen {
     }
 
     /**
-     * Méthode pour le scroll du personnage
+     * Méthode pour le scroll du personnage.
      * @return valeur du scoll en largeur
      */
-    public int getScrollX() { return Math.max(0, Math.min(playerVillage.x - screenWidth / 2, village.width() - screenWidth)); }
+    public int getScrollX() {
+        return Math.max(0, Math.min(playerVillage.x - screenWidth / 2, village.width() - screenWidth));
+    }
 
     /**
-     * Méthode pour le scroll du personnage
+     * Méthode pour le scroll du personnage.
      * @return valeur du scoll en hauteur
      */
-    public int getScrollY() { return Math.max(0, Math.min(playerVillage.y - screenHeight / 2, village.height() - screenHeight)); }
+    public int getScrollY() {
+        return Math.max(0, Math.min(playerVillage.y - screenHeight / 2, village.height() - screenHeight));
+    }
 
     /**
-     * Permet d'afficher les tiles sur l'écran
+     * Permet d'afficher les tiles sur l'écran.
      * @param terminal asciipanel
      * @param left le scroll en x
      * @param top le scroll en y
@@ -201,7 +205,7 @@ public class VillageScreen implements Screen {
     }
 
     /**
-     * Permet d'afficher dans le terminal de ascii panel
+     * Permet d'afficher dans le terminal de ascii panel.
      * @param terminal asciipanel
      */
     @Override
@@ -217,10 +221,9 @@ public class VillageScreen implements Screen {
         terminal.write(playerVillage.glyph(), playerVillage.x - left, playerVillage.y - top, playerVillage.getColor());
 
         //terminal.writeCenter("-- bonjour --", 41);
-        terminal.write("Vie : "+playerVillage.getGroupCreature().get(0).getPointDeVie()+"/"
-                +playerVillage.getGroupCreature().get(0).getPointDeVieMax() ,110, 41,Color.white);
+        terminal.write("Vie : " + playerVillage.getGroupCreature().get(0).getPointDeVie() + "/" + playerVillage.getGroupCreature().get(0).getPointDeVieMax(),110, 41,Color.white);
 
-        terminal.write("Floor : "+playerVillage.getGroupCreature().get(0).getNiveau() ,125, 41,Color.white);
+        terminal.write("Floor : " + playerVillage.getGroupCreature().get(0).getNiveau(),125, 41,Color.white);
 
         if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS) {
             terminal.write("Press [P] to pickup item", 3, 41);
@@ -232,8 +235,8 @@ public class VillageScreen implements Screen {
      * Permet de tester si on peut récupérer un item sur un tile
      * @return le Screen du pickup item
      */
-    private Screen testPickUpItem(){
-        if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS && village.item(playerVillage.x, playerVillage.y) != null){
+    private Screen testPickUpItem() {
+        if (village.tile(playerVillage.x, playerVillage.y) == Tile.ITEMS && village.item(playerVillage.x, playerVillage.y) != null) {
             return new PickUpItemScreen(this, this.playscreen);
         } else return this;
     }
@@ -242,17 +245,18 @@ public class VillageScreen implements Screen {
      * Permet de tester si on peux rencontrer le villageoi
      * @return me Screen
      */
-    private Screen testRencontre(){
+    private Screen testRencontre() {
         if (village.tile(playerVillage.x, playerVillage.y) == Tile.VILLAGEOIS) {
             return new VillageoisScreen(this);
         }
-        if (village.tile(playerVillage.x, playerVillage.y)==Tile.EXIT){
+        if (village.tile(playerVillage.x, playerVillage.y) == Tile.EXIT) {
             playscreen.setInVillage(false);
             GroupCreature player = playscreen.getPlayer();
             return new PlayScreen(this.playscreen, this.playerVillage);
         }
         return this;
     }
+
     /**
      * Permet de gérer les actions du clavier et ainsi lui donner des actions.
      * @param key Appuie sur une touche
@@ -282,7 +286,7 @@ public class VillageScreen implements Screen {
             }
             case KeyEvent.VK_DOWN:
             case KeyEvent.VK_S: {
-                playerVillage.moveBy( 0, 1);
+                playerVillage.moveBy(0, 1);
                 return testRencontre();
 
             }
@@ -320,7 +324,7 @@ public class VillageScreen implements Screen {
      * Getter du groupe de villageois.
      * @return groupe de villageois
      */
-    public ArrayList<GroupCreature> getGroupVillageois(){
+    public ArrayList<GroupCreature> getGroupVillageois() {
         return groupVillageois;
     }
 
@@ -328,5 +332,7 @@ public class VillageScreen implements Screen {
      * Getter Screen du jeu.
      * @return Screen du jeu
      */
-    public PlayScreen getPlayscreen(){ return playscreen; }
+    public PlayScreen getPlayscreen() {
+        return playscreen;
+    }
 }

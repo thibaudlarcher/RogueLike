@@ -74,7 +74,7 @@ public class MenuScreen implements Screen {
     }
 
     /**
-     * Constructeur alternatif au screen menu
+     * Constructeur alternatif au screen menu.
      * @param villageScreen Screen du village
      * @param screen Screen du jeu
      */

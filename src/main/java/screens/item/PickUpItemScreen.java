@@ -48,7 +48,7 @@ public class PickUpItemScreen implements Screen {
     private boolean inVillage;
 
     /**
-     * Constructeur de la classe
+     * Constructeur de la classe.
      * @param screen un playscreen
      */
     public PickUpItemScreen(PlayScreen screen) {
@@ -60,7 +60,7 @@ public class PickUpItemScreen implements Screen {
     }
 
     /**
-     * Constructeur alternatif
+     * Constructeur alternatif.
      * @param villageScreen un villagescreen
      * @param screen un playscreen
      */
@@ -146,7 +146,9 @@ public class PickUpItemScreen implements Screen {
             case KeyEvent.VK_ESCAPE:
                 if (inVillage == true) {
                     return new VillageScreen(villageScreen, screen);
-                } else return new PlayScreen(world, screen.getVillage(), player, groupCreature);
+                } else {
+                    return new PlayScreen(world, screen.getVillage(), player, groupCreature);
+                }
             case KeyEvent.VK_P: pickUpItem();
                 return this;
         }

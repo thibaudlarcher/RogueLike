@@ -1,4 +1,4 @@
-package screens.endGame;
+package screens.endgame;
 
 import java.awt.event.KeyEvent;
 
@@ -36,7 +36,7 @@ public class LoseScreen implements Screen {
 	 * @param player sauvegarde l'etat du player
 	 */
 	public LoseScreen(GroupCreature player){
-		this.player=player;
+		this.player = player;
 	}
 
 	/**
@@ -45,14 +45,14 @@ public class LoseScreen implements Screen {
 	 */
 	@Override
 	public void displayOutput(AsciiPanel terminal) {
-		terminal.writeCenter("Continue", 10,this.choix == 0 ? brightRed : white );
+		terminal.writeCenter("Continue", 10,this.choix == 0 ? brightRed : white);
 		terminal.writeCenter("Quit", 15,this.choix == 1 ? brightRed : white);
 	}
 
 	/**
 	 * Si on veut continuer alors tout sera supprimer sauf l'or gagné
 	 */
-	public void restartchoice(){
+	public void restartchoice() {
 		player.getGroupCreature().get(0).setPointDeVie(player.getGroupCreature().get(0).getPointDeVieMax());
 		player.getGroupCreature().get(0).inventory().removeAllItem();
 		player.getGroupCreature().get(0).inventory().setArmeEquipe(false);
@@ -82,12 +82,12 @@ public class LoseScreen implements Screen {
 			case KeyEvent.VK_ESCAPE:
 				exit(1);
 			case KeyEvent.VK_DOWN:
-				choix = (choix+1)%2;
+				choix = (choix + 1) % 2;
 				break;
 			case KeyEvent.VK_UP:
-				choix = (choix-1)%2;
-				if (choix<0){
-					choix = (choix+2);
+				choix = (choix - 1) % 2;
+				if (choix < 0) {
+					choix = (choix + 2);
 				}
 				break;
 		}

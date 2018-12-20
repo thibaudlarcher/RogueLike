@@ -26,8 +26,8 @@ public class PlayerAi extends CreatureAi {
 	 * @param y Position en y
 	 * @param tile Le type de la tile
 	 */
-	public void onEnter(int x, int y, Tile tile){
-		if (tile.isGround()){
+	public void onEnter(int x, int y, Tile tile) {
+		if (tile.isGround()) {
 			groupCreature.x = x;
 			groupCreature.y = y;
 		}

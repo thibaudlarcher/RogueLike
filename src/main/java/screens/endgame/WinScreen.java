@@ -1,4 +1,4 @@
-package screens.endGame;
+package screens.endgame;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
