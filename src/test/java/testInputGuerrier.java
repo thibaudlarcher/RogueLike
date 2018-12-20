@@ -14,7 +14,7 @@ import java.awt.*;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
-public class testInput {
+public class testInputGuerrier {
     static World world;
     static PlayScreen screen;
     static LoadSave load;

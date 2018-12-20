@@ -253,12 +253,12 @@ public class CombatScreen implements Screen {
                     this.choix--;
                 }
                 return this;
-            case KeyEvent.VK_DOWN:
+            case KeyEvent.VK_UP:
                 if (player.getGroupCreature().get(0).getName()=="Mage"){
                     position = (position+1)%3;
                 }else position = (position+1)%2;
                 break;
-            case KeyEvent.VK_UP:
+            case KeyEvent.VK_DOWN:
                 if (player.getGroupCreature().get(0).getName()=="Mage"){
                     position = (position-1)%3;
                     if (position<0){

@@ -57,6 +57,10 @@
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.0.1</version>
+                <configuration>
+                    <show>private</show>
+                    <nohelp>true</nohelp>
+                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
@@ -74,7 +78,8 @@
                     <includes>
                         <!-- Ajouté vos fichiers Test ICI -->
                         <include>**/testBSPCreator.java</include>
-                        <include>**/testInput.java</include>
+                        <include>**/testInputGuerrier.java</include>
+                        <include>**/testInputMage.java</include>
                         <include>**/testMonster.java</include>
                         <include>**/testObject.java</include>
                     </includes>
