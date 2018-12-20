@@ -388,15 +388,14 @@ public class PlayScreen implements Screen {
 				} else if (world.tile(wx,wy)==Tile.FLOOR && !(x>indicexm && x<indicexma && y>indiceym && y<indiceyma)){
 					world.tiles[wx][wy]=Tile.FLOORALREADYVISITED;
 					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
-				} else if (world.tile(wx,wy)==Tile.VILLAGEPORTAL && !(x>playerx-range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
+				} else if (world.tile(wx,wy) == Tile.VILLAGEPORTAL && !(x > playerx -  range-left && x<playerx+range-left && y>playery-range-top && y<playery+range-top)){
 					world.tiles[wx][wy]=Tile.VILLAGEPORTALALREADYVISITED;
 					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
-				} else if (world.tile(wx,wy)==Tile.ITEMS && !(x>indicexm && x<indicexma && y>indiceym && y<indiceyma)){
-					world.tiles[wx][wy]=Tile.ITEMALREADYVISITED;
+				} else if (world.tile(wx,wy) == Tile.ITEMS && !(x > indicexm && x < indicexma && y > indiceym && y < indiceyma)) {
+					world.tiles[wx][wy] = Tile.ITEMALREADYVISITED;
 					world.item(wx,wy).setColor(Color.gray);
 					terminal.write(world.glyph(wx, wy), x, y, world.color(wx,wy));
-				}
-				else {
+				} else {
 					terminal.write(world.glyph(wx, wy), x, y,world.color(wx,wy));
 				}
 			}
@@ -408,17 +407,19 @@ public class PlayScreen implements Screen {
 	 * Permet de tester le rencontre entre player et monstres
 	 * @return le Screen du combat
 	 */
-	private Screen testRencontre(){
-		for(int i = 0; i < groupCreature.size();i++) {
+	private Screen testRencontre() {
+		for (int i = 0; i < groupCreature.size();i++) {
 			if (groupCreature.get(i).isNextTo(player.getX(),player.getY())) {
 				return new CombatScreen(groupCreature, player, world, village, i, this);
 			}
 		}
-		if (world.tile(player.x,player.y)==Tile.EXIT){
-			if (player.getGroupCreature().get(0).getNiveau() == 99){
+		if (world.tile(player.x,player.y) == Tile.EXIT) {
+			if (player.getGroupCreature().get(0).getNiveau() == 99) {
 				return new WinScreen();
-			} else return new PlayScreen(player, village);
-		} else if (world.tile(player.x,player.y)==Tile.VILLAGEPORTAL){
+			} else {
+			    return new PlayScreen(player, village);
+            }
+		} else if (world.tile(player.x,player.y) == Tile.VILLAGEPORTAL) {
 			inVillage = true;
 			return new VillageScreen(this, village);
 		}
@@ -426,11 +427,11 @@ public class PlayScreen implements Screen {
 	}
 
 	/**
-	 * Permet de tester si le player peut récupérer un item
-	 * @return Screen de la récupération de l'item
+	 * Permet de tester si le player peut récupérer un item.
+	 * @return Screen de la récupération de l'item.
 	 */
-	private Screen testPickUpItem(){
-		if (world.tile(player.x, player.y) == Tile.ITEMS && world.item(player.x, player.y) != null){
+	private Screen testPickUpItem() {
+		if (world.tile(player.x, player.y) == Tile.ITEMS && world.item(player.x, player.y) != null) {
 			return new PickUpItemScreen(this);
 		} else return this;
 	}
@@ -468,7 +469,7 @@ public class PlayScreen implements Screen {
 			}
 			case KeyEvent.VK_DOWN:
 			case KeyEvent.VK_S: {
-				player.moveBy( 0, 1);
+				player.moveBy(0, 1);
 				creatureMove();
 				return testRencontre();
 			}
@@ -489,7 +490,7 @@ public class PlayScreen implements Screen {
 	}
 
 	/**
-	 * Getter du world
+	 * Getter du world.
 	 * @return world
 	 */
 	public World getWorld() {
@@ -497,7 +498,7 @@ public class PlayScreen implements Screen {
 	}
 
 	/**
-	 * getter du player
+	 * getter du player.
 	 * @return player
 	 */
 	public GroupCreature getPlayer() {
@@ -505,8 +506,8 @@ public class PlayScreen implements Screen {
 	}
 
 	/**
-	 * getter du croupe de créatures
-	 * @return groupe de créatures
+	 * getter du croupe de créatures.
+	 * @return groupe de créatures.
 	 */
 	public ArrayList<GroupCreature> getGroupCreature() {
 		return groupCreature;
@@ -516,17 +517,23 @@ public class PlayScreen implements Screen {
 	 * getter du world du village
 	 * @return world
 	 */
-	public World getVillage(){ return village; }
+	public World getVillage() {
+	    return village;
+	}
 
 	/**
 	 * getter de savoir si le player est dans le villages
 	 * @return boolean
 	 */
-	public boolean getInVillage(){ return inVillage; }
+	public boolean getInVillage() {
+	    return inVillage;
+	}
 
 	/**
 	 * Modification de savoir si on est dans le village
 	 * @param b boolean
 	 */
-	public void setInVillage(boolean b){ inVillage = b; }
+	public void setInVillage(boolean b) {
+	    inVillage = b;
+	}
 }
