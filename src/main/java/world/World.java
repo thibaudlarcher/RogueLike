@@ -135,7 +135,7 @@ public class World {
 		this.ptSpawn = ptSpawn;
 	}
 
-//	public World(Item itemList[][], ArrayList<Point> listMonster){
+//	public World(item itemList[][], ArrayList<Point> listMonster){
 //		this.items = itemList;
 //		this.listMonster = listMonster;
 //	}

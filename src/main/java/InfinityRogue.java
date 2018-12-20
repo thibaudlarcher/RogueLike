@@ -5,12 +5,28 @@ import java.awt.event.KeyListener;
 import screens.Screen;
 import screens.start.StartScreen;
 
+/**
+ * Classe de la fonction principale de lancement du jeu InfinityRogue
+ *
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ *
+ */
+
 public class InfinityRogue extends JFrame implements KeyListener {
-	private static final long serialVersionUID = 1060623638149583738L;
-	
+	/**
+	 * Stock le Screen asciipanel.
+	 */
 	private AsciiPanel terminal;
+
+	/**
+	 * Screen.
+	 */
 	private Screen screen;
-	
+
+	/**
+	 * Constructeur de la classe InfinityRogue.
+	 */
 	public InfinityRogue(){
 		super();
 		terminal = new AsciiPanel(140,43); // max 160 max 54
@@ -20,7 +36,10 @@ public class InfinityRogue extends JFrame implements KeyListener {
 		addKeyListener(this);
 		repaint();
 	}
-	
+
+	/**
+	 * Permet de refresh le Sceen.
+	 */
 	@Override
 	public void repaint(){
 		terminal.clear();
@@ -28,6 +47,10 @@ public class InfinityRogue extends JFrame implements KeyListener {
 		super.repaint();
 	}
 
+	/**
+	 * L'évènement du la touche press.
+	 * @param e touche
+	 */
 	@Override
 	public void keyPressed(KeyEvent e) {
 		screen = screen.respondToUserInput(e);
@@ -39,7 +62,11 @@ public class InfinityRogue extends JFrame implements KeyListener {
 
 	@Override
 	public void keyTyped(KeyEvent e) { }
-	
+
+	/**
+	 * Main.
+	 * @param args argument
+	 */
 	public static void main(String[] args) {
 		InfinityRogue app = new InfinityRogue();
 		app.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);

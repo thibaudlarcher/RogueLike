@@ -35,7 +35,7 @@ public class LoadSreen implements Screen {
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
         terminal.clear();
-        terminal.writeCenter("Menu", 10,new Color(255, 255, 255));
+        terminal.writeCenter("menu", 10,new Color(255, 255, 255));
         terminal.writeCenter("Nouveau", 15,this.choix == 0 ? brightRed : white);
         terminal.writeCenter("Charger", 20,this.choix == 1 ? brightRed : white );
         terminal.writeCenter("Quitter", 25,this.choix == 2 ? brightRed : white);

@@ -94,7 +94,7 @@ public class StatScreen implements Screen {
         terminal.writeCenter("Vitesse : "+player.getGroupCreature().get(0).getVitesse(),25,Color.white);
         terminal.writeCenter("Magic attaque : "+player.getGroupCreature().get(0).getmagicattaque(),30,Color.white);
 
-        terminal.write("Menu [R]", 0,40,Color.white);
+        terminal.write("menu [R]", 0,40,Color.white);
         terminal.write("Jeux [ESC]", 130,40,Color.white);
     }
 

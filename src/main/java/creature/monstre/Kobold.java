@@ -31,7 +31,7 @@ public class Kobold extends Monstre {
     /**
      * On réécrit une instance de monstre qui lui même est un extends a la classe créature
      * Cependant les Monstres autre que le player ne peuvent pas drop d'item (pour l'instant)
-     * @param item représente un Item dans l'inventaire
+     * @param item représente un item dans l'inventaire
      */
     @Override
     public void dropItem(Item item) {
@@ -40,7 +40,7 @@ public class Kobold extends Monstre {
     /**
      * On réécrit une instance de monstre qui lui même est un extends a la classe créature
      * Cependant les Monstres autre que le player ne peuvent pas rammasser d'items (pour l'instant)
-     * @param item représente un Item sur le sol
+     * @param item représente un item sur le sol
      */
     @Override
     public void pickupItem(Item item) {
