@@ -22,7 +22,7 @@ public class AffichageStat {
     /**
      * Affichage des Point de vies en fonction des points de vie max pour les monstres et le player.
      * @param terminal Screen asciipanel
-     * @param creature Monstre
+     * @param creature monstre
      * @param player Player
      */
     public static void affichePV(AsciiPanel terminal, GroupCreature creature, GroupCreature player) {

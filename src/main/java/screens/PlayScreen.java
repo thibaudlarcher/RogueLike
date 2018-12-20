@@ -91,7 +91,7 @@ public class PlayScreen implements Screen {
 	/**
 	 * Constructeur alternatif
 	 * @param world Monde
-	 * @param village Village
+	 * @param village village
 	 * @param player Player
 	 * @param groupCreature Groupe de créature
 	 */
