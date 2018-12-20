@@ -41,4 +41,11 @@ public class testMonster {
 
         assertTrue(true);
     }
+
+
+    @Test
+
+    public void testTest(){
+        assertTrue(true);
+    }
 }

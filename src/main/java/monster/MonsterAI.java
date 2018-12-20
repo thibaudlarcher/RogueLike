@@ -23,7 +23,7 @@ public class MonsterAI extends CreatureAi {
     }
 
     /**
-     * Permet de checker si on peut placer le Monstre sur la Map.
+     * Permet de checker si on peut placer le monstre sur la Map.
      * @param x Postition en x
      * @param y Position en y
      * @param tile Le type de la tile

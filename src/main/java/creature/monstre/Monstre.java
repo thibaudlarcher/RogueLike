@@ -1,10 +1,10 @@
-package creature.Monstre;
+package creature.monstre;
 
 import creature.Creature;
 import creature.GroupCreature;
 
 /**
- *  Classe d'un Monstre, Elle permet de donner une action d'attaquer au différent monstre
+ *  Classe d'un monstre, Elle permet de donner une action d'attaquer au différent monstre
  *  Elle est Extends a la Classe Creature
  *
  * @see creature.Creature

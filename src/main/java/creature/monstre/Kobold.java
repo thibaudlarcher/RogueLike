@@ -1,11 +1,11 @@
-package creature.Monstre;
+package creature.monstre;
 
 import object.items.Item;
 import static asciiPanel.AsciiPanel.red;
 
 /**
  *  Classe d'un certain type de monstre que l'on retrouve dans le Donjon
- *  Elle est Extends a la Classe Monstre
+ *  Elle est Extends a la Classe monstre
  *
  * @see Monstre
  * @see creature.Creature
@@ -29,7 +29,7 @@ public class Kobold extends Monstre {
     }
 
     /**
-     * On réécrit une instance de Monstre qui lui même est un extends a la classe créature
+     * On réécrit une instance de monstre qui lui même est un extends a la classe créature
      * Cependant les Monstres autre que le player ne peuvent pas drop d'item (pour l'instant)
      * @param item représente un Item dans l'inventaire
      */
@@ -38,7 +38,7 @@ public class Kobold extends Monstre {
     }
 
     /**
-     * On réécrit une instance de Monstre qui lui même est un extends a la classe créature
+     * On réécrit une instance de monstre qui lui même est un extends a la classe créature
      * Cependant les Monstres autre que le player ne peuvent pas rammasser d'items (pour l'instant)
      * @param item représente un Item sur le sol
      */
