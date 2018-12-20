@@ -300,17 +300,33 @@ public class VillageScreen implements Screen {
         return this;
     }
 
+    /**
+     * Getter du world village.
+     * @return world village
+     */
     public World getVillage() {
         return village;
     }
 
+    /**
+     * Getter du player.
+     * @return player
+     */
     public GroupCreature getPlayer() {
         return playerVillage;
     }
 
+    /**
+     * Getter du groupe de villageois.
+     * @return groupe de villageois
+     */
     public ArrayList<GroupCreature> getGroupVillageois(){
         return groupVillageois;
     }
 
+    /**
+     * Getter Screen du jeu.
+     * @return Screen du jeu
+     */
     public PlayScreen getPlayscreen(){ return playscreen; }
 }

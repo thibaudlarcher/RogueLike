@@ -53,7 +53,7 @@ public class PersonnageChoice implements Screen {
                     case 0 :
                         return new PlayScreen(new Guerrier("Guerrier",30,8));
                     case 1 :
-                        return new PlayScreen(new Mage("Mage",100,3,5));
+                        return new PlayScreen(new Mage("Mage",20,3,5));
                     case 2 :
                         return new LoadSreen();
                 }

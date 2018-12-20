@@ -162,9 +162,9 @@ public class GroupCreature {
     }
 
     /**
-     *
-     * @param mx
-     * @param my
+     * permet de déplacer une créature.
+     * @param mx Positon en x
+     * @param my Positon en y
      */
     public void moveBy(int mx, int my){
         ai.onEnter(x+mx, y+my, world.tile(x+mx, y+my));
