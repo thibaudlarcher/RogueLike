@@ -56,7 +56,7 @@ public class HelpScreen implements Screen {
      * Constructeur du HelpScreen
      * @param screen Screen du jeu
      */
-    public HelpScreen (PlayScreen screen){
+    public HelpScreen(PlayScreen screen) {
         this.screen = screen;
         this.GroupCreature = screen.getGroupCreature();
         this.player = screen.getPlayer();
@@ -69,7 +69,7 @@ public class HelpScreen implements Screen {
      * @param villageScreen Screen du village
      * @param screen Screen du jeu
      */
-    public HelpScreen (VillageScreen villageScreen, PlayScreen screen){
+    public HelpScreen(VillageScreen villageScreen, PlayScreen screen) {
         this.villageScreen = villageScreen;
         this.player = villageScreen.getPlayer();
         this.world = villageScreen.getVillage();
@@ -78,7 +78,7 @@ public class HelpScreen implements Screen {
     }
 
     /**
-     * Permet d'afficher l'help sur le terminal asciipanel
+     * Permet d'afficher l'help sur le terminal asciipanel.
      * @param terminal asciipanel
      */
     @Override
@@ -86,7 +86,7 @@ public class HelpScreen implements Screen {
         terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
         terminal.clear();
 
-        for (int j = 0; j < 140; j++){
+        for (int j = 0; j < 140; j++) {
             terminal.write((char) 196, j, 3, Color.WHITE);
             j++;
         }
@@ -119,7 +119,7 @@ public class HelpScreen implements Screen {
             case KeyEvent.VK_H:
             case KeyEvent.VK_ENTER:
             case KeyEvent.VK_ESCAPE:
-                if (inVilllage == true){
+                if (inVilllage == true) {
                     return new MenuScreen(villageScreen, screen);
                 } else return new MenuScreen(screen);
         }

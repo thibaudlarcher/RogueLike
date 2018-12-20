@@ -3,6 +3,8 @@ package screens.combat;
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
 
+import java.awt.*;
+
 import static asciiPanel.AsciiPanel.brightRed;
 
 /**
@@ -69,6 +71,10 @@ public class AffichageStat {
                 terminal.write(Integer.toString(player.getGroupCreature().get(i).getPointDeVieMax()),
                         16 + 30 * i, yPlayer, brightRed);
             }
+
+            terminal.write("Attaque : " + Integer.toString(player.getGroupCreature().get(i).getAttaque()), 9 + 30 * i, yPlayer + 2, new Color(16, 21, 78));
+            terminal.write("Defense : " + Integer.toString(player.getGroupCreature().get(i).getDefense()), 9 + 30 * i, yPlayer + 4, new Color(16, 21, 78));
+
 
         }
 

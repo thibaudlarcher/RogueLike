@@ -129,6 +129,11 @@ public class VillageoisScreen implements Screen {
 
     }
 
+    /**
+     * Méthode pour tester si la vente de l'item est possible.
+     * @param item l'item à vendre
+     * @return l'ecran d'achat/vente
+     */
     private Screen testVente(Item item) {
         if (item != null && item.isEquipe() == false) {
             vendre(item);
@@ -137,6 +142,9 @@ public class VillageoisScreen implements Screen {
         return this;
     }
 
+    /**
+     * Méthode pour l'achat du potion.
+     */
     public void achatPotion() {
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 16) {
@@ -146,6 +154,9 @@ public class VillageoisScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour l'achat d'une épée.
+     */
     public void achatEpee() {
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 23) {
@@ -155,6 +166,9 @@ public class VillageoisScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour l'achat d'un casque.
+     */
     public void achatCasque() {
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 14) {
@@ -164,6 +178,9 @@ public class VillageoisScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour l'achat d'un baton.
+     */
     public void achatBaton() {
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 8) {
@@ -173,6 +190,9 @@ public class VillageoisScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour l'achat d'une armure.
+     */
     public void achatArmure() {
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 19) {
@@ -182,6 +202,9 @@ public class VillageoisScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour l'achat d'un pantalon.
+     */
     public void achatPantalon() {
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 16) {
@@ -191,6 +214,9 @@ public class VillageoisScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour l'achat d'une paire de botte.
+     */
     public void achatBotte() {
         if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
             if (player.getGroupCreature().get(0).inventory().getMonnaie() >= 12) {
@@ -200,6 +226,10 @@ public class VillageoisScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour la vente d'un item.
+     * @param item l'item a vendre
+     */
     public void vendre(Item item) {
         if (item != null) {
             player.getGroupCreature().get(0).inventory().addMonnaie(item.getValeur());
@@ -207,6 +237,11 @@ public class VillageoisScreen implements Screen {
         }
     }
 
+    /**
+     * Permet de gérer les actions du clavier et ainsi lui donner des actions.
+     * @param key Appuie sur une touche
+     * @return
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {

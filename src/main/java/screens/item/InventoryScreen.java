@@ -187,7 +187,8 @@ public class InventoryScreen implements Screen {
             if (world.tile(player.x,player.y) == Tile.ITEMS) {
                 terminal.writeCenter("You can't drop item here", 41, Color.RED);
             } else {
-                terminal.writeCenter("Press [D] to drop current item (You can't drop equipped items)", 40, Color.GRAY); }
+                terminal.writeCenter("Press [D] to drop current item (You can't drop equipped items)", 40, Color.GRAY);
+            }
         }
 
         terminal.writeCenter("[ENTER] or [E] to equip/take off current item",38, Color.GRAY);
@@ -229,8 +230,9 @@ public class InventoryScreen implements Screen {
             } else {
                 return new InventoryScreen(screen);
             }
-        } else
+        } else {
             return this;
+        }
     }
 
     /**
@@ -281,7 +283,7 @@ public class InventoryScreen implements Screen {
                         return new InventoryScreen(screen);
                     }
                 }
-            } else if (item.getType() == "botte"){
+            } else if (item.getType() == "botte") {
                 if (currentInventory.getBotteEquipe() == false) {
                     item.setEquipe(true);
                     currentInventory.setBotteEquipe(true);
@@ -427,13 +429,15 @@ public class InventoryScreen implements Screen {
                         }
                     } else if (this.inVillage == true) {
                         return new InventoryScreen(this.villageScreen, screen);
-                    } else  return new InventoryScreen(screen);
+                    } else  {
+                        return new InventoryScreen(screen);
+                    }
                 } else {
                     return this;
                 }
             case KeyEvent.VK_E:
             case KeyEvent.VK_ENTER:
-                if (pos >= 0){
+                if (pos >= 0) {
                     return testEquipe(player.getGroupCreature().get(0).inventory().get(pos));
                 }
         }

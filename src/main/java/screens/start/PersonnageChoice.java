@@ -13,7 +13,7 @@ import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 
 /**
- * Classe du screen du choix de personnage
+ * Classe du screen du choix de personnage.
  *
  * @see Screen
  * @author Groupe du InfinityRogue
@@ -24,19 +24,19 @@ import static asciiPanel.AsciiPanel.white;
 public class PersonnageChoice implements Screen {
 
     /**
-     * Le choix dans le menu
+     * Le choix dans le menu.
      */
     private int choix;
 
     /**
-     * Permet d'afficher la sélection du personnage
+     * Permet d'afficher la sélection du personnage.
      * @param terminal asciipanel
      */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.writeCenter("Choix du personnage", 10,new Color(255, 255, 255));
         terminal.writeCenter("Guerrier", 15,this.choix == 0 ? brightRed : white);
-        terminal.writeCenter("Mage", 20,this.choix == 1 ? brightRed : white );
+        terminal.writeCenter("Mage", 20,this.choix == 1 ? brightRed : white);
         terminal.writeCenter("Retour", 25,this.choix == 2 ? brightRed : white);
     }
 

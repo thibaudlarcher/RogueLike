@@ -51,22 +51,22 @@ public class QuitterScreen implements Screen {
     private ArrayList<GroupCreature> groupCreature;
 
     /**
-     * Choix de quitter
+     * Choix de quitter.
      */
     private int choix;
 
     /**
-     * Savoir si on est dans le villages
+     * Savoir si on est dans le villages.
      */
     private boolean inVillage;
 
     /**
-     * Constructeur de la classe QuitterScreen
+     * Constructeur de la classe QuitterScreen.
      * @param screen Screen du jeu
      */
-    public QuitterScreen(PlayScreen screen){
+    public QuitterScreen(PlayScreen screen) {
         this.screen = screen;
-        this.world=screen.getWorld();
+        this.world = screen.getWorld();
         this.groupCreature = screen.getGroupCreature();
         this.player = screen.getPlayer();
         inVillage = false;
@@ -77,7 +77,7 @@ public class QuitterScreen implements Screen {
      * @param villageScreen Screen villages
      * @param screen Screen du jeu
      */
-    public QuitterScreen(VillageScreen villageScreen, PlayScreen screen){
+    public QuitterScreen(VillageScreen villageScreen, PlayScreen screen) {
         this.villageScreen = villageScreen;
         this.screen = screen;
         this.world = villageScreen.getVillage();
@@ -105,23 +105,25 @@ public class QuitterScreen implements Screen {
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
             case KeyEvent.VK_ENTER:
-                switch (this.choix){
+                switch (this.choix) {
                     case 0 :
                         exit(0);
                         break;
                     case 1 :
-                        if (inVillage == true){
+                        if (inVillage == true) {
                             return new MenuScreen(villageScreen, screen);
-                        } else return new MenuScreen(screen);
+                        } else {
+                            return new MenuScreen(screen);
+                        }
 
                 }
             case KeyEvent.VK_LEFT:
-                choix = (choix+1)%2;
+                choix = (choix + 1) % 2;
                 break;
             case KeyEvent.VK_RIGHT:
-                choix = (choix-1)%2;
-                if (choix<0){
-                    choix = (choix+2);
+                choix = (choix - 1) % 2;
+                if (choix < 0) {
+                    choix = (choix + 2);
                 }
                 break;
 
