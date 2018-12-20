@@ -42,7 +42,7 @@ public class Save {
     ArrayList<GroupCreature> monster;
 
     /**
-     * Constructeur de la classe save
+     * Constructeur de la classe save.
      * @param screen PlayScreen
      */
     public Save(PlayScreen screen) {
@@ -56,6 +56,11 @@ public class Save {
         saveItem();
     }
 
+    /**
+     * Constructeur alternatif.
+     * @param screen Screen du jeu
+     * @param villageScreen Screen du village
+     */
     public Save(PlayScreen screen, VillageScreen villageScreen) {
         this.screen = screen;
         this.player = screen.getPlayer();

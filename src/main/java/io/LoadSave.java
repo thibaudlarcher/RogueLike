@@ -280,6 +280,9 @@ public class LoadSave {
         }
     }
 
+    /**
+     * Permet de charger le player
+     */
     private void loadPlayer(){
         try{
             String str;
@@ -406,18 +409,34 @@ public class LoadSave {
         }
     }
 
+    /**
+     * Getter Tile[][].
+     * @return Tile[][]
+     */
     public Tile[][] getTiles() {
         return tiles;
     }
 
+    /**
+     * Getter Items[][].
+     * @return Items[][]
+     */
     public Item[][] getItems() {
         return items;
     }
 
+    /**
+     * Getter la player.
+     * @return player
+     */
     public GroupCreature getPlayer() {
         return player;
     }
 
+    /**
+     * Getter de la liste des monstres.
+     * @return liste de monstres
+     */
     public ArrayList<Point> getListMonster() {
         return listMonster;
     }

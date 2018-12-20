@@ -12,12 +12,36 @@ import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
 public class VillageoisScreen implements Screen {
+
+    /**
+     * Screen du villageois.
+     */
     private VillageScreen screen;
+
+    /**
+     * World.
+     */
     private World world;
+
+    /**
+     * Groupe de villageois.
+     */
     private ArrayList<GroupCreature> groupVillageois;
+
+    /**
+     * Player.
+     */
     private GroupCreature player;
+
+    /**
+     * Valeur de la position.
+     */
     private int pos;
 
+    /**
+     * Constructeur de la Classe VillageoisScreen
+     * @param screen Screen du villageois
+     */
     public VillageoisScreen(VillageScreen screen) {
         this.screen = screen;
         this.world = screen.getVillage();
@@ -26,7 +50,10 @@ public class VillageoisScreen implements Screen {
         this.pos = -1;
     }
 
-
+    /**
+     * Permet d'afficher l'interface vente/achat
+     * @param terminal Asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(24, 75, 123));

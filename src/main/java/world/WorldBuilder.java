@@ -11,56 +11,57 @@ import java.util.ArrayList;
  * @version Alpha 1.0
  *
  */
+
 public class WorldBuilder {
 
     /**
-     * Stock la largeur
+     * Stock la largeur.
      */
 	private int width;
 
     /**
-     * Stock la hauteur
+     * Stock la hauteur.
      */
 	private int height;
 
     /**
-     * Stock les tiles
+     * Stock les tiles.
      */
 	private Tile[][] tiles;
 
     /**
-     * Stock les chars du BSP Creator
+     * Stock les chars du BSP Creator.
      */
 	private char[][] ch;
 
     /**
-     * Point du spawn du player
+     * Point du spawn du player.
      */
 	private Point ptSpawn;
 
     /**
-     * Point du spawn du villages
+     * Point du spawn du villages.
      */
 	private Point ptSpawnVillage;
 
     /**
-     * Liste des points de chaque items
+     * Liste des points de chaque items.
      */
 	private ArrayList<Point> itemPointList;
 
     /**
-     * Liste des points de chaque monstres
+     * Liste des points de chaque monstres.
      */
 	private ArrayList<Point> ptmonstre;
 
 	/**
-     * Savoir si on est dans le village
+     * Savoir si on est dans le village.
 	 */
 	private boolean inVillage;
     private ArrayList<Point> ptvillageois;
 
     /**
-     * Constructeur du World Builder
+     * Constructeur du World Builder.
      * @param width Largeur
      * @param height Hauteur
      */
@@ -74,7 +75,7 @@ public class WorldBuilder {
 	}
 
     /**
-     * Permet de construire le monde
+     * Permet de construire le monde.
      * @return World
      */
 	public World build() {
@@ -88,7 +89,7 @@ public class WorldBuilder {
 	}
 
     /**
-     * Permet de construire le village
+     * Permet de construire le village.
      * @return Wolrd village
      */
     public World buildVillage() {
@@ -102,7 +103,7 @@ public class WorldBuilder {
     }
 
     /**
-     * Permet de générer le monde du jeu grace au char[][] du BSP creator
+     * Permet de générer le monde du jeu grace au char[][] du BSP creator.
      * @param ch Char[][]
      * @return Tile[][]
      */
@@ -133,7 +134,7 @@ public class WorldBuilder {
     }
 
     /**
-     * Permet de générer le villages grace au Char[][] du BSP creator
+     * Permet de générer le villages grace au Char[][] du BSP creator.
      * @param ch Char[][]
      * @return Tile[][]
      */
@@ -159,7 +160,7 @@ public class WorldBuilder {
     }
 
     /**
-     * Permet de générer la sortie dans la Map
+     * Permet de générer la sortie dans la Map.
      * @return Tile[][]
      */
     public Tile [][] InsertExit(){
@@ -180,7 +181,7 @@ public class WorldBuilder {
     }
 
     /**
-     * Permet de générer le protail vers le village
+     * Permet de générer le protail vers le village.
      * @return Tile[][]
      */
     public Tile [][] InsertVillagePortal(){
@@ -198,14 +199,26 @@ public class WorldBuilder {
         return tiles;
     }
 
+    /**
+     * Getter du point du spawn.
+     * @return Point du spawn
+     */
     public Point getPtSpawn() {
         return ptSpawn;
     }
 
+    /**
+     * Getter du point du spawn sur le village.
+     * @return Point du spawn du village
+     */
     public Point getPtSpawnVillage() {
         return ptSpawnVillage;
     }
 
+    /**
+     * Getter du point des monstres.
+     * @return Montres
+     */
     public ArrayList<Point> getPtmonstre(){
 	    return ptmonstre;
     }

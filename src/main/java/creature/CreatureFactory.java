@@ -44,9 +44,9 @@ public class CreatureFactory {
     }
 
     /**
-     * Permet de créer un nouveau villageois.
+     * Permet de créer un nouveau Player dans le village.
      * @param player Prends un player
-     * @return un villageois
+     * @return un player
      */
     public GroupCreature newPlayerVillage(GroupCreature player){
         //244 pied de biche
@@ -98,6 +98,12 @@ public class CreatureFactory {
 	}
 	*/
 
+    /**
+     * Permet de créer un nouveau villageois.
+     * @param x Position en x
+     * @param y Position en y
+     * @return un villageois
+     */
     public GroupCreature newVillageois(int x, int y){
         GroupCreature villageois = new GroupCreature(world, 'v', AsciiPanel.brightMagenta, x, y);
         return villageois;
