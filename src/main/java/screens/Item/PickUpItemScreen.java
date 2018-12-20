@@ -12,15 +12,45 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
-
+/**
+ * Classe de l'ecran pour recupérer un item.
+ */
 public class PickUpItemScreen implements Screen {
+
+    /**
+     * Stock le playscreen.
+     */
     private PlayScreen screen;
+
+    /**
+     * Stock le villagescreen.
+     */
     private VillageScreen villageScreen;
+
+    /**
+     * Stock le world.
+     */
     private World world;
+
+    /**
+     * Stock le joueur.
+     */
     private GroupCreature player;
+
+    /**
+     * Stock les monstres.
+     */
     private ArrayList<GroupCreature> groupCreature;
+
+    /**
+     * Stock une variable pour savoir si le joueur est dans le village ou non.
+     */
     private boolean inVillage;
 
+    /**
+     * Constructeur de la classe
+     * @param screen un playscreen
+     */
     public PickUpItemScreen(PlayScreen screen) {
         this.screen = screen;
         this.world = screen.getWorld();
@@ -29,6 +59,11 @@ public class PickUpItemScreen implements Screen {
         inVillage = false;
     }
 
+    /**
+     * Constructeur alternatif
+     * @param villageScreen un villagescreen
+     * @param screen un playscreen
+     */
     public PickUpItemScreen(VillageScreen villageScreen, PlayScreen screen) {
         this.villageScreen = villageScreen;
         this.screen = screen;
@@ -37,6 +72,9 @@ public class PickUpItemScreen implements Screen {
         inVillage = true;
     }
 
+    /**
+     * Méthode pour récupérer un item.
+     */
     private void pickUpItem() {
         if (world.item(player.x,player.y) != null) {
             if (player.getGroupCreature().get(0).inventory().getSize() < player.getGroupCreature().get(0).inventory().getSizeMax()) {
@@ -46,6 +84,10 @@ public class PickUpItemScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour gérer l'affichage.
+     * @param terminal Asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
@@ -92,6 +134,11 @@ public class PickUpItemScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour gérer les interactions avec l'utilisateur.
+     * @param key Appuie sur une touche
+     * @return un ecran pour récupérer un item
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {

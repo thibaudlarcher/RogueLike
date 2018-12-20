@@ -12,15 +12,56 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 
+
+/**
+ * Classe du screen pour drop un item.
+ *
+ * @see Screen
+ * @author Groupe du InfinityRogue
+ * @version Alpha 1.0
+ */
 public class DropItemScreen implements Screen {
+
+    /**
+     * Stock le playscreen.
+     */
     private PlayScreen screen;
+
+    /**
+     * Stock le villagescreen.
+     */
     private VillageScreen villageScreen;
+
+    /**
+     * Stock le world.
+     */
     private World world;
+
+    /**
+     * Stock le joueur.
+     */
     private GroupCreature player;
+
+    /**
+     * Stock les monstre.
+     */
     private ArrayList<GroupCreature> groupCreature;
+
+    /**
+     * Stock la position de l'item a dropper.
+     */
     private int pos;
+
+    /**
+     * Stock une variable pour savoir si le joueur est dans le village ou non.
+     */
     private boolean inVillage;
 
+    /**
+     * Constructeur de la classe.
+     * @param screen un playscreen.
+     * @param pos l'indice de l'item a droppper.
+     */
     public DropItemScreen(PlayScreen screen, int pos) {
         this.screen = screen;
         this.world = screen.getWorld();
@@ -30,6 +71,12 @@ public class DropItemScreen implements Screen {
         inVillage = false;
     }
 
+    /**
+     * Constructeur alternatif de la classe
+     * @param villageScreen un villagescreen.
+     * @param screen un playscreen.
+     * @param pos l'indice de l'item a droppper.
+     */
     public DropItemScreen(VillageScreen villageScreen, PlayScreen screen, int pos) {
         this.villageScreen = villageScreen;
         this.screen = screen;
@@ -39,6 +86,9 @@ public class DropItemScreen implements Screen {
         inVillage = true;
     }
 
+    /**
+     * Methode pour dropper un item.
+     */
     public void dropItem() {
         if (player.getGroupCreature().get(0).inventory().get(pos) != null) {
             Item item = player.getGroupCreature().get(0).inventory().get(pos);
@@ -47,6 +97,10 @@ public class DropItemScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour l'affichage du screen.
+     * @param terminal Asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
@@ -87,6 +141,11 @@ public class DropItemScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour gérer les interractions avec l'utilisateur.
+     * @param key Appuie sur une touche
+     * @return
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {

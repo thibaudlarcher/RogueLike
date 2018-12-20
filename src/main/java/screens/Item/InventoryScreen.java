@@ -15,15 +15,50 @@ import screens.Screen;
 import screens.village.VillageScreen;
 import world.World;
 
+/**
+ * Classe pour l'affichage de l'inventaire.
+ */
 public class InventoryScreen implements Screen {
+
+    /**
+     * Stock le playscreen.
+     */
     private PlayScreen screen;
+
+    /**
+     * Stock le villagescreen.
+     */
     private VillageScreen villageScreen;
+
+    /**
+     * Stock le world.
+     */
     private World world;
+
+    /**
+     * Stock les monstres.
+     */
     private ArrayList<GroupCreature> groupCreature;
+
+    /**
+     * Stock le joueur.
+     */
     private GroupCreature player;
+
+    /**
+     * Stock l'indice de l'item selectionné.
+     */
     private int pos;
+
+    /**
+     * Stock une variable pour savoir si le joueur est dans le village ou non.
+     */
     private boolean inVillage;
 
+    /**
+     * Constructeur de la classe.
+     * @param screen un playscreen
+     */
     public InventoryScreen(PlayScreen screen) {
         this.screen = screen;
         this.world = screen.getWorld();
@@ -33,6 +68,11 @@ public class InventoryScreen implements Screen {
         this.inVillage = false;
     }
 
+    /**
+     * Constructeur alternatif de la classe.
+     * @param villageScreen un villagescreen
+     * @param screen un playscreen
+     */
     public InventoryScreen(VillageScreen villageScreen, PlayScreen screen) {
         this.villageScreen = villageScreen;
         this.world = villageScreen.getVillage();
@@ -42,6 +82,10 @@ public class InventoryScreen implements Screen {
         this.screen = screen;
     }
 
+    /**
+     * Méthode d'affichage
+     * @param terminal Asciipanel
+     */
     @Override
     public void displayOutput(AsciiPanel terminal) {
         terminal.setDefaultBackgroundColor(new Color(24, 75, 123));
@@ -154,6 +198,11 @@ public class InventoryScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour savoir si l'on peut équiper un item.
+     * @param item l'item a équipé
+     * @return l'ecran de l'inventaire
+     */
     private Screen testEquipe(Item item) {
         if (item.getType() != "potion") {
             if (item.isEquipe() == false) {
@@ -166,6 +215,11 @@ public class InventoryScreen implements Screen {
         }
     }
 
+    /**
+     * Méthode pour tester si l'item est une potion.
+     * @param item l'item a tester
+     * @return l'ecran de l'inventaire
+     */
     private Screen testPotion(Item item) {
         if (item.getType() == "potion") {
             player.getGroupCreature().get(0).modifPointDeVie(item.getEffet());
@@ -179,6 +233,11 @@ public class InventoryScreen implements Screen {
             return this;
     }
 
+    /**
+     * Méthode pour équiper un item.
+     * @param item l'item a équiper.
+     * @return l'ecran de l'invantaire.
+     */
     private Screen equipeItem(Item item) {
         Inventory currentInventory = player.getGroupCreature().get(0).inventory();
         if (item.isEquipe() == false) {
@@ -249,6 +308,11 @@ public class InventoryScreen implements Screen {
         return this;
     }
 
+    /**
+     * Méthode pour déséquiper un item.
+     * @param item l'item a déséquiper.
+     * @return l'ecran de l'inventaire.
+     */
     private Screen deequipeItem(Item item) {
         Inventory currentInventory = player.getGroupCreature().get(0).inventory();
         if (item.isEquipe() == true) {
@@ -312,6 +376,11 @@ public class InventoryScreen implements Screen {
         return this;
     }
 
+    /**
+     * Méthode pour gérer les interactions avec l'utilisateur.
+     * @param key Appuie sur une touche
+     * @return l'ecran d'inventaire
+     */
     @Override
     public Screen respondToUserInput(KeyEvent key) {
         switch (key.getKeyCode()) {
