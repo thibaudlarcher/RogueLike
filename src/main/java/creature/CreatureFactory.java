@@ -1,8 +1,8 @@
 package creature;
 import asciiPanel.AsciiPanel;
-import creature.PJ.Guerrier;
-import creature.PJ.Mage;
-import creature.PJ.PJ;
+import creature.pj.Guerrier;
+import creature.pj.Mage;
+import creature.pj.PJ;
 import world.*;
 import player.*;
 import monster.*;
@@ -53,10 +53,10 @@ public class CreatureFactory {
         GroupCreature playerVillage;
         if (player.glyph() == 'M') {
 //            System.out.println("Mage");
-             playerVillage = new GroupCreature(world, player.glyph(), player.getColor(), new Mage(player.getGroupCreature().get(0).getName(), player.getGroupCreature().get(0).getPointDeVieMax(), player.getGroupCreature().get(0).getAttaque(), player.getGroupCreature().get(0).getmagicattaque()));
+            playerVillage = new GroupCreature(world, player.glyph(), player.getColor(), new Mage(player.getGroupCreature().get(0).getName(), player.getGroupCreature().get(0).getPointDeVieMax(), player.getGroupCreature().get(0).getAttaque(), player.getGroupCreature().get(0).getmagicattaque()));
         } else {
 //            System.out.println("Guerrier");
-             playerVillage = new GroupCreature(world, player.glyph(), player.getColor(), new Guerrier(player.getGroupCreature().get(0).getName(), player.getGroupCreature().get(0).getPointDeVieMax(), player.getGroupCreature().get(0).getAttaque()));
+            playerVillage = new GroupCreature(world, player.glyph(), player.getColor(), new Guerrier(player.getGroupCreature().get(0).getName(), player.getGroupCreature().get(0).getPointDeVieMax(), player.getGroupCreature().get(0).getAttaque()));
         }
         playerVillage.x = world.getPtVillage().x;
         playerVillage.y = world.getPtVillage().y;
@@ -84,9 +84,9 @@ public class CreatureFactory {
      * @return retourne le groupe créature
      */
     public GroupCreature newMonster(int x, int y){
-		GroupCreature monster = new GroupCreature(world, (char)155, AsciiPanel.brightYellow, x, y);
-		new MonsterAI(monster);
-		return monster;
+        GroupCreature monster = new GroupCreature(world, (char)155, AsciiPanel.brightYellow, x, y);
+        new MonsterAI(monster);
+        return monster;
     }
     /*
 	public GroupCreature newFlyingMonster(){

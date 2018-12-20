@@ -1,8 +1,9 @@
 package creature;
+
 import java.awt.Color;
 import java.util.ArrayList;
 
-import creature.PJ.PJ;
+import creature.pj.PJ;
 import world.World;
 
 /**
@@ -95,11 +96,11 @@ public class GroupCreature {
      * @param world Valeur du world
      * @param glyph Caractère du glyph
      * @param color Couleur de la glyph
-     * @param Crea1 Player
+     * @param crea1 Player
      */
-    public GroupCreature(World world, char glyph, Color color, PJ Crea1){
+    public GroupCreature(World world, char glyph, Color color, PJ crea1){
         groupCreature = new ArrayList<Creature>();
-        groupCreature.add(Crea1);
+        groupCreature.add(crea1);
         this.world = world;
         this.glyph = glyph;
         this.color = color;
@@ -148,13 +149,13 @@ public class GroupCreature {
     public boolean isNextTo(int x, int y){
         if(this.x == x && this.y == y){
             return true;
-        } else if(this.x == x+1 && this.y == y){
+        } else if (this.x == x + 1 && this.y == y) {
             return true;
-        } else if(this.x == x-1 && this.y == y){
+        } else if (this.x == x - 1 && this.y == y) {
             return true;
-        } else if(this.x == x && this.y == y+1){
+        } else if (this.x == x && this.y == y + 1) {
             return true;
-        } else if(this.x == x && this.y == y-1){
+        } else if (this.x == x && this.y == y - 1) {
             return true;
         }
         return false;
@@ -176,7 +177,7 @@ public class GroupCreature {
      */
     public boolean isDead (){
         boolean mort = true;
-        for(int i = 0;i < groupCreature.size(); i++){
+        for (int i = 0;i < groupCreature.size(); i++) {
             mort = mort && groupCreature.get(i).isDead();
         }
         return mort;

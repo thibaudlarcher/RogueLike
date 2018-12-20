@@ -1,6 +1,5 @@
-package screens.EndGameScreen;
+package screens.endGame;
 
-import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import asciiPanel.AsciiPanel;
@@ -72,14 +71,14 @@ public class LoseScreen implements Screen {
 	public Screen respondToUserInput(KeyEvent key) {
 		switch (key.getKeyCode()) {
 			case KeyEvent.VK_ENTER:
-			switch (this.choix) {
-				case 0:
-					restartchoice();
-					return new PlayScreen(player);
-				case 1:
-					exit(1);
-					break;
-			}
+				switch (this.choix) {
+					case 0:
+						restartchoice();
+						return new PlayScreen(player);
+					case 1:
+						exit(1);
+						break;
+				}
 			case KeyEvent.VK_ESCAPE:
 				exit(1);
 			case KeyEvent.VK_DOWN:
@@ -95,4 +94,3 @@ public class LoseScreen implements Screen {
 		return this;
 	}
 }
-

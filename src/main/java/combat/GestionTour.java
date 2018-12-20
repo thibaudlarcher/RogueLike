@@ -1,4 +1,4 @@
-package screens.Combat;
+package combat;
 
 import creature.GroupCreature;
 

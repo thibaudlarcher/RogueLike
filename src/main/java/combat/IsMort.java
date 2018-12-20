@@ -1,7 +1,7 @@
-package screens.Combat;
+package combat;
 
 import creature.GroupCreature;
-import screens.LoseScreen;
+import screens.*;
 import screens.Screen;
 
 import java.util.ArrayList;

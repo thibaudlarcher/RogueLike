@@ -1,8 +1,10 @@
-package screens;
+package screens.menu;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
-import screens.Village.VillageScreen;
+import screens.PlayScreen;
+import screens.Screen;
+import screens.village.VillageScreen;
 import world.World;
 
 import java.awt.*;

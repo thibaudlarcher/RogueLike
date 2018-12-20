@@ -3,7 +3,7 @@ import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 
 import screens.Screen;
-import screens.StartScreen;
+import screens.start.StartScreen;
 
 import asciiPanel.AsciiPanel;
 

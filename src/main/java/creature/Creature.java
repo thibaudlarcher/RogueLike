@@ -1,8 +1,8 @@
 package creature;
+
 import java.awt.Color;
 import object.*;
-import object.Items.Item;
-//import world.World;
+import object.items.Item;
 
 /**
  * Classe abstraite des Creatures.
@@ -12,7 +12,7 @@ import object.Items.Item;
  */
 
 public abstract class Creature {
-    //private World world;
+
     /**
      * Permet de gérer l'inventaire.
      */
@@ -49,6 +49,7 @@ public abstract class Creature {
         return name;
     }
 
+
     /**
      * Permet de modifier le nom.
      * @param name name
@@ -75,7 +76,7 @@ public abstract class Creature {
      * @param glyph glyph
      */
     public void setGlyph(char glyph) {
-         this.glyph = glyph;
+        this.glyph = glyph;
     }
 
     /**
@@ -161,7 +162,9 @@ public abstract class Creature {
         if (this.pointDeVie < this.pointDeVieMax) {
             if (this.pointDeVie + modif > this.getPointDeVieMax()) {
                 this.pointDeVie = this.pointDeVieMax;
-            } else { this.pointDeVie = this.pointDeVie + modif; }
+            } else {
+                this.pointDeVie = this.pointDeVie + modif;
+            }
         }
     }
 
@@ -288,7 +291,7 @@ public abstract class Creature {
      * Permet de mettre à jour la valeur du tour de jeux de la créature.
      */
     public void updateTour() {
-        this.setTour(tour+vitesse);
+        this.setTour(tour + vitesse);
     }
 
     /**
@@ -320,7 +323,9 @@ public abstract class Creature {
      * @return vrais ou faux
      */
     public boolean isDead() {
-        if(this.getPointDeVie() < 0) return true;
+        if (this.getPointDeVie() < 0) {
+            return true;
+        }
         return false;
     }
 

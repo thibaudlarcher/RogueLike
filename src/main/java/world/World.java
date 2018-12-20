@@ -2,7 +2,7 @@ package world;
 
 import java.awt.*;
 import java.util.ArrayList;
-import object.Items.Item;
+import object.items.Item;
 import Tiles.*;
 
 /**
@@ -62,7 +62,7 @@ public class World {
 	private ArrayList<Point> listMonster;
 
 	/**
-	 * Liste des Villageois
+	 * Stock la liste des villageois du village
 	 */
 	private ArrayList<Point> listVillageois;
 
@@ -106,7 +106,7 @@ public class World {
      * Constructeur pour la construction du villages
      * @param tiles Liste des tiles
      * @param pt Point du player
-     * @param listMonster Point des monstres (villageois)
+     * @param listVillageois Point des monstres (villageois)
      */
 	public World(Tile[][] tiles, Point pt, ArrayList<Point> listVillageois){
 		this.tiles = tiles;

@@ -1,5 +1,5 @@
-package creature.PJ;
-import object.Items.*;
+package creature.pj;
+import object.items.*;
 import object.*;
 
 import java.awt.*;

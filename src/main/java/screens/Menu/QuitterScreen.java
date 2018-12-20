@@ -1,8 +1,10 @@
-package screens;
+package screens.menu;
 
 import asciiPanel.AsciiPanel;
 import creature.GroupCreature;
-import screens.Village.VillageScreen;
+import screens.PlayScreen;
+import screens.Screen;
+import screens.village.VillageScreen;
 import world.World;
 
 import java.awt.*;
@@ -89,8 +91,8 @@ public class QuitterScreen implements Screen {
      */
     @Override
     public void displayOutput(AsciiPanel terminal) {
-       terminal.writeCenter("Voulez-vous quitter la partie ?",15,Color.white);
-       terminal.write("Oui",63,20,this.choix == 0 ? brightRed : white);
+        terminal.writeCenter("Voulez-vous quitter la partie ?",15,Color.white);
+        terminal.write("Oui",63,20,this.choix == 0 ? brightRed : white);
         terminal.write("Non",73,20,this.choix == 1 ? brightRed : white);
     }
 
@@ -113,15 +115,15 @@ public class QuitterScreen implements Screen {
                         } else return new MenuScreen(screen);
 
                 }
-                case KeyEvent.VK_LEFT:
-                    choix = (choix+1)%2;
-                    break;
-                case KeyEvent.VK_RIGHT:
-                    choix = (choix-1)%2;
-                    if (choix<0){
-                        choix = (choix+2);
-                    }
-                    break;
+            case KeyEvent.VK_LEFT:
+                choix = (choix+1)%2;
+                break;
+            case KeyEvent.VK_RIGHT:
+                choix = (choix-1)%2;
+                if (choix<0){
+                    choix = (choix+2);
+                }
+                break;
 
         }
         return this;

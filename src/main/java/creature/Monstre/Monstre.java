@@ -1,4 +1,4 @@
-package creature.Monstre;
+package creature.monstre;
 
 import creature.Creature;
 import creature.GroupCreature;

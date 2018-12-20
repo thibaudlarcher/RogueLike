@@ -1,8 +1,9 @@
-package screens.Combat;
+package screens.combat;
 
 import asciiPanel.AsciiPanel;
-import creature.Monstre.*;
-import screens.EndGameScreen.LoseScreen;
+import creature.monstre.Kobold;
+import creature.monstre.Monstre;
+import screens.endGame.LoseScreen;
 import screens.PlayScreen;
 import creature.GroupCreature;
 import screens.Screen;
@@ -13,10 +14,10 @@ import java.util.ArrayList;
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
-import static screens.Combat.AffichageStat.*;
-import static screens.Combat.GestionTour.isJoueurTour;
-import static screens.Combat.IsMort.*;
-import static screens.Combat.AffichageDesign.*;
+import static screens.combat.AffichageStat.*;
+import static combat.GestionTour.isJoueurTour;
+import static combat.IsMort.*;
+import static screens.combat.AffichageDesign.*;
 
 /**
  * Classe du screen de combat

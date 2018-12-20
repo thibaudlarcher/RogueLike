@@ -3,9 +3,9 @@ package io;
 import Tiles.Tile;
 import creature.Creature;
 import creature.GroupCreature;
-import object.Items.Item;
+import object.items.Item;
 import screens.PlayScreen;
-import screens.Village.VillageScreen;
+import screens.village.VillageScreen;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -78,7 +78,7 @@ public class Save {
      * On sauvegarde l'inventaire du personnages.
      * @param writer L'inventaire
      */
-    public void saveIventory(BufferedWriter writer){
+    public void saveInventory(BufferedWriter writer){
         for (int i = 0; i < creatures.get(0).inventory().getSize(); i++) {
             try {
                 if (creatures.get(0).inventory().get(i) != null) {

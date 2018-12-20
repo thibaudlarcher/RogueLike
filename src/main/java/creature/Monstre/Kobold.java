@@ -1,6 +1,6 @@
-package creature.Monstre;
+package creature.monstre;
 
-import object.Items.Item;
+import object.items.Item;
 import static asciiPanel.AsciiPanel.red;
 
 /**

@@ -1,11 +1,9 @@
-import Tiles.Tile;
 import creature.GroupCreature;
-import creature.PJ.Guerrier;
+import creature.pj.Guerrier;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import screens.PlayScreen;
 import world.World;
-import world.WorldBuilder;
 
 import java.awt.*;
 import java.util.ArrayList;

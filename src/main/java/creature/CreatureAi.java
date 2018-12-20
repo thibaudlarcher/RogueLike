@@ -1,4 +1,5 @@
 package creature;
+
 import Tiles.Tile;
 
 /**
@@ -7,7 +8,6 @@ import Tiles.Tile;
  * @author Groupe du InfinityRogue
  * @version Alpha 1.0
  */
-
 public class CreatureAi {
 	/**
 	 * Permet de créer un groupe de créature.
@@ -22,7 +22,7 @@ public class CreatureAi {
 		this.groupCreature = groupCreature;
 		this.groupCreature.setCreatureAi(this);
 	}
-	
+
 	public void onEnter(int x, int y, Tile tile){
 	}
 }

@@ -1,11 +1,11 @@
 import creature.Creature;
-import creature.PJ.Guerrier;
-import object.Items.ItemArme;
+import creature.pj.Guerrier;
+import object.items.ItemArme;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import screens.PlayScreen;
-import screens.Village.VillageScreen;
-import screens.Village.VillageoisScreen;
+import screens.village.VillageScreen;
+import screens.village.VillageoisScreen;
 import world.World;
 import world.WorldBuilder;
 import java.awt.*;
@@ -66,17 +66,37 @@ public class testObject {
         assertEquals(10, player.inventory().getMonnaie());
     }
 
+    // prix vente epee = 20
+    // monnaie = 0 + 20 + 50 - 16 = 54
     @Test
     public void testVente(){
         player.inventory().add(epee);
         villageoisScreen.vendre(player.inventory().get(0));
-        assertEquals(20, villageScreen.getPlayer().getGroupCreature().get(0).inventory().getMonnaie());
+        assertEquals(54, villageScreen.getPlayer().getGroupCreature().get(0).inventory().getMonnaie());
     }
 
+    //prix potion = 16
     @Test
     public void testAchat(){
         villageScreen.getPlayer().getGroupCreature().get(0).inventory().setMonnaie(50);
         villageoisScreen.achatPotion();
         assertEquals(villageScreen.getPlayer().getGroupCreature().get(0).inventory().get(0).getType(), "potion");
+    }
+
+    @Test
+    public void testInventaireFull(){
+        for (int i = 0; i < 10; i++){
+            player.inventory().add(epee);
+        }
+        assertTrue(player.inventory().isFull());
+    }
+
+    @Test
+    public void testRemoveAllItemInventaire(){
+        for (int i = 0; i < 10; i++){
+            player.inventory().add(epee);
+        }
+        player.inventory().removeAllItem();
+        assertFalse(player.inventory().isFull());
     }
 }

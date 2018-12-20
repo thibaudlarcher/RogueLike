@@ -1,4 +1,4 @@
-package object.Items;
+package object.items;
 
 import java.awt.*;
 
@@ -20,7 +20,7 @@ public class ItemEquipementArmure extends Item {
      * @param defense la defense que procure l'item.
      * @param valeur la valeure marchande de l'item.
      */
-    public ItemEquipementArmure(char glyph, Color color, String name, int defense, int valeur){
+    public ItemEquipementArmure(char glyph, Color color, String name, int defense, int valeur) {
         this.glyph = glyph;
         this.color = color;
         this.name = name;
@@ -37,14 +37,16 @@ public class ItemEquipementArmure extends Item {
     /**
      * @return la defense que procure l'item.
      */
-    public int getDefense(){ return this.defense; }
+    public int getDefense() {
+        return this.defense;
+    }
 
     public int getEffet() {
         return 0;
     }
 
     @Override
-    public String toString(){
-        return 2 + " " + glyph + " " + color.getBlue() + " " + color.getRed() +" " + color.getGreen()+ " " + name + " " + defense + " " + valeur + " " + equipe;
+    public String toString() {
+        return 2 + " " + glyph + " " + color.getBlue() + " " + color.getRed() + " " + color.getGreen() + " " + name + " " + defense + " " + valeur + " " + equipe;
     }
 }

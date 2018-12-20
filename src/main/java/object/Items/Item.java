@@ -1,4 +1,4 @@
-package object.Items;
+package object.items;
 import java.awt.*;
 
 /**
@@ -15,7 +15,9 @@ public abstract class Item {
     /**
      * @return le glyphe de l'item.
      */
-    public char getGlyph() { return glyph; }
+    public char getGlyph() {
+        return glyph;
+    }
 
     /**
      * La couleur de l'item.
@@ -25,7 +27,9 @@ public abstract class Item {
     /**
      * @return la couleur de l'item.
      */
-    public Color getColor() { return color; }
+    public Color getColor() {
+        return color;
+    }
 
     /**
      * Méthode pour définir la couleur de l'item.
@@ -43,7 +47,9 @@ public abstract class Item {
     /**
      * @return le nom de l'item.
      */
-    public String getName() { return name; }
+    public String getName() {
+        return name;
+    }
 
     /**
      * Le type de l'item.
@@ -53,7 +59,9 @@ public abstract class Item {
     /**
      * @return le type de l'item.
      */
-    public String getType(){ return type; }
+    public String getType() {
+        return type;
+    }
 
     /**
      * La valeur marchande de l'item.
@@ -63,7 +71,9 @@ public abstract class Item {
     /**
      * @return la valeur marchande de l'item.
      */
-    public int getValeur(){ return valeur; }
+    public int getValeur() {
+        return valeur;
+    }
 
     /**
      * L'attribut pour savoir si l'item est équipé ou non.
@@ -73,13 +83,15 @@ public abstract class Item {
     /**
      * @return vrai ou faux selon si l'item est équipé ou non.
      */
-    public boolean isEquipe(){ return equipe; }
+    public boolean isEquipe() {
+        return equipe;
+    }
 
     /**
      * Méthode pour définir si l'item est équipé ou non.
      * @param e vrai ou faux, si l'item est équipé ou non.
      */
-    public void setEquipe(boolean e){
+    public void setEquipe(boolean e) {
         this.equipe = e;
     }
 

@@ -39,22 +39,26 @@ public enum Tile {
 	 */
 	private char glyph;
 
-	/**
-	 * Permet de récupérer le glyph
-	 * @return glyph
-	 */
-	public char glyph() { return glyph; }
+    /**
+     * Permet de récupérer le glyph
+     * @return glyph
+     */
+	public char glyph() {
+		return glyph;
+	}
 
 	/**
 	 * Stock la couleur du glyph
 	 */
 	private Color color;
 
-	/**
-	 * permet de retourner la couleur
-	 * @return couleur
-	 */
-	public Color color() { return color; }
+    /**
+     * permet de retourner la couleur
+     * @return couleur
+     */
+	public Color color() {
+		return color;
+	}
 
 	/**
 	 * Constructeur de la classe tiles
@@ -71,7 +75,7 @@ public enum Tile {
 	 * @return boolean
 	 */
 	public boolean isGround() {
-		return this != WALL && this != BOUNDS && this !=WALLALREADYVISITED && this!=WALLUNKNOW;
+		return this != WALL && this != BOUNDS && this != WALLALREADYVISITED && this != WALLUNKNOW;
 	}
 
 }

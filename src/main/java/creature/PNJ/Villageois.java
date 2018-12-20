@@ -1,4 +1,4 @@
-package creature.PNJ;
+package creature.pnj;
 
 import object.Inventory;
 

@@ -1,9 +1,8 @@
-package screens.Combat;
+package screens.combat;
 
 import asciiPanel.AsciiPanel;
 
 import static asciiPanel.AsciiPanel.black;
-import static asciiPanel.AsciiPanel.white;
 
 /**
  * Classe de l'affichage des flèches dans le combat
@@ -25,6 +24,6 @@ public class AffichageDesign {
      * @param i Valeur de la position
      */
     public static void afficheFleche(AsciiPanel terminal, int i) {
-        terminal.write("->",7 + i*30,7,black);
+        terminal.write("->",7 + i * 30,7,black);
     }
 }

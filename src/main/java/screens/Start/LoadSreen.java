@@ -1,7 +1,8 @@
-package screens;
+package screens.start;
 
 import asciiPanel.AsciiPanel;
 import io.LoadSave;
+import screens.Screen;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
@@ -9,7 +10,6 @@ import java.awt.event.KeyEvent;
 import static asciiPanel.AsciiPanel.brightRed;
 import static asciiPanel.AsciiPanel.white;
 import static java.lang.System.exit;
-import static java.lang.System.in;
 
 /**
  * Classe du screen de chargement
@@ -20,7 +20,7 @@ import static java.lang.System.in;
  *
  */
 
-public class LoadSreen implements Screen{
+public class LoadSreen implements Screen {
 
     /**
      * choix du key event
@@ -39,7 +39,7 @@ public class LoadSreen implements Screen{
         terminal.writeCenter("Nouveau", 15,this.choix == 0 ? brightRed : white);
         terminal.writeCenter("Charger", 20,this.choix == 1 ? brightRed : white );
         terminal.writeCenter("Quitter", 25,this.choix == 2 ? brightRed : white);
-       }
+    }
 
     /**
      * Permet de gérer les actions du clavier et ainsi lui donner des actions.
@@ -56,7 +56,7 @@ public class LoadSreen implements Screen{
                     case 1 :
                         return new LoadSave().PlayScreen();
                     case 2 :
-                         exit(0);
+                        exit(0);
                 }
             /*case KeyEvent.VK_ESCAPE :
                 return new PlayScreen();*/

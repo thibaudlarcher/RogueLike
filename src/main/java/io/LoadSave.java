@@ -2,11 +2,10 @@ package io;
 
 import Tiles.Tile;
 import creature.*;
-import creature.PJ.Guerrier;
-import creature.PJ.Mage;
-import object.Items.*;
+import creature.pj.Guerrier;
+import creature.pj.Mage;
+import object.items.*;
 import screens.PlayScreen;
-import screens.Village.VillageScreen;
 import world.World;
 import world.WorldBuilder;
 
@@ -17,7 +16,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import static java.lang.System.exit;
-import static java.lang.System.in;
 
 /**
  * Classe de la chargement de la Sauvegarde

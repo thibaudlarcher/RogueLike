@@ -1,11 +1,11 @@
-package screens.EndGameScreen;
+package screens.endGame;
 
 import java.awt.*;
 import java.awt.event.KeyEvent;
 
 import asciiPanel.AsciiPanel;
 import screens.Screen;
-import screens.StartScreen;
+import screens.start.StartScreen;
 
 import static java.lang.System.exit;
 

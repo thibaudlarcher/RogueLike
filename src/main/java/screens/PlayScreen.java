@@ -6,13 +6,16 @@ import java.util.ArrayList;
 import asciiPanel.AsciiPanel;
 import Tiles.Tile;
 import creature.*;
-import creature.PJ.PJ;
+import creature.pj.PJ;
 import object.StuffFactory;
-import screens.Combat.CombatScreen;
-import screens.EndGameScreen.WinScreen;
-import screens.Item.InventoryScreen;
-import screens.Item.PickUpItemScreen;
-import screens.Village.VillageScreen;
+import screens.combat.CombatScreen;
+import screens.endGame.WinScreen;
+import screens.item.InventoryScreen;
+import screens.item.PickUpItemScreen;
+import screens.menu.HelpScreen;
+import screens.menu.MenuScreen;
+import screens.menu.StatScreen;
+import screens.village.VillageScreen;
 import world.*;
 
 /**
@@ -26,9 +29,9 @@ import world.*;
 
 public class PlayScreen implements Screen {
 	private int i = 0;
-    /**
-     * Stock le world
-     */
+	/**
+	 * Stock le world
+	 */
 	private World world;
 
 	/**
@@ -103,9 +106,9 @@ public class PlayScreen implements Screen {
 	}
 
 	/**
-     * Constructeur alternatif
-     * @param screen Screen de jeu
-     */
+	 * Constructeur alternatif
+	 * @param screen Screen de jeu
+	 */
 	public PlayScreen(PlayScreen screen, GroupCreature playervillage){
 		screenWidth = 140;
 		screenHeight = 40;
@@ -133,21 +136,21 @@ public class PlayScreen implements Screen {
 	 * @param village village
 	 */
 	public PlayScreen(GroupCreature player, World village){
-        screenWidth = 140;
-        screenHeight = 40;
-        inVillage = false;
-        createWorld();
-        this.player = player;
-        this.village = village;
-        int nv = this.player.getGroupCreature().get(0).getNiveau();
-        nv++;
-        this.player.getGroupCreature().get(0).setNiveau(nv);
-        this.player.x = world.getPositionPersonnageX();
-        this.player.y = world.getPositionPersonnageY();
-        player.setWorld(this.world);
+		screenWidth = 140;
+		screenHeight = 40;
+		inVillage = false;
+		createWorld();
+		this.player = player;
+		this.village = village;
+		int nv = this.player.getGroupCreature().get(0).getNiveau();
+		nv++;
+		this.player.getGroupCreature().get(0).setNiveau(nv);
+		this.player.x = world.getPositionPersonnageX();
+		this.player.y = world.getPositionPersonnageY();
+		player.setWorld(this.world);
 
-        CreatureFactory creatureFactory = new CreatureFactory(world);
-        StuffFactory stuffFactory = new StuffFactory(world);
+		CreatureFactory creatureFactory = new CreatureFactory(world);
+		StuffFactory stuffFactory = new StuffFactory(world);
 		createItems(stuffFactory);
 
 		groupCreature = new ArrayList<GroupCreature>();
@@ -156,7 +159,7 @@ public class PlayScreen implements Screen {
 			Point p = listMonster.get(i);
 			groupCreature.add(creatureFactory.newMonster((int)p.getY(),(int)p.getX()));
 		}
-    }
+	}
 
 	/**
 	 * Constructeur alternatif
@@ -314,8 +317,8 @@ public class PlayScreen implements Screen {
 					if (world.tile(playerx,f)==Tile.WALLUNKNOW || world.tile(playerx,f)==Tile.WALL) {
 						indiceym = f - 1 - top;
 					}
-						break;
-					}
+					break;
+				}
 
 				for (int f=playery+1;f<indiceyma;f++){
 					if (world.tile(playerx,f)==Tile.WALLUNKNOW || world.tile(playerx,f)==Tile.WALL){
@@ -464,11 +467,11 @@ public class PlayScreen implements Screen {
 				return testRencontre();
 			}
 			case KeyEvent.VK_DOWN:
-            case KeyEvent.VK_S: {
-                player.moveBy( 0, 1);
-                creatureMove();
-                return testRencontre();
-            }
+			case KeyEvent.VK_S: {
+				player.moveBy( 0, 1);
+				creatureMove();
+				return testRencontre();
+			}
 			case KeyEvent.VK_I: return new InventoryScreen(this);
 			case KeyEvent.VK_P: return testPickUpItem();
 			case KeyEvent.VK_C: return new StatScreen(this);

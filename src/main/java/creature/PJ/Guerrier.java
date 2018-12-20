@@ -1,5 +1,5 @@
-package creature.PJ;
-import object.Items.*;
+package creature.pj;
+import object.items.*;
 import object.*;
 import static asciiPanel.AsciiPanel.brightGreen;
 
@@ -21,7 +21,7 @@ public class Guerrier extends PJ{
      * @param attaque puissance d'attaque de la classe
      */
     public Guerrier(String name, int pointDeVie, int attaque) {
-       this.color = brightGreen;
+        this.color = brightGreen;
         pointDeVieMax = pointDeVie;
         this.pointDeVie = pointDeVie;
         this.name = name;

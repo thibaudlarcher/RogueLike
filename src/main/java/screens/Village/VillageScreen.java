@@ -1,13 +1,16 @@
-package screens.Village;
+package screens.village;
 
 import Tiles.Tile;
 import asciiPanel.AsciiPanel;
 import creature.CreatureFactory;
 import creature.GroupCreature;
 import screens.*;
-import screens.EndGameScreen.WinScreen;
-import screens.Item.InventoryScreen;
-import screens.Item.PickUpItemScreen;
+import screens.endGame.WinScreen;
+import screens.item.InventoryScreen;
+import screens.item.PickUpItemScreen;
+import screens.menu.HelpScreen;
+import screens.menu.MenuScreen;
+import screens.menu.StatScreen;
 import world.World;
 import java.awt.*;
 import java.awt.event.KeyEvent;
